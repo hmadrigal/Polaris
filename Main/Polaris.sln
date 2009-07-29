@@ -5,33 +5,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Bal", "Polaris.Bal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Dal", "Polaris.Dal\Polaris.Dal.csproj", "{FDFCB721-DA95-44A1-AC89-F39C11BE311E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cal", "Polaris.Cal\Polaris.Cal.csproj", "{AF619B9E-5908-47FC-9B8C-1C82E59EA14D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Pal", "Polaris.Pal\Polaris.Pal.csproj", "{3E3ED42B-34EA-4B58-A858-BC06F445C58F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "..\Tests\Polaris.Tal\Polaris.Tal.csproj", "{79629DBA-3F1C-4689-A720-B75A5B9E4626}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Polaris.Bal\\Polaris.Bal.csproj
 		SccProjectName1 = Polaris.Bal
 		SccLocalPath1 = Polaris.Bal
-		SccProjectUniqueName2 = Polaris.Cal\\Polaris.Cal.csproj
-		SccProjectName2 = Polaris.Cal
-		SccLocalPath2 = Polaris.Cal
-		SccProjectUniqueName3 = Polaris.Dal\\Polaris.Dal.csproj
-		SccProjectName3 = Polaris.Dal
-		SccLocalPath3 = Polaris.Dal
-		SccProjectUniqueName4 = Polaris.Pal\\Polaris.Pal.csproj
-		SccProjectName4 = Polaris.Pal
-		SccLocalPath4 = Polaris.Pal
-		SccProjectUniqueName5 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
-		SccProjectName5 = ../Tests/Polaris.Tal
-		SccLocalPath5 = ..\\Tests\\Polaris.Tal
+		SccProjectUniqueName2 = Polaris.Dal\\Polaris.Dal.csproj
+		SccProjectName2 = Polaris.Dal
+		SccLocalPath2 = Polaris.Dal
+		SccProjectUniqueName3 = Polaris.Pal\\Polaris.Pal.csproj
+		SccProjectName3 = Polaris.Pal
+		SccLocalPath3 = Polaris.Pal
+		SccProjectUniqueName4 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
+		SccProjectName4 = ../Tests/Polaris.Tal
+		SccLocalPath4 = ..\\Tests\\Polaris.Tal
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,10 +41,6 @@ Global
 		{FDFCB721-DA95-44A1-AC89-F39C11BE311E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDFCB721-DA95-44A1-AC89-F39C11BE311E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDFCB721-DA95-44A1-AC89-F39C11BE311E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF619B9E-5908-47FC-9B8C-1C82E59EA14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF619B9E-5908-47FC-9B8C-1C82E59EA14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF619B9E-5908-47FC-9B8C-1C82E59EA14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF619B9E-5908-47FC-9B8C-1C82E59EA14D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
