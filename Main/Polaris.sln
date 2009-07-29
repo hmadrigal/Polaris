@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cal", "Polaris.Cal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Pal", "Polaris.Pal\Polaris.Pal.csproj", "{3E3ED42B-34EA-4B58-A858-BC06F445C58F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "Polaris.Tal\Polaris.Tal.csproj", "{79629DBA-3F1C-4689-A720-B75A5B9E4626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "..\Tests\Polaris.Tal\Polaris.Tal.csproj", "{79629DBA-3F1C-4689-A720-B75A5B9E4626}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -29,9 +29,9 @@ Global
 		SccProjectUniqueName4 = Polaris.Pal\\Polaris.Pal.csproj
 		SccProjectName4 = Polaris.Pal
 		SccLocalPath4 = Polaris.Pal
-		SccProjectUniqueName5 = Polaris.Tal\\Polaris.Tal.csproj
-		SccProjectName5 = Polaris.Tal
-		SccLocalPath5 = Polaris.Tal
+		SccProjectUniqueName5 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
+		SccProjectName5 = ../Tests/Polaris.Tal
+		SccLocalPath5 = ..\\Tests\\Polaris.Tal
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
