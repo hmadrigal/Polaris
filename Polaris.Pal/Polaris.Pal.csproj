@@ -95,6 +95,12 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Polaris.Bal\Polaris.Bal.csproj">
+      <Project>{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}</Project>
+      <Name>Polaris.Bal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\" />
     <Folder Include="ViewModels\" />
