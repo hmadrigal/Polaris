@@ -49,13 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Extensions\ContentExtensions.cs" />
+    <Compile Include="Extensions\UrlExtensions.cs" />
+    <Compile Include="Helpers\Content\UserContent.cs" />
+    <Compile Include="Helpers\Filters\ContentDefinition.cs" />
+    <Compile Include="Helpers\Filters\DefinitionBase.cs" />
+    <Compile Include="Helpers\Filters\FilterDefinition.cs" />
+    <Compile Include="Helpers\Filters\FilterRenderingType.cs" />
+    <Compile Include="Helpers\Filters\FilterValueDefinition.cs" />
+    <Compile Include="Helpers\Filters\LinkRenderingType.cs" />
+    <Compile Include="Helpers\Filters\SortDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Enumerations\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Helpers\" />
     <Folder Include="IEntities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

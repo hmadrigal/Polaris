@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Pal", "Polaris.Pal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "..\Tests\Polaris.Tal\Polaris.Tal.csproj", "{79629DBA-3F1C-4689-A720-B75A5B9E4626}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cms", "Polaris.Cms\Polaris.Cms.csproj", "{66D69190-00CF-457E-9CFD-6C3165194F53}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -49,6 +51,10 @@ Global
 		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D69190-00CF-457E-9CFD-6C3165194F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D69190-00CF-457E-9CFD-6C3165194F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D69190-00CF-457E-9CFD-6C3165194F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D69190-00CF-457E-9CFD-6C3165194F53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
