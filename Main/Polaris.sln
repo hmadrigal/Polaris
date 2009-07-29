@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "..\Tests\Pol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cms", "Polaris.Cms\Polaris.Cms.csproj", "{66D69190-00CF-457E-9CFD-6C3165194F53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cal", "Polaris.Cal\Polaris.Cal.csproj", "{95FD45CA-A3A4-4264-8992-B8E5D3025C71}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
@@ -29,6 +31,12 @@ Global
 		SccProjectUniqueName4 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
 		SccProjectName4 = ../Tests/Polaris.Tal
 		SccLocalPath4 = ..\\Tests\\Polaris.Tal
+		SccProjectUniqueName5 = Polaris.Cms\\Polaris.Cms.csproj
+		SccProjectName5 = Polaris.Cms
+		SccLocalPath5 = Polaris.Cms
+		SccProjectUniqueName6 = Polaris.Cal\\Polaris.Cal.csproj
+		SccProjectName6 = Polaris.Cal
+		SccLocalPath6 = Polaris.Cal
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,8 +63,30 @@ Global
 		{66D69190-00CF-457E-9CFD-6C3165194F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D69190-00CF-457E-9CFD-6C3165194F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66D69190-00CF-457E-9CFD-6C3165194F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FD45CA-A3A4-4264-8992-B8E5D3025C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FD45CA-A3A4-4264-8992-B8E5D3025C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FD45CA-A3A4-4264-8992-B8E5D3025C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FD45CA-A3A4-4264-8992-B8E5D3025C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs04.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Polaris.Bal\\Polaris.Bal.csproj
+		SccProjectName1 = Polaris.Bal
+		SccLocalPath1 = Polaris.Bal
+		SccProjectUniqueName2 = Polaris.Dal\\Polaris.Dal.csproj
+		SccProjectName2 = Polaris.Dal
+		SccLocalPath2 = Polaris.Dal
+		SccProjectUniqueName3 = Polaris.Pal\\Polaris.Pal.csproj
+		SccProjectName3 = Polaris.Pal
+		SccLocalPath3 = Polaris.Pal
+		SccProjectUniqueName4 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
+		SccProjectName4 = ../Tests/Polaris.Tal
+		SccLocalPath4 = ..\\Tests\\Polaris.Tal
 	EndGlobalSection
 EndGlobal
