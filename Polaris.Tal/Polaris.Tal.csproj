@@ -56,12 +56,6 @@
     <Content Include="AuthoringTests.txt" />
     <Content Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Polaris.Portal\Polaris.Pal.csproj">
-      <Project>{3E3ED42B-34EA-4B58-A858-BC06F445C58F}</Project>
-      <Name>Polaris.Pal</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

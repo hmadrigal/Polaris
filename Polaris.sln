@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Pal", "Polaris.Portal\Polaris.Pal.csproj", "{3E3ED42B-34EA-4B58-A858-BC06F445C58F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Tal", "Polaris.Portal.Tests\Polaris.Tal.csproj", "{79629DBA-3F1C-4689-A720-B75A5B9E4626}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Bal", "Polaris.Bal\Polaris.Bal.csproj", "{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Dal", "Polaris.Dal\Polaris.Dal.csproj", "{FDFCB721-DA95-44A1-AC89-F39C11BE311E}"
@@ -13,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cal", "Polaris.Cal\
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -26,26 +22,12 @@ Global
 		SccProjectUniqueName3 = Polaris.Dal\\Polaris.Dal.csproj
 		SccProjectName3 = Polaris.Dal
 		SccLocalPath3 = Polaris.Dal
-		SccProjectUniqueName4 = Polaris.Portal.Tests\\Polaris.Tal.csproj
-		SccProjectName4 = Polaris.Portal.Tests
-		SccLocalPath4 = Polaris.Portal.Tests
-		SccProjectUniqueName5 = Polaris.Portal\\Polaris.Pal.csproj
-		SccProjectName5 = Polaris.Portal
-		SccLocalPath5 = Polaris.Portal
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E3ED42B-34EA-4B58-A858-BC06F445C58F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79629DBA-3F1C-4689-A720-B75A5B9E4626}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
