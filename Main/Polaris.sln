@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
+﻿Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Bal", "Polaris.Bal\Polaris.Bal.csproj", "{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}"
 EndProject
@@ -159,26 +158,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{14CA4766-F653-4B95-9B76-B4ECD4C8AF39} = {4ED7D494-702D-4A16-8E6F-A8B0887D1778}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs04.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Polaris.Bal\\Polaris.Bal.csproj
-		SccProjectName1 = Polaris.Bal
-		SccLocalPath1 = Polaris.Bal
-		SccProjectUniqueName2 = Polaris.Dal\\Polaris.Dal.csproj
-		SccProjectName2 = Polaris.Dal
-		SccLocalPath2 = Polaris.Dal
-		SccProjectUniqueName3 = Polaris.Pal\\Polaris.Pal.csproj
-		SccProjectName3 = Polaris.Pal
-		SccLocalPath3 = Polaris.Pal
-		SccProjectUniqueName4 = ..\\Tests\\Polaris.Tal\\Polaris.Tal.csproj
-		SccProjectName4 = ../Tests/Polaris.Tal
-		SccLocalPath4 = ..\\Tests\\Polaris.Tal
 	EndGlobalSection
 EndGlobal
