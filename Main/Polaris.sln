@@ -13,6 +13,95 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cms", "Polaris.Cms\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Cal", "Polaris.Cal\Polaris.Cal.csproj", "{95FD45CA-A3A4-4264-8992-B8E5D3025C71}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{4ED7D494-702D-4A16-8E6F-A8B0887D1778}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnterpriseLibraries", "EnterpriseLibraries", "{14CA4766-F653-4B95-9B76-B4ECD4C8AF39}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Common.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Common.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.UI.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.UI.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.EnvironmentalOverrides.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Configuration.EnvironmentalOverrides.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Data.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.Database.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.AzMan.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Security.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml = SolutionItems\EnterpriseLibraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.ObjectBuilder2.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.ObjectBuilder2.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Configuration.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Configuration.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Interception.Configuration.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Interception.Configuration.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Interception.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.Interception.dll
+		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.StaticFactory.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.StaticFactory.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
@@ -70,6 +159,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14CA4766-F653-4B95-9B76-B4ECD4C8AF39} = {4ED7D494-702D-4A16-8E6F-A8B0887D1778}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
