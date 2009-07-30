@@ -1,0 +1,3 @@
+﻿ALTER TABLE [Polaris].[MenuItem] ADD CONSTRAINT [PK_MenuItem] PRIMARY KEY CLUSTERED  ([MenuItemId]) ON [PRIMARY]
+
+
