@@ -16,5 +16,18 @@ namespace Polaris.Bal
         IEnumerable<IUser> GetUsers();
 
         #endregion
+
+        /// <summary>
+        /// Gets the site section associated with the specified controller
+        /// and action names.
+        /// </summary>
+        /// <param name="Controller">Name of the MVC Controller.</param>
+        /// <param name="Action">Name of the MVC Action.</param>
+        /// <returns>
+        /// Instance of the associated site section, null if none
+        /// associated.
+        /// </returns>
+        ISiteSection GetSiteSection(String Controller, String Action);
+
     }
 }

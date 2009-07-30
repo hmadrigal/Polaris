@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Polaris.Bal.Helpers.Settings
+namespace Polaris.Bal
 {
     /// <summary>
     /// Serves as a helper to retrieve configuration values and reduce the number of hits to the config
@@ -69,11 +69,21 @@ namespace Polaris.Bal.Helpers.Settings
         /// <summary>
         /// Gets the dal assembly
         /// </summary>
-        public static String DalAssembly
+        public static String DalAssemblyName
         {
             get
             {
-                return ConfigurationManager.AppSettings["PolarisDal"];
+                return ConfigurationManager.AppSettings["DalAssemblyName"];
+            }
+        }
+
+        /// <summary>
+        /// Gets the class name of the repository factory class implementation.
+        /// </summary>
+        public static String DalRepositoryFactoryName {
+            get {
+                return String.Format("{0}.{1}", DalAssemblyName,
+                    ConfigurationManager.AppSettings["DalRepositoryFactoryName"]);
             }
         }
 
