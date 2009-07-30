@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Polaris.Dbl" EntityNamespace="Polaris.Dal" ContextNamespace="Polaris.Dal" Class="SourceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ABAKER-PC\SQLEXPRESS;Initial Catalog=Polaris.Dbl;Integrated Security=True" SettingsObjectName="Polaris.Dal.Properties.Settings" SettingsPropertyName="Polaris_DblConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Polaris.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PlayCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RankingCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.ContentType" Member="ContentTypes">
+    <Type Name="ContentType">
+      <Column Name="ContentTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.Developer" Member="Developers">
+    <Type Name="Developer">
+      <Column Name="DeveloperId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.DevelopmentTeam" Member="DevelopmentTeams">
+    <Type Name="DevelopmentTeam">
+      <Column Name="DevelopmentTeamId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.FilterOption" Member="FilterOptions">
+    <Type Name="FilterOption">
+      <Column Name="FilterOptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColumnName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.Game" Member="Games">
+    <Type Name="Game">
+      <Column Name="GameId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DevelopmentTeamId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="MenuItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SiteSectionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentMenuItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContentTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SortOptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FilterOptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.PlayLog" Member="PlayLogs">
+    <Type Name="PlayLog">
+      <Column Name="PlayLogId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GameId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Score" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.SiteSection" Member="SiteSections">
+    <Type Name="SiteSection">
+      <Column Name="SiteSectionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Controller" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Action" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseRoute" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.SortOption" Member="SortOptions">
+    <Type Name="SortOption">
+      <Column Name="SortOptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ColumnName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.TimePeriod" Member="TimePeriods">
+    <Type Name="TimePeriod">
+      <Column Name="TimePeriodId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

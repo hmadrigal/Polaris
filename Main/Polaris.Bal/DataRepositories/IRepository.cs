@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Polaris.Bal {
-    public interface IRepository {
-
+namespace Polaris.Bal 
+{
+    public interface IRepository 
+    {
         /// <summary>
         /// When implemented, returns a new instance of the specified data entity type.
         /// </summary>
@@ -20,6 +21,5 @@ namespace Polaris.Bal {
         /// When implemented, persists all the changes performed on the data entities.
         /// </summary>
         void Save();
-
     }
 }

@@ -67,7 +67,7 @@ namespace Polaris.Bal.Extensions
         /// <returns>the user profile page safe Url</returns>
         public static String GetUserSafeUrl(this IUser user)
         {
-            return String.Format("/user/profile/{0}", user.Name.ToUrlFriendlyString());
+            return String.Format("/user/profile/{0}", user.Username.ToUrlFriendlyString());
         }
 
         /// <summary>
