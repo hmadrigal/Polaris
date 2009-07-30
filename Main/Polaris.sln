@@ -104,9 +104,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnterpriseLibraries", "Ente
 EndProject
 Project("{A9ACE9BB-CECE-4E62-9AA4-C7E7C5BD2124}") = "Polaris.Dbl", "Polaris.Dbl\Polaris.Dbl.dbproj", "{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common", "Polaris.Common\Polaris.Common.csproj", "{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -131,6 +133,9 @@ Global
 		SccProjectUniqueName7 = Polaris.Dbl\\Polaris.Dbl.dbproj
 		SccProjectName7 = Polaris.Dbl
 		SccLocalPath7 = Polaris.Dbl
+		SccProjectUniqueName8 = Polaris.Common\\Polaris.Common.csproj
+		SccProjectName8 = Polaris.Common
+		SccLocalPath8 = Polaris.Common
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +188,12 @@ Global
 		{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}.Release|Any CPU.ActiveCfg = Default|Any CPU
 		{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}.Release|Any CPU.Build.0 = Default|Any CPU
 		{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}.Release|Any CPU.Deploy.0 = Default|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
