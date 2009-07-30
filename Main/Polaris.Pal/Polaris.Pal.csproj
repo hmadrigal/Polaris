@@ -100,6 +100,13 @@
       <Project>{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}</Project>
       <Name>Polaris.Bal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Polaris.Common\Polaris.Common.csproj">
+      <Project>{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}</Project>
+      <Name>Polaris.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="loggingConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
