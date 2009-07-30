@@ -202,15 +202,6 @@
     <Build Include="Schema Objects\Security\Schemas\polaris.schema.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Security\Users\CONTENTPROJECT_abaker.user.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Security\Users\CONTENTPROJECT_acedeno.user.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Security\Users\contentproject_hmadrigal.user.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Security\Users\polaris.user.sql">
       <SubType>Code</SubType>
     </Build>
