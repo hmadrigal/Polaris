@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="DataEntities\IDataEntity.cs" />
     <Compile Include="DataEntities\ISiteSection.cs" />
+    <Compile Include="DataFactory\DataFactory.cs" />
     <Compile Include="DataRepositories\IGameRepository.cs" />
     <Compile Include="DataRepositories\IRepository.cs" />
     <Compile Include="DataRepositories\ISiteRepository.cs" />
