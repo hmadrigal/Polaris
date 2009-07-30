@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Polaris.Bal.Helpers.Settings;
+using Polaris.Bal;
 
 namespace Polaris.Dal
 {

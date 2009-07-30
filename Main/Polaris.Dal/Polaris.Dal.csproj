@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\User.cs" />
     <Compile Include="DataProviders\DebugTextWriter.cs" />
     <Compile Include="DataProviders\Polaris.designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,6 +61,7 @@
     </Compile>
     <Compile Include="DataProviders\PolarisDataContext.cs" />
     <Compile Include="DataProviders\SourceDataContext.cs" />
+    <Compile Include="DataRepositories\LinqToSqlRepositoryFactory.cs" />
     <Compile Include="DataRepositories\Repository.cs" />
     <Compile Include="DataRepositories\SiteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

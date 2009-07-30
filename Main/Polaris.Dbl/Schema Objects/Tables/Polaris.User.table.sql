@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Polaris].[User]
 (
 [UserId] [bigint] NOT NULL IDENTITY(1, 1),
-[UserName] [varchar] (20) NOT NULL,
+[Username] [varchar] (20) NOT NULL,
 [FirstName] [varchar] (30) NOT NULL,
 [LastName] [varchar] (30) NOT NULL,
 [Email] [varchar] (100) NOT NULL,

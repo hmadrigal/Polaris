@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 10.375" name="Polaris">
   <DataContextMoniker Name="/SourceDataContext" />
   <nestedChildShapes>
-    <classShape Id="a3cb67a6-ab37-4649-a765-f2d3cb1e5fc0" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/SourceDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="31d14365-11bf-4aa9-be4b-c731d42c8226" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="0063894a-6acb-4b4f-90fb-b90f0995d76f" absoluteBounds="3.75, 0.75, 2, 1.1939925130208335">
       <DataClassMoniker Name="/SourceDataContext/ContentType" />
       <nestedChildShapes>
@@ -66,6 +60,12 @@
       <DataClassMoniker Name="/SourceDataContext/TimePeriod" />
       <nestedChildShapes>
         <elementListCompartment Id="889b16a8-b5b3-4daf-81ac-e99afdd735ef" absoluteBounds="9.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e999bd47-7233-4068-ae0d-b0a556b0f6b2" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SourceDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7d25ce6-6cd2-4de2-9aee-94a9967d3f1d" absoluteBounds="0.76499999999999968, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

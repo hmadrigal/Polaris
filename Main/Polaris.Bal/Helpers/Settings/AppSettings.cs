@@ -22,7 +22,7 @@ namespace Polaris.Bal
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["PolarisConnection"].ConnectionString;
+                return ConfigurationManager.ConnectionStrings["PolarisConnectionString"].ConnectionString;
             }
         }
 

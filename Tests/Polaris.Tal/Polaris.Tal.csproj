@@ -74,6 +74,10 @@
       <Project>{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}</Project>
       <Name>Polaris.Bal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Main\Polaris.Dal\Polaris.Dal.csproj">
+      <Project>{FDFCB721-DA95-44A1-AC89-F39C11BE311E}</Project>
+      <Name>Polaris.Dal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Main\Polaris.Pal\Polaris.Pal.csproj">
       <Project>{3E3ED42B-34EA-4B58-A858-BC06F445C58F}</Project>
       <Name>Polaris.Pal</Name>

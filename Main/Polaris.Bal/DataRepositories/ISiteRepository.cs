@@ -17,6 +17,8 @@ namespace Polaris.Bal
 
         #endregion
 
+        #region Site Methods
+
         /// <summary>
         /// Gets the site section associated with the specified controller
         /// and action names.
@@ -28,6 +30,8 @@ namespace Polaris.Bal
         /// associated.
         /// </returns>
         ISiteSection GetSiteSection(String Controller, String Action);
+
+        #endregion
 
     }
 }
