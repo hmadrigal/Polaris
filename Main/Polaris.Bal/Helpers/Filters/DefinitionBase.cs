@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Polaris.Bal.Entities;
 using Polaris.Bal.Extensions;
 
 namespace Polaris.Bal.Helpers.Filters
@@ -67,7 +66,7 @@ namespace Polaris.Bal.Helpers.Filters
         /// When the property IsFavorites is true, this property should not be null.
         /// </remarks>
         /// <see cref="IsFavorites"/>
-        public User User { get; set; }
+        public IUser User { get; set; }
 
         /// <summary>
         /// Whether this definition represents Baynote recommendations.

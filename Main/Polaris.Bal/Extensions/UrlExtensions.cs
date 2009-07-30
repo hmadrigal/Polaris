@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Polaris.Bal.Entities;
 
 namespace Polaris.Bal.Extensions
 {
@@ -66,9 +65,9 @@ namespace Polaris.Bal.Extensions
         /// </summary>
         /// <param name="user">the user instance</param>
         /// <returns>the user profile page safe Url</returns>
-        public static String GetUserSafeUrl(this User user)
+        public static String GetUserSafeUrl(this IUser user)
         {
-            return String.Format("/user/profile/{0}", user.Username.ToUrlFriendlyString());
+            return String.Format("/user/profile/{0}", user.Name.ToUrlFriendlyString());
         }
 
         /// <summary>
