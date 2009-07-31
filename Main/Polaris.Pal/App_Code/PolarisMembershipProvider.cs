@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Collections.Specialized;
+using Polaris.Bal;
+using Polaris.Bal.Extensions;
+using Polaris.Bal.DataRepositories;
 
 namespace Polaris.Pal
 {
@@ -15,14 +18,73 @@ namespace Polaris.Pal
     /// </remarks>
     public class PolarisMembershipProvider : MembershipProvider
     {
+        private ISiteRepository SiteRepository { get; set; }
+
         #region Required ProviderBase Methods
         /// <summary>
         /// Takes, as input, the name of the provider and a  NameValueCollection  of configuration settings. Used to set property values for the provider instance including implementation-specific values and options specified in the configuration file (Machine.config or Web.config) supplied in the configuration
         /// </summary>
         /// <param name="name"></param>
         /// <param name="config"></param>
-        public override void Initialize(string name, System.Collections.Specialized.NameValueCollection config)
+        public override void Initialize(string name, NameValueCollection config)
         {
+            // Default Values
+            this.applicationName = String.Empty;
+            this.enablePasswordReset = true;
+            this.enablePasswordRetrieval = false;
+            this.maxInvalidPasswordAttempts = 3;
+            this.minRequiredNonAlphanumericCharacters = 0;
+            this.minRequiredPasswordLength = 8;
+            this.passwordAttemptWindow = 0;
+            this.passwordFormat = MembershipPasswordFormat.Hashed;
+            this.passwordStrengthRegularExpression = String.Empty;
+            this.requiresQuestionAndAnswer = false;
+            this.requiresUniqueEmail = true;
+
+            // Tries to override the default values if the settings is provided thru the web.config
+            foreach (string key in config.Keys)
+            {
+                var value = config[key];
+                switch (key)
+                {
+                    case @"applicationName":
+                        this.applicationName = value;
+                        break;
+                    case @"enablePasswordReset":
+                        this.enablePasswordReset = value.ToBoolean(this.enablePasswordReset);
+                        break;
+                    case @"enablePasswordRetrieval":
+                        this.enablePasswordRetrieval = value.ToBoolean(this.enablePasswordRetrieval);
+                        break;
+                    case @"maxInvalidPasswordAttempts":
+                        this.maxInvalidPasswordAttempts = value.ToInt32(this.maxInvalidPasswordAttempts);
+                        break;
+                    case @"minRequiredNonAlphanumericCharacters":
+                        this.minRequiredNonAlphanumericCharacters = value.ToInt32(this.minRequiredNonAlphanumericCharacters);
+                        break;
+                    case @"minRequiredPasswordLength":
+                        this.minRequiredPasswordLength = value.ToInt32(this.minRequiredPasswordLength);
+                        break;
+                    case @"passwordAttemptWindow":
+                        this.passwordAttemptWindow = value.ToInt32(this.passwordAttemptWindow);
+                        break;
+                    case @"passwordFormat":
+                        this.passwordFormat = value.ToEnum(this.passwordFormat);
+                        break;
+                    case @"passwordStrengthRegularExpression":
+                        this.passwordStrengthRegularExpression = value;
+                        break;
+                    case @"requiresQuestionAndAnswer":
+                        this.requiresQuestionAndAnswer = value.ToBoolean(this.requiresQuestionAndAnswer);
+                        break;
+                    case @"requiresUniqueEmail":
+                        this.requiresUniqueEmail = value.ToBoolean(this.requiresUniqueEmail);
+                        break;
+                }
+            }
+
+            //this.SiteRepository = RepositoryFactory.GetNewRepository<ISiteRepository>();
+
             base.Initialize(name, config);
         }
         #endregion
