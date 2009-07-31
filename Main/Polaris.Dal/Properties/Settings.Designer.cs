@@ -33,5 +33,16 @@ namespace Polaris.Dal.Properties {
                 return ((string)(this["Polaris_DblConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MVARELA-VISTA\\SQLEXPRESS;Initial Catalog=Polaris;Integrated Security=" +
+            "True")]
+        public string PolarisConnectionString {
+            get {
+                return ((string)(this["PolarisConnectionString"]));
+            }
+        }
     }
 }

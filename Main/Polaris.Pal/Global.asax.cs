@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Polaris.Bal;
+using Polaris.Bal.Extensions;
 
 namespace Polaris.Pal
 {
@@ -24,9 +26,14 @@ namespace Polaris.Pal
 
         }
 
+        public static void RegisterPageSizes() {
+            SiteSection.HomePage.RegisterPageSize<IGame>(9);
+        }
+
         protected void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
+            RegisterPageSizes();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Polaris.Dal
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Polaris.Dbl")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Polaris")]
 	public partial class SourceDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -45,15 +45,9 @@ namespace Polaris.Dal
     partial void InsertGame(Game instance);
     partial void UpdateGame(Game instance);
     partial void DeleteGame(Game instance);
-    partial void InsertMenuItem(MenuItem instance);
-    partial void UpdateMenuItem(MenuItem instance);
-    partial void DeleteMenuItem(MenuItem instance);
     partial void InsertPlayLog(PlayLog instance);
     partial void UpdatePlayLog(PlayLog instance);
     partial void DeletePlayLog(PlayLog instance);
-    partial void InsertSiteSection(SiteSection instance);
-    partial void UpdateSiteSection(SiteSection instance);
-    partial void DeleteSiteSection(SiteSection instance);
     partial void InsertSortOption(SortOption instance);
     partial void UpdateSortOption(SortOption instance);
     partial void DeleteSortOption(SortOption instance);
@@ -63,10 +57,13 @@ namespace Polaris.Dal
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertMenuItem(MenuItem instance);
+    partial void UpdateMenuItem(MenuItem instance);
+    partial void DeleteMenuItem(MenuItem instance);
     #endregion
 		
 		public SourceDataContext() : 
-				base(global::Polaris.Dal.Properties.Settings.Default.Polaris_DblConnectionString, mappingSource)
+				base(global::Polaris.Dal.Properties.Settings.Default.PolarisConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -135,27 +132,11 @@ namespace Polaris.Dal
 			}
 		}
 		
-		public System.Data.Linq.Table<MenuItem> MenuItems
-		{
-			get
-			{
-				return this.GetTable<MenuItem>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PlayLog> PlayLogs
 		{
 			get
 			{
 				return this.GetTable<PlayLog>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SiteSection> SiteSections
-		{
-			get
-			{
-				return this.GetTable<SiteSection>();
 			}
 		}
 		
@@ -180,6 +161,14 @@ namespace Polaris.Dal
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MenuItem> MenuItems
+		{
+			get
+			{
+				return this.GetTable<MenuItem>();
 			}
 		}
 	}
@@ -710,236 +699,6 @@ namespace Polaris.Dal
 		}
 	}
 	
-	[Table(Name="Polaris.MenuItem")]
-	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MenuItemId;
-		
-		private string _Name;
-		
-		private string _DisplayName;
-		
-		private int _SiteSectionId;
-		
-		private System.Nullable<int> _ParentMenuItemId;
-		
-		private System.Nullable<int> _ContentTypeId;
-		
-		private System.Nullable<int> _SortOptionId;
-		
-		private System.Nullable<int> _FilterOptionId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMenuItemIdChanging(int value);
-    partial void OnMenuItemIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnDisplayNameChanging(string value);
-    partial void OnDisplayNameChanged();
-    partial void OnSiteSectionIdChanging(int value);
-    partial void OnSiteSectionIdChanged();
-    partial void OnParentMenuItemIdChanging(System.Nullable<int> value);
-    partial void OnParentMenuItemIdChanged();
-    partial void OnContentTypeIdChanging(System.Nullable<int> value);
-    partial void OnContentTypeIdChanged();
-    partial void OnSortOptionIdChanging(System.Nullable<int> value);
-    partial void OnSortOptionIdChanged();
-    partial void OnFilterOptionIdChanging(System.Nullable<int> value);
-    partial void OnFilterOptionIdChanged();
-    #endregion
-		
-		public MenuItem()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_MenuItemId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MenuItemId
-		{
-			get
-			{
-				return this._MenuItemId;
-			}
-			set
-			{
-				if ((this._MenuItemId != value))
-				{
-					this.OnMenuItemIdChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemId = value;
-					this.SendPropertyChanged("MenuItemId");
-					this.OnMenuItemIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DisplayName", DbType="VarChar(50)")]
-		public string DisplayName
-		{
-			get
-			{
-				return this._DisplayName;
-			}
-			set
-			{
-				if ((this._DisplayName != value))
-				{
-					this.OnDisplayNameChanging(value);
-					this.SendPropertyChanging();
-					this._DisplayName = value;
-					this.SendPropertyChanged("DisplayName");
-					this.OnDisplayNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SiteSectionId", DbType="Int NOT NULL")]
-		public int SiteSectionId
-		{
-			get
-			{
-				return this._SiteSectionId;
-			}
-			set
-			{
-				if ((this._SiteSectionId != value))
-				{
-					this.OnSiteSectionIdChanging(value);
-					this.SendPropertyChanging();
-					this._SiteSectionId = value;
-					this.SendPropertyChanged("SiteSectionId");
-					this.OnSiteSectionIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ParentMenuItemId", DbType="Int")]
-		public System.Nullable<int> ParentMenuItemId
-		{
-			get
-			{
-				return this._ParentMenuItemId;
-			}
-			set
-			{
-				if ((this._ParentMenuItemId != value))
-				{
-					this.OnParentMenuItemIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParentMenuItemId = value;
-					this.SendPropertyChanged("ParentMenuItemId");
-					this.OnParentMenuItemIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentTypeId", DbType="Int")]
-		public System.Nullable<int> ContentTypeId
-		{
-			get
-			{
-				return this._ContentTypeId;
-			}
-			set
-			{
-				if ((this._ContentTypeId != value))
-				{
-					this.OnContentTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._ContentTypeId = value;
-					this.SendPropertyChanged("ContentTypeId");
-					this.OnContentTypeIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SortOptionId", DbType="Int")]
-		public System.Nullable<int> SortOptionId
-		{
-			get
-			{
-				return this._SortOptionId;
-			}
-			set
-			{
-				if ((this._SortOptionId != value))
-				{
-					this.OnSortOptionIdChanging(value);
-					this.SendPropertyChanging();
-					this._SortOptionId = value;
-					this.SendPropertyChanged("SortOptionId");
-					this.OnSortOptionIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FilterOptionId", DbType="Int")]
-		public System.Nullable<int> FilterOptionId
-		{
-			get
-			{
-				return this._FilterOptionId;
-			}
-			set
-			{
-				if ((this._FilterOptionId != value))
-				{
-					this.OnFilterOptionIdChanging(value);
-					this.SendPropertyChanging();
-					this._FilterOptionId = value;
-					this.SendPropertyChanged("FilterOptionId");
-					this.OnFilterOptionIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="Polaris.PlayLog")]
 	public partial class PlayLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1073,164 +832,6 @@ namespace Polaris.Dal
 					this._Score = value;
 					this.SendPropertyChanged("Score");
 					this.OnScoreChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="Polaris.SiteSection")]
-	public partial class SiteSection : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _SiteSectionId;
-		
-		private string _Name;
-		
-		private string _Controller;
-		
-		private string _Action;
-		
-		private string _BaseRoute;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSiteSectionIdChanging(int value);
-    partial void OnSiteSectionIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnControllerChanging(string value);
-    partial void OnControllerChanged();
-    partial void OnActionChanging(string value);
-    partial void OnActionChanged();
-    partial void OnBaseRouteChanging(string value);
-    partial void OnBaseRouteChanged();
-    #endregion
-		
-		public SiteSection()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_SiteSectionId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int SiteSectionId
-		{
-			get
-			{
-				return this._SiteSectionId;
-			}
-			set
-			{
-				if ((this._SiteSectionId != value))
-				{
-					this.OnSiteSectionIdChanging(value);
-					this.SendPropertyChanging();
-					this._SiteSectionId = value;
-					this.SendPropertyChanged("SiteSectionId");
-					this.OnSiteSectionIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Controller", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Controller
-		{
-			get
-			{
-				return this._Controller;
-			}
-			set
-			{
-				if ((this._Controller != value))
-				{
-					this.OnControllerChanging(value);
-					this.SendPropertyChanging();
-					this._Controller = value;
-					this.SendPropertyChanged("Controller");
-					this.OnControllerChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Action", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Action
-		{
-			get
-			{
-				return this._Action;
-			}
-			set
-			{
-				if ((this._Action != value))
-				{
-					this.OnActionChanging(value);
-					this.SendPropertyChanging();
-					this._Action = value;
-					this.SendPropertyChanged("Action");
-					this.OnActionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BaseRoute", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string BaseRoute
-		{
-			get
-			{
-				return this._BaseRoute;
-			}
-			set
-			{
-				if ((this._BaseRoute != value))
-				{
-					this.OnBaseRouteChanging(value);
-					this.SendPropertyChanging();
-					this._BaseRoute = value;
-					this.SendPropertyChanged("BaseRoute");
-					this.OnBaseRouteChanged();
 				}
 			}
 		}
@@ -1657,6 +1258,236 @@ namespace Polaris.Dal
 					this._RankingCredits = value;
 					this.SendPropertyChanged("RankingCredits");
 					this.OnRankingCreditsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="Polaris.MenuItem")]
+	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MenuItemId;
+		
+		private string _Name;
+		
+		private string _DisplayName;
+		
+		private int _SiteSection;
+		
+		private System.Nullable<int> _ParentMenuItemId;
+		
+		private System.Nullable<int> _ContentTypeId;
+		
+		private System.Nullable<int> _SortOptionId;
+		
+		private System.Nullable<int> _FilterOptionId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuItemIdChanging(int value);
+    partial void OnMenuItemIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDisplayNameChanging(string value);
+    partial void OnDisplayNameChanged();
+    partial void OnSiteSectionChanging(int value);
+    partial void OnSiteSectionChanged();
+    partial void OnParentMenuItemIdChanging(System.Nullable<int> value);
+    partial void OnParentMenuItemIdChanged();
+    partial void OnContentTypeIdChanging(System.Nullable<int> value);
+    partial void OnContentTypeIdChanged();
+    partial void OnSortOptionIdChanging(System.Nullable<int> value);
+    partial void OnSortOptionIdChanged();
+    partial void OnFilterOptionIdChanging(System.Nullable<int> value);
+    partial void OnFilterOptionIdChanged();
+    #endregion
+		
+		public MenuItem()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_MenuItemId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MenuItemId
+		{
+			get
+			{
+				return this._MenuItemId;
+			}
+			set
+			{
+				if ((this._MenuItemId != value))
+				{
+					this.OnMenuItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemId = value;
+					this.SendPropertyChanged("MenuItemId");
+					this.OnMenuItemIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DisplayName", DbType="VarChar(50)")]
+		public string DisplayName
+		{
+			get
+			{
+				return this._DisplayName;
+			}
+			set
+			{
+				if ((this._DisplayName != value))
+				{
+					this.OnDisplayNameChanging(value);
+					this.SendPropertyChanging();
+					this._DisplayName = value;
+					this.SendPropertyChanged("DisplayName");
+					this.OnDisplayNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SiteSection", DbType="Int NOT NULL")]
+		public int SiteSection
+		{
+			get
+			{
+				return this._SiteSection;
+			}
+			set
+			{
+				if ((this._SiteSection != value))
+				{
+					this.OnSiteSectionChanging(value);
+					this.SendPropertyChanging();
+					this._SiteSection = value;
+					this.SendPropertyChanged("SiteSection");
+					this.OnSiteSectionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ParentMenuItemId", DbType="Int")]
+		public System.Nullable<int> ParentMenuItemId
+		{
+			get
+			{
+				return this._ParentMenuItemId;
+			}
+			set
+			{
+				if ((this._ParentMenuItemId != value))
+				{
+					this.OnParentMenuItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParentMenuItemId = value;
+					this.SendPropertyChanged("ParentMenuItemId");
+					this.OnParentMenuItemIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentTypeId", DbType="Int")]
+		public System.Nullable<int> ContentTypeId
+		{
+			get
+			{
+				return this._ContentTypeId;
+			}
+			set
+			{
+				if ((this._ContentTypeId != value))
+				{
+					this.OnContentTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContentTypeId = value;
+					this.SendPropertyChanged("ContentTypeId");
+					this.OnContentTypeIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SortOptionId", DbType="Int")]
+		public System.Nullable<int> SortOptionId
+		{
+			get
+			{
+				return this._SortOptionId;
+			}
+			set
+			{
+				if ((this._SortOptionId != value))
+				{
+					this.OnSortOptionIdChanging(value);
+					this.SendPropertyChanging();
+					this._SortOptionId = value;
+					this.SendPropertyChanged("SortOptionId");
+					this.OnSortOptionIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FilterOptionId", DbType="Int")]
+		public System.Nullable<int> FilterOptionId
+		{
+			get
+			{
+				return this._FilterOptionId;
+			}
+			set
+			{
+				if ((this._FilterOptionId != value))
+				{
+					this.OnFilterOptionIdChanging(value);
+					this.SendPropertyChanging();
+					this._FilterOptionId = value;
+					this.SendPropertyChanged("FilterOptionId");
+					this.OnFilterOptionIdChanged();
 				}
 			}
 		}
