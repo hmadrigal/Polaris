@@ -138,7 +138,7 @@ namespace Polaris.Pal
         /// </summary>
         public override bool RequiresUniqueEmail
         {
-            get { requiresUniqueEmail; }
+            get { return requiresUniqueEmail; }
         }
         private bool requiresUniqueEmail;
         #endregion
