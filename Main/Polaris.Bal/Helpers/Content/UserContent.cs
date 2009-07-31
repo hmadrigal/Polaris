@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 
 using Polaris.Bal.Extensions;
-using Polaris.Bal.Helpers.Filters;
 
-namespace Polaris.Bal.Helpers.Content
+namespace Polaris.Bal
 {
     public class UserContent
     {

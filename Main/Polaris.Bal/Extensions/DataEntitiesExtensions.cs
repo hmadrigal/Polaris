@@ -22,13 +22,13 @@ namespace Polaris.Bal.Extensions {
             }
         }
 
-        public static Int32? GetPageSize<EntityType>(this SiteSection siteSection) {
+        public static Int32 GetPageSize<EntityType>(this SiteSection siteSection) {
             var siteSectionPageSizeDictionary = siteSection.GetSiteSectionPageSizeDictionary();
             var entityType = typeof(EntityType);
             if (siteSectionPageSizeDictionary.ContainsKey(entityType)) {
                 return siteSectionPageSizeDictionary[entityType];
             } else {
-                return null;
+                throw new InvalidOperationException("A page size is not registered with this site section for the specified entity type");
             }
         }
 

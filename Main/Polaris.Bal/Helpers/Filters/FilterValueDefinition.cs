@@ -3,41 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Polaris.Bal.Helpers.Filters
+namespace Polaris.Bal
 {
-    public class FilterValueDefinition : DefinitionBase
-    {
+    public class FilterValueDefinition : DefinitionBase {
         #region Properties
 
         public Object FilterValue { get; set; }
+        public Type FilterValueType { get; set; }
         public Boolean IsDataDriven { get; set; }
 
-        public static FilterValueDefinition AllTime { get; private set; }
-        public static FilterValueDefinition ThisMonth { get; private set; }
-        public static FilterValueDefinition ThisWeek { get; private set; }
-        public static FilterValueDefinition Today { get; private set; }
+        public static FilterValueDefinition<DateTime> AllTime { get; private set; }
+        public static FilterValueDefinition<DateTime> ThisMonth { get; private set; }
+        public static FilterValueDefinition<DateTime> ThisWeek { get; private set; }
+        public static FilterValueDefinition<DateTime> Today { get; private set; }
 
-        public static FilterValueDefinition AllCategories { get; private set; }
+        public static FilterValueDefinition<Int32?> AllCategories { get; private set; }
 
         #endregion
 
-        #region Constructor 
+        #region Constructor
 
-        static FilterValueDefinition() {
-            AllTime = new FilterValueDefinition() {
+        static FilterValueDefinition()
+        {
+            AllTime = new FilterValueDefinition<DateTime>()
+            {
                 Name = "All-Time",
             };
-            ThisMonth = new FilterValueDefinition() {
+            ThisMonth = new FilterValueDefinition<DateTime>()
+            {
                 Name = "This Month",
             };
-            ThisWeek = new FilterValueDefinition() {
+            ThisWeek = new FilterValueDefinition<DateTime>()
+            {
                 Name = "This Week",
             };
-            Today = new FilterValueDefinition() {
+            Today = new FilterValueDefinition<DateTime>()
+            {
                 Name = "Today",
             };
 
-            AllCategories = new FilterValueDefinition() {
+            AllCategories = new FilterValueDefinition<Int32?>()
+            {
                 Name = "All Categories",
                 FilterValue = null,
             };
@@ -49,5 +55,14 @@ namespace Polaris.Bal.Helpers.Filters
         #region Methods
 
         #endregion
+    }
+
+    public class FilterValueDefinition<T> : FilterValueDefinition
+    {
+        public new T FilterValue { get; set; }
+
+        public FilterValueDefinition() {
+            FilterValueType = typeof(T);
+        }
     }
 }

@@ -20,9 +20,7 @@ namespace Polaris.Pal.Controllers
         public ActionResult Index()
         {
 
-            var gamePageSize = SiteSection.HomePage.GetPageSize<IGame>();
-
-            ViewData["Message"] = "Welcome to Polaris Gamming Experiment!";
+            ViewData["Message"] = "Welcome to Polaris, The Silverlight Gaming Network!";
 
             return View();
         }

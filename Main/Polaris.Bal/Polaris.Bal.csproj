@@ -64,6 +64,7 @@
     <Compile Include="Enumerations\SiteSection.cs" />
     <Compile Include="Extensions\ContentExtensions.cs" />
     <Compile Include="Extensions\DataEntitiesExtensions.cs" />
+    <Compile Include="Extensions\FilterExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="Helpers\Content\UserContent.cs" />

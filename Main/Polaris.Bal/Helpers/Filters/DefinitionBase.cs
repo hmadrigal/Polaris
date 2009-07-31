@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Polaris.Bal.Extensions;
 
-namespace Polaris.Bal.Helpers.Filters
+namespace Polaris.Bal
 {
     public abstract class DefinitionBase
     {

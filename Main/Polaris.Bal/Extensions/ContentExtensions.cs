@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Polaris.Bal.Helpers.Filters;
 
 namespace Polaris.Bal.Extensions
 {
