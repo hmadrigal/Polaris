@@ -13,10 +13,6 @@ namespace Polaris.Common
     /// </summary>
     public static class Logging
     {
-        /// <summary>
-        /// Event fired when there was an error when trying to write an entry in the log file
-        /// </summary>
-        public static event EventHandler<EventArgs> LoggingFailed;
 
         /// <summary>
         /// Default EventId when writing entries into the log
@@ -38,8 +34,7 @@ namespace Polaris.Common
         {
             Int32.TryParse(ConfigurationManager.AppSettings["Polaris.Common.Logging.Default.EventId"], out defaultEventId);
             Int32.TryParse(ConfigurationManager.AppSettings["Polaris.Common.Logging.Default.Priority"], out defaultPriority);
-            defaultCategories = (ConfigurationManager.AppSettings["Polaris.Common.Logging.Default.Categories"] as string).Split(';');
-            //defaultCategories = ((String)ConfigurationManager.AppSettings["Polaris.Common.Logging.Default.Categories"] ?? String.Empty).Split(';');
+            defaultCategories = ((String)ConfigurationManager.AppSettings["Polaris.Common.Logging.Default.Categories"] ?? String.Empty).Split(';');
         }
 
         /// <summary>
@@ -88,7 +83,7 @@ namespace Polaris.Common
         /// <param name="severity"></param>
         public static void LogMessage(int eventId, int priority, TraceEventType severity, String formatMessage, params object[] args)
         {
-            LogMessage(String.Format(formatMessage, args), eventId, priority, severity, defaultCategories);
+            LogMessage(formatMessage, eventId, priority, severity, defaultCategories, args);
         }
 
         /// <summary>
@@ -99,7 +94,7 @@ namespace Polaris.Common
         /// <param name="priority"></param>
         /// <param name="severity"></param>
         /// <param name="categories"></param>
-        public static void LogMessage(String message, int eventId, int priority, TraceEventType severity, params String[] categories)
+        public static void LogMessage(String formatMessage, int eventId, int priority, TraceEventType severity, String[] categories, params object[] args)
         {
             try
             {
@@ -107,7 +102,7 @@ namespace Polaris.Common
                 LogEntry logEntry = new LogEntry();
                 logEntry.EventId = eventId;
                 logEntry.Priority = priority;
-                logEntry.Message = message;
+                logEntry.Message = String.Format(formatMessage, args);
                 logEntry.Severity = severity;
                 logEntry.Categories.Clear();
 
@@ -119,10 +114,11 @@ namespace Polaris.Common
 
                 // Writes the log entry.
                 Logger.Write(logEntry);
+                if (eventId <= 0) throw new Exception(String.Format(@"An EventId set to {0} is not valid.", eventId));
             }
             catch (Exception ex)
             {
-                OnLoggingFailed(ex);
+                HandleLogException(ex);
             }
         }
 
@@ -130,10 +126,9 @@ namespace Polaris.Common
         /// Fires the 'LoggingFailed' event. 
         /// </summary>
         /// <param name="ex"></param>
-        private static void OnLoggingFailed(Exception ex)
+        private static void HandleLogException(Exception ex)
         {
-            if (LoggingFailed != null)
-                LoggingFailed(ex, EventArgs.Empty);
+            throw new ApplicationException(String.Format("There was a error in class {0}. The application has failed when tried to write a new entry into the log. Details:\n{1}", typeof(Logging).FullName, ex.ToString()));
         }
     }
 }
