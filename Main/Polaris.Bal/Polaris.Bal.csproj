@@ -57,6 +57,8 @@
     <Compile Include="DataEntities\IDevelopmentTeam.cs" />
     <Compile Include="DataEntities\IDataEntity.cs" />
     <Compile Include="DataEntities\IGame.cs" />
+    <Compile Include="DataEntities\IPlayLog.cs" />
+    <Compile Include="DataEntities\ITimePeriod.cs" />
     <Compile Include="DataRepositories\IGameRepository.cs" />
     <Compile Include="DataRepositories\IRepository.cs" />
     <Compile Include="DataRepositories\IRepositoryFactory.cs" />
