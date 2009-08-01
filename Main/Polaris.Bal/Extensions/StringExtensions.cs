@@ -8,6 +8,11 @@ namespace Polaris.Bal.Extensions
     public static class StringExtensions
     {
         /// <summary>
+        /// String constant that stored the pattern for identifying an email.
+        /// </summary>
+        public const String EmailPattern = @"([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})";
+
+        /// <summary>
         /// Tries to convert an string to the a boolean type. If it's not posssible then the default value is returned.
         /// </summary>
         /// <param name="booleanStr">String to be converted. It represents a boolean value</param>
