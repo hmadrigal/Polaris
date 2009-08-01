@@ -17,7 +17,7 @@ namespace Polaris.Bal.Extensions
         {
             if (String.IsNullOrEmpty(booleanStr)) return defaultValue;
             var result = defaultValue;
-            if (!Boolean.TryParse(booleanStr ?? defaultValue.ToString(), out result))
+            if (!Boolean.TryParse(booleanStr, out result))
             {
                 result = defaultValue;
             }
@@ -34,7 +34,7 @@ namespace Polaris.Bal.Extensions
         {
             if (String.IsNullOrEmpty(intStr)) return defaultValue;
             var result = defaultValue;
-            if (!Int32.TryParse(intStr ?? defaultValue.ToString(), out result))
+            if (!Int32.TryParse(intStr, out result))
             {
                 result = defaultValue;
             }
