@@ -83,7 +83,7 @@ namespace Polaris.Pal
                 }
             }
 
-            //this.SiteRepository = RepositoryFactory.GetNewRepository<ISiteRepository>();
+            this.SiteRepository = RepositoryFactory.GetNewRepository<ISiteRepository>();
 
             base.Initialize(name, config);
         }
@@ -216,6 +216,11 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
+            if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("Argument cannot be null or empty", "newPassword");
+            
+            // NOTE: How to change the password http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
             throw new NotImplementedException();
         }
 
@@ -230,6 +235,11 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
+            if (String.IsNullOrEmpty(newPasswordQuestion)) throw new ArgumentException("Argument cannot be null or empty", "newPasswordQuestion");
+            if (String.IsNullOrEmpty(newPasswordAnswer)) throw new ArgumentException("Argument cannot be null or empty", "newPasswordAnswer");
+            
             throw new NotImplementedException();
         }
 
@@ -248,6 +258,12 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
+            if (String.IsNullOrEmpty(email)) throw new ArgumentException("Argument cannot be null or empty", "email");
+            if (String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
+            if (String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
+            //TODO: hmadrigal. Ask where are we going to apply the validations for password, and related tasks.
             throw new NotImplementedException();
         }
 
@@ -259,6 +275,7 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
             throw new NotImplementedException();
         }
 
@@ -273,6 +290,9 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
+            if (String.IsNullOrEmpty(usernameToMatch)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
+            if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
             throw new NotImplementedException();
         }
 
@@ -287,6 +307,9 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
+            if (String.IsNullOrEmpty(usernameToMatch)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
+            if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
             throw new NotImplementedException();
         }
 
@@ -300,6 +323,8 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
         {
+            if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
+            if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
             throw new NotImplementedException();
         }
 
@@ -309,6 +334,7 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override int GetNumberOfUsersOnline()
         {
+            //TODO: hmadrigal. If we want to implement this we might need a new column
             throw new NotImplementedException();
         }
 
@@ -322,6 +348,10 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override string GetPassword(string username, string answer)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "username");
+            if (String.IsNullOrEmpty(answer)) throw new ArgumentException("Argument cannot be null or empty", "answer");
+            if (this.passwordFormat == MembershipPasswordFormat.Hashed) throw new InvalidOperationException("The Password format is set to Hashed. See PasswordFormat for mode information.");
+
             throw new NotImplementedException();
         }
 
@@ -369,6 +399,7 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override string ResetPassword(string username, string answer)
         {
+            //NOTE: See how to reset password based on encription http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
             throw new NotImplementedException();
         }
 
@@ -379,6 +410,7 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool UnlockUser(string userName)
         {
+            //TODO: hmadrigal. It's pending to confirm if an account can get lock out. if, we might need a column for it. 
             throw new NotImplementedException();
         }
 
@@ -388,7 +420,7 @@ namespace Polaris.Pal
         /// <param name="user"></param>
         public override void UpdateUser(MembershipUser user)
         {
-            throw new NotImplementedException();
+            if (user == null) throw new ArgumentException(@"Argument cannot be null", "user");
         }
 
         /// <summary>
@@ -399,7 +431,11 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool ValidateUser(string username, string password)
         {
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) return false;
+            //TODO: hmadrigal. Here we have two options 1. an SP that validates and return the result or 2. a method that gets the IUser in order to validate. 
             throw new NotImplementedException();
+            //this.SiteRepository
+            return true;
         }
         #endregion
     }
