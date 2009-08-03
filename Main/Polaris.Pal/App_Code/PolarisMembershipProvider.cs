@@ -8,7 +8,7 @@ using Polaris.Bal;
 using Polaris.Bal.Extensions;
 using Polaris.Bal.DataRepositories;
 
-namespace Polaris.Pal
+namespace Polaris.Pal.Code
 {
     /// <summary>
     /// Internal Authentication provider 
@@ -219,7 +219,7 @@ namespace Polaris.Pal
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
             if (String.IsNullOrEmpty(oldPassword)) throw new ArgumentException("Argument cannot be null or empty", "oldPassword");
             if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("Argument cannot be null or empty", "newPassword");
-            
+
             // NOTE: How to change the password http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
             throw new NotImplementedException();
         }
@@ -239,7 +239,7 @@ namespace Polaris.Pal
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
             if (String.IsNullOrEmpty(newPasswordQuestion)) throw new ArgumentException("Argument cannot be null or empty", "newPasswordQuestion");
             if (String.IsNullOrEmpty(newPasswordAnswer)) throw new ArgumentException("Argument cannot be null or empty", "newPasswordAnswer");
-            
+
             throw new NotImplementedException();
         }
 
@@ -400,7 +400,7 @@ namespace Polaris.Pal
         public override string ResetPassword(string username, string answer)
         {
             //NOTE: See how to reset password based on encription http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
@@ -410,8 +410,8 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override bool UnlockUser(string userName)
         {
-            //TODO: hmadrigal. It's pending to confirm if an account can get lock out. if, we might need a column for it. 
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(userName)) return false;
+            throw new NotImplementedException(String.Format("{0} is not going to be implemented at this time.", "UnlockUser"));
         }
 
         /// <summary>
@@ -421,6 +421,7 @@ namespace Polaris.Pal
         public override void UpdateUser(MembershipUser user)
         {
             if (user == null) throw new ArgumentException(@"Argument cannot be null", "user");
+            throw new NotImplementedException(String.Format("{0} is not going to be implemented at this time.", "UpdateUser"));
         }
 
         /// <summary>
@@ -432,10 +433,8 @@ namespace Polaris.Pal
         public override bool ValidateUser(string username, string password)
         {
             if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) return false;
-            //TODO: hmadrigal. Here we have two options 1. an SP that validates and return the result or 2. a method that gets the IUser in order to validate. 
-            throw new NotImplementedException();
-            //this.SiteRepository
-            return true;
+            var isValidUser = this.SiteRepository.ValidateUser(username, password);
+            return isValidUser;
         }
         #endregion
     }

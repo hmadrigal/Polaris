@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="Polaris" EntityNamespace="Polaris.Dal" ContextNamespace="Polaris.Dal" Class="SourceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=MVARELA-VISTA\SQLEXPRESS;Initial Catalog=Polaris;Integrated Security=True" SettingsObjectName="Polaris.Dal.Properties.Settings" SettingsPropertyName="PolarisConnectionString" Provider="System.Data.SqlClient" />
+<Database Name="Polaris.Dbl" EntityNamespace="Polaris.Dal" ContextNamespace="Polaris.Dal" Class="SourceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HMADRIGAL2-PC\SQLEXPRESS;Initial Catalog=Polaris.Dbl;Integrated Security=True" SettingsObjectName="Polaris.Dal.Properties.Settings" SettingsPropertyName="PolarisConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="Polaris.ContentType" Member="ContentTypes">
     <Type Name="ContentType">
       <Column Name="ContentTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -58,17 +58,6 @@
       <Column Name="Hours" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="Polaris.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="PlayCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="RankingCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="Polaris.MenuItem" Member="MenuItems">
     <Type Name="MenuItem">
       <Column Name="MenuItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -79,6 +68,18 @@
       <Column Name="ContentTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SortOptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FilterOptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Polaris.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PlayCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RankingCredits" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

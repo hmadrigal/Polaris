@@ -42,12 +42,14 @@ namespace Polaris.Dal
             return GetUsersQuery().ToArray();
         }
 
-        public IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize) {
+        public IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize)
+        {
             Int32 skip = (pageNumber - 1) * pageSize;
             return GetUsersQuery().Skip(skip).Take(pageSize).ToArray();
         }
 
-        public IEnumerable<IUser> GetUsers(Int32 pageNumber) {
+        public IEnumerable<IUser> GetUsers(Int32 pageNumber)
+        {
             Int32 pageSize = GetPageSize<IUser>();
             return GetUsers(pageNumber, pageSize);
         }
@@ -64,8 +66,18 @@ namespace Polaris.Dal
             return GetUsers(filters, pageNumber, pageSize);
         }
 
-        public Int64 GetUserCount() {
+        public Int64 GetUserCount()
+        {
             return GetUsersQuery().Count();
+        }
+
+        public IUser GetUser(String username)
+        {
+            return db.Users.Where(u => u.Username == username).FirstOrDefault();
+        }
+        public Boolean ValidateUser(String username, String password)
+        {
+            return (db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault() != null);
         }
 
 
@@ -80,7 +92,8 @@ namespace Polaris.Dal
         }
 
 
-        private IQueryable<IUser> GetUsersQuery() {
+        private IQueryable<IUser> GetUsersQuery()
+        {
             return from user in db.Users
                    select user as IUser;
         }

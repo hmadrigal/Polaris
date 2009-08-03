@@ -37,8 +37,8 @@ namespace Polaris.Dal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MVARELA-VISTA\\SQLEXPRESS;Initial Catalog=Polaris;Integrated Security=" +
-            "True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HMADRIGAL2-PC\\SQLEXPRESS;Initial Catalog=Polaris.Dbl;Integrated Secur" +
+            "ity=True")]
         public string PolarisConnectionString {
             get {
                 return ((string)(this["PolarisConnectionString"]));
