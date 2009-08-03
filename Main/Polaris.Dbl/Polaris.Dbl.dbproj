@@ -167,6 +167,9 @@
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql">
       <SubType>Code</SubType>
     </PostDeploy>
+    <NotInBuild Include="Schema Objects\Tables\Constraints\Polaris.Game.DF_Game_StartDate.defconst.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
     <NotInBuild Include="Scripts\Post-Deployment\DatabaseObjectOptions.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>

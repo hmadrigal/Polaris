@@ -22,7 +22,18 @@ namespace Polaris.Bal
 
         IDevelopmentTeam DevelopmentTeam { get; }
 
-        #endregion
+        DateTime StartDate { get; set; }
 
+        DateTime EndDate { get; set; }
+
+        DateTime? FeaturedStartDate { get; set; }
+
+        DateTime? FeaturedEndDate { get; set; }
+
+        Boolean IsFeatured { get; }
+
+        Boolean IsComingSoon { get; }
+
+        #endregion
     }
 }

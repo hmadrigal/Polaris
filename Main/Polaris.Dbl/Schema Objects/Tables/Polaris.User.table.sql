@@ -6,6 +6,7 @@
 [FirstName] [varchar] (30) NOT NULL,
 [LastName] [varchar] (30) NOT NULL,
 [Email] [varchar] (100) NOT NULL,
+[Active] [bit] NOT NULL,
 [PlayCredits] [bigint] NOT NULL,
 [RankingCredits] [bigint] NOT NULL
 ) ON [PRIMARY]

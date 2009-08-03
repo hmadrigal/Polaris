@@ -42,9 +42,6 @@ namespace Polaris.Dal
     partial void InsertFilterOption(FilterOption instance);
     partial void UpdateFilterOption(FilterOption instance);
     partial void DeleteFilterOption(FilterOption instance);
-    partial void InsertGame(Game instance);
-    partial void UpdateGame(Game instance);
-    partial void DeleteGame(Game instance);
     partial void InsertPlayLog(PlayLog instance);
     partial void UpdatePlayLog(PlayLog instance);
     partial void DeletePlayLog(PlayLog instance);
@@ -60,10 +57,13 @@ namespace Polaris.Dal
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertGame(Game instance);
+    partial void UpdateGame(Game instance);
+    partial void DeleteGame(Game instance);
     #endregion
 		
 		public SourceDataContext() : 
-				base(global::Polaris.Dal.Properties.Settings.Default.PolarisConnectionString, mappingSource)
+				base(global::Polaris.Dal.Properties.Settings.Default.Polaris_DblConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -124,14 +124,6 @@ namespace Polaris.Dal
 			}
 		}
 		
-		public System.Data.Linq.Table<Game> Games
-		{
-			get
-			{
-				return this.GetTable<Game>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PlayLog> PlayLogs
 		{
 			get
@@ -169,6 +161,14 @@ namespace Polaris.Dal
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Game> Games
+		{
+			get
+			{
+				return this.GetTable<Game>();
 			}
 		}
 	}
@@ -516,164 +516,6 @@ namespace Polaris.Dal
 					this._ColumnName = value;
 					this.SendPropertyChanged("ColumnName");
 					this.OnColumnNameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="Polaris.Game")]
-	public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _GameId;
-		
-		private string _Name;
-		
-		private System.Guid _Key;
-		
-		private bool _Active;
-		
-		private long _DevelopmentTeamId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnGameIdChanging(long value);
-    partial void OnGameIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnKeyChanging(System.Guid value);
-    partial void OnKeyChanged();
-    partial void OnActiveChanging(bool value);
-    partial void OnActiveChanged();
-    partial void OnDevelopmentTeamIdChanging(long value);
-    partial void OnDevelopmentTeamIdChanged();
-    #endregion
-		
-		public Game()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_GameId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long GameId
-		{
-			get
-			{
-				return this._GameId;
-			}
-			set
-			{
-				if ((this._GameId != value))
-				{
-					this.OnGameIdChanging(value);
-					this.SendPropertyChanging();
-					this._GameId = value;
-					this.SendPropertyChanged("GameId");
-					this.OnGameIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Name="[Key]", Storage="_Key", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid Key
-		{
-			get
-			{
-				return this._Key;
-			}
-			set
-			{
-				if ((this._Key != value))
-				{
-					this.OnKeyChanging(value);
-					this.SendPropertyChanging();
-					this._Key = value;
-					this.SendPropertyChanged("Key");
-					this.OnKeyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this.OnActiveChanging(value);
-					this.SendPropertyChanging();
-					this._Active = value;
-					this.SendPropertyChanged("Active");
-					this.OnActiveChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DevelopmentTeamId", DbType="BigInt NOT NULL")]
-		public long DevelopmentTeamId
-		{
-			get
-			{
-				return this._DevelopmentTeamId;
-			}
-			set
-			{
-				if ((this._DevelopmentTeamId != value))
-				{
-					this.OnDevelopmentTeamIdChanging(value);
-					this.SendPropertyChanging();
-					this._DevelopmentTeamId = value;
-					this.SendPropertyChanged("DevelopmentTeamId");
-					this.OnDevelopmentTeamIdChanged();
 				}
 			}
 		}
@@ -1512,6 +1354,260 @@ namespace Polaris.Dal
 					this._RankingCredits = value;
 					this.SendPropertyChanged("RankingCredits");
 					this.OnRankingCreditsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="Polaris.Game")]
+	public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _GameId;
+		
+		private string _Name;
+		
+		private System.Guid _Key;
+		
+		private bool _Active;
+		
+		private long _DevelopmentTeamId;
+		
+		private System.DateTime _StartDate;
+		
+		private System.DateTime _EndDate;
+		
+		private System.Nullable<System.DateTime> _FeaturedStartDate;
+		
+		private System.Nullable<System.DateTime> _FeaturedEndDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnGameIdChanging(long value);
+    partial void OnGameIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnKeyChanging(System.Guid value);
+    partial void OnKeyChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    partial void OnDevelopmentTeamIdChanging(long value);
+    partial void OnDevelopmentTeamIdChanged();
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnFeaturedStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnFeaturedStartDateChanged();
+    partial void OnFeaturedEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnFeaturedEndDateChanged();
+    #endregion
+		
+		public Game()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_GameId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long GameId
+		{
+			get
+			{
+				return this._GameId;
+			}
+			set
+			{
+				if ((this._GameId != value))
+				{
+					this.OnGameIdChanging(value);
+					this.SendPropertyChanging();
+					this._GameId = value;
+					this.SendPropertyChanged("GameId");
+					this.OnGameIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Name="[Key]", Storage="_Key", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Key
+		{
+			get
+			{
+				return this._Key;
+			}
+			set
+			{
+				if ((this._Key != value))
+				{
+					this.OnKeyChanging(value);
+					this.SendPropertyChanging();
+					this._Key = value;
+					this.SendPropertyChanged("Key");
+					this.OnKeyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DevelopmentTeamId", DbType="BigInt NOT NULL")]
+		public long DevelopmentTeamId
+		{
+			get
+			{
+				return this._DevelopmentTeamId;
+			}
+			set
+			{
+				if ((this._DevelopmentTeamId != value))
+				{
+					this.OnDevelopmentTeamIdChanging(value);
+					this.SendPropertyChanging();
+					this._DevelopmentTeamId = value;
+					this.SendPropertyChanged("DevelopmentTeamId");
+					this.OnDevelopmentTeamIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime NOT NULL")]
+		public System.DateTime StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FeaturedStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FeaturedStartDate
+		{
+			get
+			{
+				return this._FeaturedStartDate;
+			}
+			set
+			{
+				if ((this._FeaturedStartDate != value))
+				{
+					this.OnFeaturedStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._FeaturedStartDate = value;
+					this.SendPropertyChanged("FeaturedStartDate");
+					this.OnFeaturedStartDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FeaturedEndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FeaturedEndDate
+		{
+			get
+			{
+				return this._FeaturedEndDate;
+			}
+			set
+			{
+				if ((this._FeaturedEndDate != value))
+				{
+					this.OnFeaturedEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._FeaturedEndDate = value;
+					this.SendPropertyChanged("FeaturedEndDate");
+					this.OnFeaturedEndDateChanged();
 				}
 			}
 		}
