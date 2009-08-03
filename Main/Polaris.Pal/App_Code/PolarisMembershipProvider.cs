@@ -217,7 +217,7 @@ namespace Polaris.Pal
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
+            if (String.IsNullOrEmpty(oldPassword)) throw new ArgumentException("Argument cannot be null or empty", "oldPassword");
             if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("Argument cannot be null or empty", "newPassword");
             
             // NOTE: How to change the password http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
@@ -290,7 +290,7 @@ namespace Polaris.Pal
         /// <returns></returns>
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
-            if (String.IsNullOrEmpty(usernameToMatch)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+            if (String.IsNullOrEmpty(emailToMatch)) throw new ArgumentException("Argument cannot be null or empty", "emailToMatch");
             if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
             if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
             throw new NotImplementedException();
