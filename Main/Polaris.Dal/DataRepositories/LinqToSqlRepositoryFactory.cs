@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Polaris.Bal.DataRepositories;
 using Polaris.Bal;
 
 namespace Polaris.Dal
@@ -18,7 +17,11 @@ namespace Polaris.Dal
             {
                 return (RepositoryType)(new SiteRepository() as IRepository);
             }
-            else 
+            else if (repositoryType == typeof(IGameRepository))
+            {
+                return (RepositoryType)(new GameRepository() as IGameRepository);
+            }
+            else
             {
                 throw new InvalidOperationException(String.Format("This assembly does not implement {0}", repositoryType.Name));
             }

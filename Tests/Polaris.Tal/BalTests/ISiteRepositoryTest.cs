@@ -1,12 +1,9 @@
-﻿using Polaris.Bal;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Polaris.Bal.DataRepositories;
+using Polaris.Bal;
 
 namespace Polaris.Portal.Tests
 {
-    
-    
     /// <summary>
     ///This is a test class for ISiteRepositoryTest and is intended
     ///to contain all ISiteRepositoryTest Unit Tests
@@ -17,7 +14,6 @@ namespace Polaris.Portal.Tests
     {
         internal virtual ISiteRepository CreateISiteRepository()
         {
-            // TODO: Instantiate an appropriate concrete class.
             ISiteRepository target = RepositoryFactory.GetNewRepository<ISiteRepository>();
             return target;
         }

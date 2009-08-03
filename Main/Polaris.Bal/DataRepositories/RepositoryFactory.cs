@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Polaris.Bal.DataRepositories {
-    public static class RepositoryFactory {
+namespace Polaris.Bal 
+{
+    public static class RepositoryFactory
+    {
+        #region Properties
 
         private static IRepositoryFactory Factory { get; set; }
+
+        #endregion
+
+        #region Constructor
 
         static RepositoryFactory() {
             Factory = CreateNewRepositoryFactory();
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Returns a new instance of the specified repository type.
@@ -20,6 +31,10 @@ namespace Polaris.Bal.DataRepositories {
         public static RepositoryType GetNewRepository<RepositoryType>() where RepositoryType : IRepository {
             return Factory.GetNewRepository<RepositoryType>();
         }
+
+        #endregion
+
+        #region Private Methods
 
         private static IRepositoryFactory CreateNewRepositoryFactory() {
             var dalAssembly = LoadDalAssembly();
@@ -41,6 +56,8 @@ namespace Polaris.Bal.DataRepositories {
                 throw new InvalidOperationException(String.Format("Unable to load DAL assembly: {0}", dalAssemblyName), e);
             }
         }
+
+        #endregion
 
     }
 }

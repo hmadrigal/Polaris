@@ -86,7 +86,7 @@ namespace Polaris.Dal
 
         public IEnumerable<IGame> GetFeaturedGames()
         {
-            return GetGamesQuery().Where(g => g.IsFeatured == true).ToArray();
+            return GetGames().Where(g => g.IsFeatured).ToArray();
         }
 
         public long GetGamesCount()
