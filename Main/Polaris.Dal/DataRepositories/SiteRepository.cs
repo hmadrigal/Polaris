@@ -9,49 +9,29 @@ namespace Polaris.Dal
 {
     public class SiteRepository : Repository, ISiteRepository
     {
-
         #region Properties
 
         public SiteSection RelatedSection { get; set; }
 
         #endregion
 
-        #region Constructor
-
-        //public SiteRepository()
-        //{
-
-        //}
-
-        #endregion
-
-        #region User Methods
-
-        public void Add(IUser user)
-        {
-            db.Users.InsertOnSubmit(user as User);
-        }
-
-        public void Delete(IUser user)
-        {
-            db.Users.DeleteOnSubmit(user as User);
-        }
+        #region Retrieval
 
         public IEnumerable<IUser> GetUsers()
         {
             return GetUsersQuery().ToArray();
         }
 
-        public IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize)
-        {
-            Int32 skip = (pageNumber - 1) * pageSize;
-            return GetUsersQuery().Skip(skip).Take(pageSize).ToArray();
-        }
-
         public IEnumerable<IUser> GetUsers(Int32 pageNumber)
         {
             Int32 pageSize = GetPageSize<IUser>();
             return GetUsers(pageNumber, pageSize);
+        }
+
+        public IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize)
+        {
+            Int32 skip = (pageNumber - 1) * pageSize;
+            return GetUsersQuery().Skip(skip).Take(pageSize).ToArray();
         }
 
         public IEnumerable<IUser> GetUsers(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters, Int32 pageNumber, Int32 pageSize)
@@ -75,11 +55,6 @@ namespace Polaris.Dal
         {
             return db.Users.Where(u => u.Username == username).FirstOrDefault();
         }
-        public Boolean ValidateUser(String username, String password)
-        {
-            return (db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault() != null);
-        }
-
 
         private IQueryable<IUser> GetUsersQuery(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters)
         {
@@ -104,6 +79,29 @@ namespace Polaris.Dal
             return RelatedSection.GetPageSize<EntityType>();
         }
 
+        #endregion
+
+        #region Writing
+        
+        public void Add(IUser user)
+        {
+            db.Users.InsertOnSubmit(user as User);
+        }
+
+        public void Delete(IUser user)
+        {
+            db.Users.DeleteOnSubmit(user as User);
+        }
+
+        #endregion
+
+        #region Validation
+
+        public Boolean ValidateUser(String username, String password)
+        {
+            return (db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault() != null);
+        }
+
         private void ValidateSiteSection()
         {
             if (RelatedSection == SiteSection.None)
@@ -113,6 +111,5 @@ namespace Polaris.Dal
         }
 
         #endregion
-
     }
 }

@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="DataProviders\PolarisDataContext.cs" />
     <Compile Include="DataProviders\SourceDataContext.cs" />
+    <Compile Include="DataRepositories\GameRepository.cs" />
     <Compile Include="DataRepositories\LinqToSqlRepositoryFactory.cs" />
     <Compile Include="DataRepositories\Repository.cs" />
     <Compile Include="DataRepositories\SiteRepository.cs" />

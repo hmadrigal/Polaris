@@ -7,7 +7,6 @@ namespace Polaris.Bal
 {
     public interface ISiteRepository : IRepository
     {
-
         #region Properties
 
         /// <summary>
@@ -24,21 +23,13 @@ namespace Polaris.Bal
 
         #endregion
 
-        #region User Methods
+        #region Retrieval
 
         /// <summary>
         /// Gets all the existing site users
         /// </summary>
         /// <returns>IEnumerable<IUser></returns>
         IEnumerable<IUser> GetUsers();
-
-        /// <summary>
-        /// Gets the specified page of users.
-        /// </summary>
-        /// <param name="pageNumber">Number of the page to get.</param>
-        /// <param name="pageSize">Size of the page (number of elements to return)</param>
-        /// <returns>A collection of users.</returns>
-        IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize);
 
         /// <summary>
         /// Gets the specified page of users.
@@ -57,22 +48,44 @@ namespace Polaris.Bal
         /// </exception>
         IEnumerable<IUser> GetUsers(Int32 pageNumber);
 
+        /// <summary>
+        /// Gets the specified page of users.
+        /// </summary>
+        /// <param name="pageNumber">Number of the page to get.</param>
+        /// <param name="pageSize">Size of the page (number of elements to return)</param>
+        /// <returns>A collection of users.</returns>
+        IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize);
+
         IEnumerable<IUser> GetUsers(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters, Int32 pageNumber, Int32 pageSize);
 
         IEnumerable<IUser> GetUsers(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters, Int32 pageNumber);
 
         Int64 GetUserCount();
-
-        
-        void Add(IUser user);
-
-        void Delete(IUser user);
         
         IUser GetUser(String username);
+
+        #endregion
+
+        #region Writing
+
+        /// <summary>
+        /// Adds a user record to the db context
+        /// </summary>
+        /// <param name="user"></param>
+        void Add(IUser user);
+
+        /// <summary>
+        /// Deletes a user record from the db context
+        /// </summary>
+        /// <param name="user"></param>
+        void Delete(IUser user);
+
+        #endregion
+
+        #region Validation
 
         Boolean ValidateUser(String username, String password);
 
         #endregion
-
     }
 }
