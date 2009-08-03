@@ -27,6 +27,8 @@ namespace Polaris.Bal
             MessageTemplate = "Email address is invalid.")]
         String Email { get; set; }
 
+        String Password { get; set; }
+
         Int64 PlayCredits { get; set; }
 
         Int64 RankingCredits { get; set; }

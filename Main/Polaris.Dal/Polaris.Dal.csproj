@@ -108,4 +108,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Polaris.Pal\Bin\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

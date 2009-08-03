@@ -63,6 +63,15 @@ namespace Polaris.Bal
 
         Int64 GetUserCount();
 
+        
+        void Add(IUser user);
+
+        void Delete(IUser user);
+        
+        IUser GetUser(String username);
+
+        Boolean ValidateUser(String username, String password);
+
         #endregion
 
     }
