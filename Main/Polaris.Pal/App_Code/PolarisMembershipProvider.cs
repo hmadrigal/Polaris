@@ -6,7 +6,6 @@ using System.Web.Security;
 using System.Collections.Specialized;
 using Polaris.Bal;
 using Polaris.Bal.Extensions;
-using Polaris.Bal.DataRepositories;
 using System.Text;
 
 namespace Polaris.Pal.Code
@@ -299,7 +298,21 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
             if (String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
 
-            status = MembershipCreateStatus.Success;
+            var user = EntityFactory.GetNewEntity<IUser>();
+            user.Username = username;
+            user.Password = TransformPassword(password);
+            user.Email = email;
+            try
+            {
+                this.SiteRepository.Add(user);
+                this.SiteRepository.Save();
+                status = MembershipCreateStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                status = MembershipCreateStatus.ProviderError;
+                throw new ApplicationException(String.Format("The application cannot create the new username {0}.\n{1}", username, ex.ToString()));
+            }
             return null;
         }
 

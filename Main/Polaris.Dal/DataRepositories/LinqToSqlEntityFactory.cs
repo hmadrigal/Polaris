@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Polaris.Bal.DataRepositories;
 using Polaris.Bal;
 
 namespace Polaris.Dal
