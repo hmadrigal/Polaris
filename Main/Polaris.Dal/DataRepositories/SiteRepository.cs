@@ -153,7 +153,7 @@ namespace Polaris.Dal
 
         public Boolean ValidateUser(String username, String password)
         {
-            return (db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault() != null);
+            return (db.Users.Where(u => u.Username == username && u.Password == password).Count() > 0);
         }
 
         private void ValidateSiteSection()

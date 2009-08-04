@@ -353,14 +353,15 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            if (String.IsNullOrEmpty(username)) status = MembershipCreateStatus.InvalidUserName;
-            if (this.SiteRepository.GetUserByUsername(username) != null) status = MembershipCreateStatus.DuplicateUserName;
-            if (String.IsNullOrEmpty(email)) status = MembershipCreateStatus.InvalidEmail;
-            if (this.SiteRepository.GetUserByEmail(email) != null) status = MembershipCreateStatus.DuplicateEmail;
-            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) status = MembershipCreateStatus.InvalidQuestion;
-            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) status = MembershipCreateStatus.InvalidAnswer;
+            MembershipUser membershipUser = null;
+            if (String.IsNullOrEmpty(username)) { status = MembershipCreateStatus.InvalidUserName; return membershipUser; }
+            if (this.SiteRepository.GetUserByUsername(username) != null) { status = MembershipCreateStatus.DuplicateUserName; return membershipUser; }
+            if (String.IsNullOrEmpty(email)) { status = MembershipCreateStatus.InvalidEmail; return membershipUser; }
+            if (this.SiteRepository.GetUserByEmail(email) != null) { status = MembershipCreateStatus.DuplicateEmail; return membershipUser; }
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) { status = MembershipCreateStatus.InvalidQuestion; return membershipUser; }
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) { status = MembershipCreateStatus.InvalidAnswer; return membershipUser; }
             var verificationCode = this.ValidatePassword(password);
-            if (String.IsNullOrEmpty(password) || verificationCode != PolarisPasswordVerificationCode.ValidPassword) status = MembershipCreateStatus.InvalidPassword;
+            if (String.IsNullOrEmpty(password) || verificationCode != PolarisPasswordVerificationCode.ValidPassword) { status = MembershipCreateStatus.InvalidPassword; return membershipUser; }
 
             var user = EntityFactory.GetNewEntity<IUser>();
             user.Active = true;
@@ -370,8 +371,7 @@ namespace Polaris.Pal.Code
             user.Password = TransformPassword(password); ;
             user.PlayCredits = 0;
             user.RankingCredits = 0;
-            user.Username = username;
-
+            user.Username = username;           
             try
             {
                 this.SiteRepository.Add(user);
@@ -381,8 +381,10 @@ namespace Polaris.Pal.Code
             catch (Exception ex)
             {
                 status = MembershipCreateStatus.ProviderError;
+                membershipUser = null;
             }
-            return TransformUser(user);
+            membershipUser = TransformUser(user);
+            return membershipUser;
         }
 
         /// <summary>
