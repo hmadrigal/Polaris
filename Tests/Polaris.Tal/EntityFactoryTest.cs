@@ -1,5 +1,4 @@
-﻿using Polaris.Bal.DataRepositories;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Polaris.Bal;
 
 namespace Polaris.Portal.Tests
