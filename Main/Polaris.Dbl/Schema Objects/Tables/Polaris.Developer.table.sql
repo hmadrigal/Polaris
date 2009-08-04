@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [Polaris].[Developer]
 (
-[DeveloperId] [bigint] NOT NULL,
-[UserId] [bigint] NOT NULL
+[DeveloperId] [int] NOT NULL,
+[UserId] [int] NOT NULL,
+[DevelopmentTeamId] [int] NOT NULL
 ) ON [PRIMARY]
 
 

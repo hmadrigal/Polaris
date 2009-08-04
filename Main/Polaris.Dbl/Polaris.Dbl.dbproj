@@ -202,7 +202,25 @@
     </NotInBuild>
   </ItemGroup>
   <ItemGroup>
+    <Build Include="Schema Objects\Security\Schemas\CONTENTPROJECT_abaker.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Security\Schemas\CONTENTPROJECT_acedeno.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Security\Schemas\contentproject_hmadrigal.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Security\Schemas\polaris.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Security\Users\CONTENTPROJECT_abaker.user.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Security\Users\CONTENTPROJECT_acedeno.user.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Security\Users\contentproject_hmadrigal.user.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Security\Users\polaris.user.sql">
@@ -232,6 +250,12 @@
     <Build Include="Schema Objects\Tables\Keys\Polaris.ContentType.PK_ContentType.pkey.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.FK_Developer_DevelopmentTeam.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.FK_Developer_User.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.PK_Developer.pkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -241,10 +265,28 @@
     <Build Include="Schema Objects\Tables\Keys\Polaris.FilterOption.PK_FilterOption.pkey.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.Game.FK_Game_DevelopmentTeam.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Game.PK_Game_1.pkey.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_ContentType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_FilterOption.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_SortOption.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.PK_MenuItem.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.PlayLog.FK_PlayLog_Game.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Keys\Polaris.PlayLog.FK_PlayLog_User.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.PlayLog.PK_PlayLog.pkey.sql">

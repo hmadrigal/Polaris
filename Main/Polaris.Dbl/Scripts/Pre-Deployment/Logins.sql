@@ -20,3 +20,20 @@ CREATE LOGIN [CONTENTPROJECT\hmadrigal] FROM WINDOWS
 */
 
 GO
+
+/*
+IF NOT EXISTS (SELECT * FROM master.dbo.syslogins WHERE loginname = N'CONTENTPROJECT\abaker')
+CREATE LOGIN [CONTENTPROJECT\abaker] FROM WINDOWS
+*/
+GO
+/*
+IF NOT EXISTS (SELECT * FROM master.dbo.syslogins WHERE loginname = N'CONTENTPROJECT\acedeno')
+CREATE LOGIN [CONTENTPROJECT\acedeno] FROM WINDOWS
+*/
+GO
+/*
+IF NOT EXISTS (SELECT * FROM master.dbo.syslogins WHERE loginname = N'CONTENTPROJECT\hmadrigal')
+CREATE LOGIN [CONTENTPROJECT\hmadrigal] FROM WINDOWS
+*/
+
+GO

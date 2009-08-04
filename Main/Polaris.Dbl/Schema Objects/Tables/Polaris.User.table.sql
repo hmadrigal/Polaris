@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [Polaris].[User]
 (
-[UserId] [bigint] NOT NULL IDENTITY(1, 1),
-[Username] [varchar] (20) NOT NULL,
-[Password] [varchar] (50) NOT NULL,
-[FirstName] [varchar] (30) NOT NULL,
-[LastName] [varchar] (30) NOT NULL,
-[Email] [varchar] (100) NOT NULL,
+[UserId] [int] NOT NULL IDENTITY(1, 1),
+[Username] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Password] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[FirstName] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[LastName] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Email] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [Active] [bit] NOT NULL,
-[PlayCredits] [bigint] NOT NULL,
-[RankingCredits] [bigint] NOT NULL
+[PlayCredits] [int] NOT NULL,
+[RankingCredits] [int] NOT NULL
 ) ON [PRIMARY]
 
 
