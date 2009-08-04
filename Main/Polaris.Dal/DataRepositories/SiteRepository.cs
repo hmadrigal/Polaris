@@ -22,6 +22,14 @@ namespace Polaris.Dal
             return GetUsersQuery().ToArray();
         }
 
+        public IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize, out Int32 totalUsers)
+        {
+            var users = GetUsersQuery();
+            totalUsers = GetUsersQuery().Count();
+            var skip = (pageNumber - 1) * pageSize;
+            return users.Skip(skip).Take(pageSize).ToArray();
+        }
+
         public IEnumerable<IUser> GetUsers(Int32 pageNumber)
         {
             Int32 pageSize = GetPageSize<IUser>();
@@ -51,10 +59,56 @@ namespace Polaris.Dal
             return GetUsersQuery().Count();
         }
 
-        public IUser GetUser(String username)
+        public IUser GetUserByUsername(String username)
         {
             return db.Users.Where(u => u.Username == username).FirstOrDefault();
         }
+
+        public IUser GetUserByEmail(String email)
+        {
+            return db.Users.Where(u => u.Email == email).FirstOrDefault();
+        }
+
+        public IUser GetUserById(Int64 userId)
+        {
+            return db.Users.Where(u => u.Id == userId).FirstOrDefault();
+        }
+
+        
+
+        /// <summary>
+        /// Returns a list of the users that match the provided username
+        /// </summary>
+        /// <param name="usernameToMatch"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        public IEnumerable<IUser> FindUsersByUsername(string usernameToMatch, int pageNumber, int pageSize, out int totalUsers)
+        {
+            var users = GetUsersQuery();
+            var skip = (pageNumber - 1) * pageSize;
+            var foundUsers = users.Where(u => u.Username.Contains(usernameToMatch)).Skip(skip).Take(pageSize);
+            totalUsers = foundUsers.Count();
+            return foundUsers.ToArray();
+        }
+        /// <summary>
+        /// Returns a list of the users that match the provided email
+        /// </summary>
+        /// <param name="emailToMatch"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        public IEnumerable<IUser> FindUsersByEmail(string emailToMatch, int pageNumber, int pageSize, out int totalUsers)
+        {
+            var users = GetUsersQuery();
+            var skip = (pageNumber - 1) * pageSize;
+            var foundUsers = users.Where(u => u.Email.Contains(emailToMatch)).Skip(skip).Take(pageSize);
+            totalUsers = foundUsers.Count();
+            return foundUsers.ToArray();
+        }
+
 
         private IQueryable<IUser> GetUsersQuery(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters)
         {

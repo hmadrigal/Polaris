@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="DataProviders\PolarisDataContext.cs" />
     <Compile Include="DataProviders\SourceDataContext.cs" />
+    <Compile Include="DataRepositories\LinqToSqlEntityFactory.cs" />
     <Compile Include="DataRepositories\GameRepository.cs" />
     <Compile Include="DataRepositories\LinqToSqlRepositoryFactory.cs" />
     <Compile Include="DataRepositories\Repository.cs" />
@@ -110,6 +111,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Polaris.Pal\Bin\"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

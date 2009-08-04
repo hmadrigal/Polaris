@@ -47,6 +47,23 @@ namespace Polaris.Bal.Extensions
         }
 
         /// <summary>
+        /// Tries to convert an string to Int64. If it's not possible then the default value is returned. 
+        /// </summary>
+        /// <param name="intStr">String that represents an integer value</param>
+        /// <param name="defaultValue">Default value if the convertion fails</param>
+        /// <returns></returns>
+        public static Int64 ToInt64(this String intStr, Int64 defaultValue)
+        {
+            if (String.IsNullOrEmpty(intStr)) return defaultValue;
+            var result = defaultValue;
+            if (!Int64.TryParse(intStr, out result))
+            {
+                result = defaultValue;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Tries to convert an String to an specific Enumeration value. If it's not possible then the default value is returned.
         /// </summary>
         /// <typeparam name="T">Target enum type.</typeparam>

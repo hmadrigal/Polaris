@@ -37,24 +37,7 @@ namespace Polaris.Bal
         #region Private Methods
 
         private static IRepositoryFactory CreateNewRepositoryFactory() {
-            var dalAssembly = LoadDalAssembly();
-            var dalRepositoryFactoryName = AppSettings.DalRepositoryFactoryName;
-            try {
-                var repositoryFactory = (IRepositoryFactory)dalAssembly.CreateInstance(dalRepositoryFactoryName);
-                return repositoryFactory;
-            } catch (Exception e) {
-                throw new InvalidOperationException(String.Format("Unable to create a new instance of the repository factory: {0}", AppSettings.DalRepositoryFactoryName), e);
-            }
-        }
-
-        private static System.Reflection.Assembly LoadDalAssembly() {
-            var dalAssemblyName = AppSettings.DalAssemblyName;
-            try {
-                var dalAssembly = System.Reflection.Assembly.Load(dalAssemblyName);
-                return dalAssembly;
-            } catch (Exception e) {
-                throw new InvalidOperationException(String.Format("Unable to load DAL assembly: {0}", dalAssemblyName), e);
-            }
+            return Polaris.Bal.Helpers.Settings.Plugin.CreateNewInstanceOf <IRepositoryFactory> (AppSettings.DalAssemblyName,AppSettings.DalRepositoryFactoryName);
         }
 
         #endregion

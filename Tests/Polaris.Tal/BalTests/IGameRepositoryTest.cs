@@ -1,7 +1,6 @@
 ﻿using Polaris.Bal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Polaris.Bal;
 
 namespace Polaris.Portal.Tests
 {

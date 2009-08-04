@@ -298,8 +298,9 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(email)) throw new ArgumentException("Argument cannot be null or empty", "email");
             if (String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
             if (String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
-            //TODO: hmadrigal. Ask where are we going to apply the validations for password, and related tasks.
-            throw new NotImplementedException();
+
+            status = MembershipCreateStatus.Success;
+            return null;
         }
 
         /// <summary>
@@ -311,7 +312,19 @@ namespace Polaris.Pal.Code
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
-            throw new NotImplementedException();
+            var isUserDeleted = false;
+            try
+            {
+                var user = this.SiteRepository.GetUserByUsername(username);
+                this.SiteRepository.Delete(user);
+                this.SiteRepository.Save();
+                isUserDeleted = true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application failed when tried to delete username {0}.{1}", username, ex.ToString()));
+            }
+            return isUserDeleted;
         }
 
         /// <summary>
@@ -328,7 +341,17 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(emailToMatch)) throw new ArgumentException("Argument cannot be null or empty", "emailToMatch");
             if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
             if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
-            throw new NotImplementedException();
+
+            IEnumerable<IUser> users = null;
+            try
+            {
+                users = this.SiteRepository.FindUsersByEmail(emailToMatch, pageIndex, pageSize, out totalRecords);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+            }
+            return TransformUsers(users);
         }
 
         /// <summary>
@@ -345,7 +368,16 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(usernameToMatch)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
             if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
             if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
-            throw new NotImplementedException();
+            IEnumerable<IUser> users = null;
+            try
+            {
+                users = this.SiteRepository.FindUsersByUsername(usernameToMatch, pageIndex, pageSize, out totalRecords);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+            }
+            return TransformUsers(users);
         }
 
         /// <summary>
@@ -360,7 +392,18 @@ namespace Polaris.Pal.Code
         {
             if (pageIndex < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageIndex");
             if (pageSize < 0) throw new ArgumentException("Argument cannot be lower than 0", "pageSize");
-            throw new NotImplementedException();
+
+            IEnumerable<IUser> users = null;
+            try
+            {
+                users = this.SiteRepository.GetUsers(pageIndex, pageSize, out totalRecords);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+            }
+
+            return TransformUsers(users);
         }
 
         /// <summary>
@@ -369,8 +412,7 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override int GetNumberOfUsersOnline()
         {
-            //TODO: hmadrigal. If we want to implement this we might need a new column
-            throw new NotImplementedException();
+            throw new NotImplementedException(String.Format("{0} is not going to implement {1}", this.GetType().Name, "GetNumberOfUsersOnline"));
         }
 
         /// <summary>
@@ -387,7 +429,7 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(answer)) throw new ArgumentException("Argument cannot be null or empty", "answer");
             if (this.passwordFormat == MembershipPasswordFormat.Hashed) throw new InvalidOperationException("The Password format is set to Hashed. See PasswordFormat for mode information.");
 
-            throw new NotImplementedException();
+            throw new NotImplementedException(String.Format("{0} is not going to implement {1}", this.GetType().Name, "GetPassword"));
         }
 
         /// <summary>
@@ -398,7 +440,17 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(username)) return null;
+            IUser user = null;
+            try
+            {
+                user = this.SiteRepository.GetUserByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot get data for the username {0}.{1}", username, ex.ToString()));
+            }
+            return TransformUser(user);
         }
 
         /// <summary>
@@ -409,7 +461,18 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            if (providerUserKey == null) return null;
+            var userId = providerUserKey.ToString().ToInt64(Int64.MinValue);
+            IUser user = null;
+            try
+            {
+                user = this.SiteRepository.GetUserById(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot get data for the userId {0}.{1}", userId, ex.ToString()));
+            }
+            return TransformUser(user);
         }
 
         /// <summary>
@@ -421,7 +484,19 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override string GetUserNameByEmail(string email)
         {
-            throw new NotImplementedException();
+            var username = String.Empty;
+            if (String.IsNullOrEmpty(email)) return String.Empty;
+            IUser user = null;
+            try
+            {
+                user = this.SiteRepository.GetUserByEmail(email);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Application cannot get data for the email {0}.{1}", email, ex.ToString()));
+            }
+            if (user != null) username = user.Username;
+            return username;
         }
 
         /// <summary>
@@ -439,8 +514,11 @@ namespace Polaris.Pal.Code
             if (this.RequiresQuestionAndAnswer) throw new NotImplementedException(String.Format("{0} is not implementing Question and Answer for reseting passwords", this.GetType().Name));
             if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("Argument cannot be null or empty", "username");
 
-            var user = this.SiteRepository.GetUser(username);
+            var user = this.SiteRepository.GetUserByUsername(username);
             if (user == null) throw new ArgumentException(String.Format("There was not possible to find the username: {0}.", username), "username");
+            if (!user.Active) throw new InvalidOperationException(String.Format("User {0} is not activated. {1} cannot reset the password for this user", user.Username, this.GetType().Name));
+
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed) throw new NotImplementedException(String.Format("{0} is not supporting reset password when Password format is {1}. Try to set the password format to {2}", this.GetType().Name, this.passwordFormat, MembershipPasswordFormat.Hashed.ToString()));
 
             var newPassword = Membership.GeneratePassword(this.generatePasswordLength, this.generatePasswordNumberOfNonAlphanumericCharacters);
             user.Password = this.TransformPassword(newPassword);
@@ -524,6 +602,15 @@ namespace Polaris.Pal.Code
             return transformed;
         }
 
+        /// <summary>
+        /// Queries the current setting for the PasswordFormat property and according to the
+        /// setting ite leaves the password as clear text, creates a hash for the password, or
+        /// encrypts the password.
+        /// </summary>
+        /// <param name="message">Text to encrypt</param>
+        /// <param name="membershipPasswordFormat">Specifies the how the password should be encrypted</param>
+        /// <param name="encoding">Specifies the Encoding for transforming. It applies only to MembershipPasswordFormat.Encrypted</param>
+        /// <returns>A transformed password</returns>
         private string TransformPassword(String password, MembershipPasswordFormat membershipPasswordFormat, Encoding encoding)
         {
             return TransformPassword(password, membershipPasswordFormat, this.hashPasswordFormat, encoding);
@@ -554,5 +641,41 @@ namespace Polaris.Pal.Code
         {
             return TransformPassword(password, Encoding.Default);
         }
+
+
+        private MembershipUser TransformUser(IUser user)
+        {
+            if (user == null) return null;
+            return new MembershipUser(this.GetType().Name, user.Username, user.Id, user.Email, String.Empty, String.Empty, user.Active, false, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
+        }
+
+        private IUser TransformUser(MembershipUser membershipUser)
+        {
+            if (membershipUser == null || membershipUser.ProviderUserKey == null) return null;
+            var userId = membershipUser.ProviderUserKey.ToString().ToInt64(Int64.MinValue);
+            IUser user = null;
+            try
+            {
+                user = this.SiteRepository.GetUserById(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("The application cannot get information for the user Id {0}.\n{1}", userId, ex.ToString()));
+            }
+            return user;
+        }
+
+        private MembershipUserCollection TransformUsers(IEnumerable<IUser> users)
+        {
+            if (users == null) return null;
+            MembershipUserCollection muc = new MembershipUserCollection();
+            foreach (var user in users)
+                muc.Add(TransformUser(user));
+            return muc;
+        }
+
     }
+
+
+
 }

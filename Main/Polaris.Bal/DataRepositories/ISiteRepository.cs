@@ -34,6 +34,15 @@ namespace Polaris.Bal
         /// <summary>
         /// Gets the specified page of users.
         /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalUsers">After the method call, it will contains the total of found users </param>
+        /// <returns></returns>
+        IEnumerable<IUser> GetUsers(Int32 pageNumber, Int32 pageSize, out Int32 totalUsers);
+
+        /// <summary>
+        /// Gets the specified page of users.
+        /// </summary>
         /// <param name="pageNumber">Number of the page to get.</param>
         /// <returns>A collection of users.</returns>
         /// <remarks>
@@ -62,8 +71,6 @@ namespace Polaris.Bal
 
         Int64 GetUserCount();
         
-        IUser GetUser(String username);
-
         #endregion
 
         #region Writing
@@ -79,12 +86,55 @@ namespace Polaris.Bal
         /// </summary>
         /// <param name="user"></param>
         void Delete(IUser user);
+       
+        
+        /// <summary>
+        /// Gets a particular user by its username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        IUser GetUserByUsername(String username);
 
-        #endregion
+        /// <summary>
+        /// Gets a particular user by its email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        IUser GetUserByEmail(String email);
 
-        #region Validation
+        /// <summary>
+        /// Gets a particular ser by its Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        IUser GetUserById(Int64 userId);
 
+        /// <summary>
+        /// Checks if the provided password and username were previously stored. 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         Boolean ValidateUser(String username, String password);
+
+        /// <summary>
+        /// Returns a list of the users that match the provided username
+        /// </summary>
+        /// <param name="usernameToMatch"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        IEnumerable<IUser> FindUsersByUsername(string usernameToMatch, int pageNumber, int pageSize, out int totalUsers);
+        /// <summary>
+        /// Returns a list of the users that match the provided email
+        /// </summary>
+        /// <param name="emailToMatch"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        IEnumerable<IUser> FindUsersByEmail(string emailToMatch, int pageNumber, int pageSize, out int totalUsers);
 
         #endregion
     }

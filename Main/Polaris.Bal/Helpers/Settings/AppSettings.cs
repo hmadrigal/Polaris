@@ -87,6 +87,16 @@ namespace Polaris.Bal
             }
         }
 
+        /// <summary>
+        /// Gets the class name of the repository factory class implementation.
+        /// </summary>
+        public static String DalEntityFactoryName{
+            get {
+                return String.Format("{0}.{1}", DalAssemblyName,
+                    ConfigurationManager.AppSettings["DalEntityFactoryName"]);
+            }
+        }
+
         #endregion
     }
 }

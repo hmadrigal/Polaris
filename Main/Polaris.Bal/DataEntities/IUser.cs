@@ -33,6 +33,11 @@ namespace Polaris.Bal
 
         Int64 RankingCredits { get; set; }
 
+        /// <summary>
+        /// Indicates if the user has been (logically) deleted.
+        /// </summary>
+        Boolean Active { get; set; }
+
         #endregion
     }
 }
