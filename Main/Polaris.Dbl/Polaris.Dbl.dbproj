@@ -140,12 +140,12 @@
     <Folder Include="Schema Objects\Storage\Partition Functions" />
     <Folder Include="Schema Objects\Storage\Partition Schemes" />
     <Folder Include="Schema Objects\Stored Procedures" />
-    <Folder Include="Schema Objects\Synonyms" />
     <Folder Include="Schema Objects\Tables" />
     <Folder Include="Schema Objects\Tables\Constraints" />
     <Folder Include="Schema Objects\Tables\Indexes" />
     <Folder Include="Schema Objects\Tables\Keys" />
     <Folder Include="Schema Objects\Tables\Statistics" />
+    <Folder Include="Schema Objects\Tables\Synonyms" />
     <Folder Include="Schema Objects\Tables\Triggers" />
     <Folder Include="Schema Objects\Types" />
     <Folder Include="Schema Objects\Types\User defined Data Types" />
@@ -220,16 +220,10 @@
     <Build Include="Schema Objects\Tables\Constraints\Polaris.PlayLog.DF_PlayLog_Date.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Tables\Constraints\Polaris.SortOption.DF_SortOption_Ascending.defconst.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Constraints\Polaris.User.DF_User_PlayCredits.defconst.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Constraints\Polaris.User.DF_User_RankingCredits.defconst.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.ContentType.PK_ContentType.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.FK_Developer_User.fkey.sql">
@@ -241,25 +235,10 @@
     <Build Include="Schema Objects\Tables\Keys\Polaris.DevelopmentTeam.PK_DevelopmentTeam.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.FilterOption.PK_FilterOption.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Game.FK_Game_DevelopmentTeam.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Game.PK_Game_1.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_ContentType.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_FilterOption.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.FK_MenuItem_SortOption.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.MenuItem.PK_MenuItem.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.PlayLog.FK_PlayLog_Game.fkey.sql">
@@ -271,16 +250,10 @@
     <Build Include="Schema Objects\Tables\Keys\Polaris.PlayLog.PK_PlayLog.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Tables\Keys\Polaris.SortOption.PK_SortOption.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.TimePeriod.PK_TimePeriod.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.User.PK_User.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Polaris.ContentType.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.Developer.table.sql">
@@ -289,19 +262,10 @@
     <Build Include="Schema Objects\Tables\Polaris.DevelopmentTeam.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Tables\Polaris.FilterOption.table.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Polaris.Game.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Tables\Polaris.MenuItem.table.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Polaris.PlayLog.table.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Tables\Polaris.SortOption.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.TimePeriod.table.sql">
