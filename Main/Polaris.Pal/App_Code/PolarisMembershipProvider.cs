@@ -353,11 +353,14 @@ namespace Polaris.Pal.Code
         /// <returns></returns>
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
-            if (String.IsNullOrEmpty(email)) throw new ArgumentException("Argument cannot be null or empty", "email");
-            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
-            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
+            if (String.IsNullOrEmpty(username)) status = MembershipCreateStatus.InvalidUserName;
+            if (this.SiteRepository.GetUserByUsername(username) != null) status = MembershipCreateStatus.DuplicateUserName;
+            if (String.IsNullOrEmpty(email)) status = MembershipCreateStatus.InvalidEmail;
+            if (this.SiteRepository.GetUserByEmail(email) != null) status = MembershipCreateStatus.DuplicateEmail;
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) status = MembershipCreateStatus.InvalidQuestion;
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) status = MembershipCreateStatus.InvalidAnswer;
+            var verificationCode = this.ValidatePassword(password);
+            if (String.IsNullOrEmpty(password) || verificationCode != PolarisPasswordVerificationCode.ValidPassword) status = MembershipCreateStatus.InvalidPassword;
 
             var user = EntityFactory.GetNewEntity<IUser>();
             user.Active = true;
@@ -378,9 +381,8 @@ namespace Polaris.Pal.Code
             catch (Exception ex)
             {
                 status = MembershipCreateStatus.ProviderError;
-                throw new ApplicationException(String.Format("The application cannot create the new username {0}.\n{1}", username, ex.ToString()));
             }
-            return null;
+            return TransformUser(user);
         }
 
         /// <summary>
