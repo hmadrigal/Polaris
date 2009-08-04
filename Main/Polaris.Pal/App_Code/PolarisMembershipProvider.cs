@@ -295,8 +295,8 @@ namespace Polaris.Pal.Code
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Argument cannot be null or empty", "password");
             if (String.IsNullOrEmpty(email)) throw new ArgumentException("Argument cannot be null or empty", "email");
-            if (String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
-            if (String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordQuestion) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordQuestion");
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
 
             var user = EntityFactory.GetNewEntity<IUser>();
             user.Username = username;
