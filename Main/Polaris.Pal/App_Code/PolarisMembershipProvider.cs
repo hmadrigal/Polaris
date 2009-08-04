@@ -299,9 +299,15 @@ namespace Polaris.Pal.Code
             if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) throw new ArgumentException("Argument cannot be null or empty", "passwordAnswer");
 
             var user = EntityFactory.GetNewEntity<IUser>();
-            user.Username = username;
-            user.Password = TransformPassword(password);
+            user.Active = true;
             user.Email = email;
+            user.FirstName = String.Empty;
+            user.LastName = String.Empty;
+            user.Password = TransformPassword(password); ;
+            user.PlayCredits = 0;
+            user.RankingCredits = 0;
+            user.Username  = username;
+            
             try
             {
                 this.SiteRepository.Add(user);
