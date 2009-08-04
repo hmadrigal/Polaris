@@ -104,5 +104,20 @@ namespace Polaris.Bal.Extensions
         {
             return ToEnum<T>(enumValue, defaultValue, true);
         }
+
+        /// <summary>
+        /// Indicates if a text cotains only digits or alphabetic characters
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static Boolean IsAlphanumeric(this String text)
+        {
+            foreach (var ch in text)
+            {
+                if (!Char.IsLetterOrDigit(ch))
+                    return false;
+            }
+            return true;
+        }
     }
 }

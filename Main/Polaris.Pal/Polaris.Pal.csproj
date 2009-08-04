@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\PolarisMembershipProvider.cs" />
+    <Content Include="App_Code\PolarisPasswordVerificationCode.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
