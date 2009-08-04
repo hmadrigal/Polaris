@@ -348,7 +348,7 @@ namespace Polaris.Pal.Code
         /// <param name="passwordQuestion"></param>
         /// <param name="passwordAnswer"></param>
         /// <param name="isApproved"></param>
-        /// <param name="providerUserKey"></param>
+        /// <param name="providerUserKey">This paramer should be null, this provider will generate an ID automatically. It does not accept a particular ID</param>
         /// <param name="status"></param>
         /// <returns></returns>
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
@@ -362,16 +362,17 @@ namespace Polaris.Pal.Code
             if (this.passwordFormat != MembershipPasswordFormat.Hashed && String.IsNullOrEmpty(passwordAnswer) && this.enablePasswordRetrieval) { status = MembershipCreateStatus.InvalidAnswer; return membershipUser; }
             var verificationCode = this.ValidatePassword(password);
             if (String.IsNullOrEmpty(password) || verificationCode != PolarisPasswordVerificationCode.ValidPassword) { status = MembershipCreateStatus.InvalidPassword; return membershipUser; }
+            if (providerUserKey != null) { status = MembershipCreateStatus.UserRejected; return membershipUser; }
 
             var user = EntityFactory.GetNewEntity<IUser>();
-            user.Active = true;
+            user.Active = isApproved;
             user.Email = email;
             user.FirstName = String.Empty;
             user.LastName = String.Empty;
             user.Password = TransformPassword(password); ;
             user.PlayCredits = 0;
             user.RankingCredits = 0;
-            user.Username = username;           
+            user.Username = username;
             try
             {
                 this.SiteRepository.Add(user);
@@ -595,7 +596,7 @@ namespace Polaris.Pal.Code
         {
             //NOTE: See how to reset password based on encription http://www.qualitydata.com/products/aspnet-membership/help/configuration/asp-net-sql-membership-password-administration.aspx
             if (!this.enablePasswordReset) throw new NotSupportedException("The application cannot change the password when EnablePasswordReset is set to false.");
-            if (this.RequiresQuestionAndAnswer) throw new NotImplementedException(String.Format("{0} is not implementing Question and Answer for reseting passwords", this.className));
+            if (this.passwordFormat != MembershipPasswordFormat.Hashed && this.RequiresQuestionAndAnswer) throw new NotImplementedException(String.Format("{0} is not implementing Question and Answer for reseting passwords", this.className));
             if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("Argument cannot be null or empty", "username");
 
             var user = this.SiteRepository.GetUserByUsername(username);
