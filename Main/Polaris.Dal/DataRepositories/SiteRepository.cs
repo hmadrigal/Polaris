@@ -54,7 +54,7 @@ namespace Polaris.Dal
             return GetUsers(filters, pageNumber, pageSize);
         }
 
-        public Int64 GetUserCount()
+        public Int32 GetUserCount()
         {
             return GetUsersQuery().Count();
         }
@@ -69,7 +69,7 @@ namespace Polaris.Dal
             return db.Users.Where(u => u.Email == email).FirstOrDefault();
         }
 
-        public IUser GetUserById(Int64 userId)
+        public IUser GetUserById(Int32 userId)
         {
             return db.Users.Where(u => u.Id == userId).FirstOrDefault();
         }

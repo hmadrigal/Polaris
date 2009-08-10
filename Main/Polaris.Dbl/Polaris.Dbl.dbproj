@@ -23,7 +23,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
     <PreviousProjectVersion>3.5</PreviousProjectVersion>
-    <DSP>Microsoft.Data.Schema.Sql.SqlDsp.Sql90DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Schema.Sql.SqlDsp.Sql100DatabaseSchemaProvider</DSP>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <DeployToDatabaseAddToServerExplorer>False</DeployToDatabaseAddToServerExplorer>
     <DeployToScript>True</DeployToScript>
@@ -35,10 +35,8 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.\sql\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
+    <TargetConnectionString>Data Source=.\SQLEXPRESS;Persist Security Info=True;User ID=polaris;Pooling=False</TargetConnectionString>
+    <TargetDatabase>Polaris</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>
@@ -195,9 +193,13 @@
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.DevelopmentTeam.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.Game.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.PlayLog.table.sql">
       <SubType>Code</SubType>
@@ -207,6 +209,8 @@
     </Build>
     <Build Include="Schema Objects\Tables\Polaris.User.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
   </ItemGroup>
   <ItemGroup>
@@ -219,18 +223,19 @@
   <ItemGroup>
     <Folder Include="Schema Objects\Storage\Filegroups" />
     <Folder Include="Schema Objects\Storage\Files" />
+    <Build Include="Schema Objects\Polaris.Dbl.rolememberships.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Storage\Files\Polaris_log.sqlfile.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Storage\Files\PRIMARY.Polaris.sqlfile.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Storage\Files\PrimaryFileName.sqlfile.sql" />
     <Build Include="Schema Objects\Storage\Files\PrimaryLogFileName.sqlfile.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Upgraded" />
-  </ItemGroup>
-  <ItemGroup>
-    <ArtifactReference Include="Upgraded\UpgradedServerObjects.dbschema">
-      <HintPath>Upgraded\UpgradedServerObjects.dbschema</HintPath>
-    </ArtifactReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="Upgraded\Upgraded.rolememberships.sql" />
   </ItemGroup>
 </Project>

@@ -102,7 +102,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnterpriseLibraries", "Ente
 		SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.StaticFactory.dll = SolutionItems\EnterpriseLibraries\Microsoft.Practices.Unity.StaticFactory.dll
 	EndProjectSection
 EndProject
-Project("{A9ACE9BB-CECE-4E62-9AA4-C7E7C5BD2124}") = "Polaris.Dbl", "Polaris.Dbl\Polaris.Dbl.dbproj", "{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}"
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Polaris.Dbl", "Polaris.Dbl\Polaris.Dbl.dbproj", "{9BFC896C-AC52-48B7-8C96-CBAD39FE17FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common", "Polaris.Common\Polaris.Common.csproj", "{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}"
 EndProject

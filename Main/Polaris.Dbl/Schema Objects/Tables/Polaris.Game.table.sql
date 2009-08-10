@@ -1,14 +1,15 @@
-﻿CREATE TABLE [Polaris].[Game]
-(
-[GameId] [int] NOT NULL IDENTITY(1, 1),
-[Name] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-[Key] [uniqueidentifier] NOT NULL,
-[Active] [bit] NOT NULL,
-[DevelopmentTeamId] [int] NOT NULL,
-[StartDate] [datetime] NOT NULL,
-[EndDate] [datetime] NOT NULL,
-[FeaturedStartDate] [datetime] NULL,
-[FeaturedEndDate] [datetime] NULL
-) ON [PRIMARY]
+CREATE TABLE [Polaris].[Game] (
+    [GameId]            INT              IDENTITY (1, 1) NOT NULL,
+    [Name]              VARCHAR (30)     NOT NULL,
+    [Key]               UNIQUEIDENTIFIER NOT NULL,
+    [Active]            BIT              NOT NULL,
+    [DevelopmentTeamId] INT              NOT NULL,
+    [StartDate]         DATETIME         NOT NULL,
+    [EndDate]           DATETIME         NOT NULL,
+    [FeaturedStartDate] DATETIME         NULL,
+    [FeaturedEndDate]   DATETIME         NULL
+);
+
+
 
 
