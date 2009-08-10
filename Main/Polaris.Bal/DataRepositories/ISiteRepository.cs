@@ -69,7 +69,7 @@ namespace Polaris.Bal
 
         IEnumerable<IUser> GetUsers(Dictionary<FilterDefinition<IUser>, FilterValueDefinition> filters, Int32 pageNumber);
 
-        Int64 GetUserCount();
+        Int32 GetUserCount();
         
         #endregion
 
@@ -107,7 +107,7 @@ namespace Polaris.Bal
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        IUser GetUserById(Int64 userId);
+        IUser GetUserById(Int32 userId);
 
         /// <summary>
         /// Checks if the provided password and username were previously stored. 
