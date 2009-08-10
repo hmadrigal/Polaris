@@ -226,6 +226,9 @@
     <Build Include="Schema Objects\Polaris.Dbl.rolememberships.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Polaris.Dbl_1.rolememberships.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>

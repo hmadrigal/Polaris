@@ -1,3 +1,3 @@
-﻿--CREATE USER [polaris] FOR LOGIN [polaris] WITH DEFAULT_SCHEMA=[dbo]
+﻿CREATE USER [polaris] WITH DEFAULT_SCHEMA=[Polaris]
 
 
