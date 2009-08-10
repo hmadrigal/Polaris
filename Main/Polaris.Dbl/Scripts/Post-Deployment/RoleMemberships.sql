@@ -1,10 +1,18 @@
 ﻿
-EXEC sp_addrolemember N'db_owner', N'polaris'
+-- Project upgrade has moved this code to 'Upgraded.rolememberships.sql'.
+-- EXEC sp_addrolemember N'db_owner', N'polaris'
+
 GO
-EXEC sp_addrolemember N'db_owner', N'CONTENTPROJECT\abaker'
+-- Project upgrade has moved this code to 'Upgraded.rolememberships.sql'.
+-- EXEC sp_addrolemember N'db_owner', N'CONTENTPROJECT\abaker'
+
 GO
-EXEC sp_addrolemember N'db_owner', N'CONTENTPROJECT\acedeno'
+-- Project upgrade has moved this code to 'Upgraded.rolememberships.sql'.
+-- EXEC sp_addrolemember N'db_owner', N'CONTENTPROJECT\acedeno'
+
 GO
-EXEC sp_addrolemember N'db_owner', N'contentproject\hmadrigal'
+-- Project upgrade has moved this code to 'Upgraded.rolememberships.sql'.
+-- EXEC sp_addrolemember N'db_owner', N'contentproject\hmadrigal'
+
 
 GO

@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
     <Name>"DatabaseProject"</Name>
@@ -6,115 +7,48 @@
     <ProjectGuid>{9bfc896c-ac52-48b7-8c96-cbad39fe17fa}</ProjectGuid>
     <ShowWizard>True</ShowWizard>
     <OutputType>Database</OutputType>
-    <DBProduct>SQL Server 2005</DBProduct>
     <RootPath>
     </RootPath>
-    <ArithAbort>True</ArithAbort>
-    <NumericRoundAbort>False</NumericRoundAbort>
-    <AnsiNulls>True</AnsiNulls>
-    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
-    <AnsiPadding>True</AnsiPadding>
-    <AnsiWarnings>True</AnsiWarnings>
-    <QuotedIdentifier>True</QuotedIdentifier>
     <DefaultSchemaForUnqualifiedObjects>dbo</DefaultSchemaForUnqualifiedObjects>
-    <EnableFullTextSearch>False</EnableFullTextSearch>
     <EnableCLRIntegration>True</EnableCLRIntegration>
-    <AutoUpdateStatisticsAsynchronously>True</AutoUpdateStatisticsAsynchronously>
-    <AutoUpdateStatistics>True</AutoUpdateStatistics>
-    <AutoShrink>False</AutoShrink>
-    <AutoCreateStatistics>True</AutoCreateStatistics>
-    <AutoClose>False</AutoClose>
-    <DefaultCursor>LOCAL</DefaultCursor>
-    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
-    <DatabaseState>ONLINE</DatabaseState>
-    <DatabaseAccess>MULTI_USER</DatabaseAccess>
-    <UpdateOptions>READ_WRITE</UpdateOptions>
-    <Parameterization>SIMPLE</Parameterization>
-    <Recovery>FULL</Recovery>
-    <PageVerify>NONE</PageVerify>
-    <TornPageDetection>False</TornPageDetection>
-    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
-    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
-    <AnsiNullDefault>True</AnsiNullDefault>
-    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
     <DefaultFileStructure>BySchemaType</DefaultFileStructure>
-    <DatabaseChaining>False</DatabaseChaining>
-    <EnableServiceBroker>False</EnableServiceBroker>
-    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
-    <Trustworthy>False</Trustworthy>
     <IncludeSchemaNameInFilename>True</IncludeSchemaNameInFilename>
     <DoNotUseAlterAssemblyStatementsToUpdateCLRTypes>False</DoNotUseAlterAssemblyStatementsToUpdateCLRTypes>
-    <ProjectVersion>2.0</ProjectVersion>
+    <ProjectVersion>3.5</ProjectVersion>
     <DefaultDataPath>Undefined</DefaultDataPath>
     <DefaultSchema>Polaris</DefaultSchema>
-    <BuildVersion>9.0.30729.1</BuildVersion>
     <RootNamespace>Polaris.Dbl</RootNamespace>
-    <FileGroups>
-      <FileGroupDefinitionCollection Version="1" xmlns="">
-        <FileGroups>
-          <FileGroupDefinition Name="PRIMARY" UpdatabilityOption="ReadWrite" IsDefault="True" CreationSucceed="False">
-            <Files>
-              <DatabaseFileDefinition LogicalName="PrimaryFileName" FileType="Primary">
-                <PhysicalName>%24(PrimaryFilePhysicalName)</PhysicalName>
-                <Size Number="3" SizeType="MB" />
-                <MaxSize Number="3" SizeType="MB" />
-                <FileGrowth Number="1" SizeType="MB" />
-                <EnableAutoGrowth>True</EnableAutoGrowth>
-                <UseDefaultMinSizeOnServer>True</UseDefaultMinSizeOnServer>
-                <UseDefaultAutoGrowthOnServer>True</UseDefaultAutoGrowthOnServer>
-                <Offline>False</Offline>
-              </DatabaseFileDefinition>
-            </Files>
-          </FileGroupDefinition>
-        </FileGroups>
-        <LogFiles>
-          <DatabaseFileDefinition LogicalName="PrimaryLogFileName" FileType="PrimaryLog">
-            <PhysicalName>%24(PrimaryLogFilePhysicalName)</PhysicalName>
-            <Size Number="3" SizeType="MB" />
-            <MaxSize Number="3" SizeType="MB" />
-            <FileGrowth Number="1" SizeType="MB" />
-            <EnableAutoGrowth>True</EnableAutoGrowth>
-            <UseDefaultMinSizeOnServer>True</UseDefaultMinSizeOnServer>
-            <UseDefaultAutoGrowthOnServer>True</UseDefaultAutoGrowthOnServer>
-            <Offline>False</Offline>
-          </DatabaseFileDefinition>
-        </LogFiles>
-      </FileGroupDefinitionCollection>
-    </FileGroups>
-    <PreviousProjectVersion>2</PreviousProjectVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
+    <PreviousProjectVersion>3.5</PreviousProjectVersion>
+    <DSP>Microsoft.Data.Schema.Sql.SqlDsp.Sql90DatabaseSchemaProvider</DSP>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <DeployToDatabaseAddToServerExplorer>False</DeployToDatabaseAddToServerExplorer>
+    <DeployToScript>True</DeployToScript>
+    <CatalogPropertiesFile>Properties\Database.sqlsettings</CatalogPropertiesFile>
+    <AllowServerObjects>False</AllowServerObjects>
+    <AllowDatabaseObjects>True</AllowDatabaseObjects>
+    <ModelCollation>1033,CI</ModelCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.\sql\</OutputPath>
-    <AutoGenerateBuildScriptName>False</AutoGenerateBuildScriptName>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TargetConnectionString>
     </TargetConnectionString>
     <TargetDatabase>
     </TargetDatabase>
-    <DeploymentCollationPreference>ChangeTargetDBCollation</DeploymentCollationPreference>
-    <AlwaysCreateNewDatabase>false</AlwaysCreateNewDatabase>
-    <GenerateDropsIfNotInProject>False</GenerateDropsIfNotInProject>
-    <BlockIncrementalDeploymentIfDataLoss>True</BlockIncrementalDeploymentIfDataLoss>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <PerformDatabaseBackup>False</PerformDatabaseBackup>
-    <SingleUserMode>False</SingleUserMode>
-    <UseFuzzyMatchForColumns>False</UseFuzzyMatchForColumns>
     <SuppressWarnings>
     </SuppressWarnings>
+    <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
+    <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
+    <DeployToDatabase>True</DeployToDatabase>
   </PropertyGroup>
   <!--Import the settings-->
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\TeamData\Microsoft.VisualStudio.TeamSystem.Data.Tasks.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\TeamData\Microsoft.Data.Schema.SqlTasks.targets" />
   <PropertyGroup>
-    <FilegroupSetVariables>
-      <Variable Name="PrimaryFileName" Value="$(TargetDatabase)_mdf" />
-      <Variable Name="PrimaryLogFileName" Value="$(TargetDatabase)_ldf" />
-      <Variable Name="PrimaryFilePhysicalName" Value="$(DefaultDataPath)$(TargetDatabase).mdf" />
-      <Variable Name="PrimaryLogFilePhysicalName" Value="$(DefaultDataPath)$(TargetDatabase)_log.ldf" />
-    </FilegroupSetVariables>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Schema Objects" />
@@ -274,5 +208,29 @@
     <Build Include="Schema Objects\Tables\Polaris.User.table.sql">
       <SubType>Code</SubType>
     </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <PropertiesFile Include="Properties\Database.sqlsettings" />
+    <PropertiesFile Include="Properties\Database.sqlpermissions" />
+    <PropertiesFile Include="Properties\Database.sqldeployment" />
+    <PropertiesFile Include="Properties\Database.sqlcmdvars" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Schema Objects\Storage\Filegroups" />
+    <Folder Include="Schema Objects\Storage\Files" />
+    <Build Include="Schema Objects\Storage\Files\PrimaryFileName.sqlfile.sql" />
+    <Build Include="Schema Objects\Storage\Files\PrimaryLogFileName.sqlfile.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Upgraded" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="Upgraded\UpgradedServerObjects.dbschema">
+      <HintPath>Upgraded\UpgradedServerObjects.dbschema</HintPath>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Upgraded\Upgraded.rolememberships.sql" />
   </ItemGroup>
 </Project>
