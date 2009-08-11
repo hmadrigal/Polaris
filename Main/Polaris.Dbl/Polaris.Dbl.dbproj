@@ -232,18 +232,6 @@
     <Build Include="Schema Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Storage\Files\Polaris_log.sqlfile.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Storage\Files\PRIMARY.Polaris.sqlfile.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Storage\Files\PrimaryFileName.sqlfile.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Storage\Files\PrimaryLogFileName.sqlfile.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.FK_Developer_DevelopmentTeam.fkey.sql">
       <SubType>Code</SubType>
     </Build>

@@ -1,6 +1,0 @@
-
-ALTER DATABASE [$(DatabaseName)]
-    ADD FILE (NAME = [PrimaryFileName], FILENAME = 'c:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA\Polaris.mdf', SIZE = 1024 KB, MAXSIZE = UNLIMITED, FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
-
-
-
