@@ -19,9 +19,17 @@ namespace Polaris.Dal
 
         #region IGame Members
 
-
+        /// <summary>
+        /// Exposes the related entity.
+        /// </summary>
+        /// <remarks>
+        /// By convention the parent properties for the associations 
+        /// in the DBML file should use the prefix 'Related' (i.e.: 'RelatedUser') 
+        /// so that it is possible to expose properties without the prefixes to the BAL.
+        /// </remarks>
         public IDevelopmentTeam DevelopmentTeam {
           get { return this.RelatedDevelopmentTeam; }
+          set { this.RelatedDevelopmentTeam = value as DevelopmentTeam; }
         }
 
         public Boolean IsFeatured
