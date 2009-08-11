@@ -269,7 +269,7 @@ namespace Polaris.Pal {
       try {
         user = this.SiteRepository.GetUserByUsername(username);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot get data for the username {0}.{1}", username, ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot get data for the username {0}.", username), ex);
       }
       if(user == null)
         throw new ApplicationException(String.Format("Application cannot find the username {0}.", username));
@@ -281,7 +281,7 @@ namespace Polaris.Pal {
             this.SiteRepository.Save();
             hasPasswordChanged = true;
           } catch(Exception ex) {
-            throw new ApplicationException(String.Format("Application failed trying to change the password of the user {0}.\n{1}", username, ex.ToString()));
+              throw new ApplicationException(String.Format("Application failed trying to change the password of the user {0}.\n", username), ex);
           }
 
           this.OnValidatingPassword(new ValidatePasswordEventArgs(username, newPassword, false));
@@ -375,7 +375,7 @@ namespace Polaris.Pal {
         this.SiteRepository.Save();
         isUserDeleted = true;
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application failed when tried to delete username {0}.{1}", username, ex.ToString()));
+          throw new ApplicationException(String.Format("Application failed when tried to delete username {0}.", username), ex);
       }
       return isUserDeleted;
     }
@@ -401,7 +401,7 @@ namespace Polaris.Pal {
       try {
         users = this.SiteRepository.FindUsersByEmail(emailToMatch, pageIndex, pageSize, out totalRecords);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot data for the users query."), ex);
       }
       return TransformUsers(users);
     }
@@ -426,7 +426,7 @@ namespace Polaris.Pal {
       try {
         users = this.SiteRepository.FindUsersByUsername(usernameToMatch, pageIndex, pageSize, out totalRecords);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot data for the users query."), ex);
       }
       return TransformUsers(users);
     }
@@ -449,7 +449,7 @@ namespace Polaris.Pal {
       try {
         users = this.SiteRepository.GetUsers(pageIndex, pageSize, out totalRecords);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot data for the users query.", ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot data for the users query."), ex);
       }
 
       return TransformUsers(users);
@@ -495,7 +495,7 @@ namespace Polaris.Pal {
       try {
         user = this.SiteRepository.GetUserByUsername(username);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot get data for the username {0}.{1}", username, ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot get data for the username {0}", username), ex);
       }
       return TransformUser(user);
     }
@@ -514,7 +514,7 @@ namespace Polaris.Pal {
       try {
         user = this.SiteRepository.GetUserById(userId);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot get data for the userId {0}.{1}", userId, ex.ToString()));
+          throw new ApplicationException(String.Format("Application cannot get data for the userId {0}.", userId), ex);
       }
       return TransformUser(user);
     }
@@ -534,7 +534,7 @@ namespace Polaris.Pal {
       try {
         user = this.SiteRepository.GetUserByEmail(email);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application cannot get data for the email {0}.{1}", email, ex.ToString()));
+        throw new ApplicationException(String.Format("Application cannot get data for the email {0}.", email ),ex);
       }
       if(user != null)
         username = user.Username;
@@ -572,7 +572,7 @@ namespace Polaris.Pal {
       try {
         this.SiteRepository.Save();
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("Application failed trying to reset the password of the user {0}.\n{1}", username, ex.ToString()));
+          throw new ApplicationException(String.Format("Application failed trying to reset the password of the user {0}.", username), ex);
       }
 
       this.OnValidatingPassword(new ValidatePasswordEventArgs(username, newPassword, false));
@@ -709,7 +709,7 @@ namespace Polaris.Pal {
       try {
         user = this.SiteRepository.GetUserById(userId);
       } catch(Exception ex) {
-        throw new ApplicationException(String.Format("The application cannot get information for the user Id {0}.\n{1}", userId, ex.ToString()));
+          throw new ApplicationException(String.Format("The application cannot get information for the user Id {0}.", userId), ex);
       }
       return user;
     }
