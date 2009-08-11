@@ -20,12 +20,8 @@ namespace Polaris.Dal
         #region IGame Members
 
 
-        public IDevelopmentTeam DevelopmentTeam
-        {
-            get
-            {
-                return this.DevelopmentTeam;
-            }
+        public IDevelopmentTeam DevelopmentTeam {
+          get { return this.RelatedDevelopmentTeam; }
         }
 
         public Boolean IsFeatured
@@ -48,6 +44,14 @@ namespace Polaris.Dal
                 else
                     return false;
             }
+        }
+
+        #endregion
+
+        #region IDataEntity Members
+
+        public IDataEntity CreateNew() {
+          return new Game();
         }
 
         #endregion

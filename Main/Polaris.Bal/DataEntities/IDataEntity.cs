@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Polaris.Bal {
 
-    public interface IDataEntity { 
+    public interface IDataEntity {
+
+      IDataEntity CreateNew();
     
     }
 

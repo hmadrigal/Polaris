@@ -68,7 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFactoryTest.cs" />
     <Compile Include="BalTests\ISiteRepositoryTest.cs" />
     <Compile Include="BalTests\IGameRepositoryTest.cs" />
     <Compile Include="LoggingTest.cs" />

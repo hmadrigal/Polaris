@@ -4,53 +4,48 @@ using System.Linq;
 using System.Text;
 using Polaris.Bal;
 
-namespace Polaris.Dal
-{
-    public abstract class Repository : IRepository
-    {
-        #region Fields
+namespace Polaris.Dal {
 
-        protected PolarisDataContext db;
+  public abstract class Repository : IRepository {
 
-        #endregion
+    #region Fields
 
-        #region Constructors
+    protected PolarisDataContext db;
+    protected Dictionary<Type, IDataEntity> RegisteredEntities { get; set; }
 
-        public Repository()
-        {
-            try
-            {
-                db = new PolarisDataContext();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("DATA: there was a problem initializing the database context.", ex);
-            }
-        }
+    #endregion
 
-        public Repository(PolarisDataContext dataContext)
-        {
-            this.db = dataContext;
-        }
+    #region Constructors
 
-        #endregion
-
-        #region Persistence
-
-        public void Save()
-        {
-            db.SubmitChanges();
-        }
-
-        #endregion
-
-        #region IRepository Members
-
-        public DataEntityType CreateNew<DataEntityType>() where DataEntityType : IDataEntity
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+    public Repository():this(new PolarisDataContext()) {
     }
+
+    public Repository(PolarisDataContext dataContext) {
+      RegisteredEntities = new Dictionary<Type, IDataEntity>();
+      this.db = dataContext;
+    }
+
+    #endregion
+
+    #region Persistence
+
+    public void Save() {
+      db.SubmitChanges();
+    }
+
+    #endregion
+
+    #region IRepository Members
+
+    public DataEntityType CreateNew<DataEntityType>() where DataEntityType : IDataEntity {
+      var entityType = typeof(DataEntityType);
+      if(RegisteredEntities.ContainsKey(entityType)) {
+        return (DataEntityType)RegisteredEntities[entityType].CreateNew();
+      } else {
+        throw new InvalidOperationException(String.Format("This repository is unable to create an instance of type {0}", entityType.FullName));
+      }
+    }
+
+    #endregion
+  }
 }

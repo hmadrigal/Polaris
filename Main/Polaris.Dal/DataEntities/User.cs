@@ -16,5 +16,13 @@ namespace Polaris.Dal
         }
 
         #endregion
+
+        #region IDataEntity Members
+
+        public IDataEntity CreateNew() {
+          return new User();
+        }
+
+        #endregion
     }
 }

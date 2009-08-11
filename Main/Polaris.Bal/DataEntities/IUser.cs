@@ -29,9 +29,9 @@ namespace Polaris.Bal
 
         String Password { get; set; }
 
-        Int64 PlayCredits { get; set; }
+        Int32 PlayCredits { get; set; }
 
-        Int64 RankingCredits { get; set; }
+        Int32 RankingCredits { get; set; }
 
         /// <summary>
         /// Indicates if the user has been (logically) deleted.

@@ -5,17 +5,17 @@ using System.Text;
 
 namespace Polaris.Bal
 {
-    public interface IPlayLog : IDataEntity<Int64>
+    public interface IPlayLog : IDataEntity<Int32>
     {
         #region Properties
 
-        Int64 GameId { get; set; }
+        Int32 GameId { get; set; }
 
-        IGame Game { get; }
+        IGame Game { get; set; }
 
-        Int64 UserId { get; set; }
+        Int32 UserId { get; set; }
 
-        IUser User { get; }
+        IUser User { get; set; }
 
         DateTime Date { get; set; }
 

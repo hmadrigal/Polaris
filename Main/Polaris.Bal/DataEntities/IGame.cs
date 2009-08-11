@@ -18,7 +18,7 @@ namespace Polaris.Bal
 
         Boolean Active { get; set; }
 
-        Int64 DevelopmentTeamId { get; set; }
+        Int32 DevelopmentTeamId { get; set; }
 
         IDevelopmentTeam DevelopmentTeam { get; }
 
