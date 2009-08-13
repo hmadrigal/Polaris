@@ -106,9 +106,17 @@ Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Polaris.Dbl", "Polaris.Dbl\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common", "Polaris.Common\Polaris.Common.csproj", "{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalCode", "ExternalCode", "{0A0BF1A6-BAEF-4487-B753-2688093076F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignByContract.Weaver", "ExternalCode\DesignByContract.Weaver\DesignByContract.Weaver.csproj", "{6BADCD67-D169-484D-B3CF-1F4F4107542C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignByContract", "ExternalCode\DesignByContract\DesignByContract.csproj", "{203AEF24-74BE-4EB5-92CC-50427502C1D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignByContract.Demo", "ExternalCode\DesignByContract.Demo\DesignByContract.Demo.csproj", "{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 12
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -136,6 +144,18 @@ Global
 		SccProjectUniqueName8 = Polaris.Common\\Polaris.Common.csproj
 		SccProjectName8 = Polaris.Common
 		SccLocalPath8 = Polaris.Common
+		SccProjectUniqueName9 = ExternalCode\\DesignByContract.Weaver\\DesignByContract.Weaver.csproj
+		SccProjectTopLevelParentUniqueName9 = Polaris.sln
+		SccProjectName9 = ExternalCode/DesignByContract.Weaver
+		SccLocalPath9 = ExternalCode\\DesignByContract.Weaver
+		SccProjectUniqueName10 = ExternalCode\\DesignByContract\\DesignByContract.csproj
+		SccProjectTopLevelParentUniqueName10 = Polaris.sln
+		SccProjectName10 = ExternalCode/DesignByContract
+		SccLocalPath10 = ExternalCode\\DesignByContract
+		SccProjectUniqueName11 = ExternalCode\\DesignByContract.Demo\\DesignByContract.Demo.csproj
+		SccProjectTopLevelParentUniqueName11 = Polaris.sln
+		SccProjectName11 = ExternalCode/DesignByContract.Demo
+		SccLocalPath11 = ExternalCode\\DesignByContract.Demo
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,8 +214,31 @@ Global
 		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3CEFE2-1758-40EF-BA83-D51D2E60BDEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6BADCD67-D169-484D-B3CF-1F4F4107542C} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
+		{203AEF24-74BE-4EB5-92CC-50427502C1D0} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
+		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 	EndGlobalSection
 EndGlobal

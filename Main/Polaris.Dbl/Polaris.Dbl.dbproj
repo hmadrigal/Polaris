@@ -232,6 +232,12 @@
     <Build Include="Schema Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Tables\Indexes\polaris.User.IX_Email.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Tables\Indexes\polaris.User.IX_Username.index.sql">
+      <SubType>Code</SubType>
+    </Build>
     <Build Include="Schema Objects\Tables\Keys\Polaris.Developer.FK_Developer_DevelopmentTeam.fkey.sql">
       <SubType>Code</SubType>
     </Build>

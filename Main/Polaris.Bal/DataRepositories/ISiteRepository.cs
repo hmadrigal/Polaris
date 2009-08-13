@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+//Policy Injection Namespaces
+using Torch.DesignByContract;
+using JetBrains.Annotations;
+
 namespace Polaris.Bal 
 {
     public interface ISiteRepository : IRepository
@@ -93,14 +97,14 @@ namespace Polaris.Bal
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        IUser GetUserByUsername(String username);
+        IUser GetUserByUsername([NotNull] String username);
 
         /// <summary>
         /// Gets a particular user by its email
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        IUser GetUserByEmail(String email);
+        IUser GetUserByEmail([NotNull] String email);
 
         /// <summary>
         /// Gets a particular ser by its Id
@@ -115,7 +119,7 @@ namespace Polaris.Bal
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Boolean ValidateUser(String username, String password);
+        Boolean ValidateUser([NotNull] String username, [NotNull] String password);
 
         /// <summary>
         /// Returns a list of the users that match the provided username
@@ -125,7 +129,7 @@ namespace Polaris.Bal
         /// <param name="pageSize"></param>
         /// <param name="totalRecords"></param>
         /// <returns></returns>
-        IEnumerable<IUser> FindUsersByUsername(string usernameToMatch, int pageNumber, int pageSize, out int totalUsers);
+        IEnumerable<IUser> FindUsersByUsername([NotNull] string usernameToMatch, int pageNumber, int pageSize, out int totalUsers);
         /// <summary>
         /// Returns a list of the users that match the provided email
         /// </summary>

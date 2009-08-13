@@ -252,13 +252,14 @@ namespace Polaris.Pal {
     /// <param name="oldPassword"></param>
     /// <param name="newPassword"></param>
     /// <returns></returns>
-    public override bool ChangePassword(string username, string oldPassword, string newPassword) {
-      if(String.IsNullOrEmpty(username))
-        throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
-      if(String.IsNullOrEmpty(oldPassword))
-        throw new ArgumentException("Argument cannot be null or empty", "oldPassword");
-      if(String.IsNullOrEmpty(newPassword))
-        throw new ArgumentException("Argument cannot be null or empty", "newPassword");
+    public override bool ChangePassword(string username, string oldPassword, string newPassword)
+    {
+      //if(String.IsNullOrEmpty(username))
+      //  throw new ArgumentException("Argument cannot be null or empty", "usernameToMatch");
+      //if(String.IsNullOrEmpty(oldPassword))
+      //  throw new ArgumentException("Argument cannot be null or empty", "oldPassword");
+      //if(String.IsNullOrEmpty(newPassword))
+      //  throw new ArgumentException("Argument cannot be null or empty", "newPassword");
       var verificationCode = this.ValidatePassword(newPassword);
       if(verificationCode != PolarisPasswordVerificationCode.ValidPassword)
         throw new ArgumentException(String.Format("The newpassword argument does not acomplish the requiered security. Reported fail:{0}", verificationCode.ToString()), "newPassword");
@@ -267,7 +268,7 @@ namespace Polaris.Pal {
       var hasPasswordChanged = false;
       IUser user = null;
       try {
-        user = this.SiteRepository.GetUserByUsername(username);
+          user = this.SiteRepository.GetUserByUsername(username);
       } catch(Exception ex) {
           throw new ApplicationException(String.Format("Application cannot get data for the username {0}.", username), ex);
       }
@@ -611,6 +612,8 @@ namespace Polaris.Pal {
       if(String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
         return false;
       var transformedPassword = this.TransformPassword(password);
+      // Negative testing of the NotNull attribute.
+      //var isValidUser = this.SiteRepository.ValidateUser(null, transformedPassword);
       var isValidUser = this.SiteRepository.ValidateUser(username, transformedPassword);
       return isValidUser;
     }

@@ -1,4 +1,6 @@
-﻿CREATE SCHEMA [Polaris]
-AUTHORIZATION [dbo]
+CREATE SCHEMA [polaris]
+    AUTHORIZATION [polaris];
+
+
 
 
