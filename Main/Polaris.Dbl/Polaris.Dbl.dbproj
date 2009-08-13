@@ -35,7 +35,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.\sql\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>Data Source=.\SQLEXPRESS;Persist Security Info=True;User ID=polaris;Pooling=False</TargetConnectionString>
+    <TargetConnectionString>Data Source=.\SQLEXPRESS;Integrated Security=True;Pooling=False</TargetConnectionString>
     <TargetDatabase>Polaris</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
