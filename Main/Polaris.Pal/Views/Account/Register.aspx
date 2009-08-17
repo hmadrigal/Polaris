@@ -39,6 +39,10 @@
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
+                    <label for="captcha">Enter <%= Html.CaptchaImage(50, 180) %> Below</label><br />
+                    <%= Html.TextBox("captcha") %>
+                </p>
+                <p>
                     <input type="submit" value="Register" />
                 </p>
             </fieldset>

@@ -98,6 +98,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExternalCode\ManagedFusion.Web.Captcha\ManagedFusion.Web.Captcha.csproj">
+      <Project>{EE544D53-0396-406D-B2C2-1D3BC6495E3B}</Project>
+      <Name>ManagedFusion.Web.Captcha</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Polaris.Bal\Polaris.Bal.csproj">
       <Project>{03EC8B09-0B43-47A1-A5D6-1044BDC824ED}</Project>
       <Name>Polaris.Bal</Name>

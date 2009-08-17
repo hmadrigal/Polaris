@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using ManagedFusion.Web;
 
 namespace Polaris.Pal.Controllers
 {
@@ -89,6 +90,7 @@ namespace Polaris.Pal.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [CaptchaValidation("captcha")]
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
 

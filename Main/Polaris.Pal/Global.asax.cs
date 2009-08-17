@@ -18,6 +18,9 @@ namespace Polaris.Pal
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // This rule is for the captch.ashx?guid=... 
+            routes.IgnoreRoute("{handler}.ashx/{*pathInfo}", new { handler = @"captcha" });
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters

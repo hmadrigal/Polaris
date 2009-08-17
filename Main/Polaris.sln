@@ -114,9 +114,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignByContract", "Externa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignByContract.Demo", "ExternalCode\DesignByContract.Demo\DesignByContract.Demo.csproj", "{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedFusion.Web.Captcha", "ExternalCode\ManagedFusion.Web.Captcha\ManagedFusion.Web.Captcha.csproj", "{EE544D53-0396-406D-B2C2-1D3BC6495E3B}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -156,6 +158,10 @@ Global
 		SccProjectTopLevelParentUniqueName11 = Polaris.sln
 		SccProjectName11 = ExternalCode/DesignByContract.Demo
 		SccLocalPath11 = ExternalCode\\DesignByContract.Demo
+		SccProjectUniqueName12 = ExternalCode\\ManagedFusion.Web.Captcha\\ManagedFusion.Web.Captcha.csproj
+		SccProjectTopLevelParentUniqueName12 = Polaris.sln
+		SccProjectName12 = ExternalCode/ManagedFusion.Web.Captcha
+		SccLocalPath12 = ExternalCode\\ManagedFusion.Web.Captcha
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -232,6 +238,12 @@ Global
 		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,5 +253,6 @@ Global
 		{6BADCD67-D169-484D-B3CF-1F4F4107542C} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 		{203AEF24-74BE-4EB5-92CC-50427502C1D0} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
+		{EE544D53-0396-406D-B2C2-1D3BC6495E3B} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 	EndGlobalSection
 EndGlobal
