@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Polaris.Design;
 
 namespace Polaris.Bal 
 {
     /// <summary>
     /// This class implements all the Game's related functionality
     /// </summary>
+    [Paginate]
     public interface IGameRepository : IRepository
     {
         #region Properties

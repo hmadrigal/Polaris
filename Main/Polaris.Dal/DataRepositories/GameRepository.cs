@@ -99,29 +99,6 @@ namespace Polaris.Dal
             return db.Games.Where(g => g.GameId == gameId).FirstOrDefault();
         }
 
-        private IQueryable<IGame> GetGamesQuery(Dictionary<FilterDefinition<IGame>, FilterValueDefinition> filters)
-        {
-            var query = GetGamesQuery();
-            foreach (var pair in filters)
-            {
-                query = query.AddEqualityCondition(pair.Key, pair.Value);
-            }
-            return query;
-        }
-
-
-        private IQueryable<IGame> GetGamesQuery()
-        {
-            return from game in db.Games
-                   select game as IGame;
-        }
-
-        private Int32 GetPageSize<EntityType>() where EntityType : IDataEntity
-        {
-            ValidateSiteSection();
-            return RelatedSection.GetPageSize<EntityType>();
-        }
-
         #endregion
 
         #region Writing
@@ -154,6 +131,40 @@ namespace Polaris.Dal
             {
                 throw new InvalidOperationException("It is not possible to determine the page size because this repository is not related with a site section");
             }
+        }
+
+        #endregion
+
+        #region Queries
+
+        private IQueryable<IGame> GetGamesQuery(Dictionary<FilterDefinition<IGame>, FilterValueDefinition> filters) {
+            var query = GetGamesQuery();
+            foreach (var pair in filters) {
+                query = query.AddEqualityCondition(pair.Key, pair.Value);
+            }
+            return query;
+        }
+
+        private IQueryable<IGame> GetGamesQuery() {
+            return from game in db.Games
+                   select game as IGame;
+        }
+
+        private IQueryable<IGame> GetFeaturedGamesQuery() {
+            return from game in GetGamesQuery()
+                   where game.IsFeatured
+                   select game;
+        }
+
+        private IQueryable<IGame> GetComingGamesQuery() {
+            return from game in GetGamesQuery()
+                   where game.IsComingSoon
+                   select game;
+        }
+
+        private Int32 GetPageSize<EntityType>() where EntityType : IDataEntity {
+            ValidateSiteSection();
+            return RelatedSection.GetPageSize<EntityType>();
         }
 
         #endregion

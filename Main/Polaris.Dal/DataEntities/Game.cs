@@ -36,10 +36,7 @@ namespace Polaris.Dal
         {
             get
             {
-                if ((this.FeaturedEndDate.HasValue) && (this.FeaturedEndDate > DateTime.Now))
-                    return true;
-                else
-                    return false;
+                return ((this.FeaturedEndDate.HasValue) && (this.FeaturedEndDate > DateTime.Now));
             }
         }
 
@@ -47,10 +44,7 @@ namespace Polaris.Dal
         {
             get
             {
-                if ((this.FeaturedStartDate.HasValue) && (this.FeaturedStartDate > DateTime.Now))
-                    return true;
-                else
-                    return false;
+                return ((this.FeaturedStartDate.HasValue) && (this.FeaturedStartDate > DateTime.Now));
             }
         }
 
