@@ -130,6 +130,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Design.Weaver", "Po
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostSharp", "PostSharp", "{20A6E853-9053-4A38-90AF-CEC2C8BB1A1E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetOpenAuth", "DotNetOpenAuth", "{09C84275-5FEF-4294-A520-1BE8F7A9542D}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.Contracts.dll = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.Contracts.dll
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.Contracts.pdb = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.Contracts.pdb
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.dll = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.dll
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.pdb = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.pdb
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.tlb = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.tlb
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.xml = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.xml
+		SolutionItems\DotNetOpenAuth\DotNetOpenAuth.xsd = SolutionItems\DotNetOpenAuth\DotNetOpenAuth.xsd
+		SolutionItems\DotNetOpenAuth\README.Bin.html = SolutionItems\DotNetOpenAuth\README.Bin.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 15
@@ -285,6 +297,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{14CA4766-F653-4B95-9B76-B4ECD4C8AF39} = {4ED7D494-702D-4A16-8E6F-A8B0887D1778}
 		{20A6E853-9053-4A38-90AF-CEC2C8BB1A1E} = {4ED7D494-702D-4A16-8E6F-A8B0887D1778}
+		{09C84275-5FEF-4294-A520-1BE8F7A9542D} = {4ED7D494-702D-4A16-8E6F-A8B0887D1778}
 		{6BADCD67-D169-484D-B3CF-1F4F4107542C} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 		{203AEF24-74BE-4EB5-92CC-50427502C1D0} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}
 		{B1966003-4A7D-4977-BD1F-C38F93BA3CAE} = {0A0BF1A6-BAEF-4487-B753-2688093076F4}

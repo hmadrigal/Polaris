@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 using ManagedFusion.Web;
+using DotNetOpenAuth.OpenId.RelyingParty;
+using DotNetOpenAuth.OpenId;
+using DotNetOpenAuth.Messaging;
 
 namespace Polaris.Pal.Controllers
 {
@@ -47,7 +50,10 @@ namespace Polaris.Pal.Controllers
 
         public ActionResult LogOn()
         {
-
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    Response.Redirect("/User/Login?ReturnUrl=Index");
+            //}
             return View();
         }
 
@@ -90,7 +96,7 @@ namespace Polaris.Pal.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [CaptchaValidation("captcha")]
+        [CaptchaValidation("captcha", @"The provided verification text does not match.")]
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
 
@@ -276,6 +282,60 @@ namespace Polaris.Pal.Controllers
             }
         }
         #endregion
+
+        [ValidateInput(false)]
+        public ActionResult Authenticate(string returnUrl)
+        {
+            var openid = new OpenIdRelyingParty();
+            var response = openid.GetResponse();
+            if (response == null)
+            {
+                // Stage 2: user submitting Identifier
+                Identifier id;
+                if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+                {
+                    try
+                    {
+                        return openid.CreateRequest(Request.Form["openid_identifier"]).RedirectingResponse.AsActionResult();
+                    }
+                    catch (ProtocolException ex)
+                    {
+                        ViewData["Message"] = ex.Message;
+                        return View("LogOn");
+                    }
+                }
+                else
+                {
+                    ViewData["Message"] = "Invalid identifier";
+                    return View("LogOn");
+                }
+            }
+            else
+            {
+                // Stage 3: OpenID Provider sending assertion response
+                switch (response.Status)
+                {
+                    case AuthenticationStatus.Authenticated:
+                        Session["FriendlyIdentifier"] = response.FriendlyIdentifierForDisplay;
+                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+                        if (!string.IsNullOrEmpty(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    case AuthenticationStatus.Canceled:
+                        ViewData["Message"] = "Canceled at provider";
+                        return View("LogOn");
+                    case AuthenticationStatus.Failed:
+                        ViewData["Message"] = response.Exception.Message;
+                        return View("LogOn");
+                }
+            }
+            return new EmptyResult();
+        }
     }
 
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to

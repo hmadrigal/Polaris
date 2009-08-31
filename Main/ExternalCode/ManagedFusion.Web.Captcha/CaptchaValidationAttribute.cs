@@ -32,20 +32,30 @@ namespace ManagedFusion.Web
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public sealed class CaptchaValidationAttribute : ActionFilterAttribute
     {
+        public String InvalidCaptchaMessage { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CaptchaCheckAttribute"/> class.
         /// </summary>
         public CaptchaValidationAttribute()
-            : this("captcha") { }
+            : this(@"captcha", @"The CAPTCHA didn't match") { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CaptchaCheckAttribute"/> class.
         /// </summary>
         /// <param name="field">The field.</param>
-        public CaptchaValidationAttribute(string field)
+        public CaptchaValidationAttribute(string field) : this(field, @"The CAPTCHA didn't match") { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CaptchaCheckAttribute"/> class.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        public CaptchaValidationAttribute(string field, string invalidCaptchaMessage)
         {
             Field = field;
+            this.InvalidCaptchaMessage = invalidCaptchaMessage;
         }
+
+
 
         /// <summary>
         /// Gets or sets the field.
@@ -87,7 +97,7 @@ namespace ManagedFusion.Web
             {
                 filterContext.RouteData.Values.Add("captchaValid", false);
                 //TODO: workaround for reporting an invalid captcha
-                filterContext.Controller.ViewData.ModelState.AddModelError("captcha-guid", "The CAPTCHA didn't match");
+                filterContext.Controller.ViewData.ModelState.AddModelError("captcha-guid", this.InvalidCaptchaMessage);
                 // if requiered change the ActionResult
                 //filterContext.Result = 
             }
