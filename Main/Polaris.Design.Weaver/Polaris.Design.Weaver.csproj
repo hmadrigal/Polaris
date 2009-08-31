@@ -78,6 +78,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Polaris*.*" "%25ProgramFiles%25\PostSharp 1.5\PlugIns" /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Polaris*.*" "$(SolutionDir)SolutionItems\PostSharp" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

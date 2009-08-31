@@ -84,7 +84,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Torch.DesignByContract*.*" "$(SolutionDir)SolutionItems\PostSharp" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
