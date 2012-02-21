@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AnimatedExpander.cs" company="">
+// <copyright file="AnimatedExpander.cs" company="Polaris Network">
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,7 +12,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
     using System.Windows.Media.Animation;
     using Polaris.Client.Controls.Wpf.Extensions;
 
-    //NOTE: this class should not exist.  It is very trivial to make the stock expander act like this class (a simple animation)
     public class AnimatedExpander : ContentControl
     {
 

@@ -10,12 +10,12 @@ namespace Polaris.Client.Controls.Wpf.Controls
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Effects;
+
     [TemplateVisualState(Name = BeforeAddedStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = WhileAddingStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = AddedStateName, GroupName = AddingStateGroupName)]
     public class CarouselItem : ContentControl
     {
-
         public readonly static Double CircleArc = 360;
 
         BlurEffect blurEffect;
@@ -42,11 +42,13 @@ namespace Polaris.Client.Controls.Wpf.Controls
         }
 
         #region AddingStates Visual States
+
         internal const string AddingStateGroupName = "AddingStates";
         internal const string BeforeAddedStateName = @"BeforeAdded";
         internal const string WhileAddingStateName = @"WhileAdding";
         internal const string AddedStateName = @"Added";
-        #endregion
+
+        #endregion AddingStates Visual States
 
         #region TotalArc
 
@@ -59,7 +61,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnTotalArcChanged)));
 
         /// <summary>
-        /// Gets or sets the TotalArc property.  This dependency property 
+        /// Gets or sets the TotalArc property.  This dependency property
         /// indicates the total arc of the carousel.
         /// </summary>
         public double TotalArc
@@ -84,7 +86,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion TotalArc
 
         #region ScrollPosition
 
@@ -97,7 +99,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnScrollPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the ScrollPosition property.  This dependency property 
+        /// Gets or sets the ScrollPosition property.  This dependency property
         /// indicates the current position of the item in the carousel scrolling cycle.
         /// </summary>
         public Double ScrollPosition
@@ -123,7 +125,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(scrollPosition);
         }
 
-        #endregion
+        #endregion ScrollPosition
 
         #region ScrollStep
 
@@ -136,7 +138,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnScrollStepChanged)));
 
         /// <summary>
-        /// Gets or sets the ScrollStep property.  This dependency property 
+        /// Gets or sets the ScrollStep property.  This dependency property
         /// indicates the magnitude of the scroll step.
         /// </summary>
         public double ScrollStep
@@ -161,7 +163,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion ScrollStep
 
         #region QuadrantAPosition
 
@@ -174,7 +176,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantAPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantAPosition property.  This dependency property 
+        /// Gets or sets the QuadrantAPosition property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
         public Point QuadrantAPosition
@@ -199,7 +201,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantAPosition
 
         #region QuadrantBPosition
 
@@ -212,7 +214,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBPosition property.  This dependency property 
+        /// Gets or sets the QuadrantBPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
         public Point QuadrantBPosition
@@ -237,7 +239,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantBPosition
 
         #region QuadrantCPosition
 
@@ -250,7 +252,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCPosition property.  This dependency property 
+        /// Gets or sets the QuadrantCPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
         public Point QuadrantCPosition
@@ -275,7 +277,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantCPosition
 
         #region QuadrantDPosition
 
@@ -288,7 +290,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDPosition property.  This dependency property 
+        /// Gets or sets the QuadrantDPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
         public Point QuadrantDPosition
@@ -313,7 +315,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantDPosition
 
         #region QuadrantASize
 
@@ -321,17 +323,17 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantASize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantASizeProperty =
-            DependencyProperty.Register("QuadrantASize", typeof(Size), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantASize", typeof(Point), typeof(CarouselItem),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantASizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantASize property.  This dependency property 
+        /// Gets or sets the QuadrantASize property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
-        public Size QuadrantASize
+        public Point QuadrantASize
         {
-            get { return (Size)GetValue(QuadrantASizeProperty); }
+            get { return (Point)GetValue(QuadrantASizeProperty); }
             set { SetValue(QuadrantASizeProperty, value); }
         }
 
@@ -351,7 +353,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantASize
 
         #region QuadrantBSize
 
@@ -359,17 +361,17 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantBSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantBSizeProperty =
-            DependencyProperty.Register("QuadrantBSize", typeof(Size), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantBSize", typeof(Point), typeof(CarouselItem),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBSize property.  This dependency property 
+        /// Gets or sets the QuadrantBSize property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
-        public Size QuadrantBSize
+        public Point QuadrantBSize
         {
-            get { return (Size)GetValue(QuadrantBSizeProperty); }
+            get { return (Point)GetValue(QuadrantBSizeProperty); }
             set { SetValue(QuadrantBSizeProperty, value); }
         }
 
@@ -389,7 +391,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantBSize
 
         #region QuadrantCSize
 
@@ -397,17 +399,17 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantCSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantCSizeProperty =
-            DependencyProperty.Register("QuadrantCSize", typeof(Size), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantCSize", typeof(Point), typeof(CarouselItem),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCSize property.  This dependency property 
+        /// Gets or sets the QuadrantCSize property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
-        public Size QuadrantCSize
+        public Point QuadrantCSize
         {
-            get { return (Size)GetValue(QuadrantCSizeProperty); }
+            get { return (Point)GetValue(QuadrantCSizeProperty); }
             set { SetValue(QuadrantCSizeProperty, value); }
         }
 
@@ -427,7 +429,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantCSize
 
         #region QuadrantDSize
 
@@ -435,17 +437,17 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantDSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantDSizeProperty =
-            DependencyProperty.Register("QuadrantDSize", typeof(Size), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantDSize", typeof(Point), typeof(CarouselItem),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDSize property.  This dependency property 
+        /// Gets or sets the QuadrantDSize property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
-        public Size QuadrantDSize
+        public Point QuadrantDSize
         {
-            get { return (Size)GetValue(QuadrantDSizeProperty); }
+            get { return (Point)GetValue(QuadrantDSizeProperty); }
             set { SetValue(QuadrantDSizeProperty, value); }
         }
 
@@ -465,7 +467,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantDSize
 
         #region QuadrantAOpacity
 
@@ -478,7 +480,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantAOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantAOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantAOpacity property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
         public Double QuadrantAOpacity
@@ -503,7 +505,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantAOpacity
 
         #region QuadrantBOpacity
 
@@ -516,7 +518,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantBOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
         public Double QuadrantBOpacity
@@ -541,7 +543,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantBOpacity
 
         #region QuadrantCOpacity
 
@@ -554,7 +556,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantCOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
         public Double QuadrantCOpacity
@@ -579,7 +581,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantCOpacity
 
         #region QuadrantDOpacity
 
@@ -592,7 +594,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantDOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
         public Double QuadrantDOpacity
@@ -617,7 +619,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantDOpacity
 
         #region QuadrantABlurRadius
 
@@ -630,7 +632,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantABlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantABlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantABlurRadius property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
         public Double QuadrantABlurRadius
@@ -655,7 +657,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantABlurRadius
 
         #region QuadrantBBlurRadius
 
@@ -668,7 +670,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantBBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
         public Double QuadrantBBlurRadius
@@ -693,7 +695,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantBBlurRadius
 
         #region QuadrantCBlurRadius
 
@@ -706,7 +708,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantCBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
         public Double QuadrantCBlurRadius
@@ -731,7 +733,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantCBlurRadius
 
         #region QuadrantDBlurRadius
 
@@ -744,7 +746,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantDBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
         public Double QuadrantDBlurRadius
@@ -769,7 +771,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdatePosition(ScrollPosition);
         }
 
-        #endregion
+        #endregion QuadrantDBlurRadius
 
         #region IsBlurEnabled
 
@@ -782,7 +784,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIsBlurEnabledChanged)));
 
         /// <summary>
-        /// Gets or sets the IsBlurEnabled property.  This dependency property 
+        /// Gets or sets the IsBlurEnabled property.  This dependency property
         /// indicates whether the blur effect is enabled or not.
         /// </summary>
         public bool IsBlurEnabled
@@ -806,7 +808,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion IsBlurEnabled
 
         #region CurrentQuadrant
 
@@ -822,7 +824,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             = CurrentQuadrantPropertyKey.DependencyProperty;
 
         /// <summary>
-        /// Gets the CurrentQuadrant property.  This dependency property 
+        /// Gets the CurrentQuadrant property.  This dependency property
         /// indicates the quadrant this item is currently at.
         /// </summary>
         public Quadrant CurrentQuadrant
@@ -831,7 +833,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         }
 
         /// <summary>
-        /// Provides a secure method for setting the CurrentQuadrant property.  
+        /// Provides a secure method for setting the CurrentQuadrant property.
         /// This dependency property indicates the quadrant this item is currently at.
         /// </summary>
         /// <param name="value">The new value for the property.</param>
@@ -856,18 +858,18 @@ namespace Polaris.Client.Controls.Wpf.Controls
 #if DEBUG
             //System.Diagnostics.Debug.WriteLine("Item {0} has entered quadrant {1}", this.GetHashCode(), this.CurrentQuadrant);
 #endif
-
         }
 
-        #endregion
+        #endregion CurrentQuadrant
 
         #region VanishingPoint
 
         public event EventHandler VanishingPointReached;
+
         internal virtual void OnVanishingPointReached()
         {
 #if DEBUG
-            System.Diagnostics.Debug.WriteLine("Item {0} (angle {1}) has reached vanishing point", this.GetHashCode(), this.GetCurrentAngle());
+            //System.Diagnostics.Debug.WriteLine("Item {0} (angle {1}) has reached vanishing point", this.GetHashCode(), this.GetCurrentAngle());
 #endif
             var threadSafeInstance = VanishingPointReached;
             if (threadSafeInstance != null)
@@ -892,7 +894,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnVanishingPointChanged)));
 
         /// <summary>
-        /// Gets or sets the VanishingPoint property.  This dependency property 
+        /// Gets or sets the VanishingPoint property.  This dependency property
         /// indicates the quadrant at which items "vanish" in the distance.
         /// This is very useful when it is necessary to remove items from the visual
         /// space smoothly. Items that have reached the vanishing point should be
@@ -921,7 +923,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion VanishingPoint
 
         #region VanishingPointCommand
 
@@ -933,7 +935,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 new FrameworkPropertyMetadata((ICommand)null));
 
         /// <summary>
-        /// Gets or sets the VanishingPointCommand property.  This dependency property 
+        /// Gets or sets the VanishingPointCommand property.  This dependency property
         /// indicates the command that is executed when this item reaches the vanishing point.
         /// </summary>
         public ICommand VanishingPointCommand
@@ -942,7 +944,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             set { SetValue(VanishingPointCommandProperty, value); }
         }
 
-        #endregion
+        #endregion VanishingPointCommand
 
         #region VanishingPointCommandParameter
 
@@ -954,7 +956,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 new FrameworkPropertyMetadata((object)null));
 
         /// <summary>
-        /// Gets or sets the VanishingPointCommandParameter property.  This dependency property 
+        /// Gets or sets the VanishingPointCommandParameter property.  This dependency property
         /// indicates the parameter that will be sent to the executed command when the vanishing point is reached.
         /// </summary>
         public object VanishingPointCommandParameter
@@ -963,7 +965,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             set { SetValue(VanishingPointCommandParameterProperty, value); }
         }
 
-        #endregion
+        #endregion VanishingPointCommandParameter
 
         static CarouselItem()
         {
@@ -1026,15 +1028,14 @@ namespace Polaris.Client.Controls.Wpf.Controls
             var dQuadrantAngle = 3 * quadrantSize;
             var quadrantUnit = 1 / quadrantSize;
 
-
             var initialY = 0.0;
             var finalY = 0.0;
             var initialX = 0.0;
             var finalX = 0.0;
             var initialBlurRadius = 0.0;
             var finalBlurRadius = 0.0;
-            var initialSize = new Size(0, 0);
-            var finalSize = new Size(0, 0);
+            var initialSize = new Point(0, 0);
+            var finalSize = new Point(0, 0);
             var initialOpacity = 0.0;
             var finalOpacity = 0.0;
             var quadrantAngle = 0.0;
@@ -1107,8 +1108,9 @@ namespace Polaris.Client.Controls.Wpf.Controls
             var normalizedMagnitude = (degrees - quadrantAngle) * quadrantUnit;
             var yMagnitude = finalY - initialY;
             var xMagnitude = finalX - initialX;
-            var widthMagnitude = finalSize.Width - initialSize.Width;
-            var heightMagnitude = finalSize.Height - initialSize.Height;
+            //var widthMagnitude = finalSize.Width - initialSize.Width;
+            var widthMagnitude = finalSize.X - initialSize.X;
+            var heightMagnitude = finalSize.Y - initialSize.Y;
             var opacityMagnitude = finalOpacity - initialOpacity;
             var blurRadiusMagnitude = finalBlurRadius - initialBlurRadius;
             var currentYDelta = normalizedMagnitude * yMagnitude;
@@ -1121,8 +1123,10 @@ namespace Polaris.Client.Controls.Wpf.Controls
             var newX = currentXDelta + initialX;
             var newOpacity = currentOpacityDelta + initialOpacity;
             var newBlurRadius = currentBlurRadiusDelta + initialBlurRadius;
-            var newWidth = currentWidthDelta + initialSize.Width;
-            var newHeight = currentHeightDelta + initialSize.Height;
+            //var newWidth = currentWidthDelta + initialSize.Width;
+            var newWidth = currentWidthDelta + initialSize.X;
+            //var newHeight = currentHeightDelta + initialSize.Height;
+            var newHeight = currentHeightDelta + initialSize.Y;
 
             var scrollPositionDescriptor = new ScrollPositionDescriptor()
             {
@@ -1144,19 +1148,22 @@ namespace Polaris.Client.Controls.Wpf.Controls
             if (currentAngle < 0) { currentAngle = 360 + currentAngle; }
             return currentAngle;
         }
-
     }
 
     internal class ScrollPositionDescriptor
     {
         public double Top { get; set; }
+
         public double Left { get; set; }
+
         public double Width { get; set; }
+
         public double Height { get; set; }
+
         public double Opacity { get; set; }
+
         public double BlurRadius { get; set; }
     }
-
 
     public enum Quadrant
     {

@@ -8,17 +8,33 @@ namespace Polaris.Client.Controls.Wpf.Controls
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Timers;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
-    using System.Timers;
 
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(CarouselItem))]
+    [DisplayName("Carousel Items Control")]
+    [Description("Displays a collection of items by indicating four custom points and areas.")]
     public class CarouselItemsControl : ItemsControl
     {
+        internal const string CATEGORY_CAROUSE_QUADRANT_POSITIONS = @"Carousel Quadrant Positions";
+        internal const string CATEGORY_CAROUSE_QUADRANT_SIZES = @"Carousel Quadrant Sizes";
+        internal const string CATEGORY_CAROUSE_QUADRANT_OPACITIES = @"Carousel Quadrant Opacities";
+        internal const string CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS = @"Carousel Quadrant Blur Values";
+        internal const string CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS = @"Carousel Item Insertion Properties";
+        internal const string CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS = @"Carousel Item Removal Properties";
+        internal const string CATEGORY_CAROUSE_IDLE_SETTINGS = @"Carousel Idle Properties";
+        internal const string CATEGORY_CAROUSE_SETTINGS = @"Carousel Items Properties";
+        internal const string QUADRANT_C_LABEL = @"Quadrant C";
+        internal const string QUADRANT_A_LABEL = @"Quadrant A";
+        internal const string QUADRANT_D_LABEL = @"Quadrant D";
+        internal const string QUADRANT_B_LABEL = @"Quadrant B";
+
         #region Animation Properties
 
         #region IsAnimating
@@ -32,9 +48,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIsAnimatingChanged)));
 
         /// <summary>
-        /// Gets or sets the IsAnimating property.  This dependency property 
+        /// Gets or sets the IsAnimating property.  This dependency property
         /// indicates whether the control is currently playing an animation.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public bool IsAnimating
         {
             get { return (bool)GetValue(IsAnimatingProperty); }
@@ -56,15 +78,14 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
-
-
-
+        #endregion IsAnimating
 
         protected DateTime StartTime { get; set; }
+
         protected Boolean IsAnimationCompleted { get; set; }
 
         protected Double? InitialScrollPosition { get; set; }
+
         protected Double? FinalScrollPosition { get; set; }
 
         #region AnimatedScrollDuration
@@ -78,9 +99,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnAnimatedScrollDurationChanged)));
 
         /// <summary>
-        /// Gets or sets the AnimatedScrollDuration property.  This dependency property 
+        /// Gets or sets the AnimatedScrollDuration property.  This dependency property
         /// indicates the duration that the animated scrolling should take.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan AnimatedScrollDuration
         {
             get { return (TimeSpan)GetValue(AnimatedScrollDurationProperty); }
@@ -102,7 +129,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion AnimatedScrollDuration
 
         #region AnimatedScrollPosition
 
@@ -115,9 +142,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnAnimatedScrollPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the AnimatedScrollPosition property.  This dependency property 
+        /// Gets or sets the AnimatedScrollPosition property.  This dependency property
         /// indicates the position to which the scroll position should animate to.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public double AnimatedScrollPosition
         {
             get { return (double)GetValue(AnimatedScrollPositionProperty); }
@@ -143,7 +176,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             IsAnimationCompleted = false;
         }
 
-        #endregion
+        #endregion AnimatedScrollPosition
 
         #region AnimatedScrollEasingFunction
 
@@ -156,9 +189,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnAnimatedScrollEasingFunctionChanged)));
 
         /// <summary>
-        /// Gets or sets the AnimatedScrollEasingFunction property.  This dependency property 
+        /// Gets or sets the AnimatedScrollEasingFunction property.  This dependency property
         /// indicates the easing function the animated scrolling should use.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        //[TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public IEasingFunction AnimatedScrollEasingFunction
         {
             get { return (IEasingFunction)GetValue(AnimatedScrollEasingFunctionProperty); }
@@ -180,11 +219,10 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion AnimatedScrollEasingFunction
 
-        void CompositionTarget_Rendering(object sender, EventArgs e)
+        private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
-
             UpdateIdleScrollingAnimation();
 
             var requestsToProcess = pendingAnimationRequests.ToArray();
@@ -215,7 +253,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
 
             if (elapsedTime < currentDuration)
             {
-
                 IsAnimating = true;
                 var normalizedTime = (Double)elapsedTime.Ticks / (Double)currentDuration.Ticks;
 
@@ -226,13 +263,11 @@ namespace Polaris.Client.Controls.Wpf.Controls
                         AnimatedScrollEasingFunction.Ease(normalizedTime))//Ease(normalizedTime);
                         ;
 
-
                 var initialScrollPosition = InitialScrollPosition.Value;
                 var finalScrollPosition = FinalScrollPosition.Value;
                 var currentScrollPositionDisplacement = initialScrollPosition + ((finalScrollPosition - initialScrollPosition) * easing);
 
                 ScrollPosition = currentScrollPositionDisplacement;
-
             }
             else
             {
@@ -256,7 +291,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
             var currentDuration = ItemRemovalDuration;
             if (elapsedTime < currentDuration)
             {
-
                 var normalizedTime = (Double)elapsedTime.Ticks / (Double)currentDuration.Ticks;
 
                 var easing =
@@ -266,13 +300,11 @@ namespace Polaris.Client.Controls.Wpf.Controls
                         ItemRemovalEasingFunction.Ease(normalizedTime))//Ease(normalizedTime);
                         ;
 
-
                 var initialScrollPosition = animationRequest.InitialScrollPosition;
                 var finalScrollPosition = animationRequest.FinalScrollPosition;
                 var currentScrollPositionDisplacement = initialScrollPosition + ((finalScrollPosition - initialScrollPosition) * easing);
 
                 animationRequest.TargetItem.ScrollPosition = currentScrollPositionDisplacement;
-
             }
             else
             {
@@ -280,7 +312,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 pendingAnimationRequests.Remove(animationRequest);
             }
         }
-
 
         private void ProcessNewItemAnimationRequest(CarouselNewItemAnimationRequest animationRequest)
         {
@@ -299,7 +330,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
 
             if (elapsedTime < TimeSpan.Zero)
             {
-
                 if (!animationRequest.IsBeforeAddedStateRequested)
                 {
                     animationRequest.TargetItem.Opacity = 0;
@@ -322,13 +352,11 @@ namespace Polaris.Client.Controls.Wpf.Controls
             var currentDuration = NewItemDuration;
             if (elapsedTime < currentDuration)
             {
-
                 if (!animationRequest.IsAddedStateRequested)
                 {
                     animationRequest.IsAddedStateRequested = true;
                     VisualStateManager.GoToState(animationRequest.TargetItem, CarouselItem.AddedStateName, useTransitions: true);
                 }
-
 
                 var normalizedTime = (Double)elapsedTime.Ticks / (Double)currentDuration.Ticks;
 
@@ -338,7 +366,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
                         :
                         NewItemEasingFunction.Ease(normalizedTime))//Ease(normalizedTime);
                         ;
-
 
                 var currentOpacityDisplacement = initialOpacity + ((finalOpacity - initialOpacity) * easing);
                 var currentXDisplacement = initialX + ((finalX - initialX) * easing);
@@ -363,8 +390,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             }
         }
 
-
-        #endregion
+        #endregion Animation Properties
 
         #region NewItemInitialPosition
 
@@ -376,16 +402,22 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 new FrameworkPropertyMetadata(new Point(0, 0)));
 
         /// <summary>
-        /// Gets or sets the NewItemInitialPosition property.  This dependency property 
+        /// Gets or sets the NewItemInitialPosition property.  This dependency property
         /// indicates ....
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public Point NewItemInitialPosition
         {
             get { return (Point)GetValue(NewItemInitialPositionProperty); }
             set { SetValue(NewItemInitialPositionProperty, value); }
         }
 
-        #endregion
+        #endregion NewItemInitialPosition
 
         #region NewItemInitialSize
 
@@ -397,16 +429,22 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 new FrameworkPropertyMetadata(new Size(0, 0)));
 
         /// <summary>
-        /// Gets or sets the NewItemInitialSize property.  This dependency property 
+        /// Gets or sets the NewItemInitialSize property.  This dependency property
         /// indicates ....
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(SizeConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public Size NewItemInitialSize
         {
             get { return (Size)GetValue(NewItemInitialSizeProperty); }
             set { SetValue(NewItemInitialSizeProperty, value); }
         }
 
-        #endregion
+        #endregion NewItemInitialSize
 
         #region NewItemExtraStartTime
 
@@ -418,16 +456,22 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 new FrameworkPropertyMetadata(TimeSpan.Zero));
 
         /// <summary>
-        /// Gets or sets the NewItemExtraStartTime property.  This dependency property 
+        /// Gets or sets the NewItemExtraStartTime property.  This dependency property
         /// indicates ....
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan NewItemExtraStartTime
         {
             get { return (TimeSpan)GetValue(NewItemExtraStartTimeProperty); }
             set { SetValue(NewItemExtraStartTimeProperty, value); }
         }
 
-        #endregion
+        #endregion NewItemExtraStartTime
 
         #region ItemSeparation
 
@@ -440,9 +484,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemSeparationChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemSeparation property.  This dependency property 
+        /// Gets or sets the ItemSeparation property.  This dependency property
         /// indicates the separation between items in terms of scroll position.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Represents the degrees of separation between inserted items")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        [DisplayName("Item separation degrees")]
         public double ItemSeparation
         {
             get { return (double)GetValue(ItemSeparationProperty); }
@@ -465,7 +515,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion ItemSeparation
 
         #region TotalArc
 
@@ -478,9 +528,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnTotalArcChanged)));
 
         /// <summary>
-        /// Gets or sets the TotalArc property.  This dependency property 
+        /// Gets or sets the TotalArc property.  This dependency property
         /// indicates the total arc of the carousel.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public double TotalArc
         {
             get { return (double)GetValue(TotalArcProperty); }
@@ -503,7 +559,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion TotalArc
 
         #region ScrollStep
 
@@ -516,9 +572,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnScrollStepChanged)));
 
         /// <summary>
-        /// Gets or sets the ScrollStep property.  This dependency property 
+        /// Gets or sets the ScrollStep property.  This dependency property
         /// indicates the magnitude of the scroll step.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public double ScrollStep
         {
             get { return (double)GetValue(ScrollStepProperty); }
@@ -541,7 +603,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion ScrollStep
 
         #region ScrollPosition
 
@@ -554,9 +616,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnScrollPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the ScrollPosition property.  This dependency property 
+        /// Gets or sets the ScrollPosition property.  This dependency property
         /// indicates the current position of the item in the carousel scrolling cycle.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public Double ScrollPosition
         {
             get { return (Double)GetValue(ScrollPositionProperty); }
@@ -588,7 +656,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             }
         }
 
-        #endregion
+        #endregion ScrollPosition
 
         #region QuadrantAPosition
 
@@ -601,9 +669,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantAPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantAPosition property.  This dependency property 
+        /// Gets or sets the QuadrantAPosition property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the positions of the first quadrant. It usually points to the south.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
+        [DisplayName(QUADRANT_A_LABEL)]
         public Point QuadrantAPosition
         {
             get { return (Point)GetValue(QuadrantAPositionProperty); }
@@ -626,7 +700,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantAPosition
 
         #region QuadrantBPosition
 
@@ -639,9 +713,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBPosition property.  This dependency property 
+        /// Gets or sets the QuadrantBPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the positions of the first quadrant. It usually points to the East.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
+        [DisplayName(QUADRANT_B_LABEL)]
         public Point QuadrantBPosition
         {
             get { return (Point)GetValue(QuadrantBPositionProperty); }
@@ -664,7 +744,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantBPosition
 
         #region QuadrantCPosition
 
@@ -677,9 +757,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCPosition property.  This dependency property 
+        /// Gets or sets the QuadrantCPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the positions of the first quadrant. It usually points to the north.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
+        [DisplayName(QUADRANT_C_LABEL)]
         public Point QuadrantCPosition
         {
             get { return (Point)GetValue(QuadrantCPositionProperty); }
@@ -702,7 +788,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantCPosition
 
         #region QuadrantDPosition
 
@@ -715,9 +801,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDPosition property.  This dependency property 
+        /// Gets or sets the QuadrantDPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the positions of the first quadrant. It usually points to the west.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
+        [DisplayName(QUADRANT_D_LABEL)]
         public Point QuadrantDPosition
         {
             get { return (Point)GetValue(QuadrantDPositionProperty); }
@@ -740,7 +832,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantDPosition
 
         #region QuadrantASize
 
@@ -748,17 +840,23 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantASize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantASizeProperty =
-            DependencyProperty.Register("QuadrantASize", typeof(Size), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantASize", typeof(Point), typeof(CarouselItemsControl),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantASizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantASize property.  This dependency property 
+        /// Gets or sets the QuadrantASize property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
-        public Size QuadrantASize
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the size that a item should have when it reaches the south point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
+        [DisplayName(QUADRANT_A_LABEL)]
+        public Point QuadrantASize
         {
-            get { return (Size)GetValue(QuadrantASizeProperty); }
+            get { return (Point)GetValue(QuadrantASizeProperty); }
             set { SetValue(QuadrantASizeProperty, value); }
         }
 
@@ -778,7 +876,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantASize
 
         #region QuadrantBSize
 
@@ -786,17 +884,23 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantBSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantBSizeProperty =
-            DependencyProperty.Register("QuadrantBSize", typeof(Size), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantBSize", typeof(Point), typeof(CarouselItemsControl),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBSize property.  This dependency property 
+        /// Gets or sets the QuadrantBSize property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
-        public Size QuadrantBSize
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the size that a item should have when it reaches the east point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
+        [DisplayName(QUADRANT_B_LABEL)]
+        public Point QuadrantBSize
         {
-            get { return (Size)GetValue(QuadrantBSizeProperty); }
+            get { return (Point)GetValue(QuadrantBSizeProperty); }
             set { SetValue(QuadrantBSizeProperty, value); }
         }
 
@@ -816,7 +920,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantBSize
 
         #region QuadrantCSize
 
@@ -824,17 +928,23 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantCSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantCSizeProperty =
-            DependencyProperty.Register("QuadrantCSize", typeof(Size), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantCSize", typeof(Point), typeof(CarouselItemsControl),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCSize property.  This dependency property 
+        /// Gets or sets the QuadrantCSize property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
-        public Size QuadrantCSize
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the size that a item should have when it reaches the north point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
+        [DisplayName(QUADRANT_C_LABEL)]
+        public Point QuadrantCSize
         {
-            get { return (Size)GetValue(QuadrantCSizeProperty); }
+            get { return (Point)GetValue(QuadrantCSizeProperty); }
             set { SetValue(QuadrantCSizeProperty, value); }
         }
 
@@ -854,7 +964,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantCSize
 
         #region QuadrantDSize
 
@@ -862,17 +972,23 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// QuadrantDSize Dependency Property
         /// </summary>
         public static readonly DependencyProperty QuadrantDSizeProperty =
-            DependencyProperty.Register("QuadrantDSize", typeof(Size), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Size)new Size(),
+            DependencyProperty.Register("QuadrantDSize", typeof(Point), typeof(CarouselItemsControl),
+                new FrameworkPropertyMetadata((Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDSizeChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDSize property.  This dependency property 
+        /// Gets or sets the QuadrantDSize property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
-        public Size QuadrantDSize
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(PointConverter))]
+        [Bindable(true)]
+        [Description("Defines the size that a item should have when it reaches the west point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
+        [DisplayName(QUADRANT_D_LABEL)]
+        public Point QuadrantDSize
         {
-            get { return (Size)GetValue(QuadrantDSizeProperty); }
+            get { return (Point)GetValue(QuadrantDSizeProperty); }
             set { SetValue(QuadrantDSizeProperty, value); }
         }
 
@@ -892,7 +1008,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantDSize
 
         #region QuadrantAOpacity
 
@@ -905,9 +1021,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantAOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantAOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantAOpacity property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Defines the opacity that a item should have when it reaches the south point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
+        [DisplayName(QUADRANT_A_LABEL)]
         public Double QuadrantAOpacity
         {
             get { return (Double)GetValue(QuadrantAOpacityProperty); }
@@ -930,7 +1052,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantAOpacity
 
         #region QuadrantBOpacity
 
@@ -943,9 +1065,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantBOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Defines the opacity that a item should have when it reaches the east point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
+        [DisplayName(QUADRANT_B_LABEL)]
         public Double QuadrantBOpacity
         {
             get { return (Double)GetValue(QuadrantBOpacityProperty); }
@@ -968,7 +1096,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantBOpacity
 
         #region QuadrantCOpacity
 
@@ -981,9 +1109,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantCOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Defines the opacity that a item should have when it reaches the north point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
+        [DisplayName(QUADRANT_C_LABEL)]
         public Double QuadrantCOpacity
         {
             get { return (Double)GetValue(QuadrantCOpacityProperty); }
@@ -1006,7 +1140,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantCOpacity
 
         #region QuadrantDOpacity
 
@@ -1019,9 +1153,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDOpacityChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDOpacity property.  This dependency property 
+        /// Gets or sets the QuadrantDOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Defines the opacity that a item should have when it reaches the west point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
+        [DisplayName(QUADRANT_D_LABEL)]
         public Double QuadrantDOpacity
         {
             get { return (Double)GetValue(QuadrantDOpacityProperty); }
@@ -1044,7 +1184,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantDOpacity
 
         #region QuadrantABlurRadius
 
@@ -1057,9 +1197,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantABlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantABlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantABlurRadius property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the south point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
+        [DisplayName(QUADRANT_A_LABEL)]
         public Double QuadrantABlurRadius
         {
             get { return (Double)GetValue(QuadrantABlurRadiusProperty); }
@@ -1082,7 +1228,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantABlurRadius
 
         #region QuadrantBBlurRadius
 
@@ -1095,9 +1241,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantBBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantBBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantBBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the east point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
+        [DisplayName(QUADRANT_B_LABEL)]
         public Double QuadrantBBlurRadius
         {
             get { return (Double)GetValue(QuadrantBBlurRadiusProperty); }
@@ -1120,7 +1272,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantBBlurRadius
 
         #region QuadrantCBlurRadius
 
@@ -1133,9 +1285,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantCBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantCBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantCBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the north point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
+        [DisplayName(QUADRANT_C_LABEL)]
         public Double QuadrantCBlurRadius
         {
             get { return (Double)GetValue(QuadrantCBlurRadiusProperty); }
@@ -1158,7 +1316,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantCBlurRadius
 
         #region QuadrantDBlurRadius
 
@@ -1171,9 +1329,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnQuadrantDBlurRadiusChanged)));
 
         /// <summary>
-        /// Gets or sets the QuadrantDBlurRadius property.  This dependency property 
+        /// Gets or sets the QuadrantDBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the west point.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
+        [DisplayName(QUADRANT_D_LABEL)]
         public Double QuadrantDBlurRadius
         {
             get { return (Double)GetValue(QuadrantDBlurRadiusProperty); }
@@ -1196,7 +1360,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion QuadrantDBlurRadius
 
         #region IsBlurEnabled
 
@@ -1209,9 +1373,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIsBlurEnabledChanged)));
 
         /// <summary>
-        /// Gets or sets the IsBlurEnabled property.  This dependency property 
+        /// Gets or sets the IsBlurEnabled property.  This dependency property
         /// indicates ....
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        [Description("Indicates whether or not the blur is enabled.")]
+        [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
+        [DisplayName("Is blur enabled")]
         public bool IsBlurEnabled
         {
             get { return (bool)GetValue(IsBlurEnabledProperty); }
@@ -1234,7 +1404,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             UpdateItems();
         }
 
-        #endregion
+        #endregion IsBlurEnabled
 
         #region VanishingPoint
 
@@ -1247,7 +1417,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnVanishingPointChanged)));
 
         /// <summary>
-        /// Gets or sets the VanishingPoint property.  This dependency property 
+        /// Gets or sets the VanishingPoint property.  This dependency property
         /// indicates the quadrant at which items "vanish" in the distance.
         /// This is very useful when it is necessary to remove items from the visual
         /// space smoothly. Items that have reached the vanishing point should be
@@ -1255,6 +1425,12 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// It is necessary that the vanishing point is either off-screen or
         /// visually unrecognizable for this mechanism to work smoothly.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(EnumConverter))]
+        [Bindable(true)]
+        [Description("Indicates which quadrant can be used to replace items.")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        [DisplayName("Vanishing Quadrant")]
         public Quadrant VanishingPoint
         {
             get { return (Quadrant)GetValue(VanishingPointProperty); }
@@ -1276,7 +1452,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion VanishingPoint
 
         #region ItemDelay
 
@@ -1289,9 +1465,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemDelayChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemDelay property.  This dependency property 
+        /// Gets or sets the ItemDelay property.  This dependency property
         /// indicates the delay between item changes.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan ItemDelay
         {
             get { return (TimeSpan)GetValue(ItemDelayProperty); }
@@ -1313,7 +1495,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemDelay
 
         #region NewItemAngle
 
@@ -1326,9 +1508,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnNewItemAngleChanged)));
 
         /// <summary>
-        /// Gets or sets the NewItemAngle property.  This dependency property 
+        /// Gets or sets the NewItemAngle property.  This dependency property
         /// indicates the angle where new items are inserted.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Angle where new items are going to be inserted.")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Insertion item angle")]
         public double NewItemAngle
         {
             get { return (double)GetValue(NewItemAngleProperty); }
@@ -1350,7 +1538,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion NewItemAngle
 
         #region NewItemScrollPosition
 
@@ -1363,9 +1551,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnNewItemScrollPositionChanged)));
 
         /// <summary>
-        /// Gets or sets the NewItemScrollPosition property.  This dependency property 
+        /// Gets or sets the NewItemScrollPosition property.  This dependency property
         /// indicates the scroll position where the new item will animate from.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        //[TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public double? NewItemScrollPosition
         {
             get { return (double?)GetValue(NewItemScrollPositionProperty); }
@@ -1387,7 +1581,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion NewItemScrollPosition
 
         #region NewItemDelay
 
@@ -1400,9 +1594,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnNewItemDelayChanged)));
 
         /// <summary>
-        /// Gets or sets the NewItemDelay property.  This dependency property 
+        /// Gets or sets the NewItemDelay property.  This dependency property
         /// indicates time to wait before animating in items added to the carousel.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan NewItemDelay
         {
             get { return (TimeSpan)GetValue(NewItemDelayProperty); }
@@ -1424,7 +1624,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion NewItemDelay
 
         #region NewItemDuration
 
@@ -1437,9 +1637,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnNewItemDurationChanged)));
 
         /// <summary>
-        /// Gets or sets the NewItemDuration property.  This dependency property 
+        /// Gets or sets the NewItemDuration property.  This dependency property
         /// indicates the duration of the animation to play when new items are added to the carousel.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan NewItemDuration
         {
             get { return (TimeSpan)GetValue(NewItemDurationProperty); }
@@ -1461,7 +1667,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion NewItemDuration
 
         #region NewItemEasingFunction
 
@@ -1474,9 +1680,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnNewItemEasingFunctionChanged)));
 
         /// <summary>
-        /// Gets or sets the NewItemEasingFunction property.  This dependency property 
+        /// Gets or sets the NewItemEasingFunction property.  This dependency property
         /// indicates the easing function to use when animating a new item into the carousel.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        //[TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public IEasingFunction NewItemEasingFunction
         {
             get { return (IEasingFunction)GetValue(NewItemEasingFunctionProperty); }
@@ -1498,7 +1710,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion NewItemEasingFunction
 
         #region ItemRemovalIsAnimated
 
@@ -1511,9 +1723,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemRemovalIsAnimatedChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemRemovalIsAnimated property.  This dependency property 
+        /// Gets or sets the ItemRemovalIsAnimated property.  This dependency property
         /// indicates whether the control should perform an animation when an item is removed.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public bool ItemRemovalIsAnimated
         {
             get { return (bool)GetValue(ItemRemovalIsAnimatedProperty); }
@@ -1535,7 +1753,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemRemovalIsAnimated
 
         #region ItemRemovalEasingFunction
 
@@ -1548,9 +1766,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemRemovalEasingFunctionChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemRemovalEasingFunction property.  This dependency property 
+        /// Gets or sets the ItemRemovalEasingFunction property.  This dependency property
         /// indicates the easing function to use when animating item removal.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        //[TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public IEasingFunction ItemRemovalEasingFunction
         {
             get { return (IEasingFunction)GetValue(ItemRemovalEasingFunctionProperty); }
@@ -1572,7 +1796,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemRemovalEasingFunction
 
         #region ItemRemovalDuration
 
@@ -1585,9 +1809,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemRemovalDurationChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemRemovalDuration property.  This dependency property 
+        /// Gets or sets the ItemRemovalDuration property.  This dependency property
         /// indicates the duration of the item removal animation.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan ItemRemovalDuration
         {
             get { return (TimeSpan)GetValue(ItemRemovalDurationProperty); }
@@ -1609,7 +1839,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemRemovalDuration
 
         #region ItemRemovalDelay
 
@@ -1622,9 +1852,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemRemovalDelayChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemRemovalDelay property.  This dependency property 
+        /// Gets or sets the ItemRemovalDelay property.  This dependency property
         /// indicates the delay to introduce between items when performing the item removal animation.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan ItemRemovalDelay
         {
             get { return (TimeSpan)GetValue(ItemRemovalDelayProperty); }
@@ -1646,7 +1882,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemRemovalDelay
 
         #region ItemRemovalDelayMode
 
@@ -1659,9 +1895,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnItemRemovalDelayModeChanged)));
 
         /// <summary>
-        /// Gets or sets the ItemRemovalDelayMode property.  This dependency property 
+        /// Gets or sets the ItemRemovalDelayMode property.  This dependency property
         /// indicates the delay mode to use when animating an item removal.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(EnumConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public DelayMode ItemRemovalDelayMode
         {
             get { return (DelayMode)GetValue(ItemRemovalDelayModeProperty); }
@@ -1683,7 +1925,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion ItemRemovalDelayMode
 
         #region Idle Properties
 
@@ -1698,9 +1940,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIsIdleChanged)));
 
         /// <summary>
-        /// Gets or sets the IsIdle property.  This dependency property 
+        /// Gets or sets the IsIdle property.  This dependency property
         /// indicates whether the control is currently idle. It is possible to set this property to true so that the control starts scrolling itself regularly.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        [Description("Whether or not the carousel is in Idle mode")]
+        [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
+        [DisplayName("Is Idle")]
         public bool IsIdle
         {
             get { return (bool)GetValue(IsIdleProperty); }
@@ -1720,6 +1968,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         /// </summary>
         protected virtual void OnIsIdleChanged(DependencyPropertyChangedEventArgs e)
         {
+            InitializeIdleScrollingTimer();
             if (IsIdle)
             {
                 IdleScrollingTimer.Start();
@@ -1731,7 +1980,19 @@ namespace Polaris.Client.Controls.Wpf.Controls
             }
         }
 
-        #endregion
+        private void InitializeIdleScrollingTimer()
+        {
+            if (IdleScrollingTimer == null)
+            {
+                IdleScrollingTimer = new Timer(IdleScrollingTimeInterval);
+            }
+            else
+            {
+                IdleScrollingTimer.Interval = IdleScrollingTimeInterval;
+            }
+        }
+
+        #endregion IsIdle
 
         #region IdleScrollingInterval
 
@@ -1744,9 +2005,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIdleScrollingIntervalChanged)));
 
         /// <summary>
-        /// Gets or sets the IdleScrollingInterval property.  This dependency property 
+        /// Gets or sets the IdleScrollingInterval property.  This dependency property
         /// indicates the interval between automatic idle animations.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        [Description("Time between each increment of  the IdleScrollingVariationProperty")]
+        [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan IdleScrollingInterval
         {
             get { return (TimeSpan)GetValue(IdleScrollingIntervalProperty); }
@@ -1768,7 +2035,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
+        #endregion IdleScrollingInterval
 
         #region IdleScrollingVariation
 
@@ -1781,9 +2048,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIdleScrollingVariationChanged)));
 
         /// <summary>
-        /// Gets or sets the IdleScrollingVariation property.  This dependency property 
+        /// Gets or sets the IdleScrollingVariation property.  This dependency property
         /// indicates the variation of the automatic idle scrolling. Each idle scrolling will take up to +/- the value of this property on each iteration.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(DoubleConverter))]
+        [Bindable(true)]
+        [Description("Increment applied to the scroll position on when carouse is idle")]
+        [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
+        [DisplayName("Idle Scrolling Variation")]
         public double IdleScrollingVariation
         {
             get { return (double)GetValue(IdleScrollingVariationProperty); }
@@ -1805,17 +2078,42 @@ namespace Polaris.Client.Controls.Wpf.Controls
         {
         }
 
-        #endregion
-
-
+        #endregion IdleScrollingVariation
 
         private DateTime latestIdleAnimation;
 
         static Random randomGenerator = new Random();
 
-        Timer IdleScrollingTimer = new Timer(1000);
+        #region IdleScrollingTimeInterval
 
-        void IdleScrollingTimer_Elapsed(object sender, ElapsedEventArgs e)
+        /// <summary>
+        /// IdleScrollingTimeInterval Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IdleScrollingTimeIntervalProperty =
+            DependencyProperty.Register("IdleScrollingTimeInterval", typeof(double), typeof(CarouselItemsControl),
+                new FrameworkPropertyMetadata(1000.0));
+
+        /// <summary>
+        /// Gets or sets the IdleScrollingTimeInterval property.  This dependency property
+        /// indicates the time between each auto increment of the scroll position when idle.
+        /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        [Description("Indicates the frequency time -in milliseconds- between every verification of the IdleScrollingInterval.")]
+        [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
+        [DisplayName("Idle Scrolling Time Interval")]
+        public double IdleScrollingTimeInterval
+        {
+            get { return (double)GetValue(IdleScrollingTimeIntervalProperty); }
+            set { SetValue(IdleScrollingTimeIntervalProperty, value); }
+        }
+
+        #endregion IdleScrollingTimeInterval
+
+        Timer IdleScrollingTimer;//= new Timer(1000);
+
+        private void IdleScrollingTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -1846,9 +2144,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIdleScrollingDurationChanged)));
 
         /// <summary>
-        /// Gets or sets the IdleScrollingDuration property.  This dependency property 
+        /// Gets or sets the IdleScrollingDuration property.  This dependency property
         /// indicates the duration of the IdleScrolling animation.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(TimeSpanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public TimeSpan IdleScrollingDuration
         {
             get { return (TimeSpan)GetValue(IdleScrollingDurationProperty); }
@@ -1871,7 +2175,8 @@ namespace Polaris.Client.Controls.Wpf.Controls
             IdleScrollingAnimationHelper.Duration = IdleScrollingDuration;
         }
 
-        #endregion
+        #endregion IdleScrollingDuration
+
         #region IdleScrollingEasingFunction
 
         /// <summary>
@@ -1883,9 +2188,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     new PropertyChangedCallback(OnIdleScrollingEasingFunctionChanged)));
 
         /// <summary>
-        /// Gets or sets the IdleScrollingEasingFunction property.  This dependency property 
+        /// Gets or sets the IdleScrollingEasingFunction property.  This dependency property
         /// indicates the funtion used to apply easing to the IdleScrolling animation.
         /// </summary>
+        [Localizability(LocalizationCategory.None)]
+        //[TypeConverter(typeof(BooleanConverter))]
+        [Bindable(true)]
+        //[Description("Timeout of a given element before it's inserted into the carousel")]
+        [Category(CATEGORY_CAROUSE_SETTINGS)]
+        //[DisplayName("Item insertion time out")]
         public IEasingFunction IdleScrollingEasingFunction
         {
             get { return (IEasingFunction)GetValue(IdleScrollingEasingFunctionProperty); }
@@ -1908,7 +2219,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             IdleScrollingAnimationHelper.EasingFunction = IdleScrollingEasingFunction;
         }
 
-        #endregion
+        #endregion IdleScrollingEasingFunction
 
         Polaris.Client.Controls.Wpf.Animation.DoubleAnimationHelper IdleScrollingAnimationHelper;
 
@@ -1922,6 +2233,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     );
             IdleScrollingAnimationHelper.Duration = IdleScrollingDuration;
             IdleScrollingAnimationHelper.EasingFunction = IdleScrollingEasingFunction;
+            InitializeIdleScrollingTimer();
             IdleScrollingTimer.Elapsed += new ElapsedEventHandler(IdleScrollingTimer_Elapsed);
         }
 
@@ -1950,10 +2262,9 @@ namespace Polaris.Client.Controls.Wpf.Controls
             IdleScrollingAnimationHelper.StopAnimation();
         }
 
-        #endregion
+        #endregion IdleScrolling Animation Properties
 
-
-        #endregion
+        #endregion Idle Properties
 
         List<CarouselItemAnimationRequest> pendingAnimationRequests = new List<CarouselItemAnimationRequest>();
         List<CarouselNewItemAnimationRequest> pendingOpacityAnimationRequests = new List<CarouselNewItemAnimationRequest>();
@@ -1976,8 +2287,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
             CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
             InitializeIdleScrollingAnimation();
         }
-
-
 
         public void ProcessChanges(Object state)
         {
@@ -2076,9 +2385,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
             {
                 var scrollPositionDescriptor = newItemContainer.GetScrollPositionDescriptor(NewItemScrollPosition.Value);
 
-
-
-
                 var animationRequest = new CarouselNewItemAnimationRequest(NewItemInitialPosition, NewItemInitialSize)
                 {
                     StartTime = DateTime.Now.Add(NewItemDelay),
@@ -2097,7 +2403,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
 
         internal class ItemChangeSet
         {
-
             public CarouselItem TargetItem { get; set; }
 
             public DateTime DueTime { get; set; }
@@ -2105,39 +2410,53 @@ namespace Polaris.Client.Controls.Wpf.Controls
             public Quadrant VanishingPoint { get; set; }
 
             public Double QuadrantABlurRadius { get; set; }
+
             public Double QuadrantBBlurRadius { get; set; }
+
             public Double QuadrantCBlurRadius { get; set; }
+
             public Double QuadrantDBlurRadius { get; set; }
 
             public Point QuadrantAPosition { get; set; }
+
             public Point QuadrantBPosition { get; set; }
+
             public Point QuadrantCPosition { get; set; }
+
             public Point QuadrantDPosition { get; set; }
 
             public Double QuadrantAOpacity { get; set; }
+
             public Double QuadrantBOpacity { get; set; }
+
             public Double QuadrantCOpacity { get; set; }
+
             public Double QuadrantDOpacity { get; set; }
 
-            public Size QuadrantASize { get; set; }
-            public Size QuadrantBSize { get; set; }
-            public Size QuadrantCSize { get; set; }
-            public Size QuadrantDSize { get; set; }
+            public Point QuadrantASize { get; set; }
+
+            public Point QuadrantBSize { get; set; }
+
+            public Point QuadrantCSize { get; set; }
+
+            public Point QuadrantDSize { get; set; }
 
             public Double ScrollStep { get; set; }
+
             public Double TotalArc { get; set; }
+
             public Double ScrollPosition { get; set; }
         }
 
         Object pendingChangesSync = new object();
         List<ItemChangeSet> pendingChanges = new List<ItemChangeSet>();
 
-        void UpdateItems()
+        private void UpdateItems()
         {
             UpdateItems(this.ScrollPosition, this.ScrollPosition);
         }
 
-        void UpdateItems(double oldValue, double newValue)
+        private void UpdateItems(double oldValue, double newValue)
         {
             var delta = newValue - oldValue;
             if (ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
@@ -2145,10 +2464,17 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 ItemContainerGenerator.StatusChanged += new EventHandler(ItemContainerGenerator_StatusChanged);
                 return;
             }
-            for (int i = 0; i < this.Items.Count; i++)
+            //double? itemScrollPosition = null;
+
+            var orderedItems = (from item in GetCarouselItems()
+                                orderby item.ScrollPosition % (this.Items.Count * ItemSeparation)
+                                select item).ToArray();
+
+            double? itemScrollPosition = null;
+
+            foreach (var itemContainer in orderedItems)
             {
-                var itemContainer = ItemContainerGenerator.ContainerFromIndex(i) as CarouselItem;
-                var itemScrollPosition = i * ItemSeparation;
+                //var itemContainer = ItemContainerGenerator.ContainerFromIndex(i) as CarouselItem;
                 itemContainer.IsSynchronized = false;
                 itemContainer.ScrollStep = this.ScrollStep;
                 itemContainer.TotalArc = this.TotalArc;
@@ -2169,19 +2495,35 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 itemContainer.QuadrantDOpacity = this.QuadrantDOpacity;
                 itemContainer.QuadrantDPosition = this.QuadrantDPosition;
                 itemContainer.QuadrantDSize = this.QuadrantDSize;
-                itemContainer.ScrollPosition = itemContainer.ScrollPosition + delta;
+
+                //itemContainer.ScrollPosition = itemContainer.ScrollPosition + delta;
+
+                if (itemScrollPosition == null)
+                {
+                    itemScrollPosition = itemContainer.ScrollPosition + delta;
+                }
+                else
+                {
+                    itemScrollPosition += ItemSeparation;
+                }
+                itemContainer.ScrollPosition = itemScrollPosition.Value;
+
                 itemContainer.IsBlurEnabled = this.IsBlurEnabled;
                 itemContainer.IsSynchronized = true;
             }
 
-
             UpdateVanishingPointItem();
-
-
         }
 
+        private IEnumerable<CarouselItem> GetCarouselItems()
+        {
+            for (int i = 0; i < this.Items.Count; i++)
+            {
+                yield return ItemContainerGenerator.ContainerFromIndex(i) as CarouselItem;
+            }
+        }
 
-        double GetVanishingPointAngle()
+        private double GetVanishingPointAngle()
         {
             var normalizedArc = TotalArc % CarouselItem.CircleArc;
             normalizedArc = (normalizedArc == 0 ? CarouselItem.CircleArc : normalizedArc);
@@ -2213,10 +2555,9 @@ namespace Polaris.Client.Controls.Wpf.Controls
             }
 
             return vanishingPointAngle;
-
         }
 
-        void UpdateVanishingPointItem()
+        private void UpdateVanishingPointItem()
         {
             double vanishingPointAngle = GetVanishingPointAngle();
             CarouselItem itemOnVanishingPoint = null;
@@ -2237,7 +2578,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     angleCloserToVanishingPoint = angleDistanceToVanishingPoint;
                     itemOnVanishingPoint = itemContainer;
                 }
-
             }
 
             if (itemOnVanishingPoint != null && itemOnVanishingPoint != currentItemOnVanishingPoint)
@@ -2248,16 +2588,15 @@ namespace Polaris.Client.Controls.Wpf.Controls
                 PrintCurrentAngles();
 #endif
             }
-
         }
 
-        void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
+        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
         {
             ItemContainerGenerator.StatusChanged -= new EventHandler(ItemContainerGenerator_StatusChanged);
             UpdateItems();
         }
 
-        void UpdateItemsWithDelay(Double oldValue, Double newValue)
+        private void UpdateItemsWithDelay(Double oldValue, Double newValue)
         {
             if (ItemContainerGenerator.Status == GeneratorStatus.NotStarted) { return; }
             var isAscending = (newValue > oldValue);
@@ -2305,8 +2644,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     pendingChanges.Add(itemChangeSet);
                 }
             }
-
-
         }
 
         protected override void OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -2314,11 +2651,11 @@ namespace Polaris.Client.Controls.Wpf.Controls
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
 #if DEBUG
-                System.Diagnostics.Debug.WriteLine("ITEM(s) REMOVED:");
-                foreach (var item in e.OldItems)
-                {
-                    System.Diagnostics.Debug.WriteLine("Item hash code: {0}", item.GetHashCode());
-                }
+                //System.Diagnostics.Debug.WriteLine("ITEM(s) REMOVED:");
+                //foreach (var item in e.OldItems)
+                //{
+                //    System.Diagnostics.Debug.WriteLine("Item hash code: {0}", item.GetHashCode());
+                //}
 #endif
                 ProcessSingleItemRemoval();
             }
@@ -2326,13 +2663,12 @@ namespace Polaris.Client.Controls.Wpf.Controls
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
 #if DEBUG
-                System.Diagnostics.Debug.WriteLine("ITEM(s) ADDED:");
-                foreach (var item in e.NewItems)
-                {
-                    System.Diagnostics.Debug.WriteLine("Item hash code: {0}", item.GetHashCode());
-                }
+                //System.Diagnostics.Debug.WriteLine("ITEM(s) ADDED:");
+                //foreach (var item in e.NewItems)
+                //{
+                //    System.Diagnostics.Debug.WriteLine("Item hash code: {0}", item.GetHashCode());
+                //}
 #endif
-
             }
             UpdateVanishingPointItem();
             base.OnItemsChanged(e);
@@ -2388,7 +2724,6 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     });
 
                     //System.Diagnostics.Debug.WriteLine(degrees);
-
                 }
 
                 var sortedAnimationRequests = (from request in animationRequests
@@ -2440,36 +2775,40 @@ namespace Polaris.Client.Controls.Wpf.Controls
                     delayIndex++;
                 }
 #if DEBUG
-                System.Diagnostics.Debug.WriteLine("Animating {0} items", animationRequests.Count);
+                //System.Diagnostics.Debug.WriteLine("Animating {0} items", animationRequests.Count);
 #endif
                 pendingAnimationRequests.AddRange(animationRequests);
-
-
-
             }
         }
 
         internal class CarouselNewItemAnimationRequest
         {
             public CarouselItem TargetItem { get; set; }
+
             public double InitialOpacity { get; set; }
+
             public double FinalOpacity { get; set; }
 
             public Point InitialPosition { get; set; }
+
             public Point FinalPosition { get; set; }
 
             public Size InitialSize { get; set; }
+
             public Size FinalSize { get; set; }
 
             public DateTime StartTime { get; set; }
+
             /// <summary>
             /// Whether the carousel item BeforeAdded state has already been requested or not.
             /// </summary>
             public bool IsBeforeAddedStateRequested { get; set; }
+
             /// <summary>
             /// Whether the carousel item WhileAdding state has already been requested or not.
             /// </summary>
             public bool IsWhileAddingStateRequested { get; set; }
+
             /// <summary>
             /// Whether the carousel item Added state has already been requested or not.
             /// </summary>
@@ -2482,17 +2821,21 @@ namespace Polaris.Client.Controls.Wpf.Controls
             }
         }
 
-
         internal class CarouselItemAnimationRequest
         {
             public CarouselItem TargetItem { get; set; }
+
             public double InitialScrollPosition { get; set; }
+
             public double FinalScrollPosition { get; set; }
+
             public DateTime StartTime { get; set; }
+
             public double Degrees { get; set; }
         }
 
 #if DEBUG
+
         private void PrintCurrentAngles()
         {
             //var carouselItems = new List<CarouselItem>();
@@ -2516,7 +2859,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
             //    System.Diagnostics.Debug.WriteLine("item {0} angle: {1}|distance from previous angle: {2}", item.GetHashCode(), item.GetCurrentAngle(), distanceFromPreviousAngle);
             //}
         }
-#endif
 
+#endif
     }
 }
