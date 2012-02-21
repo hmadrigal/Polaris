@@ -76,6 +76,10 @@
     <Compile Include="Controls\AnimatedLayoutItemsControl.cs" />
     <Compile Include="Controls\CarouselItem.cs" />
     <Compile Include="Controls\CarouselItemsControl.cs" />
+    <Compile Include="Controls\FontFormat.cs" />
+    <Compile Include="Controls\FontFormatCollection.cs" />
+    <Compile Include="Controls\FontFormatType.cs" />
+    <Compile Include="Controls\FormattedTextBlock.cs" />
     <Compile Include="Controls\ViewTransitionControl.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\UIElementExtensions.cs" />
