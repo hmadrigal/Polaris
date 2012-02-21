@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}</ProjectGuid>
+    <ProjectGuid>{7779EA41-5876-4EC9-A977-7C7E2469D835}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Polaris.Windows</RootNamespace>
-    <AssemblyName>Polaris.Client.Controls.Wpf</AssemblyName>
+    <AssemblyName>Polaris.Client.Extensions.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -38,10 +38,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,36 +53,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Animation\DoubleAnimationHelper.cs" />
-    <Compile Include="Actions\AnimatedNumberAction.cs" />
-    <Compile Include="Actions\AnimatedTextAction.cs" />
-    <Compile Include="Actions\CaptureFrameworkElementAction.cs" />
-    <Compile Include="Actions\DataBoundStateAction.cs" />
-    <Compile Include="Actions\FullScreenBehavior.cs" />
-    <Compile Include="Actions\InvokeCommandOnKeyAction.cs" />
-    <Compile Include="Actions\ScrollOnTouchAction.cs" />
-    <Compile Include="Actions\SelectOnTapAction.cs" />
-    <Compile Include="CategoryNames.cs" />
-    <Compile Include="Controls\AnimatedExpander.cs" />
-    <Compile Include="Controls\AnimatedLayoutControl.cs" />
-    <Compile Include="Controls\AnimatedLayoutItemsControl.cs" />
-    <Compile Include="Controls\CarouselItem.cs" />
-    <Compile Include="Controls\CarouselItemsControl.cs" />
-    <Compile Include="Controls\FontFormat.cs" />
-    <Compile Include="Controls\FontFormatCollection.cs" />
-    <Compile Include="Controls\FontFormatType.cs" />
-    <Compile Include="Controls\FormattedTextBlock.cs" />
-    <Compile Include="Controls\ViewTransitionControl.cs" />
-    <Compile Include="Controls\WatermarkTextBox.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\EnumToResource.cs" />
-    <Compile Include="Converters\StringToUriConverter.cs" />
+    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\UIElementExtensions.cs" />
+    <Compile Include="Extensions\WeakEventHandling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,12 +78,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Polaris.Client.Extensions.Wpf\Polaris.Client.Extensions.Wpf.csproj">
-      <Project>{7779EA41-5876-4EC9-A977-7C7E2469D835}</Project>
-      <Name>Polaris.Client.Extensions.Wpf</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

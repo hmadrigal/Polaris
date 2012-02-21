@@ -9,9 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Controls.Wpf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Wpf", "Polaris.Client.Wpf\Polaris.Client.Wpf.csproj", "{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Keyboard.Wpf", "Polaris.Client.Keyboard.Wpf\Polaris.Client.Keyboard.Wpf.csproj", "{0E7091C0-5483-447D-9E77-D28930B86995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Extensions.Wpf", "Polaris.Client.Extensions.Wpf\Polaris.Client.Extensions.Wpf.csproj", "{7779EA41-5876-4EC9-A977-7C7E2469D835}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -27,6 +31,12 @@ Global
 		SccProjectUniqueName4 = Polaris.Client.Wpf\\Polaris.Client.Wpf.csproj
 		SccProjectName4 = Polaris.Client.Wpf
 		SccLocalPath4 = Polaris.Client.Wpf
+		SccProjectUniqueName5 = Polaris.Client.Keyboard.Wpf\\Polaris.Client.Keyboard.Wpf.csproj
+		SccProjectName5 = Polaris.Client.Keyboard.Wpf
+		SccLocalPath5 = Polaris.Client.Keyboard.Wpf
+		SccProjectUniqueName6 = Polaris.Client.Extensions.Wpf\\Polaris.Client.Extensions.Wpf.csproj
+		SccProjectName6 = Polaris.Client.Extensions.Wpf
+		SccLocalPath6 = Polaris.Client.Extensions.Wpf
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +59,14 @@ Global
 		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E7091C0-5483-447D-9E77-D28930B86995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7091C0-5483-447D-9E77-D28930B86995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7091C0-5483-447D-9E77-D28930B86995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7091C0-5483-447D-9E77-D28930B86995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
