@@ -64,6 +64,7 @@
     <Compile Include="Animation\DoubleAnimationHelper.cs" />
     <Compile Include="Behaviors\AnimatedNumberAction.cs" />
     <Compile Include="Behaviors\AnimatedTextAction.cs" />
+    <Compile Include="Behaviors\CaptureFrameworkElementAction.cs" />
     <Compile Include="Behaviors\FullScreenBehavior.cs" />
     <Compile Include="Behaviors\ScrollOnTouchAction.cs" />
     <Compile Include="Behaviors\SelectOnTapAction.cs" />
