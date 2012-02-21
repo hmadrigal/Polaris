@@ -58,6 +58,7 @@
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="Extensions\UIElementExtensions.cs" />
+    <Compile Include="Extensions\VisualStateExtensions.cs" />
     <Compile Include="Extensions\WeakEventHandling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
