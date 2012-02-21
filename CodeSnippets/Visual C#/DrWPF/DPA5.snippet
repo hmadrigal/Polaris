@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>a5 -- Attached Dependency Property -- everything</Title>
+      <Shortcut>dp</Shortcut>
+      <Description>Attached dependency property.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>IsCunning</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>bool</Default>
+        </Literal>
+        <Literal>
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>false</Default>
+        </Literal>
+        <Literal>
+          <ID>options</ID>
+          <ToolTip>The options for this dependency property (only applies to framework properties).</ToolTip>
+          <Default>.None</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the property.</ToolTip>
+          <Default>...</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $property$
+
+        /// <summary>
+        /// $property$ Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty $property$Property =
+            DependencyProperty.RegisterAttached("$property$", typeof($type$), typeof($ownerclass$),
+                new FrameworkPropertyMetadata(($type$)$defaultvalue$,
+                    FrameworkPropertyMetadataOptions$options$,
+                    new PropertyChangedCallback(On$property$Changed),
+                    new CoerceValueCallback(Coerce$property$Value)));
+
+        /// <summary>
+        /// Gets the $property$ property.  This dependency property 
+        /// indicates $desc$.
+        /// </summary>
+        public static $type$ Get$property$(DependencyObject d)
+        {
+            return ($type$)d.GetValue($property$Property);
+        }
+
+        /// <summary>
+        /// Sets the $property$ property.  This dependency property 
+        /// indicates $desc$.
+        /// </summary>
+        public static void Set$property$(DependencyObject d, $type$ value)
+        {
+            d.SetValue($property$Property, value);
+        }
+
+        /// <summary>
+        /// Handles changes to the $property$ property.
+        /// </summary>
+        private static void On$property$Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Coerces the $property$ value.
+        /// </summary>
+        private static object Coerce$property$Value(DependencyObject d, object value)
+        {
+            return value;
+        }
+
+        #endregion
+
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

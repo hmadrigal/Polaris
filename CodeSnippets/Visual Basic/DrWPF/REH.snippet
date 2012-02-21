@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>reh -- RoutedEventHelper class -- AddHandler, RemoveHandler, RaiseEvent</Title>
+      <Shortcut>reh</Shortcut>
+      <Description>Routed event helper methods.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Code Language="vb">
+          <![CDATA[Imports System
+Imports System.Windows
+
+Class RoutedEventHelper
+
+    ''' <summary>
+    ''' A static helper method to raise a routed event on a target UIElement or ContentElement.
+    ''' </summary>
+    ''' <param name="target">UIElement or ContentElement on which to raise the event</param>
+    ''' <param name="args">RoutedEventArgs to use when raising the event</param>
+    Friend Shared Sub RaiseRoutedEvent(ByVal target As DependencyObject, ByVal args As RoutedEventArgs)
+        If (TypeOf target Is UIElement) Then
+            CType(target, UIElement).RaiseEvent(args)
+        ElseIf (TypeOf target Is ContentElement) Then
+            CType(target, ContentElement).RaiseEvent(args)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' A static helper method that adds a handler for a routed event 
+    ''' to a target UIElement or ContentElement.
+    ''' </summary>
+    ''' <param name="element">UIElement or ContentElement that listens to the event</param>
+    ''' <param name="routedEvent">Event that will be handled</param>
+    ''' <param name="handler">Event handler to be added</param>
+    Friend Shared Sub AddEventHandler(ByVal element As DependencyObject, ByVal routedEvent As RoutedEvent, ByVal handler As System.Delegate)
+        Dim uie As UIElement = CType(element, UIElement)
+        If (Not (uie Is Nothing)) Then
+            uie.AddHandler(routedEvent, handler)
+        Else
+            Dim ce As ContentElement = CType(element, ContentElement)
+            If (Not (ce Is Nothing)) Then
+                ce.AddHandler(routedEvent, handler)
+            End If
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' A static helper method that removes a handler for a routed event 
+    ''' from a target UIElement or ContentElement.
+    ''' </summary>
+    ''' <param name="element">UIElement or ContentElement that listens to the event</param>
+    ''' <param name="routedEvent">Event that will no longer be handled</param>
+    ''' <param name="handler">Event handler to be removed</param>
+    Friend Shared Sub RemoveEventHandler(ByVal element As DependencyObject, ByVal routedEvent As RoutedEvent, ByVal handler As System.Delegate)
+        Dim uie As UIElement = CType(element, UIElement)
+        If (Not (uie Is Nothing)) Then
+            uie.RemoveHandler(routedEvent, handler)
+        Else
+            Dim ce As ContentElement = CType(element, ContentElement)
+            If (Not (ce Is Nothing)) Then
+                ce.RemoveHandler(routedEvent, handler)
+            End If
+        End If
+    End Sub
+
+End Class]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

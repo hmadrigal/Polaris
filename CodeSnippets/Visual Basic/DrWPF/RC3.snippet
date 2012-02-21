@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>rc3 -- Routed UI Command (requires RoutedCommandHelper class) -- with handlers and input bindings</Title>
+      <Shortcut>rc3</Shortcut>
+      <Description>Routed command.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>UpgradeSeats</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>commandDesc</ID>
+          <ToolTip>Descriptive text for the routed command (used by menus)</ToolTip>
+          <Default>Upgrade Seats</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this command (which is typically the class in which it is declared).</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the command.</ToolTip>
+          <Default>...</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureKey</ID>
+          <Default>.F7</Default>
+          <ToolTip>Keyboard key for KeyGesture (NOTE: the gesture collection could also contain MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureModifiers</ID>
+          <Default>.Shift</Default>
+          <ToolTip>Keyboard modifiers for input gesture (NOTE: applies to both KeyGesture and MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureText</ID>
+          <Default>Shift+F7</Default>
+          <ToolTip>Text for KeyGesture</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>additionalGestures</ID>
+          <Default></Default>
+          <ToolTip>Additional gestures (either KeyGesture or MouseGesture objects) can be added here using a comma-separated list.</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$command$"
+
+        ''' <summary>
+        ''' The $command$ command $desc$.
+        ''' </summary>
+        Public Shared $command$ As RoutedUICommand = _ 
+            New RoutedUICommand("$commandDesc$", "$command$", GetType($ownerclass$), _
+                RoutedCommandHelper.MakeGestureCollection(New KeyGesture(Key$gestureKey$, ModifierKeys$gestureModifiers$, "$gestureText$")$additionalGestures$))
+
+        Private Sub $command$Executed(ByVal sender As Object, ByVal e As ExecutedRoutedEventArgs)
+        End Sub
+
+        Private Sub Can$command$(ByVal sender As Object, ByVal e As CanExecuteRoutedEventArgs)
+            e.CanExecute = True
+        End Sub
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

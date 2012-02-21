@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>OpBinDifExCom</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Overloading Binary Operators: &gt; and &lt; comparison operators must be overloaded in pairs</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>opbindifexcom</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ReturnType</ID>
+          <ToolTip>Return Type of the binary operation</ToolTip>
+          <Default>ClassName</Default>
+          <Function>SimpleTypeName(global::System.Boolean)</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>DefiningType</ID>
+          <ToolTip>Defining Type which works a first parameter type.</ToolTip>
+          <Default>ClassName</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>AnyType</ID>
+          <ToolTip>Any Type which works as second parameter type.</ToolTip>
+          <Default>ClassName</Default>
+          <Function>SimpleTypeName(global::System.Object)</Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        public static $ReturnType$ operator >($DefiningType$ firstOperand, $AnyType$ secondOperand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement binary operator: $ReturnType$ variable = $DefiningType$ > $AnyType$");
+        }
+        public static $ReturnType$ operator <($DefiningType$ firstOperand, $AnyType$ secondOperand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement binary operator: $ReturnType$ variable = $DefiningType$ < $AnyType$");
+        }
+
+        public static $ReturnType$ operator >($AnyType$ firstOperand, $DefiningType$ secondOperand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement binary operator: $ReturnType$ variable = $AnyType$ > $DefiningType$");
+        }
+        public static $ReturnType$ operator <($AnyType$ firstOperand, $DefiningType$ secondOperand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement binary operator: $ReturnType$ variable = $AnyType$ < $DefiningType$");
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>OpCastExplicit</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Explicit cast operator: The explicit keyword declares a user-defined type conversion operator that must be invoked with a cast.</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>opcastexp</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false">
+          <ID>DefiningType</ID>
+          <ToolTip>DefiningType</ToolTip>
+          <Default>DefiningType</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>AnyType</ID>
+          <ToolTip>AnyType</ToolTip>
+          <Default>AnyType</Default>
+          <Function>SimpleTypeName(global::System.String)</Function>
+        </Literal>
+        <Literal Editable="false">
+          <ID>ExplicitOperator</ID>
+          <ToolTip>The explicit keyword declares a user-defined type conversion operator that must be invoked with a cast.</ToolTip>
+          <Default>explicit</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        public static $ExplicitOperator$ operator $AnyType$($DefiningType$ castSource)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement $ExplicitOperator$ operator: $AnyType$ variable = ($AnyType$) default($DefiningType$)");
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>rcc2 -- Class Command Binding (requires RoutedCommandHelper class) -- Executed handler and input gestures</Title>
+      <Shortcut>rcc2</Shortcut>
+      <Description>Add to static constructor to create a class binding for a routed command.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>handlerClass</ID>
+          <ToolTip>The class that is registering the class handler.</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class for the command.</ToolTip>
+          <Default>NavigationCommands</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>Refresh</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureKey</ID>
+          <Default>.F11</Default>
+          <ToolTip>Keyboard key for KeyGesture (NOTE: the gesture collection could also contain MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureModifiers</ID>
+          <Default>.Control</Default>
+          <ToolTip>Keyboard modifiers for input gesture (NOTE: applies to both KeyGesture and MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureText</ID>
+          <Default>Ctrl+F11</Default>
+          <ToolTip>Text for KeyGesture</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>additionalGestures</ID>
+          <Default></Default>
+          <ToolTip>Additional gestures (either KeyGesture or MouseGesture objects) can be added here using a comma-separated list.</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[RoutedCommandHelper.RegisterClassCommand($ownerclass$.$command$, GetType($handlerClass$), _
+                AddressOf $command$Executed, New KeyGesture(Key$gestureKey$, ModifierKeys$gestureModifiers$, "$gestureText$")$additionalGestures$)]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

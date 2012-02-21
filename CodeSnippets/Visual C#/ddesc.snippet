@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Keywords>
+        <Keyword>ddesc</Keyword>
+      </Keywords>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>SnippetFile1</Title>
+      <Author>Herber Madrigal</Author>
+      <Description>Creates a Descriptor Property hook up for a Dependency Property</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>ddesc</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>CurrentProperty</ID>
+          <ToolTip>VisibilityProperty</ToolTip>
+          <Default>VisibilityProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>CurrentClassName</ID>
+          <ToolTip>CountDownAnimationControl</ToolTip>
+          <Default>ClassName</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>CurrentPropertyClass</ID>
+          <ToolTip>UIElement</ToolTip>
+          <Default>UIElement</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[// NOTE: Adds an event handler when the dependency property '$CurrentPropertyClass$.$CurrentProperty$' changes
+DependencyPropertyDescriptor $CurrentProperty$Descriptor = DependencyPropertyDescriptor.FromProperty($CurrentPropertyClass$.$CurrentProperty$, typeof($CurrentClassName$));
+if ($CurrentProperty$Descriptor != null)
+{
+    $CurrentProperty$Descriptor.AddValueChanged(this, On$CurrentProperty$Changed );
+}
+// private void  On$CurrentProperty$Changed (object sender, EventArgs e) { }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

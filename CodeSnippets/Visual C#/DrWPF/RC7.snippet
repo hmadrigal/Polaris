@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>7 -- Routed Command (non-UI) (requires RoutedCommandHelper class) -- with handlers and input bindings</Title>
+      <Shortcut>rc</Shortcut>
+      <Description>Routed command.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>Crawl</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this command (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the command.</ToolTip>
+          <Default>...</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureKey</ID>
+          <Default>.F7</Default>
+          <ToolTip>Keyboard key for KeyGesture (NOTE: the gesture collection could also contain MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureModifiers</ID>
+          <Default>.Control</Default>
+          <ToolTip>Keyboard modifiers for input gesture (NOTE: applies to both KeyGesture and MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureText</ID>
+          <Default>Ctrl+F7</Default>
+          <ToolTip>Text for KeyGesture</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>additionalGestures</ID>
+          <Default></Default>
+          <ToolTip>Additional gestures (either KeyGesture or MouseGesture objects) can be added here using a comma-separated list.</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $command$
+
+        /// <summary>
+        /// The $command$ command $desc$.
+        /// </summary>
+        public static RoutedCommand $command$ 
+            = new RoutedCommand("$command$", typeof($ownerclass$), RoutedCommandHelper.MakeGestureCollection(
+                new KeyGesture(Key$gestureKey$, ModifierKeys$gestureModifiers$, "$gestureText$")$additionalGestures$));
+
+        private void $command$Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+        }
+
+        private void Can$command$(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        #endregion
+
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

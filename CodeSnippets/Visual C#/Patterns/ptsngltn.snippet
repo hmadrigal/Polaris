@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Define .NET (C#) class that implements a singleton pattern</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Code snippet create a thread safe singleton class</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>ptsngltn</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>classname</ID>
+          <ToolTip>Class name</ToolTip>
+          <Default>ClassNamePlaceholder</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>propertyname</ID>
+          <ToolTip>Property name of the static property that holds the only instance of the class.</ToolTip>
+          <Default>Instance</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[
+
+public sealed class $classname$
+{
+private void Initialize$classname$()
+{
+    throw new NotImplementedException();
+}
+#region Singleton Pattern w/ Constructor
+private $classname$()
+    : base()
+{
+    Initialize$classname$();
+}
+public static $classname$ $propertyname$
+{
+    get
+    {
+        return Singleton$classname$Creator._$propertyname$;
+    }
+}
+private class Singleton$classname$Creator
+{
+    private Singleton$classname$Creator() { }
+    public static $classname$ _$propertyname$ = new $classname$();
+}
+#endregion
+}
+    
+$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

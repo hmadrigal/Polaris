@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>h3 -- Routed Command Handlers -- static Executed and CanExecute class handlers</Title>
+      <Shortcut>rc</Shortcut>
+      <Description>Routed command handlers.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>BrowseHome</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $command$
+
+        private static void $command$Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+        }
+
+        private static void Can$command$(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        #endregion
+
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

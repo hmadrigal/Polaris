@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Configuration property: use this snippet to create properties inside a configuration section.</Title>
+      <Shortcut>configprop</Shortcut>
+    </Header>
+    <Snippet>
+			<Declarations>
+				<Literal>
+					<ID>publicProperty</ID>
+					<ToolTip>The name of the property</ToolTip>
+					<Default>MyProperty</Default>
+				</Literal>
+				<Literal>
+					<ID>type</ID>
+					<ToolTip>The type of the property (e.g. string, double, bool, Brush, etc.)</ToolTip>
+					<Default>string</Default>
+				</Literal>
+			</Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $publicProperty$ (Configuration Property)
+        [ConfigurationProperty("$publicProperty$")]
+        public $type$ $publicProperty$
+        {
+            get
+            {
+                return (($type$)(base["$publicProperty$"]));
+            }
+        }
+    		#endregion
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

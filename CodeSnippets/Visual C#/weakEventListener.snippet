@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Weak event listener: Use this to create a weak event listener.</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>weakEvent</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>weakEventListener</ID>
+          <ToolTip>Name of the weak event listener instance.</ToolTip>
+          <Default>weakEventListener</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>eventArgsType</ID>
+          <ToolTip>The event arguments type for the specified event.</ToolTip>
+          <Default>EventArgs</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>eventHandlerMethod</ID>
+          <ToolTip>The method that will handle the event</ToolTip>
+          <Default>EventHandlerMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>eventSource</ID>
+          <ToolTip>The instance that represents the source of the event.</ToolTip>
+          <Default>eventSource</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>eventName</ID>
+          <ToolTip>Name of the event to handle</ToolTip>
+          <Default>EventName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[var $weakEventListener$EventListener = new WeakEventListener<$ownerclass$, object, $eventArgsType$>(this);
+$weakEventListener$EventListener.OnEventAction = (instance, source, eventArgs) =>
+    instance.$eventHandlerMethod$(source, eventArgs);
+$weakEventListener$EventListener.OnDetachAction = (weakEventListenerParameter) =>
+    $eventSource$.$eventName$ -= weakEventListenerParameter.OnEvent;
+$eventSource$.$eventName$ += $weakEventListener$EventListener.OnEvent;
+$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>rche -- RoutedCommandHelper class -- MakeGestureCollection, RegisterClassCommand</Title>
+      <Shortcut>rche</Shortcut>
+      <Description>Routed command helper methods.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Code Language="vb">
+          <![CDATA[Imports System
+Imports System.Windows
+Imports System.Windows.Input
+Imports System.Diagnostics
+
+Class RoutedCommandHelper
+
+    ''' <summary>
+    ''' Combines a list of input gestures into an InputGestureCollection.
+    ''' </summary>
+    ''' <param name="gestures">Variable-length parameter list of input gestures.</param>
+    Friend Shared Function MakeGestureCollection(ByVal ParamArray gestures() As InputGesture) As InputGestureCollection
+        Return New InputGestureCollection(gestures)
+    End Function
+
+    ''' <summary>
+    ''' Registers a routed command.
+    ''' </summary>
+    ''' <param name="command">The routed command to be registered.</param>
+    ''' <param name="type">The type of the owner class for the command.</param>
+    ''' <param name="executed">The Executed handler for the command.</param>
+    Private Overloads Shared Sub RegisterClassCommand(ByVal command As RoutedCommand, _
+                                                      ByVal type As Type, _
+                                                      ByVal executed As ExecutedRoutedEventHandler)
+        RegisterClassCommand(command, type, executed, CType(Nothing, CanExecuteRoutedEventHandler), Nothing)
+    End Sub
+
+    ''' <summary>
+    ''' Registers a routed command.
+    ''' </summary>
+    ''' <param name="command">The routed command to be registered.</param>
+    ''' <param name="type">The type of the owner class for the command.</param>
+    ''' <param name="executed">The Executed handler for the command.</param>
+    ''' <param name="canExecute">The CanExecute handler for the command.</param>
+    Friend Overloads Shared Sub RegisterClassCommand(ByVal command As RoutedCommand, _
+                                                     ByVal type As Type, _
+                                                     ByVal executed As ExecutedRoutedEventHandler, _
+                                                     ByVal canExecute As CanExecuteRoutedEventHandler)
+        RegisterClassCommand(command, type, executed, canExecute, Nothing)
+    End Sub
+
+    ''' <summary>
+    ''' Registers a routed command along with an optional list of input gestures 
+    ''' for the command.
+    ''' </summary>
+    ''' <param name="command">The routed command to be registered.</param>
+    ''' <param name="type">The type of the owner class for the command.</param>
+    ''' <param name="executed">The Executed handler for the command.</param>
+    ''' <param name="inputGestures">A list of input gestures for the command</param>
+    Friend Overloads Shared Sub RegisterClassCommand(ByVal command As RoutedCommand, _
+                                                     ByVal type As Type, _
+                                                     ByVal executed As ExecutedRoutedEventHandler, _
+                                                     ByVal ParamArray inputGestures() As InputGesture)
+        RegisterClassCommand(command, type, executed, Nothing, inputGestures)
+    End Sub
+
+    ''' <summary>
+    ''' Registers a routed command along with an optional list of input gestures 
+    ''' for the command.
+    ''' </summary>
+    ''' <param name="command">The routed command to be registered.</param>
+    ''' <param name="type">The type of the owner class for the command.</param>
+    ''' <param name="executed">The Executed handler for the command.</param>
+    ''' <param name="canExecute">The CanExecute handler for the command.</param>
+    ''' <param name="inputGestures">A list of input gestures for the command</param>
+    Friend Overloads Shared Sub RegisterClassCommand(ByVal command As RoutedCommand, _
+                                                     ByVal type As Type, _
+                                                     ByVal executed As ExecutedRoutedEventHandler, _
+                                                     ByVal canExecute As CanExecuteRoutedEventHandler, _
+                                                     ByVal ParamArray inputGestures() As InputGesture)
+        Debug.Assert(Not (command Is Nothing))
+        Debug.Assert(Not (type Is Nothing))
+        Debug.Assert(Not (executed Is Nothing))
+        CommandManager.RegisterClassCommandBinding(type, New CommandBinding(command, executed, canExecute))
+        If (Not (inputGestures Is Nothing)) Then
+            For Each gesture As InputGesture In inputGestures
+                CommandManager.RegisterClassInputBinding(type, New InputBinding(command, gesture))
+            Next
+        End If
+    End Sub
+
+End Class]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

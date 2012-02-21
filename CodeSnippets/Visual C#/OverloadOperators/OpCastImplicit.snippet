@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>OpCastExplicit</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>The implicit keyword is used to declare an implicit user-defined type conversion operator. Use it to enable implicit conversions between a user-defined type and another type, if the conversion is guaranteed not to cause a loss of data.</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>opcastimp</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false">
+          <ID>DefiningType</ID>
+          <ToolTip>DefiningType</ToolTip>
+          <Default>DefiningType</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>AnyType</ID>
+          <ToolTip>AnyType</ToolTip>
+          <Default>AnyType</Default>
+          <Function>SimpleTypeName(global::System.String)</Function>
+        </Literal>
+        <Literal Editable="false">
+          <ID>ImplicitOperator</ID>
+          <ToolTip>The implicit keyword is used to declare an implicit user-defined type conversion operator. Use it to enable implicit conversions between a user-defined type and another type, if the conversion is guaranteed not to cause a loss of data.</ToolTip>
+          <Default>implicit</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        /// <summary>
+        /// User-defined conversion from $DefiningType$ to $AnyType$
+        /// </summary>
+        /// <param name="castSource"></param>
+        /// <returns></returns>
+        public static $ImplicitOperator$ operator $AnyType$($DefiningType$ castSource)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement $ImplicitOperator$ operator: $AnyType$ variable = default($DefiningType$)");
+        }
+        /// <summary>
+        /// User-defined conversion from $AnyType$ to $DefiningType$
+        /// </summary>
+        /// <param name="castSource"></param>
+        /// <returns></returns>
+        public static $ImplicitOperator$ operator $DefiningType$($AnyType$ castSource)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement $ImplicitOperator$ operator: $DefiningType$ variable = default($AnyType$)");
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

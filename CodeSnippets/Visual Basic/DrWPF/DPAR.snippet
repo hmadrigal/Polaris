@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>dpar0 -- Attached Read-Only Dependency Property -- default value</Title>
+      <Shortcut>dpar0</Shortcut>
+      <Description>Attached read-only dependency property.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>IsRobust</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>Boolean</Default>
+        </Literal>
+        <Literal>
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal>
+          <ID>metadataType</ID>
+          <ToolTip>The type of metadata used by this property.</ToolTip>
+          <Default>Framework</Default>
+          <Function />
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>False</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>setAccess</ID>
+          <ToolTip>Property setter access</ToolTip>
+          <Default>Private</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the property.</ToolTip>
+          <Default>...</Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$property$"
+
+        ''' <summary>
+        ''' $property$ Read-Only Dependency Property
+        ''' </summary>
+        Private Shared ReadOnly $property$PropertyKey As DependencyPropertyKey = _
+            DependencyProperty.RegisterAttachedReadOnly("$property$", GetType($type$), GetType($ownerclass$), _
+                New $metadataType$PropertyMetadata($defaultvalue$))
+
+        Public Shared ReadOnly $property$Property as DependencyProperty = _
+            $property$PropertyKey.DependencyProperty
+
+        ''' <summary>
+        ''' Gets the $property$ property.  This dependency property 
+        ''' indicates $desc$.
+        ''' </summary>
+        Public Shared Function Get$property$(ByVal d As DependencyObject) As $type$
+            Return CType(d.GetValue($property$Property), $type$)
+        End Function
+
+        ''' <summary>
+        ''' Provides a secure method for setting the $property$ property.  
+        ''' This dependency property indicates $desc$.
+        ''' </summary>
+        $setAccess$ Shared Sub Set$property$(ByVal d As DependencyObject, ByVal value as $type$)
+            d.SetValue($property$PropertyKey, value)
+        End Sub
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

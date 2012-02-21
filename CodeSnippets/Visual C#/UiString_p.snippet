@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>UiString Property: Use this snippet to create a new UiString property implementation.</Title>
+      <Shortcut>uistring</Shortcut>
+    </Header>
+    <Snippet>
+			<Declarations>
+				<Literal>
+					<ID>publicProperty</ID>
+					<ToolTip>The name of the public property</ToolTip>
+					<Default>MyProperty</Default>
+				</Literal>
+			</Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $publicProperty$ (UiStrings Property)
+		public String $publicProperty$ 
+		{
+			get{ return UiStrings.$publicProperty$;}
+		}
+		#endregion
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

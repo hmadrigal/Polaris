@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Template part: Use this to create a new template part for a control.</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>templatePart</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>templatePartName</ID>
+          <ToolTip>The name of the template part</ToolTip>
+          <Default>MyTemplatePart</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>The type of the template part (e.g. string, double, bool, Brush, etc.)</ToolTip>
+          <Default>UIElement</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[#region $templatePartName$ Template Part
+private const string $templatePartName$PartName = "$templatePartName$";
+private $type$ $templatePartName$Part;
+//  [TemplatePart(Name = $templatePartName$PartName, Type=typeof($type$))] 
+//  $templatePartName$Part = this.GetTemplateChild($templatePartName$PartName) as $type$; 
+#endregion
+$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

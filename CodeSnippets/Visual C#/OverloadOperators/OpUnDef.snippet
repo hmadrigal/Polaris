@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>OpUnDef</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Overloading Unary Operators: ++ or - must take and return the defining type</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>opunde</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>DefiningType</ID>
+          <ToolTip>Class where the operator is going to be implemented.</ToolTip>
+          <Default>ClassName</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>UnaryOperator</ID>
+          <ToolTip>++ or - must take and return the defining type</ToolTip>
+          <Default>++</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        
+        public static $DefiningType$ operator $UnaryOperator$($DefiningType$ operand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement unary operator $UnaryOperator$");
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

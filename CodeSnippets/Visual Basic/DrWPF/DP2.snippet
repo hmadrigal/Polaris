@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>dp2 -- Dependency Property -- default value, property changed</Title>
+      <Shortcut>dp2</Shortcut>
+      <Description>Dependency property.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>IsAvailable</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>Boolean</Default>
+        </Literal>
+        <Literal>
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal>
+          <ID>metadataType</ID>
+          <ToolTip>The type of metadata used by this property.</ToolTip>
+          <Default>Framework</Default>
+          <Function />
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>False</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the property.</ToolTip>
+          <Default>...</Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$property$"
+
+        ''' <summary>
+        ''' $property$ Dependency Property
+        ''' </summary>
+        Public Shared ReadOnly $property$Property As DependencyProperty = _
+            DependencyProperty.Register("$property$", GetType($type$), GetType($ownerclass$), _
+                New $metadataType$PropertyMetadata($defaultvalue$, _ 
+                    AddressOf On$property$Changed))
+
+        ''' <summary>
+        ''' Gets or sets the $property$ property.  This dependency property 
+        ''' indicates $desc$.
+        ''' </summary>
+        Public Property $property$() As $type$
+            Get
+                Return CType(GetValue($property$Property), $type$)
+            End Get
+            Set(ByVal value As $type$)
+                SetValue($property$Property, value)
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' Handles changes to the $property$ property.
+        ''' </summary>
+        Private Overloads Shared Sub On$property$Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+            CType(d, $ownerclass$).On$property$Changed(e)
+        End Sub
+
+        ''' <summary>
+        ''' Provides derived classes an opportunity to handle changes to the $property$ property.
+        ''' </summary>
+        Protected Overloads Overridable Sub On$property$Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        End Sub
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>pcp</Shortcut>
+      <Title>PropertyChanged Property</Title>
+      <Description>Defines a property that raises a PropertyChanged event</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>p</ID>
+          <ToolTip>First letter - lower case</ToolTip>
+          <Default>p</Default>
+        </Literal>
+        <Literal>
+          <ID>roperty</ID>
+          <ToolTip>Remainder of property name</ToolTip>
+          <Default>roperty</Default>
+        </Literal>
+        <Literal>
+          <ID>P</ID>
+          <ToolTip>First letter - upper case</ToolTip>
+          <Default>P</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>object</Default>
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>null</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[private $type$ _$p$$roperty$ = $defaultvalue$;
+        public $type$ $P$$roperty$
+        {
+            get { return _$p$$roperty$; }
+            set 
+            { 
+                _$p$$roperty$ = value;
+                RaisePropertyChanged("$P$$roperty$"); 
+            }
+        }
+        
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Event Aggregator Subscription: Use this to subscribe to an event in the Prism Event Aggregator.</Title>
+      <Shortcut>aggrsubs</Shortcut>
+    </Header>
+    <Snippet>
+			<Declarations>
+				<Literal>
+					<ID>tEventType</ID>
+					<ToolTip>The name of the event type to subscribe to.</ToolTip>
+					<Default>PrismEventType</Default>
+				</Literal>
+				<Literal>
+					<ID>threadOption</ID>
+					<ToolTip>The threading option with which to subscribe.</ToolTip>
+					<Default>BackgroundThread</Default>
+				</Literal>
+				<Literal>
+					<ID>keepSubscriberReferenceAlive</ID>
+					<ToolTip>Whether to keep the subscriber alive for this event.</ToolTip>
+					<Default>false</Default>
+				</Literal>
+			</Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $tEventType$ (Event Aggregator Subscription)
+            this.eventAggregator
+                .GetEvent<$tEventType$>()
+                .Subscribe(On$tEventType$,
+                ThreadOption.$threadOption$,
+                keepSubscriberReferenceAlive:$keepSubscriberReferenceAlive$);
+            #endregion
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

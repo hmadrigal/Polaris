@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>4 -- Dependency Property -- default value, framework property options, property changed</Title>
+      <Shortcut>dp</Shortcut>
+      <Description>Dependency property.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>IsSkilled</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>bool</Default>
+        </Literal>
+        <Literal>
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>false</Default>
+        </Literal>
+        <Literal>
+          <ID>options</ID>
+          <ToolTip>The options for this dependency property (only applies to framework properties).</ToolTip>
+          <Default>.None</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the property.</ToolTip>
+          <Default>...</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $property$
+
+        /// <summary>
+        /// $property$ Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty $property$Property =
+            DependencyProperty.Register("$property$", typeof($type$), typeof($ownerclass$),
+                new FrameworkPropertyMetadata(($type$)$defaultvalue$, 
+                    FrameworkPropertyMetadataOptions$options$,
+                    new PropertyChangedCallback(On$property$Changed)));
+
+        /// <summary>
+        /// Gets or sets the $property$ property.  This dependency property 
+        /// indicates $desc$.
+        /// </summary>
+        public $type$ $property$
+        {
+            get { return ($type$)GetValue($property$Property); }
+            set { SetValue($property$Property, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the $property$ property.
+        /// </summary>
+        private static void On$property$Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (($ownerclass$)d).On$property$Changed(e);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the $property$ property.
+        /// </summary>
+        protected virtual void On$property$Changed(DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        #endregion
+
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

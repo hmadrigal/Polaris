@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>rcb0 -- Command Binding -- Executed handler -- typically within InitializeCommands</Title>
+      <Shortcut>rcb0</Shortcut>
+      <Description>Adds a binding for a routed command.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this command.</ToolTip>
+          <Default>NavigationCommands</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>BrowseForward</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[CommandBindings.Add(New CommandBinding($ownerclass$.$command$, AddressOf $command$Executed))]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

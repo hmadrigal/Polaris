@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>pc</Shortcut>
+      <Title>pc -- INotifyPropertyChanged</Title>
+      <Description>Code snippet that implements the INotifyPropertyChanged interface</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>System.ComponentModel</Namespace>
+        </Import>
+      </Imports>
+      <Code Language="vb">
+        <![CDATA[#Region "INotifyPropertyChanged Members"
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+
+        Protected Sub RaisePropertyChanged(ByVal name As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
+        End Sub
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

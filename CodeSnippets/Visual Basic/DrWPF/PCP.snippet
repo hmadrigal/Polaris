@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>pcp</Shortcut>
+      <Title>pcp -- PropertyChanged Property</Title>
+      <Description>Defines a property that raises a PropertyChanged event</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>p</ID>
+          <ToolTip>First letter - lower case</ToolTip>
+          <Default>p</Default>
+        </Literal>
+        <Literal>
+          <ID>roperty</ID>
+          <ToolTip>Remainder of property name</ToolTip>
+          <Default>rop</Default>
+        </Literal>
+        <Literal>
+          <ID>PUp</ID>
+          <ToolTip>First letter - upper case</ToolTip>
+          <Default>P</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>Object</Default>
+        </Literal>
+        <Literal>
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>Nothing</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[Dim _$p$$roperty$ As $type$ = $defaultvalue$
+        Public Property $PUp$$roperty$() As $type$
+            Get
+                Return _$p$$roperty$
+            End Get
+            Set(ByVal value As $type$)
+                _$p$$roperty$ = value
+                RaisePropertyChanged("$PUp$$roperty$")
+            End Set
+        End Property]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

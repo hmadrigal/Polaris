@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>c3 -- Class Command Binding (requires RoutedCommandHelper class) -- Executed and CanExecute handlers and input gestures</Title>
+      <Shortcut>rc</Shortcut>
+      <Description>Add to static constructor to create a class binding for a routed command.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>handlerClass</ID>
+          <ToolTip>The class that is registering the class handler.</ToolTip>
+          <Default>handlerClass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class for the command.</ToolTip>
+          <Default>NavigationCommands</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>BrowseHome</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureKey</ID>
+          <Default>.F12</Default>
+          <ToolTip>Keyboard key for KeyGesture (NOTE: the gesture collection could also contain MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureModifiers</ID>
+          <Default>.Control</Default>
+          <ToolTip>Keyboard modifiers for input gesture (NOTE: applies to both KeyGesture and MouseGesture objects)</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>gestureText</ID>
+          <Default>Ctrl+F12</Default>
+          <ToolTip>Text for KeyGesture</ToolTip>
+        </Literal>
+        <Literal Editable="true">
+          <ID>additionalGestures</ID>
+          <Default></Default>
+          <ToolTip>Additional gestures (either KeyGesture or MouseGesture objects) can be added here using a comma-separated list.</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[RoutedCommandHelper.RegisterClassCommand($ownerclass$.$command$, typeof($handlerClass$), 
+                $command$Executed, Can$command$, new KeyGesture(Key$gestureKey$, ModifierKeys$gestureModifiers$, "$gestureText$")$additionalGestures$);
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

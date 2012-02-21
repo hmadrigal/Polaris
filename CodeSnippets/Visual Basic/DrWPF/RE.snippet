@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>re0 -- Routed Event (requires RoutedEventHelper class)</Title>
+      <Shortcut>re0</Shortcut>
+      <Description>Routed event.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>event</ID>
+          <ToolTip>Event Name</ToolTip>
+          <Default>Flip</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>strategy</ID>
+          <ToolTip>Routing Strategy</ToolTip>
+          <Default>.Bubble</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>handler</ID>
+          <ToolTip>Event Handler</ToolTip>
+          <Default>Routed</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argsType</ID>
+          <ToolTip>Type of routed event args</ToolTip>
+          <Default>Routed</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>raiseAccess</ID>
+          <ToolTip>RaiseEvent Access</ToolTip>
+          <Default>Friend</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this event (which is typically the class in which it is declared).</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the event.</ToolTip>
+          <Default>...</Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$event$"
+
+        ''' <summary>
+        ''' $event$ Routed Event
+        ''' </summary>
+        Public Shared ReadOnly $event$Event As RoutedEvent = EventManager.RegisterRoutedEvent("$event$", _ 
+            RoutingStrategy$strategy$, GetType($handler$EventHandler), GetType($ownerclass$))
+
+        ''' <summary>
+        ''' Occurs when $desc$
+        ''' </summary>
+        Public Custom Event $event$ As $handler$EventHandler
+            AddHandler(ByVal value As $handler$EventHandler)
+                Me.AddHandler($event$Event, value)
+            End AddHandler
+            RemoveHandler(ByVal value As $handler$EventHandler)
+                Me.RemoveHandler($event$Event, value)
+            End RemoveHandler
+            RaiseEvent(ByVal sender As Object, ByVal e As $handler$EventArgs)
+                Me.RaiseEvent(e)
+            End RaiseEvent
+        End Event
+
+        ''' <summary>
+        ''' A helper method to raise the $event$ event.
+        ''' </summary>
+        Protected Overloads Function Raise$event$Event() As $argsType$EventArgs
+            Return Raise$event$Event(Me)
+        End Function
+
+        ''' <summary>
+        ''' A static helper method to raise the $event$ event on a target element.
+        ''' </summary>
+        ''' <param name="target">UIElement or ContentElement on which to raise the event</param>
+        $raiseAccess$ Overloads Shared Function Raise$event$Event(ByVal target As DependencyObject) As $argsType$EventArgs
+            If (target Is Nothing) Then
+                Return Nothing
+            End If
+            Dim args As $argsType$EventArgs = New $argsType$EventArgs()
+            args.RoutedEvent = $event$Event
+            RoutedEventHelper.RaiseRoutedEvent(target, args)
+            Return args
+        End Function
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

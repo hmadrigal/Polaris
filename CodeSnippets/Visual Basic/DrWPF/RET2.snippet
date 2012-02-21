@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>ret2 -- Routed Event (requires RoutedEventHelper class) -- tunneled and bubbled, 2 raise arguments</Title>
+      <Shortcut>ret2</Shortcut>
+      <Description>Tunneled and bubbled routed event.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>event</ID>
+          <ToolTip>Event Name</ToolTip>
+          <Default>Crush</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>handler</ID>
+          <ToolTip>Event Handler</ToolTip>
+          <Default>Routed</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argsType</ID>
+          <ToolTip>Type of routed event args</ToolTip>
+          <Default>Routed</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>raiseAccess</ID>
+          <ToolTip>RaiseEvent Access</ToolTip>
+          <Default>Friend</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argType</ID>
+          <ToolTip>Argument Type</ToolTip>
+          <Default>Boolean</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>arg</ID>
+          <ToolTip>Argument</ToolTip>
+          <Default>arg</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argType2</ID>
+          <ToolTip>Argument Type</ToolTip>
+          <Default>Boolean</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>arg2</ID>
+          <ToolTip>Argument</ToolTip>
+          <Default>arg2</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this event (which is typically the class in which it is declared).</ToolTip>
+          <Default>Window1</Default>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the event.</ToolTip>
+          <Default>...</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argDesc</ID>
+          <ToolTip>Argument Description</ToolTip>
+          <Default></Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true">
+          <ID>argDesc2</ID>
+          <ToolTip>Argument Description</ToolTip>
+          <Default></Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$event$ (and Preview$event$)"
+
+        ''' <summary>
+        ''' $event$ Routed Event
+        ''' </summary>
+        Public Shared ReadOnly $event$Event As RoutedEvent = EventManager.RegisterRoutedEvent("$event$", _ 
+            RoutingStrategy.Bubble, GetType($handler$EventHandler), GetType($ownerclass$))
+
+        ''' <summary>
+        ''' Bubbled event that occurs when $desc$
+        ''' </summary>
+        Public Custom Event $event$ As $handler$EventHandler
+            AddHandler(ByVal value As $handler$EventHandler)
+                Me.AddHandler($event$Event, value)
+            End AddHandler
+            RemoveHandler(ByVal value As $handler$EventHandler)
+                Me.RemoveHandler($event$Event, value)
+            End RemoveHandler
+            RaiseEvent(ByVal sender As Object, ByVal e As $handler$EventArgs)
+                Me.RaiseEvent(e)
+            End RaiseEvent
+        End Event
+
+        ''' <summary>
+        ''' A helper method to raise the $event$ event.
+        ''' </summary>
+        ''' <param name="$arg$">$argDesc$</param>
+        ''' <param name="$arg2$">$argDesc2$</param>
+        Protected Overloads Function Raise$event$Event(ByVal $arg$ As $argType$, ByVal $arg2$ As $argType2$) As $argsType$EventArgs
+            Return Raise$event$Event(Me, $arg$, $arg2$)
+        End Function
+
+        ''' <summary>
+        ''' A static helper method to raise the $event$ event on a target element.
+        ''' </summary>
+        ''' <param name="target">UIElement or ContentElement on which to raise the event</param>
+        ''' <param name="$arg$">$argDesc$</param>
+        ''' <param name="$arg2$">$argDesc2$</param>
+        $raiseAccess$ Overloads Shared Function Raise$event$Event(ByVal target As DependencyObject, ByVal $arg$ As $argType$, ByVal $arg2$ As $argType2$) As $argsType$EventArgs
+            If (target Is Nothing) Then
+                Return Nothing
+            End If
+            Dim args As $argsType$EventArgs = New $argsType$EventArgs($arg$, $arg2$)
+            args.RoutedEvent = $event$Event
+            RoutedEventHelper.RaiseRoutedEvent(target, args)
+            Return args
+        End Function
+
+        ''' <summary>
+        ''' Preview$event$ Routed Event
+        ''' </summary>
+        Public Shared ReadOnly Preview$event$Event As RoutedEvent = EventManager.RegisterRoutedEvent("Preview$event$", _
+            RoutingStrategy.Tunnel, GetType($handler$EventHandler), GetType($ownerclass$))
+
+        ''' <summary>
+        ''' Tunneled event that occurs when $desc$
+        ''' </summary>
+        Public Custom Event Preview$event$ As $handler$EventHandler
+            AddHandler(ByVal value As $handler$EventHandler)
+                Me.AddHandler(Preview$event$Event, value)
+            End AddHandler
+            RemoveHandler(ByVal value As $handler$EventHandler)
+                Me.RemoveHandler(Preview$event$Event, value)
+            End RemoveHandler
+            RaiseEvent(ByVal sender As Object, ByVal e As $handler$EventArgs)
+                Me.RaiseEvent(e)
+            End RaiseEvent
+        End Event
+
+        ''' <summary>
+        ''' A helper method to raise the Preview$event$ event.
+        ''' </summary>
+        ''' <param name="$arg$">$argDesc$</param>
+        ''' <param name="$arg2$">$argDesc2$</param>
+        Protected Overloads Function RaisePreview$event$Event(ByVal $arg$ As $argType$, ByVal $arg2$ As $argType2$) As $argsType$EventArgs
+            Return RaisePreview$event$Event(Me, $arg$, $arg2$)
+        End Function
+
+        ''' <summary>
+        ''' A static helper method to raise the Preview$event$ event on a target element.
+        ''' </summary>
+        ''' <param name="target">UIElement or ContentElement on which to raise the event</param>
+        ''' <param name="$arg$">$argDesc$</param>
+        ''' <param name="$arg2$">$argDesc2$</param>
+        $raiseAccess$ Overloads Shared Function RaisePreview$event$Event(ByVal target As DependencyObject, ByVal $arg$ As $argType$, ByVal $arg2$ As $argType2$) As $argsType$EventArgs
+            If (target Is Nothing) Then
+                Return Nothing
+            End If
+            Dim args As $argsType$EventArgs = New $argsType$EventArgs($arg$, $arg2$)
+            args.RoutedEvent = Preview$event$Event
+            RoutedEventHelper.RaiseRoutedEvent(target, args)
+            Return args
+        End Function
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

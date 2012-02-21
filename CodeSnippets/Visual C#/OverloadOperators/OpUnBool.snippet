@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>OpUnDef</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Overloading Unary Operators: true or false must take a parameter of the defining type and can return a bool</Description>
+      <HelpUrl>http://hmadrigal.wordpress.com</HelpUrl>
+      <Shortcut>opunbo</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>DefiningType</ID>
+          <ToolTip>Class where the operator is going to be implemented.</ToolTip>
+          <Default>ClassName</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[        
+        public static bool operator true($DefiningType$ operand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement unary operator: true");
+        }
+        public static bool operator false($DefiningType$ operand)
+        {
+            throw new NotImplementedException("$DefiningType$ does not implement unary operator: false");
+        }
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

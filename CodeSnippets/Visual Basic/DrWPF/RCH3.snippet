@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>rch3 -- Routed Command Handlers -- static Executed and CanExecute class handlers</Title>
+      <Shortcut>rch3</Shortcut>
+      <Description>Routed command handlers.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <References>
+        <Reference>
+          <Assembly>WindowsBase</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationCore</Assembly>
+        </Reference>
+        <Reference>
+          <Assembly>PresentationFramework</Assembly>
+        </Reference>
+      </References>
+      <Imports>
+        <Import>
+          <Namespace>System.Windows</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>command</ID>
+          <ToolTip>Command Name</ToolTip>
+          <Default>BrowseHome</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="vb">
+        <![CDATA[#Region "$command$"
+
+        Private Shared Sub $command$Executed(ByVal sender As Object, ByVal e As ExecutedRoutedEventArgs)
+        End Sub
+
+        Private Shared Sub Can$command$(ByVal sender As Object, ByVal e As CanExecuteRoutedEventArgs)
+            e.CanExecute = True
+        End Sub
+
+        #End Region]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

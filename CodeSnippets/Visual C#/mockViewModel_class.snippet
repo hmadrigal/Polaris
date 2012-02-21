@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Mock ViewModel Class: Use this snippet to create a new mock class for a specific ViewModel interface.</Title>
+      <Shortcut>mockviewmodel</Shortcut>
+    </Header>
+    <Snippet>
+			<Declarations>
+				<Literal>
+					<ID>viewModelName</ID>
+					<ToolTip>The name of the ViewModel</ToolTip>
+					<Default>ViewModelName</Default>
+				</Literal>
+			</Declarations>
+      <Code Language="csharp">
+        <![CDATA[    #region Mock$viewModelName$
+
+    class Mock$viewModelName$ : I$viewModelName$
+    {
+        public Mock$viewModelName$()
+        {
+
+        }
+    }
+
+    #endregion
+
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

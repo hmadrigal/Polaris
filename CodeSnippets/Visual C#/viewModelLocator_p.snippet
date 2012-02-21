@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>ViewModelLocator Property: Use this snippet to create a new property on a ViewModelLocator using Unity Container to resolve the value.</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>locatorprop</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>publicProperty</ID>
+          <ToolTip>The name of the public property</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[
+        public I$publicProperty$ $publicProperty$
+        {
+            get
+            {
+                return Resolve<I$publicProperty$>();
+            }
+        }
+        $end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>a3 -- Attached Routed Event (requires RoutedEventHelper class) -- 3 raise arguments</Title>
+      <Shortcut>re</Shortcut>
+      <Description>Attached routed event.</Description>
+      <Author>Dr. WPF</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>event</ID>
+          <ToolTip>Event Name</ToolTip>
+          <Default>Fester</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>strategy</ID>
+          <ToolTip>Routing Strategy</ToolTip>
+          <Default>.Bubble</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>handler</ID>
+          <ToolTip>The handler delegate for this Property.</ToolTip>
+          <Default>Routed</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argsType</ID>
+          <ToolTip>Type of routed event args</ToolTip>
+          <Default>Routed</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>raiseAccess</ID>
+          <ToolTip>RaiseEvent Access</ToolTip>
+          <Default>internal</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argType</ID>
+          <ToolTip>Argument Type</ToolTip>
+          <Default>bool</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>arg</ID>
+          <ToolTip>Argument</ToolTip>
+          <Default>arg</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argType2</ID>
+          <ToolTip>Argument Type</ToolTip>
+          <Default>bool</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>arg2</ID>
+          <ToolTip>Argument</ToolTip>
+          <Default>arg2</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argType3</ID>
+          <ToolTip>Argument Type</ToolTip>
+          <Default>bool</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>arg3</ID>
+          <ToolTip>Argument</ToolTip>
+          <Default>arg3</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this event (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>desc</ID>
+          <ToolTip>A description for the event.</ToolTip>
+          <Default>...</Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argDesc</ID>
+          <ToolTip>Argument Description</ToolTip>
+          <Default></Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argDesc2</ID>
+          <ToolTip>Argument Description</ToolTip>
+          <Default></Default>
+          <Function></Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>argDesc3</ID>
+          <ToolTip>Argument Description</ToolTip>
+          <Default></Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+          <![CDATA[#region $event$
+
+        /// <summary>
+        /// $event$ Attached Routed Event
+        /// </summary>
+        public static readonly RoutedEvent $event$Event = EventManager.RegisterRoutedEvent("$event$", 
+            RoutingStrategy$strategy$, typeof($handler$EventHandler), typeof($ownerclass$));
+
+        /// <summary>
+        /// Adds a handler for the $event$ attached event
+        /// </summary>
+        /// <param name="element">UIElement or ContentElement that listens to the event</param>
+        /// <param name="handler">Event handler to be added</param>
+        public static void Add$event$Handler(DependencyObject element, $handler$EventHandler handler)
+        {
+            RoutedEventHelper.AddHandler(element, $event$Event, handler);
+        }
+
+        /// <summary>
+        /// Removes a handler for the $event$ attached event
+        /// </summary>
+        /// <param name="element">UIElement or ContentElement that listens to the event</param>
+        /// <param name="handler">Event handler to be removed</param>
+        public static void Remove$event$Handler(DependencyObject element, $handler$EventHandler handler)
+        {
+            RoutedEventHelper.RemoveHandler(element, $event$Event, handler);
+        }
+
+        /// <summary>
+        /// A static helper method to raise the $event$ event on a target element.
+        /// </summary>
+        /// <param name="target">UIElement or ContentElement on which to raise the event</param>
+        /// <param name="$arg$">$argDesc$</param>
+        /// <param name="$arg2$">$argDesc2$</param>
+        /// <param name="$arg3$">$argDesc3$</param>
+        $raiseAccess$ static $argsType$EventArgs Raise$event$Event(DependencyObject target, $argType$ $arg$, $argType2$ $arg2$, $argType3$ $arg3$)
+        {
+            if (target == null) return null;
+            
+            $argsType$EventArgs args = new $argsType$EventArgs($arg$, $arg2$, $arg3$);
+            args.RoutedEvent = $event$Event;
+            RoutedEventHelper.RaiseEvent(target, args);
+            return args;
+        }
+
+        #endregion
+        
+        $end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Animation Properties: use this to create custom double animation properties inside controls.</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>animationProperties</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>animationName</ID>
+          <ToolTip>The name of the animation</ToolTip>
+          <Default>Load</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal>
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this property (which is typically the class in which it is declared).</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+  <![CDATA[#region $animationName$ Animation Properties
+
+        #region $animationName$Duration
+
+        /// <summary>
+        /// $animationName$Duration Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty $animationName$DurationProperty =
+            DependencyProperty.Register("$animationName$Duration", typeof(TimeSpan), typeof($ownerclass$),
+                new FrameworkPropertyMetadata((TimeSpan)new TimeSpan(0,0,0,0,800),
+                    new PropertyChangedCallback(On$animationName$DurationChanged)));
+
+        /// <summary>
+        /// Gets or sets the $animationName$Duration property.  This dependency property 
+        /// indicates the duration of the $animationName$ animation.
+        /// </summary>
+        public TimeSpan $animationName$Duration
+        {
+            get { return (TimeSpan)GetValue($animationName$DurationProperty); }
+            set { SetValue($animationName$DurationProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the $animationName$Duration property.
+        /// </summary>
+        private static void On$animationName$DurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (($ownerclass$)d).On$animationName$DurationChanged(e);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the $animationName$Duration property.
+        /// </summary>
+        protected virtual void On$animationName$DurationChanged(DependencyPropertyChangedEventArgs e)
+        {
+            $animationName$AnimationHelper.Duration = $animationName$Duration;
+        }
+
+        #endregion
+        #region $animationName$EasingFunction
+
+        /// <summary>
+        /// $animationName$EasingFunction Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty $animationName$EasingFunctionProperty =
+            DependencyProperty.Register("$animationName$EasingFunction", typeof(IEasingFunction), typeof($ownerclass$),
+                new FrameworkPropertyMetadata((IEasingFunction)null,
+                    new PropertyChangedCallback(On$animationName$EasingFunctionChanged)));
+
+        /// <summary>
+        /// Gets or sets the $animationName$EasingFunction property.  This dependency property 
+        /// indicates the funtion used to apply easing to the $animationName$ animation.
+        /// </summary>
+        public IEasingFunction $animationName$EasingFunction
+        {
+            get { return (IEasingFunction)GetValue($animationName$EasingFunctionProperty); }
+            set { SetValue($animationName$EasingFunctionProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the $animationName$EasingFunction property.
+        /// </summary>
+        private static void On$animationName$EasingFunctionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (($ownerclass$)d).On$animationName$EasingFunctionChanged(e);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the $animationName$EasingFunction property.
+        /// </summary>
+        protected virtual void On$animationName$EasingFunctionChanged(DependencyPropertyChangedEventArgs e)
+        {
+            $animationName$AnimationHelper.EasingFunction = $animationName$EasingFunction;
+        }
+
+        #endregion
+
+        PW.Windows.Animation.DoubleAnimationHelper $animationName$AnimationHelper;
+
+        private void Initialize$animationName$Animation()
+        {
+            //TODO: Call this method from the class constructor.
+            $animationName$AnimationHelper = 
+                new PW.Windows.Animation.DoubleAnimationHelper
+                    (
+                    On$animationName$AnimationCompleted,
+                    On$animationName$AnimationProgress
+                    );
+            $animationName$AnimationHelper.Duration = $animationName$Duration;
+            $animationName$AnimationHelper.EasingFunction = $animationName$EasingFunction;
+        }
+
+        private void Start$animationName$Animation(double initialValue = 1.0, double finalValue = 0.0)
+        {
+            $animationName$AnimationHelper.StartAnimation(initialValue, finalValue);
+        }
+
+        private void Update$animationName$Animation()
+        {
+            $animationName$AnimationHelper.Update();
+        }
+
+        private void On$animationName$AnimationCompleted() 
+        {
+        }
+
+        private void On$animationName$AnimationProgress(double currentStepValue) 
+        {
+        }
+
+        #endregion
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
