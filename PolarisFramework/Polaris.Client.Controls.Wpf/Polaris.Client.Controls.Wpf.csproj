@@ -67,6 +67,7 @@
     <Compile Include="Behaviors\CaptureFrameworkElementAction.cs" />
     <Compile Include="Behaviors\DataBoundStateAction.cs" />
     <Compile Include="Behaviors\FullScreenBehavior.cs" />
+    <Compile Include="Behaviors\InvokeCommandOnKeyAction.cs" />
     <Compile Include="Behaviors\ScrollOnTouchAction.cs" />
     <Compile Include="Behaviors\SelectOnTapAction.cs" />
     <Compile Include="CategoryNames.cs" />
