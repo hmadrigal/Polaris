@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ScrollCarouselOnTouchAction.cs" />
+    <Compile Include="Actions\ScrollViewerGoToAction.cs" />
     <Compile Include="Animation\DoubleAnimationHelper.cs" />
     <Compile Include="Actions\AnimatedNumberAction.cs" />
     <Compile Include="Actions\AnimatedTextAction.cs" />
