@@ -94,5 +94,21 @@
     </Style>
     <!--CarouselItemsControl-->
 
+    <!--Animated Expander-->
+    <Style TargetType="{x:Type local:AnimatedExpander}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AnimatedExpander}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Animated Expander-->
+
 
 </ResourceDictionary>
