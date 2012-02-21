@@ -10,6 +10,9 @@ namespace Polaris.Windows.Extensions
     using System.Diagnostics;
     using System.Text;
     using Microsoft.Practices.EnterpriseLibrary.Logging;
+#if SILVERLIGHT
+    using Microsoft.Practices.EnterpriseLibrary.Logging.Diagnostics;
+#endif
 
     public static class LogWriterExtensions
     {

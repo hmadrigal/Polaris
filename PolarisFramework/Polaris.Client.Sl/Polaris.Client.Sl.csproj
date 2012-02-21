@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Polaris.Client.Sl</RootNamespace>
+    <RootNamespace>Polaris.Windows</RootNamespace>
     <AssemblyName>Polaris.Client.Sl</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
@@ -50,16 +50,88 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\SL5\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common.Silverlight">
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\SL40\Microsoft.Practices.EnterpriseLibrary.Common.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Silverlight">
+      <HintPath>..\packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\SL40\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Silverlight">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.505.1\lib\SL40\Microsoft.Practices.EnterpriseLibrary.Logging.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\SL5\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\SL5\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <HintPath>..\packages\Prism.UnityExtensions.4.1.0.0\lib\SL5\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Silverlight">
+      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\SL40\Microsoft.Practices.Unity.Interception.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Silverlight">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\SL30\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="System.Reactive">
+      <HintPath>..\packages\Rx-Main.1.0.11226\lib\SL5\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\packages\Rx-Silverlight.1.0.11226\lib\SL5\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\SL5\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Polaris.Client.Wpf\EntLibConst.cs">
+      <Link>EntLibConst.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\Extensions\ActionExtensions.cs">
+      <Link>Extensions\ActionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\Extensions\ExceptionManagerExtensions.cs">
+      <Link>Extensions\ExceptionManagerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\Extensions\LogWriterExtensions.cs">
+      <Link>Extensions\LogWriterExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\IMainContentViewModel.cs">
+      <Link>IMainContentViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\ITransitionViewModel.cs">
+      <Link>ITransitionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\IViewModelLocator.cs">
+      <Link>IViewModelLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\TransitionViewModelBase.cs">
+      <Link>TransitionViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris.Client.Wpf\ViewModelLocatorBase.cs">
+      <Link>ViewModelLocatorBase.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
