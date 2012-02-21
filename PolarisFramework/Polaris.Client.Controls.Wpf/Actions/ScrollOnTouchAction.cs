@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ScrollOnTouchAction.cs" company="">
+// <copyright file="ScrollOnTouchAction.cs" company="Polaris Community">
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
@@ -16,13 +16,13 @@ namespace Polaris.Windows.Actions
     [TypeConstraint(typeof(ScrollViewer))]
     public class ScrollOnTouchAction : TargetedTriggerAction<UIElement>
     {
-#if DEBUG
-        bool isMouseDown = false;
-#endif
+        bool isScrolling = false;
 
         TimeSpan InitialDelayTime = new TimeSpan(0, 0, 0, 0, 0);
 
         Int32 InertiaTriggerArea = 20;
+
+        double InitialScrollingTriggerThreshold = 0.0;
 
         private Point InitialPosition { get; set; }
 
@@ -142,6 +142,28 @@ namespace Polaris.Windows.Actions
 
         #endregion Friction
 
+        #region InputType
+
+        /// <summary>
+        /// InputType Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty InputTypeProperty =
+            DependencyProperty.Register("InputType", typeof(InputType), typeof(ScrollOnTouchAction),
+                new FrameworkPropertyMetadata((InputType)InputType.Mouse));
+
+        /// <summary>
+        /// Gets or sets the InputType property.  This dependency property 
+        /// indicates whether to use mouse or touch events (or both) as input for this behavior.
+        /// </summary>
+        public InputType InputType
+        {
+            get { return (InputType)GetValue(InputTypeProperty); }
+            set { SetValue(InputTypeProperty, value); }
+        }
+
+        #endregion
+
+
         public ScrollOnTouchAction()
         {
             //CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
@@ -222,48 +244,53 @@ namespace Polaris.Windows.Actions
         {
             if (oldTarget != null)
             {
-                oldTarget.TouchDown -= new EventHandler<TouchEventArgs>(Target_TouchDown);
-                oldTarget.TouchMove -= new EventHandler<TouchEventArgs>(Target_TouchMoved);
-                oldTarget.TouchUp -= new EventHandler<TouchEventArgs>(Target_TouchUp);
-                oldTarget.TouchEnter -= new EventHandler<TouchEventArgs>(Target_TouchEnter);
-                oldTarget.TouchLeave -= new EventHandler<TouchEventArgs>(Target_TouchLeave);
-#if DEBUG
-                oldTarget.MouseDown -= new MouseButtonEventHandler(Target_MouseDown);
-                oldTarget.MouseMove -= new MouseEventHandler(Target_MouseMove);
-                oldTarget.MouseUp -= new MouseButtonEventHandler(Target_MouseUp);
-                //oldTarget.MouseLeave -= new MouseEventHandler(Target_MouseLeave);
-#endif
+                if (InputType == Actions.InputType.Touch || InputType == Actions.InputType.Both)
+                {
+                    oldTarget.TouchDown -= new EventHandler<TouchEventArgs>(Target_TouchDown);
+                    oldTarget.TouchMove -= new EventHandler<TouchEventArgs>(Target_TouchMoved);
+                    oldTarget.TouchUp -= new EventHandler<TouchEventArgs>(Target_TouchUp);
+                    oldTarget.TouchEnter -= new EventHandler<TouchEventArgs>(Target_TouchEnter);
+                    oldTarget.TouchLeave -= new EventHandler<TouchEventArgs>(Target_TouchLeave);
+                }
+                if (InputType == Actions.InputType.Mouse || InputType == Actions.InputType.Both)
+                {
+                    oldTarget.MouseDown -= new MouseButtonEventHandler(Target_MouseDown);
+                    oldTarget.MouseMove -= new MouseEventHandler(Target_MouseMove);
+                    oldTarget.MouseUp -= new MouseButtonEventHandler(Target_MouseUp);
+                }
             }
             if (newTarget != null)
             {
-                newTarget.TouchDown += new EventHandler<TouchEventArgs>(Target_TouchDown);
-                newTarget.TouchMove += new EventHandler<TouchEventArgs>(Target_TouchMoved);
-                newTarget.TouchUp += new EventHandler<TouchEventArgs>(Target_TouchUp);
-                newTarget.TouchEnter += new EventHandler<TouchEventArgs>(Target_TouchEnter);
-                newTarget.TouchLeave += new EventHandler<TouchEventArgs>(Target_TouchLeave);
-#if DEBUG
-                newTarget.MouseDown += new MouseButtonEventHandler(Target_MouseDown);
-                newTarget.MouseMove += new MouseEventHandler(Target_MouseMove);
-                newTarget.MouseUp += new MouseButtonEventHandler(Target_MouseUp);
-                //newTarget.MouseLeave += new MouseEventHandler(Target_MouseLeave);
-                //newTarget.MouseEnter += new MouseEventHandler(newTarget_MouseEnter);
-#endif
+                if (InputType == Actions.InputType.Touch || InputType == Actions.InputType.Both)
+                {
+                    newTarget.TouchDown += new EventHandler<TouchEventArgs>(Target_TouchDown);
+                    newTarget.TouchMove += new EventHandler<TouchEventArgs>(Target_TouchMoved);
+                    newTarget.TouchUp += new EventHandler<TouchEventArgs>(Target_TouchUp);
+                    newTarget.TouchEnter += new EventHandler<TouchEventArgs>(Target_TouchEnter);
+                    newTarget.TouchLeave += new EventHandler<TouchEventArgs>(Target_TouchLeave);
+                }
+                if (InputType == Actions.InputType.Mouse || InputType == Actions.InputType.Both)
+                {
+                    newTarget.MouseDown += new MouseButtonEventHandler(Target_MouseDown);
+                    newTarget.MouseMove += new MouseEventHandler(Target_MouseMove);
+                    newTarget.MouseUp += new MouseButtonEventHandler(Target_MouseUp);
+                }
             }
             base.OnTargetChanged(oldTarget, newTarget);
         }
 
-#if DEBUG
-
         private void Target_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            isMouseDown = true;
+            if (isScrolling) { return; }
+            isScrolling = true;
+            Target.CaptureMouse();
             var position = e.GetPosition((IInputElement)sender);
             BeginInteraction(position);
         }
 
         private void Target_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!isMouseDown) { return; }
+            if (!isScrolling) { return; }
             if (AssociatedScrollViewer == null) { return; }
 
             var currentPosition = e.GetPosition((IInputElement)sender);
@@ -273,23 +300,25 @@ namespace Polaris.Windows.Actions
 
         private void Target_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            isMouseDown = false;
+            if (!isScrolling) { return; }
+            isScrolling = false;
+            Target.ReleaseMouseCapture();
             var releasePosition = e.GetPosition((IInputElement)sender);
-            //if (releasePosition == null) { return; }
+            if (releasePosition == null) { return; }
 
-            //var currentPosition = releasePosition;
+            var currentPosition = releasePosition;
 
-            //var delta = currentPosition - PreviousPosition;
+            var delta = currentPosition - InitialPosition;
 
-            //if (delta.Length <= InertiaTriggerArea) { return; }
+            if (delta.Length <= InertiaTriggerArea) { return; }
 
             CalculateForce();
         }
 
-#endif
-
         private void Target_TouchLeave(object sender, TouchEventArgs e)
         {
+            if (!isScrolling) { return; }
+            isScrolling = false;
             var currentPosition = e.GetTouchPoint((IInputElement)sender).Position;
 
             var delta = currentPosition - PreviousPosition;
@@ -301,10 +330,16 @@ namespace Polaris.Windows.Actions
 
         private void Target_TouchEnter(object sender, TouchEventArgs e)
         {
+            if (isScrolling) { return; }
+            isScrolling = true;
+            var position = e.GetTouchPoint((IInputElement)sender).Position;
+            BeginInteraction(position);
         }
 
         private void Target_TouchUp(object sender, TouchEventArgs e)
         {
+            if (!isScrolling) { return; }
+            isScrolling = false;
             if (e == null) { return; }
             var releasePosition = e.GetTouchPoint((IInputElement)sender).Position;
             if (releasePosition == null) { return; }
@@ -320,6 +355,7 @@ namespace Polaris.Windows.Actions
 
         private void Target_TouchMoved(object sender, TouchEventArgs e)
         {
+            if (!isScrolling) { return; }
             if (AssociatedScrollViewer == null) { return; }
 
             var currentPosition = e.GetTouchPoint((IInputElement)sender).Position;
@@ -332,6 +368,13 @@ namespace Polaris.Windows.Actions
             var elapsedTime = DateTime.Now - InitialTime;
 
             if (elapsedTime <= InitialDelayTime) { return; }
+
+            //var deltaFromInitialPosition = currentPosition - InitialPosition;
+
+            //if (deltaFromInitialPosition.Length < InitialScrollingTriggerThreshold)
+            //{
+            //    return;
+            //}
 
             var delta = currentPosition - PreviousPosition;
 
@@ -370,6 +413,8 @@ namespace Polaris.Windows.Actions
 
         private void Target_TouchDown(object sender, TouchEventArgs e)
         {
+            if (isScrolling) { return; }
+            isScrolling = true;
             var position = e.GetTouchPoint((IInputElement)sender).Position;
             BeginInteraction(position);
         }
@@ -423,9 +468,10 @@ namespace Polaris.Windows.Actions
         }
     }
 
-    internal enum ForceDirection
+    public enum InputType
     {
-        Up,
-        Down,
+        Mouse,
+        Touch,
+        Both,
     }
 }
