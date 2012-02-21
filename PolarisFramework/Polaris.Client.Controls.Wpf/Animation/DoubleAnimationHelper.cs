@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Animation
+namespace Polaris.Windows.Animation
 {
     using System;
     using System.Windows.Media.Animation;

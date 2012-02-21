@@ -8,7 +8,7 @@
     <ProjectGuid>{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Polaris.Client.Wpf</RootNamespace>
+    <RootNamespace>Polaris.Windows</RootNamespace>
     <AssemblyName>Polaris.Client.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Behaviors
+namespace Polaris.Windows.Actions
 {
     using System.Windows;
     using System.Windows.Input;

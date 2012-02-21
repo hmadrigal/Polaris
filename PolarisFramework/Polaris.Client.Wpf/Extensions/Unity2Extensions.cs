@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Wpf.Extensions
+namespace Polaris.Windows.Extensions
 {
     using System;
     using System.Configuration;

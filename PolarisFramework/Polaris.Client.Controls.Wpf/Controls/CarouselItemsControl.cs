@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Controls
+namespace Polaris.Windows.Controls
 {
     using System;
     using System.Collections.Generic;
@@ -2221,12 +2221,12 @@ namespace Polaris.Client.Controls.Wpf.Controls
 
         #endregion IdleScrollingEasingFunction
 
-        Polaris.Client.Controls.Wpf.Animation.DoubleAnimationHelper IdleScrollingAnimationHelper;
+        Polaris.Windows.Animation.DoubleAnimationHelper IdleScrollingAnimationHelper;
 
         private void InitializeIdleScrollingAnimation()
         {
             IdleScrollingAnimationHelper =
-                new Polaris.Client.Controls.Wpf.Animation.DoubleAnimationHelper
+                new Polaris.Windows.Animation.DoubleAnimationHelper
                     (
                     OnIdleScrollingAnimationCompleted,
                     OnIdleScrollingAnimationProgress

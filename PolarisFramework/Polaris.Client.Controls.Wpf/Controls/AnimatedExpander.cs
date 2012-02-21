@@ -3,14 +3,14 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Controls
+namespace Polaris.Windows.Controls
 {
     using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
-    using Polaris.Client.Controls.Wpf.Extensions;
+    using Polaris.Windows.Extensions;
 
     public class AnimatedExpander : ContentControl
     {

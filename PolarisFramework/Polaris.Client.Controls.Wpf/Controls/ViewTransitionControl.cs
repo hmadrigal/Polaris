@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Controls
+namespace Polaris.Windows.Controls
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace Polaris.Client.Controls.Wpf.Controls
     using System.Windows.Navigation;
     using System.Windows.Shapes;
     using Microsoft.Expression.Interactivity;
-    using Polaris.Client.Controls.Wpf.Extensions;
+    using Polaris.Windows.Extensions;
     using System.Windows.Media.Animation;
 
     [TemplateVisualState(Name = BeforeLoadedStateName, GroupName = TransitionStatesGroupName)]

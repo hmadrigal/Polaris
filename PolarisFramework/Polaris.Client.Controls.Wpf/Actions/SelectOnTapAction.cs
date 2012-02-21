@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Behaviors
+namespace Polaris.Windows.Actions
 {
     using System;
     using System.Linq;
@@ -13,7 +13,7 @@ namespace Polaris.Client.Controls.Wpf.Behaviors
     using System.Windows.Input;
     using System.Windows.Interactivity;
     using System.Windows.Media;
-    using Polaris.Client.Controls.Wpf.Extensions;
+    using Polaris.Windows.Extensions;
 
     [TypeConstraint(typeof(FrameworkElement))]
     public class SelectOnTapAction : TargetedTriggerAction<UIElement>

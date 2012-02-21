@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Controls.Wpf.Behaviors
+namespace Polaris.Windows.Actions
 {
     using System;
     using System.ComponentModel;
@@ -12,7 +12,7 @@ namespace Polaris.Client.Controls.Wpf.Behaviors
     using System.Windows.Interactivity;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
-    using Polaris.Client.Controls.Wpf.Extensions;
+    using Polaris.Windows.Extensions;
 
     public class AnimatedNumberAction : TriggerAction<TextBlock>
     {

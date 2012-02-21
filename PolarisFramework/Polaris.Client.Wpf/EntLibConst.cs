@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Wpf
+namespace Polaris.Windows
 {
     /// <summary>
     /// Holds a set of constant values associated to Enterprise Libraries Settings. These values are available

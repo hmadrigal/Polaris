@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Client.Wpf
+namespace Polaris.Windows
 {
     using System.ComponentModel;
     using Microsoft.Practices.Prism.Events;
