@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="">
-//     Copyright (c) A02Marvin, . All rights reserved.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Polaris Community">
+// This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 using System;
 using System.Reflection;
 using System.Resources;
@@ -18,7 +18,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Polaris.Client.Keyboard.Wpf")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCopyright("MS-PL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

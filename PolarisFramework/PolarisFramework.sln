@@ -13,9 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Keyboard.Wpf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Extensions.Wpf", "Polaris.Client.Extensions.Wpf\Polaris.Client.Extensions.Wpf.csproj", "{7779EA41-5876-4EC9-A977-7C7E2469D835}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Sl", "Polaris.Client.Sl\Polaris.Client.Sl.csproj", "{2E17D391-F14B-4003-96FB-602F77E108C1}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -37,6 +39,9 @@ Global
 		SccProjectUniqueName6 = Polaris.Client.Extensions.Wpf\\Polaris.Client.Extensions.Wpf.csproj
 		SccProjectName6 = Polaris.Client.Extensions.Wpf
 		SccLocalPath6 = Polaris.Client.Extensions.Wpf
+		SccProjectUniqueName7 = Polaris.Client.Sl\\Polaris.Client.Sl.csproj
+		SccProjectName7 = Polaris.Client.Sl
+		SccLocalPath7 = Polaris.Client.Sl
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +72,10 @@ Global
 		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7779EA41-5876-4EC9-A977-7C7E2469D835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E17D391-F14B-4003-96FB-602F77E108C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E17D391-F14B-4003-96FB-602F77E108C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E17D391-F14B-4003-96FB-602F77E108C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E17D391-F14B-4003-96FB-602F77E108C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
