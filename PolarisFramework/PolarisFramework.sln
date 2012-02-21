@@ -1,14 +1,59 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris", "Polaris\Polaris.csproj", "{1A6E247D-F0F2-471A-82EB-FF528C1E32A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Portable", "Polaris.Client.Portable\Polaris.Client.Portable.csproj", "{477A2E69-F513-40B8-B688-08FE41C4E504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Controls.Wpf", "Polaris.Client.Controls.Wpf\Polaris.Client.Controls.Wpf.csproj", "{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Wpf", "Polaris.Client.Wpf\Polaris.Client.Wpf.csproj", "{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
+		SccProjectUniqueName1 = Polaris\\Polaris.csproj
+		SccProjectName1 = Polaris
+		SccLocalPath1 = Polaris
+		SccProjectUniqueName2 = Polaris.Client.Portable\\Polaris.Client.Portable.csproj
+		SccProjectName2 = Polaris.Client.Portable
+		SccLocalPath2 = Polaris.Client.Portable
+		SccProjectUniqueName3 = Polaris.Client.Controls.Wpf\\Polaris.Client.Controls.Wpf.csproj
+		SccProjectName3 = Polaris.Client.Controls.Wpf
+		SccLocalPath3 = Polaris.Client.Controls.Wpf
+		SccProjectUniqueName4 = Polaris.Client.Wpf\\Polaris.Client.Wpf.csproj
+		SccProjectName4 = Polaris.Client.Wpf
+		SccLocalPath4 = Polaris.Client.Wpf
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A6E247D-F0F2-471A-82EB-FF528C1E32A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6E247D-F0F2-471A-82EB-FF528C1E32A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6E247D-F0F2-471A-82EB-FF528C1E32A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6E247D-F0F2-471A-82EB-FF528C1E32A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{477A2E69-F513-40B8-B688-08FE41C4E504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{477A2E69-F513-40B8-B688-08FE41C4E504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{477A2E69-F513-40B8-B688-08FE41C4E504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{477A2E69-F513-40B8-B688-08FE41C4E504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0506F996-6846-4D7A-AA0E-8133A4DAFB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916BECDA-A593-4FD1-89A7-19D5CC53AB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35
 	EndGlobalSection
 EndGlobal
