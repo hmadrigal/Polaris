@@ -81,6 +81,7 @@
     <Compile Include="Controls\FontFormatType.cs" />
     <Compile Include="Controls\FormattedTextBlock.cs" />
     <Compile Include="Controls\ViewTransitionControl.cs" />
+    <Compile Include="Controls\WatermarkTextBox.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\UIElementExtensions.cs" />
     <Compile Include="Extensions\WeakEventHandling.cs" />
