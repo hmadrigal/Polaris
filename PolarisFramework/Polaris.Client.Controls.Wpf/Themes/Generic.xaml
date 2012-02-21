@@ -159,5 +159,16 @@
     </Style>
     <!--ViewTransitionControl-->
 
+    <!--FormattedTextBlock-->
+    <Style TargetType="{x:Type local:FormattedTextBlock}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FormattedTextBlock}" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Focusable" Value="False"/>
+    </Style>
+    <!--FormattedTextBlock-->
+
 
 </ResourceDictionary>
