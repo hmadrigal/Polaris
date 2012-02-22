@@ -12,9 +12,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Polaris.Client.Sl")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Polaris.Client.Sl")]
+[assembly: AssemblyConfiguration("Collection of extension methods and view model classes for Silvelight.")]
+[assembly: AssemblyCompany("Polaris Community")]
+[assembly: AssemblyProduct("Polaris")]
 [assembly: AssemblyCopyright("MS-PL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

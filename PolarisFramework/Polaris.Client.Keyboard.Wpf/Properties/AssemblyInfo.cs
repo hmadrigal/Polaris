@@ -14,10 +14,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Polaris.Client.Keyboard.Wpf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A customizable On screen Keyboard for WPF. It interacts perfectly with the Interop and WPF controls")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Polaris.Client.Keyboard.Wpf")]
+[assembly: AssemblyCompany("Polaris Community")]
+[assembly: AssemblyProduct("Polaris")]
 [assembly: AssemblyCopyright("MS-PL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

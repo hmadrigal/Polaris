@@ -11,11 +11,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Polaris.Client.Controls.Wpf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Polaris library which holds a set of WPF Controls")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Polaris.Client.Controls.Wpf")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("Polaris Community")]
+[assembly: AssemblyProduct("Polaris")]
+[assembly: AssemblyCopyright("MS-PL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

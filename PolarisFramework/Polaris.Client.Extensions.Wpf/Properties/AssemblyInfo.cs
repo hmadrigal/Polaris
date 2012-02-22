@@ -14,10 +14,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Polaris.Client.Extensions.Wpf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Set of extension methods for Wpf classes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Polaris.Client.Extensions.Wpf")]
+[assembly: AssemblyCompany("Polaris Community")]
+[assembly: AssemblyProduct("Polaris")]
 [assembly: AssemblyCopyright("MS-PL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
