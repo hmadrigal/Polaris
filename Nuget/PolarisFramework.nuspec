@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.0.3</version>
+    <authors>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</authors>
+    <owners>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+      <dependency id="CommonServiceLocator" version="[1.0]" />
+      <dependency id="EnterpriseLibrary.Common" version="[5.0.505.0]" />
+      <dependency id="EnterpriseLibrary.ExceptionHandling" version="[5.0.505.0]" />
+      <dependency id="EnterpriseLibrary.Logging" version="[5.0.505.1]" />
+      <dependency id="Prism" version="[4.1.0.0]" />
+      <dependency id="Prism.UnityExtensions" version="[4.1.0.0]" />
+      <dependency id="Rx-Main" version="[1.0.11226]" />
+      <!--<dependency id="Rx-Silverlight" version="[1.0.11226]" />-->
+      <dependency id="Rx-WPF" version="[1.0.11226]" />
+      <dependency id="Unity" version="[2.1.505.0]" />
+      <dependency id="Unity.Interception" version="[2.1.505.0]" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+      <!--<frameworkAssembly assemblyName="System.Windows" targetFramework="Silverlight4.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Silverlight4.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Silverlight4.0" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Silverlight4.0" />-->
+    </frameworkAssemblies>
+    <id>PolarisFramework</id>
+    <title>PolarisFramework.All</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Polaris is a framework that is based on and extends Prism and the Microsoft Enterprise Library. Its main purpose is to implement mechanisms to improve the user experience by creating fluid, animated user interfaces which are always compelling and responsive, giving the user appropriate feedback.</description>
+    <summary>Polaris is a framework to improve the user experience.</summary>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wpf silverlight toolkit framework polaris</tags>
+  </metadata>
+  <files>
+    <file src="..\PolarisFramework\Polaris.Client.Controls.Wpf\bin\Release\Polaris.Client.Controls.Wpf.dll" target="lib\net40-client\Polaris.Client.Controls.Wpf.dll" />
+    <file src="..\PolarisFramework\Polaris.Client.Extensions.Wpf\bin\Release\Polaris.Client.Extensions.Wpf.dll" target="lib\net40-client\Polaris.Client.Extensions.Wpf.dll" />
+    <file src="..\PolarisFramework\Polaris.Client.Keyboard.Wpf\bin\Release\Polaris.Client.Keyboard.Wpf.dll" target="lib\net40-client\Polaris.Client.Keyboard.Wpf.dll" />
+    <file src="..\PolarisFramework\Polaris.Client.Portable\bin\Release\Polaris.Client.Portable.dll" target="lib\net40-client\Polaris.Client.Portable.dll" />
+    <file src="..\PolarisFramework\Polaris.Client.Wpf\bin\Release\Polaris.Client.Wpf.dll" target="lib\net40-client\Polaris.Client.Wpf.dll" />
+    <file src="..\PolarisFramework\Polaris\bin\Release\Polaris.dll" target="lib\net40-client\Polaris.dll" />
+    <file src="..\PolarisFramework\Polaris.Client.Sl\bin\Release\Polaris.Client.Sl.dll" target="lib\sl4\Polaris.Client.Sl.dll" />
+  </files>
+</package>
