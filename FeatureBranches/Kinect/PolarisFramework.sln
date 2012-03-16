@@ -15,9 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Extensions.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Client.Sl", "Polaris.Client.Sl\Polaris.Client.Sl.csproj", "{2E17D391-F14B-4003-96FB-602F77E108C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Kinect.Portable", "Polaris.Kinect.Portable\Polaris.Kinect.Portable.csproj", "{6D40691A-75E4-4984-9C88-E9060065404A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Kinect", "Polaris.Kinect\Polaris.Kinect.csproj", "{88C2ADF4-7FE7-4E68-8720-35ACC1D433D5}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -42,6 +46,12 @@ Global
 		SccProjectUniqueName7 = Polaris.Client.Sl\\Polaris.Client.Sl.csproj
 		SccProjectName7 = Polaris.Client.Sl
 		SccLocalPath7 = Polaris.Client.Sl
+		SccProjectUniqueName8 = Polaris.Kinect.Portable\\Polaris.Kinect.Portable.csproj
+		SccProjectName8 = Polaris.Kinect.Portable
+		SccLocalPath8 = Polaris.Kinect.Portable
+		SccProjectUniqueName9 = Polaris.Kinect\\Polaris.Kinect.csproj
+		SccProjectName9 = Polaris.Kinect
+		SccLocalPath9 = Polaris.Kinect
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +86,14 @@ Global
 		{2E17D391-F14B-4003-96FB-602F77E108C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E17D391-F14B-4003-96FB-602F77E108C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E17D391-F14B-4003-96FB-602F77E108C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D40691A-75E4-4984-9C88-E9060065404A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D40691A-75E4-4984-9C88-E9060065404A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D40691A-75E4-4984-9C88-E9060065404A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D40691A-75E4-4984-9C88-E9060065404A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C2ADF4-7FE7-4E68-8720-35ACC1D433D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C2ADF4-7FE7-4E68-8720-35ACC1D433D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C2ADF4-7FE7-4E68-8720-35ACC1D433D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C2ADF4-7FE7-4E68-8720-35ACC1D433D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
