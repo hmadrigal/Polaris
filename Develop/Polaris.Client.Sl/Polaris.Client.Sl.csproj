@@ -80,15 +80,6 @@
     <Compile Include="..\Polaris.Client.Wpf\EntLibConst.cs">
       <Link>EntLibConst.cs</Link>
     </Compile>
-    <Compile Include="..\Polaris.Client.Wpf\Extensions\ActionExtensions.cs">
-      <Link>Extensions\ActionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Polaris.Client.Wpf\Extensions\ExceptionManagerExtensions.cs">
-      <Link>Extensions\ExceptionManagerExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Polaris.Client.Wpf\Extensions\LogWriterExtensions.cs">
-      <Link>Extensions\LogWriterExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Polaris.Client.Wpf\IMainContentViewModel.cs">
       <Link>IMainContentViewModel.cs</Link>
     </Compile>
@@ -106,6 +97,15 @@
     </Compile>
     <Compile Include="..\Polaris.Client.Wpf\ViewModelLocatorBase.cs">
       <Link>ViewModelLocatorBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris\Extensions\ActionExtensions.cs">
+      <Link>Extensions\ActionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris\Extensions\ExceptionManagerExtensions.cs">
+      <Link>Extensions\ExceptionManagerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Polaris\Extensions\LogWriterExtensions.cs">
+      <Link>Extensions\LogWriterExtensions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

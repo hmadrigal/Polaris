@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.0.4</version>
+    <authors>Marvin Varela (mvarela), Wackdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</authors>
+    <owners>Marvin Varela (mvarela), Wackdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+      <dependency id="Polaris.Client.Extensions.Wpf" version="[1.0.0.4]"/>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+    </frameworkAssemblies>
+    <id>Polaris.Client.Controls.Wpf</id>
+    <title>Polaris.Client.Controls.Wpf</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Polaris is a framework that is based on and extends Prism and the Microsoft Enterprise Library. Its main purpose is to implement mechanisms to improve the user experience by creating fluid, animated user interfaces which are always compelling and responsive, giving the user appropriate feedback.</description>
+    <summary>Set of custom controls for the polaris framework</summary>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wpf silverlight toolkit framework polaris</tags>
+  </metadata>
+  <files>
+    <file src="..\..\Develop\Polaris.Client.Controls.Wpf\bin\Release\Polaris.Client.Controls.Wpf.dll" target="lib\net40-client\Polaris.Client.Controls.Wpf.dll" />
+  </files>
+</package>

@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Windows.Extensions
+namespace Polaris.Extensions
 {
     using System;
     using System.Threading;
@@ -33,7 +33,7 @@ namespace Polaris.Windows.Extensions
             }));
         }
 
-        public static bool TryInvoke(this Action targetAction)
+        public static bool TryInvoke(this Action targetAction, string loggingPolicy = null)
         {
             try
             {
@@ -42,11 +42,10 @@ namespace Polaris.Windows.Extensions
             }
             catch (Exception ex)
             {
-                var exceptionManager = GetExceptionManager();
-                if (exceptionManager.TryHandleException(ex, EntLibConst.ExceptionManager.LOGGING_POLICY))
-                {
+                if (string.IsNullOrEmpty(loggingPolicy))
+                    return false;
+                if (GetExceptionManager().TryHandleException(ex, loggingPolicy))
                     throw;
-                }
                 return false;
             }
         }

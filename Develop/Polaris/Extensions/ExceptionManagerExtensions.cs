@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.Windows.Extensions
+namespace Polaris.Extensions
 {
     using System;
     using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
