@@ -170,10 +170,14 @@ namespace Polaris.Windows.Controls
         /// </summary>
         protected virtual void OnAnimatedScrollPositionChanged(DependencyPropertyChangedEventArgs e)
         {
-            InitialScrollPosition = ScrollPosition;
-            FinalScrollPosition = AnimatedScrollPosition;
-            StartTime = DateTime.Now;
-            IsAnimationCompleted = false;
+            //Trigger animation only if the animated scroll position is different than the current scroll position.
+            if (AnimatedScrollPosition != ScrollPosition)
+            {
+                InitialScrollPosition = ScrollPosition;
+                FinalScrollPosition = AnimatedScrollPosition;
+                StartTime = DateTime.Now;
+                IsAnimationCompleted = false;
+            }
         }
 
         #endregion AnimatedScrollPosition
@@ -654,6 +658,9 @@ namespace Polaris.Windows.Controls
             {
                 UpdateItemsWithDelay(oldValue, newValue);
             }
+
+            //Update animated scroll position to current position.
+            this.AnimatedScrollPosition = newValue;
         }
 
         #endregion ScrollPosition
