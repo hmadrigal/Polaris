@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <version>1.0.0.4</version>
-    <authors>Herber Madrigal (hmadrigal), Marvin Varela (mvarela), Wackdany Rojas (wrojas)</authors>
-    <owners>Herber Madrigal (hmadrigal), Marvin Varela (mvarela), Wackdany Rojas (wrojas)</owners>
+    <authors>Herber Madrigal (hmadrigal),Marvin Varela (mvarela),Wackdany Rojas (wrojas)</authors>
+    <owners>Herber Madrigal (hmadrigal),Marvin Varela (mvarela),Wackdany Rojas (wrojas)</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
@@ -28,7 +28,4 @@
     <language>en-US</language>
     <tags>wpf silverlight toolkit framework polaris</tags>
   </metadata>
-  <files>
-    <file src="..\..\Develop\Polaris\bin\Release\Polaris.dll" target="lib\net40-client\Polaris.dll" />
-  </files>
 </package>
