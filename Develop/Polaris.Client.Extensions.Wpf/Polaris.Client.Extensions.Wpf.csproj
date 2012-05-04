@@ -37,6 +37,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Nuget|AnyCPU'">
+    <OutputPath>bin\Nuget\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -84,4 +93,20 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="CopyToNugetDir">
+    <CreateItem
+      Include="$(MSBuildProjectDirectory)\$(OutputPath)\**\$(MSBuildProjectName).*"
+      >
+      <Output TaskParameter="Include" ItemName="OutputedFiles" />
+    </CreateItem>
+    <Message
+      Importance="high"
+      Text="Copying to Nuget Dir: @(OutputedFiles->'%(FullPath)') to $(MSBuildProjectDirectory)\..\..\Nuget\$(MSBuildProjectName)\lib\net40\"/>
+    <Copy
+      SourceFiles="@(OutputedFiles->'%(FullPath)')"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\..\Nuget\$(MSBuildProjectName)\lib\net40\"  />
+  </Target>
+  <Target Name="AfterBuild">
+    <CallTarget Targets="CopyToNugetDir" Condition="'$(Configuration)|$(Platform)' == 'Nuget|AnyCPU'"/>
+  </Target>
 </Project>

@@ -49,6 +49,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Nuget|AnyCPU'">
+    <OutputPath>bin\Nuget\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common.Silverlight">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\SL40\Microsoft.Practices.EnterpriseLibrary.Common.Silverlight.dll</HintPath>
@@ -127,4 +138,20 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="CopyToNugetDir">
+    <CreateItem
+      Include="$(MSBuildProjectDirectory)\$(OutputPath)\**\$(MSBuildProjectName).*"
+      >
+      <Output TaskParameter="Include" ItemName="OutputedFiles" />
+    </CreateItem>
+    <Message
+      Importance="high"
+      Text="Copying to Nuget Dir: @(OutputedFiles->'%(FullPath)') to $(MSBuildProjectDirectory)\..\..\Nuget\$(MSBuildProjectName)\lib\sl4\"/>
+    <Copy
+      SourceFiles="@(OutputedFiles->'%(FullPath)')"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\..\Nuget\$(MSBuildProjectName)\lib\sl4\"  />
+  </Target>
+  <Target Name="AfterBuild">
+    <CallTarget Targets="CopyToNugetDir" Condition="'$(Configuration)|$(Platform)' == 'Nuget|AnyCPU'"/>
+  </Target>
 </Project>
