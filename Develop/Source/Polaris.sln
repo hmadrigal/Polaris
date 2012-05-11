@@ -1,0 +1,148 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{26CBCF2F-5E68-4012-8085-4BFC001B4126}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Phone", "Phone", "{C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{0BC9A099-AECB-4731-82D1-74D36EB58EAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common", "Common\Polaris.Common\Polaris.Common.csproj", "{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.UnityExtensions", "Wpf\Polaris.UnityExtensions\Polaris.Wpf.UnityExtensions.csproj", "{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf", "Wpf\Polaris.Wpf\Polaris.Wpf.csproj", "{969C8E8C-441B-40F3-8730-4BFA31E56DAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.Kinect.Core", "Wpf\Polaris.Wpf.Kinect.Core\Polaris.Wpf.Kinect.Core.csproj", "{73E295C4-C400-4135-AC4E-F9AAC3AE309D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.Kinect.SpeechRecognition", "Wpf\Polaris.Wpf.Kinect.SpeechRecognition\Polaris.Wpf.Kinect.SpeechRecognition.csproj", "{54ABAF76-55AF-4B81-8CA0-6D548B984407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.Kinect.Ui", "Wpf\Polaris.Wpf.Kinect.Ui\Polaris.Wpf.Kinect.Ui.csproj", "{A3665F83-ED7C-4123-AF0E-7A134E2701CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.Kinect.UiService", "Wpf\Polaris.Wpf.Kinect.UiService\Polaris.Wpf.Kinect.UiService.csproj", "{8860A707-B151-40ED-83EC-760D1816D8F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.Ui", "Wpf\Polaris.Wpf.Ui\Polaris.Wpf.Ui.csproj", "{097603E9-D1FD-4A14-9F60-480C109D0263}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Wpf.ViewRegistry", "Wpf\Polaris.Wpf.ViewRegistry\Polaris.Wpf.ViewRegistry.csproj", "{6A0385F1-B440-4DF2-AC9D-011666E0759E}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Common\\Polaris.Common\\Polaris.Common.csproj
+		SccProjectTopLevelParentUniqueName1 = Polaris.sln
+		SccProjectName1 = Common/Polaris.Common
+		SccLocalPath1 = Common\\Polaris.Common
+		SccProjectUniqueName2 = Wpf\\Polaris.UnityExtensions\\Polaris.Wpf.UnityExtensions.csproj
+		SccProjectTopLevelParentUniqueName2 = Polaris.sln
+		SccProjectName2 = Wpf/Polaris.UnityExtensions
+		SccLocalPath2 = Wpf\\Polaris.UnityExtensions
+		SccProjectUniqueName3 = Wpf\\Polaris.Wpf\\Polaris.Wpf.csproj
+		SccProjectTopLevelParentUniqueName3 = Polaris.sln
+		SccProjectName3 = Wpf/Polaris.Wpf
+		SccLocalPath3 = Wpf\\Polaris.Wpf
+		SccProjectUniqueName4 = Wpf\\Polaris.Wpf.Kinect.Core\\Polaris.Wpf.Kinect.Core.csproj
+		SccProjectTopLevelParentUniqueName4 = Polaris.sln
+		SccProjectName4 = Wpf/Polaris.Wpf.Kinect.Core
+		SccLocalPath4 = Wpf\\Polaris.Wpf.Kinect.Core
+		SccProjectUniqueName5 = Wpf\\Polaris.Wpf.Kinect.SpeechRecognition\\Polaris.Wpf.Kinect.SpeechRecognition.csproj
+		SccProjectTopLevelParentUniqueName5 = Polaris.sln
+		SccProjectName5 = Wpf/Polaris.Wpf.Kinect.SpeechRecognition
+		SccLocalPath5 = Wpf\\Polaris.Wpf.Kinect.SpeechRecognition
+		SccProjectUniqueName6 = Wpf\\Polaris.Wpf.Kinect.Ui\\Polaris.Wpf.Kinect.Ui.csproj
+		SccProjectTopLevelParentUniqueName6 = Polaris.sln
+		SccProjectName6 = Wpf/Polaris.Wpf.Kinect.Ui
+		SccLocalPath6 = Wpf\\Polaris.Wpf.Kinect.Ui
+		SccProjectUniqueName7 = Wpf\\Polaris.Wpf.Kinect.UiService\\Polaris.Wpf.Kinect.UiService.csproj
+		SccProjectTopLevelParentUniqueName7 = Polaris.sln
+		SccProjectName7 = Wpf/Polaris.Wpf.Kinect.UiService
+		SccLocalPath7 = Wpf\\Polaris.Wpf.Kinect.UiService
+		SccProjectUniqueName8 = Wpf\\Polaris.Wpf.Ui\\Polaris.Wpf.Ui.csproj
+		SccProjectTopLevelParentUniqueName8 = Polaris.sln
+		SccProjectName8 = Wpf/Polaris.Wpf.Ui
+		SccLocalPath8 = Wpf\\Polaris.Wpf.Ui
+		SccProjectUniqueName9 = Wpf\\Polaris.Wpf.ViewRegistry\\Polaris.Wpf.ViewRegistry.csproj
+		SccProjectTopLevelParentUniqueName9 = Polaris.sln
+		SccProjectName9 = Wpf/Polaris.Wpf.ViewRegistry
+		SccLocalPath9 = Wpf\\Polaris.Wpf.ViewRegistry
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Nuget Deploy|Any CPU = Nuget Deploy|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8860A707-B151-40ED-83EC-760D1816D8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097603E9-D1FD-4A14-9F60-480C109D0263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262} = {26CBCF2F-5E68-4012-8085-4BFC001B4126}
+		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{969C8E8C-441B-40F3-8730-4BFA31E56DAE} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{73E295C4-C400-4135-AC4E-F9AAC3AE309D} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{54ABAF76-55AF-4B81-8CA0-6D548B984407} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{A3665F83-ED7C-4123-AF0E-7A134E2701CE} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{8860A707-B151-40ED-83EC-760D1816D8F4} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{097603E9-D1FD-4A14-9F60-480C109D0263} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+		{6A0385F1-B440-4DF2-AC9D-011666E0759E} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
+	EndGlobalSection
+EndGlobal
