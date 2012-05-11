@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.0.4</version>
+    <version>1.0.0.501</version>
     <authors>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</authors>
     <owners>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
       <dependency id="Polaris"                         version="[1.0.0.4]"/>
-      <dependency id="Polaris.Client.Controls.Wpf"     version="[1.0.0.4]"/>
+      <dependency id="Polaris.Client.Controls.Wpf"     version="[1.0.0.5]"/>
       <dependency id="Polaris.Client.Extensions.Wpf"   version="[1.0.0.4]"/>
       <dependency id="Polaris.Client.Keyboard.Wpf"     version="[1.0.0.4]"/>
       <dependency id="Polaris.Client.Portable"         version="[1.0.0.4]"/>

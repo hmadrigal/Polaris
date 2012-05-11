@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>0.0.0.1</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+      <dependency id="Polaris.Common" version="0.0.0.1" />
+      <dependency id="Polaris.Ui" version="0.0.0.1" />
+      <dependency id="CommonServiceLocator" version="1.0" />
+      <dependency id="Prism" version="4.1.0.0" />
+      <dependency id="Prism.UnityExtensions" version="4.1.0.0" />
+      <dependency id="Rx-Main" version="1.0.11226" />
+      <dependency id="Rx-WPF" version="1.0.11226" />
+      <dependency id="Unity" version="2.1.505.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
+
+      <frameworkAssembly assemblyName="Microsoft.Kinect" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="Microsoft.Speech" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+    <id>Polaris.Kinect</id>
+    <title>Polaris - Kinect</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Polaris Kinect package provides several services to simplify the development of applications based on Kinect input. Custom Ui Service, Speech Recognition, custom user interface controls among other features are contained in this package.</description>
+    <summary>The Polaris Kinect package provides several services to simplify the development of applications based on Kinect input.</summary>
+    <releaseNotes>Alpha release</releaseNotes>
+    <!--<releaseNotes>Initial release</releaseNotes>-->
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wpf silverlight toolkit framework polaris interface ui prism</tags>
+  </metadata>
+  <files>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.Kinect.dll" target="lib\net40-client"/>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.Kinect.Ui.dll" target="lib\net40-client"/>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.Kinect.UiService.dll" target="lib\net40-client"/>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.Kinect.SpeechRecognition.dll" target="lib\net40-client"/>
+  </files>
+</package>

@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.0.3</version>
-    <authors>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</authors>
-    <owners>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</owners>
+    <version>0.0.0.1</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-      <dependency id="Polaris" version="[1.0.0.4]" />
+      <dependency id="Polaris.Common" version="[0.0.0.1]" />
       <dependency id="CommonServiceLocator" version="[1.0]" />
       <dependency id="EnterpriseLibrary.Caching" version="[5.0.505.0]" />
       <dependency id="EnterpriseLibrary.ExceptionHandling" version="[5.0.505.0]" />

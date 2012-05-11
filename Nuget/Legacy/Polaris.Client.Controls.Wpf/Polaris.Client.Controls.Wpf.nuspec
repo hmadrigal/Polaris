@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.0.4</version>
-    <authors>Marvin Varela (mvarela), Wackdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</authors>
-    <owners>Marvin Varela (mvarela), Wackdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</owners>
+    <version>1.0.0.5</version>
+    <authors>Marvin Varela (mvarela), Wacdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</authors>
+    <owners>Marvin Varela (mvarela), Wacdany Rojas (wrojas), Herber Madrigal (hmadrigal), Jose Madriz (jmadriz)</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>

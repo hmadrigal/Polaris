@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>0.0.0.1</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+      <dependency id="Polaris.Common" version="0.0.0.1" />
+      <dependency id="CommonServiceLocator" version="1.0" />
+      <dependency id="Prism" version="4.1.0.0" />
+      <dependency id="Prism.UnityExtensions" version="4.1.0.0" />
+      <dependency id="Rx-Main" version="1.0.11226" />
+      <dependency id="Rx-WPF" version="1.0.11226" />
+      <dependency id="Unity" version="2.1.505.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
+    </frameworkAssemblies>
+    <id>Polaris.Services</id>
+    <title>Polaris - Common Services</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Polaris Common Services package contains several services that can be used as a framework to simplify the development of compelling user experiences. By providing a set of prism service modules, the Common Services package contains functionality of common use for most of the applications based on the Polaris architecture.</description>
+    <summary>The Polaris Common Services package contains several services that can be used as a framework to simplify the development of compelling user experiences.</summary>
+    <releaseNotes>Alpha release</releaseNotes>
+    <!--<releaseNotes>Initial release</releaseNotes>-->
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wpf silverlight toolkit framework polaris interface ui prism</tags>
+  </metadata>
+  <files>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.ViewRegistry.dll" target="lib\net40-client"/>
+  </files>
+</package>

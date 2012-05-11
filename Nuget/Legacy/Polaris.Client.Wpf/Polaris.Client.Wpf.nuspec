@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.0.4</version>
-    <authors>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</authors>
-    <owners>Anthony Baker (abakerp),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</owners>
+    <version>1.0.0.501</version>
+    <authors>Anthony Baker (abakerp),Wacdany Rojas (wrojas),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</authors>
+    <owners>Anthony Baker (abakerp),Wacdany Rojas (wrojas),Alexis Cedeño (alacedro),Rodolfo Dengo (dengo),Jose Madriz (etznablahak),Herber Madrigal (hmadrigal)</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
@@ -39,5 +39,6 @@
   </metadata>
   <files>
     <file src="..\..\Develop\Polaris.Client.Wpf\bin\Release\Polaris.Client.Wpf.dll" target="lib\net40-client\Polaris.Client.Wpf.dll" />
+    <!--<file src="..\..\Develop\Polaris.Wpf.ViewRegistry\bin\Release\Polaris.Wpf.ViewRegistry.dll" target="lib\net40-client\Polaris.Wpf.ViewRegistry.dll" />-->
   </files>
 </package>
