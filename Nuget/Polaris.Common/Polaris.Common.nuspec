@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>0.0.0.1</version>
+    <version>0.0.0.2</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -12,7 +12,7 @@
       <dependency id="Prism.UnityExtensions" version="4.1.0.0" />
       <dependency id="Rx-Main" version="1.0.11226" />
       <dependency id="Rx-WPF" version="1.0.11226" />
-      <dependency id="Unity" version="2.1.505.0" />
+      <dependency id="Unity" version="2.1.505.2" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
