@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MyRig.UnityExtensibility.TypeConverters
+namespace Polaris.UnityExtensions.TypeConverters
 {
     using System;
     using System.ComponentModel;
