@@ -5,6 +5,9 @@ using TimeOffSetEntry = System.Collections.Generic.KeyValuePair<int, System.Time
 
 namespace Polaris.UnityExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TypeConverter(typeof(TimeOffSetEntry))]
     public class TimeOffSetEntryConverter : TypeConverter
     {

@@ -1,0 +1,1 @@
+In order to compile this project it's requiered to download the "Portable Class Library"  available thru NUGET
