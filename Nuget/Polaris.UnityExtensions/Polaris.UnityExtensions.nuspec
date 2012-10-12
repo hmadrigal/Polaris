@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>0.0.0.2</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+      <dependency id="Polaris.Common" version="0.0.0.2" />
+      <dependency id="CommonServiceLocator" version="1.0" />
+      <dependency id="Unity" version="2.1.505.2" />
+      <dependency id="Unity.Interception" version="2.1.505.2" />
+      <dependency id="EnterpriseLibrary.Common" version="5.0.505.0" />
+      <dependency id="EnterpriseLibrary.Caching" version="5.0.505.0" />
+      <dependency id="EnterpriseLibrary.ExceptionHandling" version="5.0.505.0" />
+      <dependency id="EnterpriseLibrary.Logging" version="5.0.505.1" />
+      <dependency id="EnterpriseLibrary.WindowsAzure.TransientFaultHandling" version="5.1.1209.0" />
+      <dependency id="TransientFaultHandling.Core" version="5.1.1209.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
+    </frameworkAssemblies>
+    <id>Polaris.EnterpriseEx</id>
+    <title>Polaris - Enterprise Library Extensions</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Set of extensions methods to perform tasks on EntLib and Unity</description>
+    <summary>A set of extensions to to take advantage of polaris and its integration with Enterprise Library as well as Unity DI.</summary>
+    <releaseNotes>Alpha release</releaseNotes>
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wpf silverlight toolkit framework polaris interface ui prism</tags>
+  </metadata>
+  <files>
+    <file src="..\..\Develop\Bin\Wpf\Polaris.UnityExtensions.dll" target="lib\net40-client"/>
+  </files>
+</package>
