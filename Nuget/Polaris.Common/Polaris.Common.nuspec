@@ -7,21 +7,11 @@
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-      <dependency id="CommonServiceLocator" version="1.0" />
-      <dependency id="Prism" version="4.1.0.0" />
-      <dependency id="Prism.UnityExtensions" version="4.1.0.0" />
-      <dependency id="Rx-Main" version="1.0.11226" />
-      <dependency id="Rx-WPF" version="1.0.11226" />
-      <dependency id="Unity" version="2.1.505.2" />
+      
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0-Client" />
-      <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0-Client" />
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
-      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.0-Client" />
-      <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0-Client" />
       <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
-      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0-Client" />
     </frameworkAssemblies>
     <id>Polaris.Common</id>
     <title>Polaris - Common Infrastructure</title>
