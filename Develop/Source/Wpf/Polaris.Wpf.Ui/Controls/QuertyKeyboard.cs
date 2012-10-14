@@ -822,10 +822,12 @@ namespace Polaris.Windows.Controls
             OnExecuteKeyStrokeCommand(button.CommandParameter);
             SendKeyStroke(keyName, keyStroke);
         }
+
         public void SendKeyStroke(string keyName)
         {
             SendKeyStroke(keyName, TemplatePartNames[keyName]);
         }
+
         private void SendKeyStroke(string keyName, KeyStats keyStroke)
         {
             switch (KeyStrokeHandler)
