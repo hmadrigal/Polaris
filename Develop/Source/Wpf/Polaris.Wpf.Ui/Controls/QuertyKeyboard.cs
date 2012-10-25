@@ -12,6 +12,7 @@ namespace Polaris.Windows.Controls
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Threading;
     using Polaris.Windows.Extensions;
     using Polaris.Windows.Services;
 
@@ -404,25 +405,47 @@ namespace Polaris.Windows.Controls
 
         public int MaxLength
         {
-            get { return maxLength; }
-            set { maxLength = value; }
+            get { return _maxLength; }
+            set { _maxLength = value; }
         }
 
-        int maxLength = int.MaxValue;
+        private int _maxLength = int.MaxValue;
+
+        private readonly DispatcherTimer _timer;
 
         public KeyboardKeyStrokeHandler KeyStrokeHandler
         {
-            get { return keyStrokeHandler; }
-            set { keyStrokeHandler = value; }
+            get { return _keyStrokeHandler; }
+            set { _keyStrokeHandler = value; }
         }
+        private KeyboardKeyStrokeHandler _keyStrokeHandler = KeyboardKeyStrokeHandler.VirtualKeyboardBased;
 
-        KeyboardKeyStrokeHandler keyStrokeHandler = KeyboardKeyStrokeHandler.VirtualKeyboardBased;
+        public int PauseOnKeyPressedInitial
+        {
+            get { return _pauseOnKeyPressedInitial; }
+            set { _pauseOnKeyPressedInitial = value; }
+        }
+        private int _pauseOnKeyPressedInitial = 500;
+
+        public int PauseOnKeyPressedMinimum
+        {
+            get { return _pauseOnKeyPressedMinimum; }
+            set { _pauseOnKeyPressedMinimum = value; }
+        }
+        private int _pauseOnKeyPressedMinimum = 50;
 
         static QuertyKeyboard()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(QuertyKeyboard), new FrameworkPropertyMetadata(typeof(QuertyKeyboard)));
             InitializeTemplatePartNames();
             Application.Current.Exit += new ExitEventHandler(OnApplicationExit);
+        }
+
+        public QuertyKeyboard()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+            _timer.Tick += OnTimerTick;
         }
 
         static void OnApplicationExit(object sender, ExitEventArgs e)
@@ -717,21 +740,34 @@ namespace Polaris.Windows.Controls
                     element.Command = KeyStrokeCommand;
                     element.CommandParameter = TemplatePartNames[partName];
                     element.Content = TemplatePartNames[partName].Name;
+
                     //element.TouchUp += new EventHandler<TouchEventArgs>(Button_TouchUp);
                     var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                    touchUpEventListener.OnEventAction = (instance, source, eventArgs) =>
-                        instance.OnButtonTouchUp(source, eventArgs);
-                    touchUpEventListener.OnDetachAction = (weakEventListenerParameter) =>
-                        element.TouchUp -= weakEventListenerParameter.OnEvent;
+                    touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
+                    touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
                     element.TouchUp += touchUpEventListener.OnEvent;
 
+                    var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                    touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
+                    touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
+                    element.TouchDown += touchDownEventListener.OnEvent;
+
                     //element.Click += new RoutedEventHandler(Button_Click);
-                    var clickEventListener = new WeakEventListener<QuertyKeyboard, object, RoutedEventArgs>(this);
-                    clickEventListener.OnEventAction = (instance, source, eventArgs) =>
-                        instance.OnButtonClicked(source, eventArgs);
-                    clickEventListener.OnDetachAction = (weakEventListenerParameter) =>
-                        element.Click -= weakEventListenerParameter.OnEvent;
-                    element.Click += clickEventListener.OnEvent;
+                    //var clickEventListener = new WeakEventListener<QuertyKeyboard, object, RoutedEventArgs>(this);
+                    //clickEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonClicked(source, eventArgs);
+                    //clickEventListener.OnDetachAction = (weakEventListenerParameter) => element.Click -= weakEventListenerParameter.OnEvent;
+                    //element.Click += clickEventListener.OnEvent;
+
+                    var mouseDownEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                    mouseDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDown(source, eventArgs);
+                    mouseDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseDown -= weakEventListenerParameter.OnEvent;
+                    element.PreviewMouseDown += mouseDownEventListener.OnEvent;
+
+                    var mouseUpEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                    mouseUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseUp(source, eventArgs);
+                    mouseUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseUp -= weakEventListenerParameter.OnEvent;
+                    element.PreviewMouseUp += mouseUpEventListener.OnEvent;
+
                 }
 #if DEBUG
                 else
@@ -744,13 +780,48 @@ namespace Polaris.Windows.Controls
             }
         }
 
-        private void OnButtonClicked(object sender, RoutedEventArgs e)
+        private void OnButtonTouchDown(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void OnButtonTouchUp(object sender, TouchEventArgs e)
+        {
+            // I dont even think this needs to be here at all...
+            //var button = sender as Button;
+            //var keyStroke = button.CommandParameter as String;
+            //OnExecuteVirtualKeyStroke ( keyStroke );
+        }
+
+        private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            _timer.IsEnabled = false;
+        }
+
+        private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
         {
             var button = sender as Button;
             var keyStroke = (KeyStats)button.CommandParameter;
             var keyName = button.Name;
             OnExecuteKeyStrokeCommand(button.CommandParameter);
+            _timer.Tag = new Tuple<string, KeyStats>(keyName, keyStroke);
             SendKeyStroke(keyName, keyStroke);
+            if (!_timer.IsEnabled)
+            {
+                _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+                _timer.IsEnabled = true;
+            }
+        }
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            var timer = sender as DispatcherTimer;
+            var payload = timer.Tag as Tuple<string, KeyStats>;
+            if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
+            {
+                timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
+            }
+            SendKeyStroke(payload.Item1, payload.Item2);
         }
 
         public void SendKeyStroke(string keyName)
@@ -769,14 +840,6 @@ namespace Polaris.Windows.Controls
                     OnExecuteStringStroke(keyName, keyStroke);
                     break;
             }
-        }
-
-        private void OnButtonTouchUp(object sender, TouchEventArgs e)
-        {
-            // I dont even think this needs to be here at all...
-            //var button = sender as Button;
-            //var keyStroke = button.CommandParameter as String;
-            //OnExecuteVirtualKeyStroke ( keyStroke );
         }
 
         public void ReleaseKeys()
