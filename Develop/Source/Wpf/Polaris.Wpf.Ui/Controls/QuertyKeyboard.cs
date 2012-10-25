@@ -317,12 +317,12 @@ namespace Polaris.Windows.Controls
             var DisabledKeys = e.OldValue as ObservableCollection<String>;
             if (DisabledKeys != null)
             {
-                DisabledKeys.CollectionChanged -= new System.Collections.Specialized.NotifyCollectionChangedEventHandler(DisabledKeys_CollectionChanged);
+                DisabledKeys.CollectionChanged -= new System.Collections.Specialized.NotifyCollectionChangedEventHandler(OnDisabledKeysCollectionChanged);
             }
             DisabledKeys = e.NewValue as ObservableCollection<String>;
             if (DisabledKeys != null)
             {
-                DisabledKeys.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(DisabledKeys_CollectionChanged);
+                DisabledKeys.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(OnDisabledKeysCollectionChanged);
             }
         }
 
@@ -427,132 +427,12 @@ namespace Polaris.Windows.Controls
             InitializeTemplatePartNames();
             InitializeShiftEnabledKeys();
             InitializeCapEnabledKeys();
-            Application.Current.Exit += new ExitEventHandler(Application_Exit);
+            Application.Current.Exit += new ExitEventHandler(OnApplicationExit);
         }
 
-        static void Application_Exit(object sender, ExitEventArgs e)
+        static void OnApplicationExit(object sender, ExitEventArgs e)
         {
             VirtualKeyboardService.Instance.ReleaseStickyKeys();
-        }
-        private static void InitializeCapEnabledKeys()
-        {
-            capEnabledPartNames = new string[]{	ElementLetterQName,
-                ElementLetterWName,
-                ElementLetterEName,
-                ElementLetterRName,
-                ElementLetterTName,
-                ElementLetterYName,
-                ElementLetterUName,
-                ElementLetterIName,
-                ElementLetterOName,
-                ElementLetterPName,
-                ElementLetterAName,
-                ElementLetterSName,
-                ElementLetterDName,
-                ElementLetterFName,
-                ElementLetterGName,
-                ElementLetterHName,
-                ElementLetterJName,
-                ElementLetterKName,
-                ElementLetterLName,
-                ElementLetterZName,
-                ElementLetterXName,
-                ElementLetterCName,
-                ElementLetterVName,
-                ElementLetterBName,
-                ElementLetterNName,
-                ElementLetterMName,
-            };
-        }
-        private static void InitializeShiftEnabledKeys()
-        {
-            shiftEnabledPartNames = new string[]{	ElementLetterQName,
-                ElementLetterWName,
-                ElementLetterEName,
-                ElementLetterRName,
-                ElementLetterTName,
-                ElementLetterYName,
-                ElementLetterUName,
-                ElementLetterIName,
-                ElementLetterOName,
-                ElementLetterPName,
-                ElementLetterAName,
-                ElementLetterSName,
-                ElementLetterDName,
-                ElementLetterFName,
-                ElementLetterGName,
-                ElementLetterHName,
-                ElementLetterJName,
-                ElementLetterKName,
-                ElementLetterLName,
-                ElementLetterZName,
-                ElementLetterXName,
-                ElementLetterCName,
-                ElementLetterVName,
-                ElementLetterBName,
-                ElementLetterNName,
-                ElementLetterMName,
-                ElementDotComKeyName
-            };
-        }
-
-        private void DisabledKeys_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (KeyStrokeCommand != null)
-            {
-                KeyStrokeCommand.CanExecute(DisabledKeys.ToArray());
-            }
-            var disabledKeyArray = (from String disabledKey in e.NewItems
-                                    select disabledKey).ToArray();
-            var enabledKeyArray = (from String enabledKey in e.OldItems
-                                   select enabledKey).ToArray();
-            switch (e.Action)
-            {
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                    OnNewDisabledKeys(disabledKeyArray);
-                    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    OnNewEnabledKeys(enabledKeyArray);
-                    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
-                    OnNewDisabledKeys(disabledKeyArray);
-                    OnNewEnabledKeys(enabledKeyArray);
-                    break;
-                default:
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-                    break;
-            }
-        }
-
-        private void OnNewEnabledKeys(string[] enabledKeyArray)
-        {
-            foreach (var enabledKey in enabledKeyArray)
-            {
-                var partName = (from keyValuePair in TemplatePartNames
-                                where keyValuePair.Value.Name == enabledKey
-                                select keyValuePair.Key).FirstOrDefault();
-                if (!String.IsNullOrEmpty(partName))
-                {
-                    var element = GetTemplateChild(partName) as Button;
-                    element.IsEnabled = true;
-                }
-            }
-        }
-
-        private void OnNewDisabledKeys(string[] disabledKeyArray)
-        {
-            foreach (var disabledKey in disabledKeyArray)
-            {
-                var partName = (from keyValuePair in TemplatePartNames
-                                where keyValuePair.Value.Name == disabledKey
-                                select keyValuePair.Key).FirstOrDefault();
-                if (!String.IsNullOrEmpty(partName))
-                {
-                    var element = GetTemplateChild(partName) as Button;
-                    element.IsEnabled = false;
-                }
-            }
         }
 
         private static void InitializeTemplatePartNames()
@@ -630,6 +510,128 @@ namespace Polaris.Windows.Controls
             TemplatePartNames.Add(ElementCloseParenthesisName, new KeyStats(")", KeysEx.VK_RPARENTHESES, true));
             TemplatePartNames.Add(ElementExclamationMarkName, new KeyStats("!", KeysEx.VK_EXCLAMATION, true));
             TemplatePartNames.Add(ElementAtSignName, new KeyStats("@", KeysEx.VK_AT, true));
+        }
+
+        private static void InitializeCapEnabledKeys()
+        {
+            capEnabledPartNames = new string[]{	ElementLetterQName,
+                ElementLetterWName,
+                ElementLetterEName,
+                ElementLetterRName,
+                ElementLetterTName,
+                ElementLetterYName,
+                ElementLetterUName,
+                ElementLetterIName,
+                ElementLetterOName,
+                ElementLetterPName,
+                ElementLetterAName,
+                ElementLetterSName,
+                ElementLetterDName,
+                ElementLetterFName,
+                ElementLetterGName,
+                ElementLetterHName,
+                ElementLetterJName,
+                ElementLetterKName,
+                ElementLetterLName,
+                ElementLetterZName,
+                ElementLetterXName,
+                ElementLetterCName,
+                ElementLetterVName,
+                ElementLetterBName,
+                ElementLetterNName,
+                ElementLetterMName,
+            };
+        }
+
+        private static void InitializeShiftEnabledKeys()
+        {
+            shiftEnabledPartNames = new string[]{	ElementLetterQName,
+                ElementLetterWName,
+                ElementLetterEName,
+                ElementLetterRName,
+                ElementLetterTName,
+                ElementLetterYName,
+                ElementLetterUName,
+                ElementLetterIName,
+                ElementLetterOName,
+                ElementLetterPName,
+                ElementLetterAName,
+                ElementLetterSName,
+                ElementLetterDName,
+                ElementLetterFName,
+                ElementLetterGName,
+                ElementLetterHName,
+                ElementLetterJName,
+                ElementLetterKName,
+                ElementLetterLName,
+                ElementLetterZName,
+                ElementLetterXName,
+                ElementLetterCName,
+                ElementLetterVName,
+                ElementLetterBName,
+                ElementLetterNName,
+                ElementLetterMName,
+                ElementDotComKeyName
+            };
+        }
+
+        private void OnDisabledKeysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (KeyStrokeCommand != null)
+            {
+                KeyStrokeCommand.CanExecute(DisabledKeys.ToArray());
+            }
+            var disabledKeyArray = (from String disabledKey in e.NewItems
+                                    select disabledKey).ToArray();
+            var enabledKeyArray = (from String enabledKey in e.OldItems
+                                   select enabledKey).ToArray();
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    OnNewDisabledKeys(disabledKeyArray);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    OnNewEnabledKeys(enabledKeyArray);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                    OnNewDisabledKeys(disabledKeyArray);
+                    OnNewEnabledKeys(enabledKeyArray);
+                    break;
+                default:
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                    break;
+            }
+        }
+
+        private void OnNewEnabledKeys(string[] enabledKeyArray)
+        {
+            foreach (var enabledKey in enabledKeyArray)
+            {
+                var partName = (from keyValuePair in TemplatePartNames
+                                where keyValuePair.Value.Name == enabledKey
+                                select keyValuePair.Key).FirstOrDefault();
+                if (!String.IsNullOrEmpty(partName))
+                {
+                    var element = GetTemplateChild(partName) as Button;
+                    element.IsEnabled = true;
+                }
+            }
+        }
+
+        private void OnNewDisabledKeys(string[] disabledKeyArray)
+        {
+            foreach (var disabledKey in disabledKeyArray)
+            {
+                var partName = (from keyValuePair in TemplatePartNames
+                                where keyValuePair.Value.Name == disabledKey
+                                select keyValuePair.Key).FirstOrDefault();
+                if (!String.IsNullOrEmpty(partName))
+                {
+                    var element = GetTemplateChild(partName) as Button;
+                    element.IsEnabled = false;
+                }
+            }
         }
 
         private void OnExecuteStringStroke(String partName, KeyStats keyStats)
@@ -790,7 +792,7 @@ namespace Polaris.Windows.Controls
                     //element.TouchUp += new EventHandler<TouchEventArgs>(Button_TouchUp);
                     var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
                     touchUpEventListener.OnEventAction = (instance, source, eventArgs) =>
-                        instance.Button_TouchUp(source, eventArgs);
+                        instance.OnButtonTouchUp(source, eventArgs);
                     touchUpEventListener.OnDetachAction = (weakEventListenerParameter) =>
                         element.TouchUp -= weakEventListenerParameter.OnEvent;
                     element.TouchUp += touchUpEventListener.OnEvent;
@@ -798,7 +800,7 @@ namespace Polaris.Windows.Controls
                     //element.Click += new RoutedEventHandler(Button_Click);
                     var clickEventListener = new WeakEventListener<QuertyKeyboard, object, RoutedEventArgs>(this);
                     clickEventListener.OnEventAction = (instance, source, eventArgs) =>
-                        instance.Button_Click(source, eventArgs);
+                        instance.OnButtonClicked(source, eventArgs);
                     clickEventListener.OnDetachAction = (weakEventListenerParameter) =>
                         element.Click -= weakEventListenerParameter.OnEvent;
                     element.Click += clickEventListener.OnEvent;
@@ -814,7 +816,7 @@ namespace Polaris.Windows.Controls
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OnButtonClicked(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var keyStroke = (KeyStats)button.CommandParameter;
@@ -841,7 +843,7 @@ namespace Polaris.Windows.Controls
             }
         }
 
-        private void Button_TouchUp(object sender, TouchEventArgs e)
+        private void OnButtonTouchUp(object sender, TouchEventArgs e)
         {
             // I dont even think this needs to be here at all...
             //var button = sender as Button;
