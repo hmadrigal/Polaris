@@ -256,6 +256,7 @@ namespace Polaris.Windows.Services
         VK_PERCENTAGE = 0x135,
         VK_CIRCUMFLEX = 0x136,
         VK_AMPERSAND = 0x137,
+        VK_ASTERISK = 0x138,
         VK_LPARENTHESES = 0x139,
     }
 }

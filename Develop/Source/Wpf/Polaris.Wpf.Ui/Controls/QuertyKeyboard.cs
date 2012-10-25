@@ -57,7 +57,8 @@ namespace Polaris.Windows.Controls
     [TemplatePart(Name = ElementDollarSignName, Type = typeof(Button))]
     [TemplatePart(Name = ElementPercentSignName, Type = typeof(Button))]
     [TemplatePart(Name = ElementAmpersandName, Type = typeof(Button))]
-    [TemplatePart(Name = ElementAsterixSignName, Type = typeof(Button))]
+    [TemplatePart(Name = ElementAsteriskName, Type = typeof(Button))]
+    [TemplatePart(Name = ElementMultiplySignName, Type = typeof(Button))]
     [TemplatePart(Name = ElementEqualSignName, Type = typeof(Button))]
     [TemplatePart(Name = ElementPlusSignName, Type = typeof(Button))]
     [TemplatePart(Name = ElementMinusSignName, Type = typeof(Button))]
@@ -136,7 +137,8 @@ namespace Polaris.Windows.Controls
         private const String ElementDollarSignName = "DollarSign";
         private const String ElementPercentSignName = "PercentSign";
         private const String ElementAmpersandName = "Ampersand";
-        private const String ElementAsterixSignName = "AsterixSign";
+        private const String ElementAsteriskName = "AsterixSign";
+        private const String ElementMultiplySignName = "MultiplySign";
         private const String ElementEqualSignName = "EqualSign";
         private const String ElementPlusSignName = "PlusSign";
         private const String ElementMinusSignName = "MinusSign";
@@ -226,8 +228,6 @@ namespace Polaris.Windows.Controls
         }
 
         #endregion
-
-
 
         #endregion Template Parts
 
@@ -418,15 +418,10 @@ namespace Polaris.Windows.Controls
 
         KeyboardKeyStrokeHandler keyStrokeHandler = KeyboardKeyStrokeHandler.VirtualKeyboardBased;
 
-        private static string[] shiftEnabledPartNames;
-        private static string[] capEnabledPartNames;
-
         static QuertyKeyboard()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(QuertyKeyboard), new FrameworkPropertyMetadata(typeof(QuertyKeyboard)));
             InitializeTemplatePartNames();
-            InitializeShiftEnabledKeys();
-            InitializeCapEnabledKeys();
             Application.Current.Exit += new ExitEventHandler(OnApplicationExit);
         }
 
@@ -464,7 +459,6 @@ namespace Polaris.Windows.Controls
             TemplatePartNames.Add(ElementLetterBName, new KeyStats("B", KeysEx.VK_B));
             TemplatePartNames.Add(ElementLetterNName, new KeyStats("N", KeysEx.VK_N));
             TemplatePartNames.Add(ElementLetterMName, new KeyStats("M", KeysEx.VK_M));
-            TemplatePartNames.Add(ElementCurlyKeyName, new KeyStats("~", KeysEx.VK_OEM_3, true));
             TemplatePartNames.Add(ElementNumber1Name, new KeyStats("1", KeysEx.VK_NUMPAD1));
             TemplatePartNames.Add(ElementNumber2Name, new KeyStats("2", KeysEx.VK_NUMPAD2));
             TemplatePartNames.Add(ElementNumber3Name, new KeyStats("3", KeysEx.VK_NUMPAD3));
@@ -475,7 +469,7 @@ namespace Polaris.Windows.Controls
             TemplatePartNames.Add(ElementNumber8Name, new KeyStats("8", KeysEx.VK_NUMPAD8));
             TemplatePartNames.Add(ElementNumber9Name, new KeyStats("9", KeysEx.VK_NUMPAD9));
             TemplatePartNames.Add(ElementNumber0Name, new KeyStats("0", KeysEx.VK_NUMPAD0));
-            TemplatePartNames.Add(ElementAsterixSignName, new KeyStats("*", KeysEx.VK_MULTIPLY));
+            TemplatePartNames.Add(ElementMultiplySignName, new KeyStats("*", KeysEx.VK_MULTIPLY));
             TemplatePartNames.Add(ElementEqualSignName, new KeyStats("=", KeysEx.VK_OEM_PLUS));
             TemplatePartNames.Add(ElementPlusSignName, new KeyStats("+", KeysEx.VK_OEM_PLUS, true));
             TemplatePartNames.Add(ElementMinusSignName, new KeyStats("-", KeysEx.VK_OEM_MINUS));
@@ -501,78 +495,17 @@ namespace Polaris.Windows.Controls
             TemplatePartNames.Add(ElementArrowLeftKeyName, new KeyStats("Left", KeysEx.VK_LEFT));
             TemplatePartNames.Add(ElementArrowRightKeyName, new KeyStats("Right", KeysEx.VK_RIGHT));
             TemplatePartNames.Add(ElementArrowDownKeyName, new KeyStats("Down", KeysEx.VK_END));
-            TemplatePartNames.Add(ElementCircumflexName, new KeyStats("^", KeysEx.VK_CIRCUMFLEX, true));
-            TemplatePartNames.Add(ElementNumberSignName, new KeyStats("#", KeysEx.VK_NUMBERSIGN, true));
-            TemplatePartNames.Add(ElementDollarSignName, new KeyStats("$", KeysEx.VK_DOLLAR, true));
-            TemplatePartNames.Add(ElementPercentSignName, new KeyStats("%", KeysEx.VK_PERCENTAGE, true));
-            TemplatePartNames.Add(ElementAmpersandName, new KeyStats("&", KeysEx.VK_AMPERSAND, true));
-            TemplatePartNames.Add(ElementOpenParenthesisName, new KeyStats("(", KeysEx.VK_LPARENTHESES, true));
-            TemplatePartNames.Add(ElementCloseParenthesisName, new KeyStats(")", KeysEx.VK_RPARENTHESES, true));
-            TemplatePartNames.Add(ElementExclamationMarkName, new KeyStats("!", KeysEx.VK_EXCLAMATION, true));
-            TemplatePartNames.Add(ElementAtSignName, new KeyStats("@", KeysEx.VK_AT, true));
-        }
-
-        private static void InitializeCapEnabledKeys()
-        {
-            capEnabledPartNames = new string[]{	ElementLetterQName,
-                ElementLetterWName,
-                ElementLetterEName,
-                ElementLetterRName,
-                ElementLetterTName,
-                ElementLetterYName,
-                ElementLetterUName,
-                ElementLetterIName,
-                ElementLetterOName,
-                ElementLetterPName,
-                ElementLetterAName,
-                ElementLetterSName,
-                ElementLetterDName,
-                ElementLetterFName,
-                ElementLetterGName,
-                ElementLetterHName,
-                ElementLetterJName,
-                ElementLetterKName,
-                ElementLetterLName,
-                ElementLetterZName,
-                ElementLetterXName,
-                ElementLetterCName,
-                ElementLetterVName,
-                ElementLetterBName,
-                ElementLetterNName,
-                ElementLetterMName,
-            };
-        }
-
-        private static void InitializeShiftEnabledKeys()
-        {
-            shiftEnabledPartNames = new string[]{	ElementLetterQName,
-                ElementLetterWName,
-                ElementLetterEName,
-                ElementLetterRName,
-                ElementLetterTName,
-                ElementLetterYName,
-                ElementLetterUName,
-                ElementLetterIName,
-                ElementLetterOName,
-                ElementLetterPName,
-                ElementLetterAName,
-                ElementLetterSName,
-                ElementLetterDName,
-                ElementLetterFName,
-                ElementLetterGName,
-                ElementLetterHName,
-                ElementLetterJName,
-                ElementLetterKName,
-                ElementLetterLName,
-                ElementLetterZName,
-                ElementLetterXName,
-                ElementLetterCName,
-                ElementLetterVName,
-                ElementLetterBName,
-                ElementLetterNName,
-                ElementLetterMName,
-                ElementDotComKeyName
-            };
+            TemplatePartNames.Add(ElementCurlyKeyName, new KeyStats("`", KeysEx.VK_OEM_3, shiftName: "~"));
+            TemplatePartNames.Add(ElementExclamationMarkName, new KeyStats("!", KeysEx.VK_EXCLAMATION, shiftName: "1"));
+            TemplatePartNames.Add(ElementAtSignName, new KeyStats("@", KeysEx.VK_AT, shiftName: "2"));
+            TemplatePartNames.Add(ElementNumberSignName, new KeyStats("#", KeysEx.VK_NUMBERSIGN, shiftName: "3"));
+            TemplatePartNames.Add(ElementDollarSignName, new KeyStats("$", KeysEx.VK_DOLLAR, shiftName: "4"));
+            TemplatePartNames.Add(ElementPercentSignName, new KeyStats("%", KeysEx.VK_PERCENTAGE, shiftName: "5"));
+            TemplatePartNames.Add(ElementCircumflexName, new KeyStats("^", KeysEx.VK_CIRCUMFLEX, shiftName: "6"));
+            TemplatePartNames.Add(ElementAmpersandName, new KeyStats("&", KeysEx.VK_AMPERSAND, shiftName: "7"));
+            TemplatePartNames.Add(ElementAsteriskName, new KeyStats("*", KeysEx.VK_ASTERISK, shiftName: "8"));
+            TemplatePartNames.Add(ElementOpenParenthesisName, new KeyStats("(", KeysEx.VK_LPARENTHESES, shiftName: "9"));
+            TemplatePartNames.Add(ElementCloseParenthesisName, new KeyStats(")", KeysEx.VK_RPARENTHESES, shiftName: "0"));
         }
 
         private void OnDisabledKeysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -687,11 +620,11 @@ namespace Polaris.Windows.Controls
                     OnExecuteCustomKeyStroke(partName, keyStats);
                     break;
                 default:
-                    if (!keyStats.UseShift && !shiftEnabledPartNames.Contains(partName))
+                    if (!keyStats.UseShift)
                     {
                         VirtualKeyboardService.Instance.ReleaseStickyKeys();
                     }
-                    if (keyStats.UseShift)
+                    if (keyStats.UseShift || IsShiftPressed)
                     {
                         VirtualKeyboardService.Instance.PressAndHold(KeysEx.VK_LSHIFT);
                     }
@@ -729,12 +662,10 @@ namespace Polaris.Windows.Controls
         {
             if (ShowCapitalize.HasValue && ShowCapitalize.Value)
                 return;
-            var availablePartNames = shiftEnabledPartNames
-                                    .Where(name => TemplatePartNames.ContainsKey(name))
-                                    ;
-            foreach (var partName in availablePartNames)
+            foreach (var partName in TemplatePartNames.Keys)
             {
                 var element = GetTemplateChild(partName) as Button;
+                if (element == null) continue;
                 element.Content = IsShiftPressed ? TemplatePartNames[partName].Name : TemplatePartNames[partName].ShiftName;
             }
 
@@ -753,10 +684,7 @@ namespace Polaris.Windows.Controls
 
         private void OnShowCapitalize()
         {
-            var availablePartNames = capEnabledPartNames
-                                    .Where(name => TemplatePartNames.ContainsKey(name))
-                                    ;
-            foreach (var partName in availablePartNames)
+            foreach (var partName in TemplatePartNames.Keys)
             {
                 var element = GetTemplateChild(partName) as Button;
                 if (element == null)
@@ -788,7 +716,7 @@ namespace Polaris.Windows.Controls
                 {
                     element.Command = KeyStrokeCommand;
                     element.CommandParameter = TemplatePartNames[partName];
-
+                    element.Content = TemplatePartNames[partName].Name;
                     //element.TouchUp += new EventHandler<TouchEventArgs>(Button_TouchUp);
                     var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
                     touchUpEventListener.OnEventAction = (instance, source, eventArgs) =>
@@ -859,26 +787,19 @@ namespace Polaris.Windows.Controls
 
     public struct KeyStats
     {
-        public Boolean UseShift;
-
-        public KeysEx KeyCode;
-
         public string Name;
+        public KeysEx KeyCode;
+        public Boolean UseShift;
         public string ShiftName;
         public string CapName;
 
-        public KeyStats(string name, KeysEx keyCode, bool useShift = false, string capName = null)
+        public KeyStats(string name, KeysEx keyCode, bool useShift = false, string capName = null, string shiftName = null)
         {
             Name = name;
             KeyCode = keyCode;
             UseShift = useShift;
-            ShiftName = string.Empty;
-            CapName = string.Empty;
-            if (!string.IsNullOrEmpty(Name))
-            {
-                ShiftName = Name.ToLowerInvariant();
-                CapName = Name.ToUpperInvariant();
-            }
+            ShiftName = string.IsNullOrEmpty(shiftName) ? string.IsNullOrEmpty(name) ? string.Empty : Name.ToLowerInvariant() : shiftName;
+            CapName = string.IsNullOrEmpty(capName) ? string.IsNullOrEmpty(name) ? string.Empty : Name.ToUpperInvariant() : capName;
         }
     }
 

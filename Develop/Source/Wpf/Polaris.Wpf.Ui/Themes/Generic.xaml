@@ -475,10 +475,12 @@
                                 <Button Focusable="False" x:Name="Number8"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="Number9"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="Number0"  Style="{DynamicResource KeyboardButtonStyle}" />
-                            </StackPanel>
-                            <StackPanel x:Name="Symbols" Orientation="Horizontal">
+                                <Button Focusable="False" x:Name="MultiplySign"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="MinusSign"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="DivideSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="PlusSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                            </StackPanel>
+                            <StackPanel x:Name="Symbols" Orientation="Horizontal">
                                 <Button Focusable="False" x:Name="Colon"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="SemiColon"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="OpenParenthesis"  Style="{DynamicResource KeyboardButtonStyle}" />
@@ -486,8 +488,10 @@
                                 <Button Focusable="False" x:Name="DollarSign"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="Ampersand"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="AtSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="AsterixSign"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
                             <StackPanel x:Name="Symbols2" Orientation="Horizontal" >
+                                
                                 <Button Focusable="False" x:Name="DoubleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="Period"  Style="{DynamicResource KeyboardButtonStyle}" />
                                 <Button Focusable="False" x:Name="Comma"  Style="{DynamicResource KeyboardButtonStyle}" />
@@ -496,7 +500,8 @@
                                 <Button Focusable="False" x:Name="SingleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel x:Name="SPACE"  Opacity="1" Orientation="Vertical">
+                        <StackPanel x:Name="SPACE"  Opacity="1" Orientation="Vertical" >
+                            <Button Focusable="False" x:Name="ShiftKey"  Style="{DynamicResource KeyboardButtonStyle}" />
                             <Button Focusable="False" x:Name="Spacebar"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
                             <Button Focusable="False" x:Name="Return"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
 
