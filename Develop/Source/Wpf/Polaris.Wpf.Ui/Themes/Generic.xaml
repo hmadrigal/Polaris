@@ -175,6 +175,10 @@
 
     <!--KeyboardButtonStyle-->
     <Style x:Key="KeyboardButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -319,7 +323,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:QuertyKeyboard}">
-                    <Grid x:Name="KeyboardLayout" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="Auto" Width="275">
+                    <Grid x:Name="KeyboardLayout" >
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <ic:GoToStateAction StateName="QuertyState"/>
@@ -416,145 +421,41 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <StackPanel x:Name="QuertyKeyboard" VerticalAlignment="Top" Orientation="Vertical" HorizontalAlignment="Center" Width="Auto" Height="105">
-                            <StackPanel x:Name="Querty" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button Focusable="False" x:Name="LetterQ" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="Q" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterW" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="W" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterE" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="E" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterR" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="R" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterT" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="T" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterY" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="Y" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterU" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="U" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterI" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="I" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterO" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="O" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterP" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="P" TextWrapping="Wrap"/>
-
-                                </Button>
+                        <StackPanel x:Name="QuertyKeyboard" Orientation="Vertical" >
+                            <StackPanel x:Name="Querty" Orientation="Horizontal" >
+                                <Button Focusable="False" x:Name="LetterQ"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterW"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterE"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterR"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterT"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterY"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterU"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterI"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterO"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterP"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
-                            <StackPanel x:Name="Asdfg" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button Focusable="False" x:Name="LetterA" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="A" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterS" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="S" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterD" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="D" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterF" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="F" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterG" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="G" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterH" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="H" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterJ" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="J" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterK" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="K" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterL" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="L" TextWrapping="Wrap"/>
-
-                                </Button>
+                            <StackPanel x:Name="Asdfg" Orientation="Horizontal" >
+                                <Button Focusable="False"  x:Name="LetterA"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterS"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterD"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterF"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterG"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterH"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterJ"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterK"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False"  x:Name="LetterL"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
-                            <StackPanel x:Name="NumZxcv" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button Focusable="False" x:Name="LetterZ" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="Z" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterX" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="X" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterC" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="C" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterV" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="V" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterB" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="B" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterN" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="N" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="LetterM" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="M" TextWrapping="Wrap"/>
-
-                                </Button>
+                            <StackPanel x:Name="NumZxcv" Orientation="Horizontal" >
+                                <Button Focusable="False" x:Name="LetterZ"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterX"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterC"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterV"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterB"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterN"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="LetterM"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel x:Name="NumericKeyboard" VerticalAlignment="Top" Orientation="Vertical" HorizontalAlignment="Center" Opacity="0" Panel.ZIndex="-1" RenderTransformOrigin="0.5,0.5" Width="Auto" Height="105">
+                        <StackPanel x:Name="NumericKeyboard" Orientation="Vertical" Opacity="0" Panel.ZIndex="-1" RenderTransformOrigin="0.5,0.5" >
                             <StackPanel.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -563,192 +464,51 @@
                                     <TranslateTransform/>
                                 </TransformGroup>
                             </StackPanel.RenderTransform>
-                            <StackPanel x:Name="Numbers" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button Focusable="False" x:Name="Number1" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="1" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number2" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="2" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number3" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="3" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number4" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="4" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number5" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="5" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number6" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="6" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number7" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="7" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number8" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="8" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number9" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="9" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="Number0" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="0" TextWrapping="Wrap"/>
-
-                                </Button>
+                            <StackPanel x:Name="Numbers" Orientation="Horizontal" >
+                                <Button Focusable="False" x:Name="Number1"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number2"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number3"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number4"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number5"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number6"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number7"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number8"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number9"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Number0"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
-                            <StackPanel x:Name="Symbols" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button
-                                    x:Name="MinusSign" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="-" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="DivideSign" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="/" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="Colon" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text=":" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="SemiColon" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text=";" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="OpenParenthesis" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="(" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="CloseParenthesis" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text=")" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="DollarSign" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="$" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="Ampersand" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="&amp;" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="AtSign" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="@" TextWrapping="Wrap"/>
-
-                                </Button>
+                            <StackPanel x:Name="Symbols" Orientation="Horizontal">
+                                <Button Focusable="False" x:Name="MinusSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="DivideSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Colon"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="SemiColon"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="OpenParenthesis"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="CloseParenthesis"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="DollarSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Ampersand"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="AtSign"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
-                            <StackPanel x:Name="Symbols2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <Button
-                                    x:Name="DoubleQuotes" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="&quot;" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="Period" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="." TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="Comma" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="," TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button Focusable="False" x:Name="QuestionMark" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="?" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="ExclamationMark" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="!" TextWrapping="Wrap"/>
-
-                                </Button>
-                                <Button
-                                    x:Name="SingleQuotes" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top">
-
-                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667"
-                                        Text="'" TextWrapping="Wrap"/>
-
-                                </Button>
+                            <StackPanel x:Name="Symbols2" Orientation="Horizontal" >
+                                <Button Focusable="False" x:Name="DoubleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Period"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="Comma"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="QuestionMark"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="ExclamationMark"  Style="{DynamicResource KeyboardButtonStyle}" />
+                                <Button Focusable="False" x:Name="SingleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel x:Name="SPACE" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,10" Opacity="1">
-                            <Button Focusable="False" x:Name="Spacebar" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top" Width="101">
+                        <StackPanel x:Name="SPACE"  Opacity="1" Orientation="Vertical">
+                            <Button Focusable="False" x:Name="Spacebar"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
+                            <Button Focusable="False" x:Name="Return"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
 
-                                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="SPACE" TextWrapping="Wrap" Width="Auto"/>
-
-                            </Button>
-                            <Button Focusable="False" x:Name="Return" HorizontalAlignment="Left" Margin="0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top" Width="101">
-
-                                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="CR" TextWrapping="Wrap" Width="Auto"/>
-
-                            </Button>
-                        </StackPanel>
-                        <Grid Margin="-9,70,-9,0" VerticalAlignment="Top">
-                            <Button Focusable="False" x:Name="NumericSwitch" HorizontalAlignment="Left" Margin="5,0,0,0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top" Width="47">
-
+                            <Button Focusable="False" x:Name="NumericSwitch"  Style="{DynamicResource KeyboardButtonStyle}"  Width="47">
                                 <Grid Width="31.137" Height="17.837">
-
-                                    <TextBlock x:Name="NUM" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text=".,123" TextWrapping="Wrap" Width="Auto"/>
-                                    <TextBlock x:Name="ABC" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="ABC" TextWrapping="Wrap" Width="Auto" Opacity="0" Margin="0,-0.389,0,0.388"/>
-
+                                    <TextBlock x:Name="NUM" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text=".,123" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="ABC" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="ABC" TextWrapping="Wrap"  Opacity="0" />
                                 </Grid>
-
                             </Button>
-                            <Button Focusable="False" x:Name="Backspace" HorizontalAlignment="Left" Margin="241,0,0,0" MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}" VerticalAlignment="Top" Width="37">
+                            <Button Focusable="False" x:Name="Backspace"  MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}"  Width="37">
                                 <Grid Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Width="17">
-                                    <Path Fill="White" Stretch="Fill" Width="Auto" Height="Auto" Data="M6.5795779,0 C7.1509755,-6.9975774E-17 14.838178,0 18.875011,0 L18.875011,12 C14.838178,12 6.9424925,12 6.7301802,12 6.4275065,12 6.1106885,11.628226 5.8853383,11.414484 4.8475659,10.43017 2.1740556,7.8737597 1.7437075,7.4091945 1.2199102,6.84375 0.81490785,6.546875 0.81490785,5.8753453 0.81490785,5.15625 1.7497092,4.4779279 1.7497092,4.4779279 1.7497092,4.4779279 1.7588366,4.4263343 5.8853383,0.51056054 6.1320644,0.276434 6.3070247,3.3378029E-17 6.5795779,0 z"/>
+                                    <Path Fill="White" Stretch="Fill"  Height="Auto" Data="M6.5795779,0 C7.1509755,-6.9975774E-17 14.838178,0 18.875011,0 L18.875011,12 C14.838178,12 6.9424925,12 6.7301802,12 6.4275065,12 6.1106885,11.628226 5.8853383,11.414484 4.8475659,10.43017 2.1740556,7.8737597 1.7437075,7.4091945 1.2199102,6.84375 0.81490785,6.546875 0.81490785,5.8753453 0.81490785,5.15625 1.7497092,4.4779279 1.7497092,4.4779279 1.7497092,4.4779279 1.7588366,4.4263343 5.8853383,0.51056054 6.1320644,0.276434 6.3070247,3.3378029E-17 6.5795779,0 z"/>
                                     <Path Fill="#FF566262" Stretch="Fill" Width="6" Height="6" Data="M2.25,0 L3.75,0 3.75,2.25 6,2.25 6,3.75 3.75,3.75 3.75,6 2.25,6 2.25,3.75 0,3.75 0,2.25 2.25,2.25 z" HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,3,0">
                                         <Path.RenderTransform>
                                             <TransformGroup>
@@ -761,12 +521,12 @@
                                     </Path>
                                 </Grid>
                             </Button>
-                        </Grid>
+                        </StackPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Width" Value="275"/>
+        <!--<Setter Property="Width" Value="275"/>-->
     </Style>
     <!--QuertyKeyboard-->
 
