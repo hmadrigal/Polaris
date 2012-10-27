@@ -3,22 +3,39 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
+#if NETFX_CORE
+namespace Polaris.Controls
+#else
 namespace Polaris.Windows.Controls
+#endif
 {
     using System;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Input;
+#if NETFX_CORE
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml;
+    using Windows.Foundation;
+    using System.Threading.Tasks;
+#else
+    using System.Windows.Controls;
     using System.Windows.Media.Effects;
+#endif
 
+#if NETFX_CORE
+#else
     [TemplateVisualState(Name = BeforeAddedStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = WhileAddingStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = AddedStateName, GroupName = AddingStateGroupName)]
+#endif
     public class CarouselItem : ContentControl
     {
         public readonly static Double CircleArc = 360;
 
+#if NETFX_CORE
+#else
         BlurEffect blurEffect;
+#endif
 
         private Boolean isSynchronized = true;
 
@@ -57,7 +74,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty TotalArcProperty =
             DependencyProperty.Register("TotalArc", typeof(double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((double)360,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)360,
                     new PropertyChangedCallback(OnTotalArcChanged)));
 
         /// <summary>
@@ -95,7 +117,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ScrollPositionProperty =
             DependencyProperty.Register("ScrollPosition", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnScrollPositionChanged)));
 
         /// <summary>
@@ -134,7 +161,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ScrollStepProperty =
             DependencyProperty.Register("ScrollStep", typeof(double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((double)0.1,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)0.1,
                     new PropertyChangedCallback(OnScrollStepChanged)));
 
         /// <summary>
@@ -172,7 +204,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantAPositionProperty =
             DependencyProperty.Register("QuadrantAPosition", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantAPositionChanged)));
 
         /// <summary>
@@ -210,7 +247,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBPositionProperty =
             DependencyProperty.Register("QuadrantBPosition", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBPositionChanged)));
 
         /// <summary>
@@ -248,7 +290,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCPositionProperty =
             DependencyProperty.Register("QuadrantCPosition", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCPositionChanged)));
 
         /// <summary>
@@ -286,7 +333,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDPositionProperty =
             DependencyProperty.Register("QuadrantDPosition", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDPositionChanged)));
 
         /// <summary>
@@ -324,7 +376,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantASizeProperty =
             DependencyProperty.Register("QuadrantASize", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantASizeChanged)));
 
         /// <summary>
@@ -362,7 +419,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBSizeProperty =
             DependencyProperty.Register("QuadrantBSize", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBSizeChanged)));
 
         /// <summary>
@@ -400,7 +462,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCSizeProperty =
             DependencyProperty.Register("QuadrantCSize", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCSizeChanged)));
 
         /// <summary>
@@ -438,7 +505,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDSizeProperty =
             DependencyProperty.Register("QuadrantDSize", typeof(Point), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDSizeChanged)));
 
         /// <summary>
@@ -476,7 +548,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantAOpacityProperty =
             DependencyProperty.Register("QuadrantAOpacity", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantAOpacityChanged)));
 
         /// <summary>
@@ -514,7 +591,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBOpacityProperty =
             DependencyProperty.Register("QuadrantBOpacity", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantBOpacityChanged)));
 
         /// <summary>
@@ -552,7 +634,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCOpacityProperty =
             DependencyProperty.Register("QuadrantCOpacity", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantCOpacityChanged)));
 
         /// <summary>
@@ -590,7 +677,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDOpacityProperty =
             DependencyProperty.Register("QuadrantDOpacity", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantDOpacityChanged)));
 
         /// <summary>
@@ -628,7 +720,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantABlurRadiusProperty =
             DependencyProperty.Register("QuadrantABlurRadius", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantABlurRadiusChanged)));
 
         /// <summary>
@@ -666,7 +763,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBBlurRadiusProperty =
             DependencyProperty.Register("QuadrantBBlurRadius", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantBBlurRadiusChanged)));
 
         /// <summary>
@@ -704,7 +806,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCBlurRadiusProperty =
             DependencyProperty.Register("QuadrantCBlurRadius", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantCBlurRadiusChanged)));
 
         /// <summary>
@@ -742,7 +849,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDBlurRadiusProperty =
             DependencyProperty.Register("QuadrantDBlurRadius", typeof(Double), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantDBlurRadiusChanged)));
 
         /// <summary>
@@ -780,7 +892,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IsBlurEnabledProperty =
             DependencyProperty.Register("IsBlurEnabled", typeof(bool), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((bool)true,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(bool)true,
                     new PropertyChangedCallback(OnIsBlurEnabledChanged)));
 
         /// <summary>
@@ -812,6 +929,40 @@ namespace Polaris.Windows.Controls
 
         #region CurrentQuadrant
 
+#if NETFX_CORE
+        /// <summary>
+        /// CurrentQuadrant Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CurrentQuadrantProperty =
+            DependencyProperty.Register("CurrentQuadrant", typeof(Quadrant), typeof(CarouselItem),
+                new PropertyMetadata((Quadrant)Quadrant.Unknown,
+                    new PropertyChangedCallback(OnCurrentQuadrantChanged)));
+
+        /// <summary>
+        /// Gets or sets the CurrentQuadrant property.  This dependency property 
+        /// indicates the quadrant this item is currently at.
+        /// </summary>
+        public Quadrant CurrentQuadrant
+        {
+            get { return (Quadrant)GetValue(CurrentQuadrantProperty); }
+            set { SetValue(CurrentQuadrantProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the CurrentQuadrant property.
+        /// </summary>
+        private static void OnCurrentQuadrantChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((CarouselItem)d).OnCurrentQuadrantChanged(e);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the CurrentQuadrant property.
+        /// </summary>
+        protected virtual void OnCurrentQuadrantChanged(DependencyPropertyChangedEventArgs e)
+        {
+        }
+#else
         /// <summary>
         /// CurrentQuadrant Read-Only Dependency Property
         /// </summary>
@@ -859,6 +1010,7 @@ namespace Polaris.Windows.Controls
             //System.Diagnostics.Debug.WriteLine("Item {0} has entered quadrant {1}", this.GetHashCode(), this.CurrentQuadrant);
 #endif
         }
+#endif
 
         #endregion CurrentQuadrant
 
@@ -890,7 +1042,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty VanishingPointProperty =
             DependencyProperty.Register("VanishingPoint", typeof(Quadrant), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((Quadrant)Quadrant.Unknown,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Quadrant)Quadrant.Unknown,
                     new PropertyChangedCallback(OnVanishingPointChanged)));
 
         /// <summary>
@@ -932,7 +1089,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty VanishingPointCommandProperty =
             DependencyProperty.Register("VanishingPointCommand", typeof(ICommand), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((ICommand)null));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(ICommand)null));
 
         /// <summary>
         /// Gets or sets the VanishingPointCommand property.  This dependency property
@@ -953,7 +1115,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty VanishingPointCommandParameterProperty =
             DependencyProperty.Register("VanishingPointCommandParameter", typeof(object), typeof(CarouselItem),
-                new FrameworkPropertyMetadata((object)null));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(object)null));
 
         /// <summary>
         /// Gets or sets the VanishingPointCommandParameter property.  This dependency property
@@ -967,11 +1134,24 @@ namespace Polaris.Windows.Controls
 
         #endregion VanishingPointCommandParameter
 
-        static CarouselItem()
+        public CarouselItem()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CarouselItem), new FrameworkPropertyMetadata(typeof(CarouselItem)));
+#if SILVERLIGHT || NETFX_CORE
+            this.DefaultStyleKey = typeof(CarouselItem);
+#endif
         }
 
+
+
+        static CarouselItem()
+        {
+#if !SILVERLIGHT && !NETFX_CORE
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CarouselItem), new FrameworkPropertyMetadata(typeof(CarouselItem)));
+#endif
+        }
+
+#if NETFX_CORE
+#else
         private BlurEffect GetBlurEffect()
         {
             if (this.blurEffect != null) { return this.blurEffect; }
@@ -985,7 +1165,20 @@ namespace Polaris.Windows.Controls
             this.blurEffect = blurEffect;
             return blurEffect;
         }
+#endif
 
+
+#if NETFX_CORE
+        private void UpdatePositionAsync(double scrollPosition)
+        {
+            Action updatePositionAction = new Action(() => 
+            {
+                UpdatePosition(scrollPosition);
+            });
+            Task updatePositionTask = new Task(updatePositionAction);
+            updatePositionTask.Start();
+        }
+#else
         private void UpdatePositionAsync(double scrollPosition)
         {
             System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(new Action<Object>((state) =>
@@ -993,6 +1186,7 @@ namespace Polaris.Windows.Controls
                 UpdatePosition(scrollPosition);
             })));
         }
+#endif
 
         private void UpdatePosition(double scrollPosition)
         {
@@ -1000,19 +1194,32 @@ namespace Polaris.Windows.Controls
 
             var scrollPositionDescriptor = GetScrollPositionDescriptor(scrollPosition);
 
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                Canvas.SetTop(this, scrollPositionDescriptor.Top);
-                Canvas.SetLeft(this, scrollPositionDescriptor.Left);
-                this.Width = scrollPositionDescriptor.Width;
-                this.Height = scrollPositionDescriptor.Height;
-                this.Opacity = scrollPositionDescriptor.Opacity;
-                var blurEffect = (IsBlurEnabled ? GetBlurEffect() : null);
-                if (blurEffect != null)
+            Action updatePositionAction =
+                new Action(() =>
                 {
-                    blurEffect.Radius = scrollPositionDescriptor.BlurRadius;
-                }
-            }));
+                    Canvas.SetTop(this, scrollPositionDescriptor.Top);
+                    Canvas.SetLeft(this, scrollPositionDescriptor.Left);
+                    this.Width = scrollPositionDescriptor.Width;
+                    this.Height = scrollPositionDescriptor.Height;
+                    this.Opacity = scrollPositionDescriptor.Opacity;
+
+#if NETFX_CORE
+#else
+                    var blurEffect = (IsBlurEnabled ? GetBlurEffect() : null);
+                    if (blurEffect != null)
+                    {
+                        blurEffect.Radius = scrollPositionDescriptor.BlurRadius;
+                    }
+#endif
+                });
+
+#if NETFX_CORE
+            Task updatePositionTask = new Task(updatePositionAction);
+            updatePositionTask.Start();
+#else
+            Dispatcher.BeginInvoke(updatePositionAction);
+#endif
+
         }
 
         internal ScrollPositionDescriptor GetScrollPositionDescriptor(double scrollPosition)
@@ -1046,7 +1253,11 @@ namespace Polaris.Windows.Controls
             }
             if (degrees >= aQuadrantAngle && degrees < bQuadrantAngle)
             {
+#if NETFX_CORE
+                CurrentQuadrant = Quadrant.QuadrantA;
+#else
                 SetCurrentQuadrant(Quadrant.QuadrantA);
+#endif
                 quadrantAngle = aQuadrantAngle;
                 initialY = QuadrantAPosition.Y;
                 finalY = QuadrantBPosition.Y;
@@ -1061,7 +1272,11 @@ namespace Polaris.Windows.Controls
             }
             else if (degrees >= bQuadrantAngle && degrees < cQuadrantAngle)
             {
+#if NETFX_CORE
+                CurrentQuadrant = Quadrant.QuadrantB;
+#else
                 SetCurrentQuadrant(Quadrant.QuadrantB);
+#endif
                 quadrantAngle = bQuadrantAngle;
                 initialY = QuadrantBPosition.Y;
                 finalY = QuadrantCPosition.Y;
@@ -1076,7 +1291,11 @@ namespace Polaris.Windows.Controls
             }
             else if (degrees >= cQuadrantAngle && degrees < dQuadrantAngle)
             {
+#if NETFX_CORE
+                CurrentQuadrant = Quadrant.QuadrantC;
+#else
                 SetCurrentQuadrant(Quadrant.QuadrantC);
+#endif
                 quadrantAngle = cQuadrantAngle;
                 initialY = QuadrantCPosition.Y;
                 finalY = QuadrantDPosition.Y;
@@ -1091,7 +1310,11 @@ namespace Polaris.Windows.Controls
             }
             else // if (degrees >= dQuadrantAngle && degrees < normalizedArc)
             {
+#if NETFX_CORE
+                CurrentQuadrant = Quadrant.QuadrantD;
+#else
                 SetCurrentQuadrant(Quadrant.QuadrantD);
+#endif
                 quadrantAngle = dQuadrantAngle;
                 initialY = QuadrantDPosition.Y;
                 finalY = QuadrantAPosition.Y;

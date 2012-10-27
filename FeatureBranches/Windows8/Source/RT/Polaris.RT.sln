@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common", "..\Common\Polaris.Common\Polaris.Common.csproj", "{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Rt.Ui", "Polaris.Rt.Ui\Polaris.Rt.Ui.csproj", "{E4E65A61-99F7-4511-B9A4-A50297884F60}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\Common\\Polaris.Common\\Polaris.Common.csproj
+		SccProjectName1 = ../Common/Polaris.Common
+		SccLocalPath1 = ..\\Common\\Polaris.Common
+		SccProjectUniqueName2 = Polaris.Rt.Ui\\Polaris.Rt.Ui.csproj
+		SccProjectName2 = Polaris.Rt.Ui
+		SccLocalPath2 = Polaris.Rt.Ui
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Nuget Deploy|Any CPU = Nuget Deploy|Any CPU
+		Nuget Deploy|ARM = Nuget Deploy|ARM
+		Nuget Deploy|x64 = Nuget Deploy|x64
+		Nuget Deploy|x86 = Nuget Deploy|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|Any CPU.ActiveCfg = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|Any CPU.Build.0 = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|ARM.ActiveCfg = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|x64.ActiveCfg = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Nuget Deploy|x86.ActiveCfg = Nuget Deploy|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|ARM.ActiveCfg = Release|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|x64.ActiveCfg = Release|Any CPU
+		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|ARM.Build.0 = Debug|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|x64.ActiveCfg = Debug|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|x64.Build.0 = Debug|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|x86.ActiveCfg = Debug|x86
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Debug|x86.Build.0 = Debug|x86
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|Any CPU.ActiveCfg = Release|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|Any CPU.Build.0 = Release|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|ARM.ActiveCfg = Release|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|ARM.Build.0 = Release|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|x64.ActiveCfg = Release|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|x64.Build.0 = Release|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|x86.ActiveCfg = Release|x86
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Nuget Deploy|x86.Build.0 = Release|x86
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|ARM.ActiveCfg = Release|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|ARM.Build.0 = Release|ARM
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|x64.ActiveCfg = Release|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|x64.Build.0 = Release|x64
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|x86.ActiveCfg = Release|x86
+		{E4E65A61-99F7-4511-B9A4-A50297884F60}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
