@@ -106,9 +106,16 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Wpf\Polaris.Wpf.Ui\Animation\DoubleAnimationHelper.cs">
+      <Link>Animation\DoubleAnimationHelper.cs</Link>
+    </Compile>
     <Compile Include="..\..\Wpf\Polaris.Wpf.Ui\Controls\CarouselItem.cs">
       <Link>Controls\CarouselItem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Wpf\Polaris.Wpf.Ui\Controls\CarouselItemsControl.cs">
+      <Link>Controls\CarouselItemsControl.cs</Link>
+    </Compile>
+    <Compile Include="Enumerations\DelayMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

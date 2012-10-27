@@ -3,23 +3,40 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
+#if NETFX_CORE
+namespace Polaris.Controls
+#else
 namespace Polaris.Windows.Controls
+#endif
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
-    using System.Timers;
     using System.Windows;
+#if NETFX_CORE
+    using Windows.Foundation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Data;
+    using Windows.UI.Xaml.Media.Animation;
+    using System.Threading.Tasks;
+#else
+    using System.Timers;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
+    using System.Collections.Specialized;
+#endif
 
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(CarouselItem))]
+#if NETFX_CORE
+#else
     [DisplayName("Carousel Items Control")]
     [Description("Displays a collection of items by indicating four custom points and areas.")]
+#endif
     public class CarouselItemsControl : ItemsControl
     {
         internal const string CATEGORY_CAROUSE_QUADRANT_POSITIONS = @"Carousel Quadrant Positions";
@@ -44,19 +61,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IsAnimatingProperty =
             DependencyProperty.Register("IsAnimating", typeof(bool), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((bool)false,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(bool)false,
                     new PropertyChangedCallback(OnIsAnimatingChanged)));
 
         /// <summary>
         /// Gets or sets the IsAnimating property.  This dependency property
         /// indicates whether the control is currently playing an animation.
         /// </summary>
+#if NETFX_CORE
+
+#else
+        [Bindable(true)]
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(BooleanConverter))]
-        [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public bool IsAnimating
         {
             get { return (bool)GetValue(IsAnimatingProperty); }
@@ -95,19 +121,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty AnimatedScrollDurationProperty =
             DependencyProperty.Register("AnimatedScrollDuration", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnAnimatedScrollDurationChanged)));
 
         /// <summary>
         /// Gets or sets the AnimatedScrollDuration property.  This dependency property
         /// indicates the duration that the animated scrolling should take.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan AnimatedScrollDuration
         {
             get { return (TimeSpan)GetValue(AnimatedScrollDurationProperty); }
@@ -138,19 +173,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty AnimatedScrollPositionProperty =
             DependencyProperty.Register("AnimatedScrollPosition", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)0.0,
                     new PropertyChangedCallback(OnAnimatedScrollPositionChanged)));
 
         /// <summary>
         /// Gets or sets the AnimatedScrollPosition property.  This dependency property
         /// indicates the position to which the scroll position should animate to.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public double AnimatedScrollPosition
         {
             get { return (double)GetValue(AnimatedScrollPositionProperty); }
@@ -183,6 +227,27 @@ namespace Polaris.Windows.Controls
         #endregion AnimatedScrollPosition
 
         #region AnimatedScrollEasingFunction
+#if NETFX_CORE
+
+        /// <summary>
+        /// AnimatedScrollEasingFunction Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty AnimatedScrollEasingFunctionProperty =
+            DependencyProperty.Register("AnimatedScrollEasingFunction", typeof(EasingFunctionBase), typeof(CarouselItemsControl),
+                new PropertyMetadata((EasingFunctionBase)null,
+                    new PropertyChangedCallback(OnAnimatedScrollEasingFunctionChanged)));
+
+        /// <summary>
+        /// Gets or sets the AnimatedScrollEasingFunction property.  This dependency property
+        /// indicates the easing function the animated scrolling should use.
+        /// </summary>
+
+        public EasingFunctionBase AnimatedScrollEasingFunction
+        {
+            get { return (EasingFunctionBase)GetValue(AnimatedScrollEasingFunctionProperty); }
+            set { SetValue(AnimatedScrollEasingFunctionProperty, value); }
+        }
+#else
 
         /// <summary>
         /// AnimatedScrollEasingFunction Dependency Property
@@ -207,6 +272,7 @@ namespace Polaris.Windows.Controls
             get { return (IEasingFunction)GetValue(AnimatedScrollEasingFunctionProperty); }
             set { SetValue(AnimatedScrollEasingFunctionProperty, value); }
         }
+#endif
 
         /// <summary>
         /// Handles changes to the AnimatedScrollEasingFunction property.
@@ -403,18 +469,27 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemInitialPositionProperty =
             DependencyProperty.Register("NewItemInitialPosition", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata(new Point(0, 0)));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+new Point(0, 0)));
 
         /// <summary>
         /// Gets or sets the NewItemInitialPosition property.  This dependency property
         /// indicates ....
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public Point NewItemInitialPosition
         {
             get { return (Point)GetValue(NewItemInitialPositionProperty); }
@@ -430,18 +505,27 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemInitialSizeProperty =
             DependencyProperty.Register("NewItemInitialSize", typeof(Size), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata(new Size(0, 0)));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+new Size(0, 0)));
 
         /// <summary>
         /// Gets or sets the NewItemInitialSize property.  This dependency property
         /// indicates ....
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(SizeConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public Size NewItemInitialSize
         {
             get { return (Size)GetValue(NewItemInitialSizeProperty); }
@@ -457,18 +541,27 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemExtraStartTimeProperty =
             DependencyProperty.Register("NewItemExtraStartTime", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata(TimeSpan.Zero));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+TimeSpan.Zero));
 
         /// <summary>
         /// Gets or sets the NewItemExtraStartTime property.  This dependency property
         /// indicates ....
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan NewItemExtraStartTime
         {
             get { return (TimeSpan)GetValue(NewItemExtraStartTimeProperty); }
@@ -484,19 +577,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemSeparationProperty =
             DependencyProperty.Register("ItemSeparation", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)30.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)30.0,
                     new PropertyChangedCallback(OnItemSeparationChanged)));
 
         /// <summary>
         /// Gets or sets the ItemSeparation property.  This dependency property
         /// indicates the separation between items in terms of scroll position.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Represents the degrees of separation between inserted items")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         [DisplayName("Item separation degrees")]
+#endif
         public double ItemSeparation
         {
             get { return (double)GetValue(ItemSeparationProperty); }
@@ -528,19 +630,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty TotalArcProperty =
             DependencyProperty.Register("TotalArc", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)360,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)360,
                     new PropertyChangedCallback(OnTotalArcChanged)));
 
         /// <summary>
         /// Gets or sets the TotalArc property.  This dependency property
         /// indicates the total arc of the carousel.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public double TotalArc
         {
             get { return (double)GetValue(TotalArcProperty); }
@@ -572,19 +683,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ScrollStepProperty =
             DependencyProperty.Register("ScrollStep", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)0.1,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)0.1,
                     new PropertyChangedCallback(OnScrollStepChanged)));
 
         /// <summary>
         /// Gets or sets the ScrollStep property.  This dependency property
         /// indicates the magnitude of the scroll step.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public double ScrollStep
         {
             get { return (double)GetValue(ScrollStepProperty); }
@@ -616,19 +736,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ScrollPositionProperty =
             DependencyProperty.Register("ScrollPosition", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnScrollPositionChanged)));
 
         /// <summary>
         /// Gets or sets the ScrollPosition property.  This dependency property
         /// indicates the current position of the item in the carousel scrolling cycle.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public Double ScrollPosition
         {
             get { return (Double)GetValue(ScrollPositionProperty); }
@@ -672,19 +801,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantAPositionProperty =
             DependencyProperty.Register("QuadrantAPosition", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantAPositionChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantAPosition property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the positions of the first quadrant. It usually points to the south.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
         [DisplayName(QUADRANT_A_LABEL)]
+#endif
         public Point QuadrantAPosition
         {
             get { return (Point)GetValue(QuadrantAPositionProperty); }
@@ -716,19 +854,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBPositionProperty =
             DependencyProperty.Register("QuadrantBPosition", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBPositionChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantBPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the positions of the first quadrant. It usually points to the East.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
         [DisplayName(QUADRANT_B_LABEL)]
+#endif
         public Point QuadrantBPosition
         {
             get { return (Point)GetValue(QuadrantBPositionProperty); }
@@ -760,19 +907,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCPositionProperty =
             DependencyProperty.Register("QuadrantCPosition", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCPositionChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantCPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the positions of the first quadrant. It usually points to the north.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
         [DisplayName(QUADRANT_C_LABEL)]
+#endif
         public Point QuadrantCPosition
         {
             get { return (Point)GetValue(QuadrantCPositionProperty); }
@@ -804,19 +960,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDPositionProperty =
             DependencyProperty.Register("QuadrantDPosition", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDPositionChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantDPosition property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the positions of the first quadrant. It usually points to the west.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_POSITIONS)]
         [DisplayName(QUADRANT_D_LABEL)]
+#endif
         public Point QuadrantDPosition
         {
             get { return (Point)GetValue(QuadrantDPositionProperty); }
@@ -848,19 +1013,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantASizeProperty =
             DependencyProperty.Register("QuadrantASize", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantASizeChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantASize property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the size that a item should have when it reaches the south point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
         [DisplayName(QUADRANT_A_LABEL)]
+#endif
         public Point QuadrantASize
         {
             get { return (Point)GetValue(QuadrantASizeProperty); }
@@ -892,19 +1066,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBSizeProperty =
             DependencyProperty.Register("QuadrantBSize", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantBSizeChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantBSize property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the size that a item should have when it reaches the east point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
         [DisplayName(QUADRANT_B_LABEL)]
+#endif
         public Point QuadrantBSize
         {
             get { return (Point)GetValue(QuadrantBSizeProperty); }
@@ -936,19 +1119,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCSizeProperty =
             DependencyProperty.Register("QuadrantCSize", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantCSizeChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantCSize property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the size that a item should have when it reaches the north point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
         [DisplayName(QUADRANT_C_LABEL)]
+#endif
         public Point QuadrantCSize
         {
             get { return (Point)GetValue(QuadrantCSizeProperty); }
@@ -980,19 +1172,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDSizeProperty =
             DependencyProperty.Register("QuadrantDSize", typeof(Point), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Point)new Point(),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Point)new Point(),
                     new PropertyChangedCallback(OnQuadrantDSizeChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantDSize property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(PointConverter))]
         [Bindable(true)]
         [Description("Defines the size that a item should have when it reaches the west point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_SIZES)]
         [DisplayName(QUADRANT_D_LABEL)]
+#endif
         public Point QuadrantDSize
         {
             get { return (Point)GetValue(QuadrantDSizeProperty); }
@@ -1024,19 +1225,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantAOpacityProperty =
             DependencyProperty.Register("QuadrantAOpacity", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantAOpacityChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantAOpacity property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Defines the opacity that a item should have when it reaches the south point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
         [DisplayName(QUADRANT_A_LABEL)]
+#endif
         public Double QuadrantAOpacity
         {
             get { return (Double)GetValue(QuadrantAOpacityProperty); }
@@ -1068,19 +1278,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBOpacityProperty =
             DependencyProperty.Register("QuadrantBOpacity", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantBOpacityChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantBOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Defines the opacity that a item should have when it reaches the east point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
         [DisplayName(QUADRANT_B_LABEL)]
+#endif
         public Double QuadrantBOpacity
         {
             get { return (Double)GetValue(QuadrantBOpacityProperty); }
@@ -1112,19 +1331,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCOpacityProperty =
             DependencyProperty.Register("QuadrantCOpacity", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantCOpacityChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantCOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Defines the opacity that a item should have when it reaches the north point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
         [DisplayName(QUADRANT_C_LABEL)]
+#endif
         public Double QuadrantCOpacity
         {
             get { return (Double)GetValue(QuadrantCOpacityProperty); }
@@ -1156,19 +1384,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDOpacityProperty =
             DependencyProperty.Register("QuadrantDOpacity", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)1.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)1.0,
                     new PropertyChangedCallback(OnQuadrantDOpacityChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantDOpacity property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Defines the opacity that a item should have when it reaches the west point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_OPACITIES)]
         [DisplayName(QUADRANT_D_LABEL)]
+#endif
         public Double QuadrantDOpacity
         {
             get { return (Double)GetValue(QuadrantDOpacityProperty); }
@@ -1200,19 +1437,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantABlurRadiusProperty =
             DependencyProperty.Register("QuadrantABlurRadius", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantABlurRadiusChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantABlurRadius property.  This dependency property
         /// indicates the goal position of the item in quadrant A, at 0 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the south point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
         [DisplayName(QUADRANT_A_LABEL)]
+#endif
         public Double QuadrantABlurRadius
         {
             get { return (Double)GetValue(QuadrantABlurRadiusProperty); }
@@ -1244,19 +1490,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantBBlurRadiusProperty =
             DependencyProperty.Register("QuadrantBBlurRadius", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantBBlurRadiusChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantBBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant B, at 90 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the east point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
         [DisplayName(QUADRANT_B_LABEL)]
+#endif
         public Double QuadrantBBlurRadius
         {
             get { return (Double)GetValue(QuadrantBBlurRadiusProperty); }
@@ -1288,19 +1543,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantCBlurRadiusProperty =
             DependencyProperty.Register("QuadrantCBlurRadius", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantCBlurRadiusChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantCBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant C, at 180 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the north point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
         [DisplayName(QUADRANT_C_LABEL)]
+#endif
         public Double QuadrantCBlurRadius
         {
             get { return (Double)GetValue(QuadrantCBlurRadiusProperty); }
@@ -1332,19 +1596,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty QuadrantDBlurRadiusProperty =
             DependencyProperty.Register("QuadrantDBlurRadius", typeof(Double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Double)0.0,
                     new PropertyChangedCallback(OnQuadrantDBlurRadiusChanged)));
 
         /// <summary>
         /// Gets or sets the QuadrantDBlurRadius property.  This dependency property
         /// indicates the initial position of the item in quadrant D, at 270 degrees.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("When blur is enabled. It defines the blur radius that a item should have when it reaches the west point.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
         [DisplayName(QUADRANT_D_LABEL)]
+#endif
         public Double QuadrantDBlurRadius
         {
             get { return (Double)GetValue(QuadrantDBlurRadiusProperty); }
@@ -1376,19 +1649,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IsBlurEnabledProperty =
             DependencyProperty.Register("IsBlurEnabled", typeof(bool), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((bool)true,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(bool)true,
                     new PropertyChangedCallback(OnIsBlurEnabledChanged)));
 
         /// <summary>
         /// Gets or sets the IsBlurEnabled property.  This dependency property
         /// indicates ....
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(BooleanConverter))]
         [Bindable(true)]
         [Description("Indicates whether or not the blur is enabled.")]
         [Category(CATEGORY_CAROUSE_QUADRANT_BLUR_SETTINGS)]
         [DisplayName("Is blur enabled")]
+#endif
         public bool IsBlurEnabled
         {
             get { return (bool)GetValue(IsBlurEnabledProperty); }
@@ -1420,7 +1702,12 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty VanishingPointProperty =
             DependencyProperty.Register("VanishingPoint", typeof(Quadrant), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((Quadrant)Quadrant.Unknown,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(Quadrant)Quadrant.Unknown,
                     new PropertyChangedCallback(OnVanishingPointChanged)));
 
         /// <summary>
@@ -1432,12 +1719,16 @@ namespace Polaris.Windows.Controls
         /// It is necessary that the vanishing point is either off-screen or
         /// visually unrecognizable for this mechanism to work smoothly.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(EnumConverter))]
         [Bindable(true)]
         [Description("Indicates which quadrant can be used to replace items.")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         [DisplayName("Vanishing Quadrant")]
+#endif
         public Quadrant VanishingPoint
         {
             get { return (Quadrant)GetValue(VanishingPointProperty); }
@@ -1468,19 +1759,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemDelayProperty =
             DependencyProperty.Register("ItemDelay", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnItemDelayChanged)));
 
         /// <summary>
         /// Gets or sets the ItemDelay property.  This dependency property
         /// indicates the delay between item changes.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan ItemDelay
         {
             get { return (TimeSpan)GetValue(ItemDelayProperty); }
@@ -1511,19 +1811,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemAngleProperty =
             DependencyProperty.Register("NewItemAngle", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)0.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)0.0,
                     new PropertyChangedCallback(OnNewItemAngleChanged)));
 
         /// <summary>
         /// Gets or sets the NewItemAngle property.  This dependency property
         /// indicates the angle where new items are inserted.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Angle where new items are going to be inserted.")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Insertion item angle")]
+#endif
         public double NewItemAngle
         {
             get { return (double)GetValue(NewItemAngleProperty); }
@@ -1554,19 +1863,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemScrollPositionProperty =
             DependencyProperty.Register("NewItemScrollPosition", typeof(double?), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double?)null,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double?)null,
                     new PropertyChangedCallback(OnNewItemScrollPositionChanged)));
 
         /// <summary>
         /// Gets or sets the NewItemScrollPosition property.  This dependency property
         /// indicates the scroll position where the new item will animate from.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         //[TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public double? NewItemScrollPosition
         {
             get { return (double?)GetValue(NewItemScrollPositionProperty); }
@@ -1597,19 +1915,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemDelayProperty =
             DependencyProperty.Register("NewItemDelay", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnNewItemDelayChanged)));
 
         /// <summary>
         /// Gets or sets the NewItemDelay property.  This dependency property
         /// indicates time to wait before animating in items added to the carousel.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan NewItemDelay
         {
             get { return (TimeSpan)GetValue(NewItemDelayProperty); }
@@ -1640,19 +1967,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty NewItemDurationProperty =
             DependencyProperty.Register("NewItemDuration", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnNewItemDurationChanged)));
 
         /// <summary>
         /// Gets or sets the NewItemDuration property.  This dependency property
         /// indicates the duration of the animation to play when new items are added to the carousel.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_INSERTION_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan NewItemDuration
         {
             get { return (TimeSpan)GetValue(NewItemDurationProperty); }
@@ -1678,6 +2014,26 @@ namespace Polaris.Windows.Controls
 
         #region NewItemEasingFunction
 
+#if NETFX_CORE
+        /// <summary>
+        /// NewItemEasingFunction Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty NewItemEasingFunctionProperty =
+            DependencyProperty.Register("NewItemEasingFunction", typeof(EasingFunctionBase), typeof(CarouselItemsControl),
+                new PropertyMetadata((EasingFunctionBase)null,
+                    new PropertyChangedCallback(OnNewItemEasingFunctionChanged)));
+
+        /// <summary>
+        /// Gets or sets the NewItemEasingFunction property.  This dependency property
+        /// indicates the easing function to use when animating a new item into the carousel.
+        /// </summary>
+
+        public EasingFunctionBase NewItemEasingFunction
+        {
+            get { return (EasingFunctionBase)GetValue(NewItemEasingFunctionProperty); }
+            set { SetValue(NewItemEasingFunctionProperty, value); }
+        }
+#else
         /// <summary>
         /// NewItemEasingFunction Dependency Property
         /// </summary>
@@ -1701,6 +2057,7 @@ namespace Polaris.Windows.Controls
             get { return (IEasingFunction)GetValue(NewItemEasingFunctionProperty); }
             set { SetValue(NewItemEasingFunctionProperty, value); }
         }
+#endif
 
         /// <summary>
         /// Handles changes to the NewItemEasingFunction property.
@@ -1726,19 +2083,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemRemovalIsAnimatedProperty =
             DependencyProperty.Register("ItemRemovalIsAnimated", typeof(bool), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((bool)false,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(bool)false,
                     new PropertyChangedCallback(OnItemRemovalIsAnimatedChanged)));
 
         /// <summary>
         /// Gets or sets the ItemRemovalIsAnimated property.  This dependency property
         /// indicates whether the control should perform an animation when an item is removed.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(BooleanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public bool ItemRemovalIsAnimated
         {
             get { return (bool)GetValue(ItemRemovalIsAnimatedProperty); }
@@ -1763,6 +2129,27 @@ namespace Polaris.Windows.Controls
         #endregion ItemRemovalIsAnimated
 
         #region ItemRemovalEasingFunction
+#if NETFX_CORE
+
+        /// <summary>
+        /// ItemRemovalEasingFunction Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ItemRemovalEasingFunctionProperty =
+            DependencyProperty.Register("ItemRemovalEasingFunction", typeof(EasingFunctionBase), typeof(CarouselItemsControl),
+                new PropertyMetadata((EasingFunctionBase)null,
+                    new PropertyChangedCallback(OnItemRemovalEasingFunctionChanged)));
+
+        /// <summary>
+        /// Gets or sets the ItemRemovalEasingFunction property.  This dependency property
+        /// indicates the easing function to use when animating item removal.
+        /// </summary>
+
+        public EasingFunctionBase ItemRemovalEasingFunction
+        {
+            get { return (EasingFunctionBase)GetValue(ItemRemovalEasingFunctionProperty); }
+            set { SetValue(ItemRemovalEasingFunctionProperty, value); }
+        }
+#else
 
         /// <summary>
         /// ItemRemovalEasingFunction Dependency Property
@@ -1787,6 +2174,7 @@ namespace Polaris.Windows.Controls
             get { return (IEasingFunction)GetValue(ItemRemovalEasingFunctionProperty); }
             set { SetValue(ItemRemovalEasingFunctionProperty, value); }
         }
+#endif
 
         /// <summary>
         /// Handles changes to the ItemRemovalEasingFunction property.
@@ -1812,19 +2200,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemRemovalDurationProperty =
             DependencyProperty.Register("ItemRemovalDuration", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnItemRemovalDurationChanged)));
 
         /// <summary>
         /// Gets or sets the ItemRemovalDuration property.  This dependency property
         /// indicates the duration of the item removal animation.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan ItemRemovalDuration
         {
             get { return (TimeSpan)GetValue(ItemRemovalDurationProperty); }
@@ -1855,19 +2252,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemRemovalDelayProperty =
             DependencyProperty.Register("ItemRemovalDelay", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)TimeSpan.Zero,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)TimeSpan.Zero,
                     new PropertyChangedCallback(OnItemRemovalDelayChanged)));
 
         /// <summary>
         /// Gets or sets the ItemRemovalDelay property.  This dependency property
         /// indicates the delay to introduce between items when performing the item removal animation.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan ItemRemovalDelay
         {
             get { return (TimeSpan)GetValue(ItemRemovalDelayProperty); }
@@ -1898,19 +2304,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty ItemRemovalDelayModeProperty =
             DependencyProperty.Register("ItemRemovalDelayMode", typeof(DelayMode), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((DelayMode)DelayMode.None,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(DelayMode)DelayMode.None,
                     new PropertyChangedCallback(OnItemRemovalDelayModeChanged)));
 
         /// <summary>
         /// Gets or sets the ItemRemovalDelayMode property.  This dependency property
         /// indicates the delay mode to use when animating an item removal.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(EnumConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_ITEM_REMOVAL_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public DelayMode ItemRemovalDelayMode
         {
             get { return (DelayMode)GetValue(ItemRemovalDelayModeProperty); }
@@ -1943,19 +2358,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IsIdleProperty =
             DependencyProperty.Register("IsIdle", typeof(bool), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((bool)false,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(bool)false,
                     new PropertyChangedCallback(OnIsIdleChanged)));
 
         /// <summary>
         /// Gets or sets the IsIdle property.  This dependency property
         /// indicates whether the control is currently idle. It is possible to set this property to true so that the control starts scrolling itself regularly.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(BooleanConverter))]
         [Bindable(true)]
         [Description("Whether or not the carousel is in Idle mode")]
         [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
         [DisplayName("Is Idle")]
+#endif
         public bool IsIdle
         {
             get { return (bool)GetValue(IsIdleProperty); }
@@ -1976,6 +2400,8 @@ namespace Polaris.Windows.Controls
         protected virtual void OnIsIdleChanged(DependencyPropertyChangedEventArgs e)
         {
             InitializeIdleScrollingTimer();
+#if NETFX_CORE
+#else
             if (IsIdle)
             {
                 IdleScrollingTimer.Start();
@@ -1985,10 +2411,13 @@ namespace Polaris.Windows.Controls
                 IdleScrollingTimer.Stop();
                 StopIdleScrollingAnimation();
             }
+#endif
         }
 
         private void InitializeIdleScrollingTimer()
         {
+#if NETFX_CORE
+#else
             if (IdleScrollingTimer == null)
             {
                 IdleScrollingTimer = new Timer(IdleScrollingTimeInterval);
@@ -1997,7 +2426,25 @@ namespace Polaris.Windows.Controls
             {
                 IdleScrollingTimer.Interval = IdleScrollingTimeInterval;
             }
+#endif
         }
+
+
+#if NETFX_CORE
+        private async void IdleScrollingProcess()
+        {
+            Task updateIdleScrolling = new Task(UpdateIdleScrolling);
+            while(true)
+            {
+                if (IsIdle)
+                {
+                    updateIdleScrolling.Start();
+                }
+                await Task.Delay(1000);
+            }
+        }
+#endif
+
 
         #endregion IsIdle
 
@@ -2008,19 +2455,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IdleScrollingIntervalProperty =
             DependencyProperty.Register("IdleScrollingInterval", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)new TimeSpan(0, 0, 0, 15, 0),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)new TimeSpan(0, 0, 0, 15, 0),
                     new PropertyChangedCallback(OnIdleScrollingIntervalChanged)));
 
         /// <summary>
         /// Gets or sets the IdleScrollingInterval property.  This dependency property
         /// indicates the interval between automatic idle animations.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         [Description("Time between each increment of  the IdleScrollingVariationProperty")]
         [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan IdleScrollingInterval
         {
             get { return (TimeSpan)GetValue(IdleScrollingIntervalProperty); }
@@ -2051,19 +2507,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IdleScrollingVariationProperty =
             DependencyProperty.Register("IdleScrollingVariation", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((double)15.0,
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(double)15.0,
                     new PropertyChangedCallback(OnIdleScrollingVariationChanged)));
 
         /// <summary>
         /// Gets or sets the IdleScrollingVariation property.  This dependency property
         /// indicates the variation of the automatic idle scrolling. Each idle scrolling will take up to +/- the value of this property on each iteration.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(DoubleConverter))]
         [Bindable(true)]
         [Description("Increment applied to the scroll position on when carouse is idle")]
         [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
         [DisplayName("Idle Scrolling Variation")]
+#endif
         public double IdleScrollingVariation
         {
             get { return (double)GetValue(IdleScrollingVariationProperty); }
@@ -2098,18 +2563,27 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IdleScrollingTimeIntervalProperty =
             DependencyProperty.Register("IdleScrollingTimeInterval", typeof(double), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata(1000.0));
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+1000.0));
 
         /// <summary>
         /// Gets or sets the IdleScrollingTimeInterval property.  This dependency property
         /// indicates the time between each auto increment of the scroll position when idle.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(BooleanConverter))]
         [Bindable(true)]
         [Description("Indicates the frequency time -in milliseconds- between every verification of the IdleScrollingInterval.")]
         [Category(CATEGORY_CAROUSE_IDLE_SETTINGS)]
         [DisplayName("Idle Scrolling Time Interval")]
+#endif
         public double IdleScrollingTimeInterval
         {
             get { return (double)GetValue(IdleScrollingTimeIntervalProperty); }
@@ -2118,25 +2592,34 @@ namespace Polaris.Windows.Controls
 
         #endregion IdleScrollingTimeInterval
 
+#if NETFX_CORE
+#else
         Timer IdleScrollingTimer;//= new Timer(1000);
 
         private void IdleScrollingTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                var elapsedTime = DateTime.Now.Subtract(latestIdleAnimation);
-                if (elapsedTime > IdleScrollingInterval)
-                {
-                    latestIdleAnimation = DateTime.Now;
-                    var randomModifier = randomGenerator.NextDouble();
-                    //var randomSign = (randomGenerator.Next(-1, 1) == -1 ? -1 : 1);
-                    //var randomVariation = IdleScrollingVariation * randomModifier * randomSign;
-                    var initialScrollPosition = ScrollPosition;
-                    var finalScrollPosition = ScrollPosition + IdleScrollingVariation;
-                    StartIdleScrollingAnimation(initialScrollPosition, finalScrollPosition);
-                }
+                UpdateIdleScrolling();
             }));
         }
+#endif
+
+        private void UpdateIdleScrolling()
+        {
+            var elapsedTime = DateTime.Now.Subtract(latestIdleAnimation);
+            if (elapsedTime > IdleScrollingInterval)
+            {
+                latestIdleAnimation = DateTime.Now;
+                var randomModifier = randomGenerator.NextDouble();
+                //var randomSign = (randomGenerator.Next(-1, 1) == -1 ? -1 : 1);
+                //var randomVariation = IdleScrollingVariation * randomModifier * randomSign;
+                var initialScrollPosition = ScrollPosition;
+                var finalScrollPosition = ScrollPosition + IdleScrollingVariation;
+                StartIdleScrollingAnimation(initialScrollPosition, finalScrollPosition);
+            }
+        }
+
 
         #region IdleScrolling Animation Properties
 
@@ -2147,19 +2630,28 @@ namespace Polaris.Windows.Controls
         /// </summary>
         public static readonly DependencyProperty IdleScrollingDurationProperty =
             DependencyProperty.Register("IdleScrollingDuration", typeof(TimeSpan), typeof(CarouselItemsControl),
-                new FrameworkPropertyMetadata((TimeSpan)new TimeSpan(0, 0, 0, 3, 800),
+#if NETFX_CORE
+ new PropertyMetadata(
+#else
+                new FrameworkPropertyMetadata(
+#endif
+(TimeSpan)new TimeSpan(0, 0, 0, 3, 800),
                     new PropertyChangedCallback(OnIdleScrollingDurationChanged)));
 
         /// <summary>
         /// Gets or sets the IdleScrollingDuration property.  This dependency property
         /// indicates the duration of the IdleScrolling animation.
         /// </summary>
+#if NETFX_CORE
+
+#else
         [Localizability(LocalizationCategory.None)]
         [TypeConverter(typeof(TimeSpanConverter))]
         [Bindable(true)]
         //[Description("Timeout of a given element before it's inserted into the carousel")]
         [Category(CATEGORY_CAROUSE_SETTINGS)]
         //[DisplayName("Item insertion time out")]
+#endif
         public TimeSpan IdleScrollingDuration
         {
             get { return (TimeSpan)GetValue(IdleScrollingDurationProperty); }
@@ -2185,6 +2677,27 @@ namespace Polaris.Windows.Controls
         #endregion IdleScrollingDuration
 
         #region IdleScrollingEasingFunction
+#if NETFX_CORE
+
+        /// <summary>
+        /// IdleScrollingEasingFunction Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IdleScrollingEasingFunctionProperty =
+            DependencyProperty.Register("IdleScrollingEasingFunction", typeof(EasingFunctionBase), typeof(CarouselItemsControl),
+                new PropertyMetadata((EasingFunctionBase)new QuinticEase() { EasingMode = EasingMode.EaseInOut, },
+                    new PropertyChangedCallback(OnIdleScrollingEasingFunctionChanged)));
+
+        /// <summary>
+        /// Gets or sets the IdleScrollingEasingFunction property.  This dependency property
+        /// indicates the funtion used to apply easing to the IdleScrolling animation.
+        /// </summary>
+
+        public EasingFunctionBase IdleScrollingEasingFunction
+        {
+            get { return (EasingFunctionBase)GetValue(IdleScrollingEasingFunctionProperty); }
+            set { SetValue(IdleScrollingEasingFunctionProperty, value); }
+        }
+#else
 
         /// <summary>
         /// IdleScrollingEasingFunction Dependency Property
@@ -2209,6 +2722,7 @@ namespace Polaris.Windows.Controls
             get { return (IEasingFunction)GetValue(IdleScrollingEasingFunctionProperty); }
             set { SetValue(IdleScrollingEasingFunctionProperty, value); }
         }
+#endif
 
         /// <summary>
         /// Handles changes to the IdleScrollingEasingFunction property.
@@ -2228,12 +2742,22 @@ namespace Polaris.Windows.Controls
 
         #endregion IdleScrollingEasingFunction
 
-        Polaris.Windows.Animation.DoubleAnimationHelper IdleScrollingAnimationHelper;
+#if NETFX_CORE
+        Polaris.Animation.
+#else
+        Polaris.Windows.Animation.
+#endif
+DoubleAnimationHelper IdleScrollingAnimationHelper;
 
         private void InitializeIdleScrollingAnimation()
         {
             IdleScrollingAnimationHelper =
-                new Polaris.Windows.Animation.DoubleAnimationHelper
+#if NETFX_CORE
+ new Polaris.Animation.
+#else
+                new Polaris.Windows.Animation.
+#endif
+DoubleAnimationHelper
                     (
                     OnIdleScrollingAnimationCompleted,
                     OnIdleScrollingAnimationProgress
@@ -2648,8 +3172,14 @@ namespace Polaris.Windows.Controls
             }
         }
 
-        protected override void OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+#if NETFX_CORE
+        protected override void OnItemsChanged(object args)
         {
+            var e = args as NotifyCollectionChangedEventArgs;
+#else
+        protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
+        {
+#endif
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
 #if DEBUG
@@ -2686,10 +3216,13 @@ namespace Polaris.Windows.Controls
             base.PrepareContainerForItemOverride(element, item);
         }
 
+#if NETFX_CORE
+#else
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
         }
+#endif
 
         private void ProcessSingleItemRemoval()
         {

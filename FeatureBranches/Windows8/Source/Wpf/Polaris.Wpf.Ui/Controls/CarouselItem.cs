@@ -22,12 +22,9 @@ namespace Polaris.Windows.Controls
     using System.Windows.Media.Effects;
 #endif
 
-#if NETFX_CORE
-#else
     [TemplateVisualState(Name = BeforeAddedStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = WhileAddingStateName, GroupName = AddingStateGroupName)]
     [TemplateVisualState(Name = AddedStateName, GroupName = AddingStateGroupName)]
-#endif
     public class CarouselItem : ContentControl
     {
         public readonly static Double CircleArc = 360;

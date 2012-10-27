@@ -3,10 +3,18 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
+#if NETFX_CORE
+namespace Polaris.Animation
+#else
 namespace Polaris.Windows.Animation
+#endif
 {
     using System;
+    using Windows.UI.Xaml.Media.Animation;
+#if NETFX_CORE
+#else
     using System.Windows.Media.Animation;
+#endif
 
     public class DoubleAnimationHelper
     {
@@ -22,7 +30,11 @@ namespace Polaris.Windows.Animation
 
         public TimeSpan Duration { get; set; }
 
+#if NETFX_CORE
+        public EasingFunctionBase EasingFunction { get; set; }
+#else
         public IEasingFunction EasingFunction { get; set; }
+#endif
 
         public void Update()
         {
