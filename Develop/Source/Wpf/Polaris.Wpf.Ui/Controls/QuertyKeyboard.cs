@@ -122,6 +122,13 @@ namespace Polaris.Windows.Controls
         }
 
         #endregion
+     
+        public IVirtualKeyboardService CurrentVirtualKeyboardService
+        {
+            get { return _currentVirtualKeyboardService; }
+            set { _currentVirtualKeyboardService = value; }
+        }
+        IVirtualKeyboardService _currentVirtualKeyboardService = VirtualKeyboardService.Instance;
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
@@ -171,8 +178,6 @@ namespace Polaris.Windows.Controls
         static QuertyKeyboard()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(QuertyKeyboard), new FrameworkPropertyMetadata(typeof(QuertyKeyboard)));
-            Application.Current.Startup += OnApplicationStartup;
-            Application.Current.Exit += OnApplicationExit;
         }
 
         public QuertyKeyboard()
@@ -181,6 +186,8 @@ namespace Polaris.Windows.Controls
             _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
             _timer.Tick += OnTimerTick;
             Loaded += QuertyKeyboard_Loaded;
+            Application.Current.Startup += OnApplicationStartup;
+            Application.Current.Exit += OnApplicationExit;
         }
 
         void QuertyKeyboard_Loaded(object sender, RoutedEventArgs e)
@@ -190,16 +197,16 @@ namespace Polaris.Windows.Controls
             KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
         }
 
-        static void OnApplicationStartup(object sender, StartupEventArgs e)
+        void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            VirtualKeyboardService.Instance.ReleaseStickyKeys();
+            CurrentVirtualKeyboardService.ReleaseStickyKeys();
             Application.Current.Startup -= OnApplicationStartup;
         }
 
-        static void OnApplicationExit(object sender, ExitEventArgs e)
+        void OnApplicationExit(object sender, ExitEventArgs e)
         {
             Application.Current.Exit -= OnApplicationExit;
-            VirtualKeyboardService.Instance.ReleaseStickyKeys();
+            CurrentVirtualKeyboardService.ReleaseStickyKeys();
         }
 
         private void OnSendKeyStroke(VirtualKeyConfig virtualKeyConfig)
@@ -212,16 +219,16 @@ namespace Polaris.Windows.Controls
                     break;
                 case KeysEx.VK_CAPITAL:
                     IsCapsLockActivated = !IsCapsLockActivated;
-                    VirtualKeyboardService.Instance.PressAndRelease(KeysEx.VK_CAPITAL);
+                    CurrentVirtualKeyboardService.PressAndRelease(KeysEx.VK_CAPITAL);
                     break;
                 case KeysEx.VK_LSHIFT:
                 case KeysEx.VK_RSHIFT:
                 case KeysEx.VK_SHIFT:
                     IsShiftPressed = !IsShiftPressed;
-                    VirtualKeyboardService.Instance.PressAndHold(KeysEx.VK_LSHIFT);
+                    CurrentVirtualKeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
                     break;
                 default:
-                    VirtualKeyboardService.Instance.PressAndRelease(virtualKeyConfig.KeyCode);
+                    CurrentVirtualKeyboardService.PressAndRelease(virtualKeyConfig.KeyCode);
                     IsShiftPressed = false;
                     break;
             }
@@ -231,7 +238,7 @@ namespace Polaris.Windows.Controls
         {
             if (CustomVirtualKeyHandler == null)
                 return;
-            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, VirtualKeyboardService.Instance);
+            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, CurrentVirtualKeyboardService);
         }
 
         private void OnIsShiftPressedChanged()
@@ -365,7 +372,7 @@ namespace Polaris.Windows.Controls
         public void ReleaseKeys()
         {
             IsShiftPressed = false;
-            VirtualKeyboardService.Instance.ReleaseStickyKeys();
+            CurrentVirtualKeyboardService.ReleaseStickyKeys();
         }
     }
 
