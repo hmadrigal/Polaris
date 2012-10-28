@@ -275,11 +275,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:QuertyKeyboard}">
                     <Grid x:Name="KeyboardLayout">
-                        <!--<i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Loaded">
-                                <ic:GoToStateAction StateName="SplittedKeyboard"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>-->
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="KeyboardLayoutStates">
                                 <VisualState x:Name="SplittedKeyboard">

@@ -123,12 +123,12 @@ namespace Polaris.Windows.Controls
 
         #endregion
      
-        public IVirtualKeyboardService CurrentVirtualKeyboardService
+        public IVirtualKeyboardService KeyboardService
         {
-            get { return _currentVirtualKeyboardService; }
-            set { _currentVirtualKeyboardService = value; }
+            get { return _keyboardService; }
+            set { _keyboardService = value; }
         }
-        IVirtualKeyboardService _currentVirtualKeyboardService = VirtualKeyboardService.Instance;
+        private IVirtualKeyboardService _keyboardService = VirtualKeyboardService.Instance;
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
@@ -199,14 +199,14 @@ namespace Polaris.Windows.Controls
 
         void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            CurrentVirtualKeyboardService.ReleaseStickyKeys();
+            KeyboardService.ReleaseStickyKeys();
             Application.Current.Startup -= OnApplicationStartup;
         }
 
         void OnApplicationExit(object sender, ExitEventArgs e)
         {
             Application.Current.Exit -= OnApplicationExit;
-            CurrentVirtualKeyboardService.ReleaseStickyKeys();
+            KeyboardService.ReleaseStickyKeys();
         }
 
         private void OnSendKeyStroke(VirtualKeyConfig virtualKeyConfig)
@@ -219,16 +219,16 @@ namespace Polaris.Windows.Controls
                     break;
                 case KeysEx.VK_CAPITAL:
                     IsCapsLockActivated = !IsCapsLockActivated;
-                    CurrentVirtualKeyboardService.PressAndRelease(KeysEx.VK_CAPITAL);
+                    KeyboardService.PressAndRelease(KeysEx.VK_CAPITAL);
                     break;
                 case KeysEx.VK_LSHIFT:
                 case KeysEx.VK_RSHIFT:
                 case KeysEx.VK_SHIFT:
                     IsShiftPressed = !IsShiftPressed;
-                    CurrentVirtualKeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
+                    KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
                     break;
                 default:
-                    CurrentVirtualKeyboardService.PressAndRelease(virtualKeyConfig.KeyCode);
+                    KeyboardService.PressAndRelease(virtualKeyConfig.KeyCode);
                     IsShiftPressed = false;
                     break;
             }
@@ -238,7 +238,7 @@ namespace Polaris.Windows.Controls
         {
             if (CustomVirtualKeyHandler == null)
                 return;
-            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, CurrentVirtualKeyboardService);
+            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, KeyboardService);
         }
 
         private void OnIsShiftPressedChanged()
@@ -291,16 +291,15 @@ namespace Polaris.Windows.Controls
                     var keyConfiguration = _virtualKeys[element];
                     element.Content = GetContent(element, keyConfiguration, keyConfiguration.DefaultContent);
 
-                    //element.TouchUp += new EventHandler<TouchEventArgs>(Button_TouchUp);
-                    var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                    touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
-                    touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
-                    element.TouchUp += touchUpEventListener.OnEvent;
+                    //var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                    //touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
+                    //touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
+                    //element.TouchUp += touchUpEventListener.OnEvent;
 
-                    var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                    touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
-                    touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
-                    element.TouchDown += touchDownEventListener.OnEvent;
+                    //var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                    //touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
+                    //touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
+                    //element.TouchDown += touchDownEventListener.OnEvent;
 
                     var mouseDownEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
                     mouseDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDown(source, eventArgs);
@@ -324,26 +323,35 @@ namespace Polaris.Windows.Controls
 
         private void OnButtonTouchDown(object sender, TouchEventArgs e)
         {
-
+            var element = sender as ContentControl;
+            var virtualKeyConfig = _virtualKeys[element];
+            HandleButtonDown(virtualKeyConfig);
         }
 
         private void OnButtonTouchUp(object sender, TouchEventArgs e)
         {
-            // I dont even think this needs to be here at all...
-            //var button = sender as Button;
-            //var keyStroke = button.CommandParameter as String;
-            //OnExecuteVirtualKeyStroke ( keyStroke );
+            HandleButtonUp();
         }
 
         private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
-            _timer.IsEnabled = false;
+            HandleButtonUp();
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
+            HandleButtonDown(virtualKeyConfig);
+        }
+
+        private void HandleButtonUp()
+        {
+            _timer.IsEnabled = false;
+        }
+
+        private void HandleButtonDown(VirtualKeyConfig virtualKeyConfig)
+        {
             _timer.Tag = virtualKeyConfig;
             SendKeyStroke(virtualKeyConfig);
             if (virtualKeyConfig.IsRepeatable && !virtualKeyConfig.IsSticky && !_timer.IsEnabled)
@@ -372,7 +380,7 @@ namespace Polaris.Windows.Controls
         public void ReleaseKeys()
         {
             IsShiftPressed = false;
-            CurrentVirtualKeyboardService.ReleaseStickyKeys();
+            KeyboardService.ReleaseStickyKeys();
         }
     }
 
