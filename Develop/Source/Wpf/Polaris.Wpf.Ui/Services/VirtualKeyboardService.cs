@@ -18,7 +18,7 @@ namespace Polaris.Windows.Services
     /// http://www.ownedcore.com/forums/mmo/warhammer-online/186390-sendinput-example-c.html
     /// http://stackoverflow.com/questions/3644881/simulating-keyboard-with-sendinput-api-in-directinput-applications
     /// </remarks>
-    public sealed class VirtualKeyboardService
+    public sealed class VirtualKeyboardService : Polaris.Windows.Services.IVirtualKeyboardService
     {
         private void Initialize()
         {

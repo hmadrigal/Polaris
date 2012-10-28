@@ -102,6 +102,27 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        #region CustomVirtualKeyHandler
+
+        /// <summary>
+        /// CustomVirtualKeyHandler Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CustomVirtualKeyHandlerProperty =
+            DependencyProperty.Register("CustomVirtualKeyHandler", typeof(IVirtualKeyHandler), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata(default(IVirtualKeyHandler)));
+
+        /// <summary>
+        /// Gets or sets the CustomVirtualKeyHandler property.  This dependency property 
+        /// indicates ....
+        /// </summary>
+        public IVirtualKeyHandler CustomVirtualKeyHandler
+        {
+            get { return (IVirtualKeyHandler)GetValue(CustomVirtualKeyHandlerProperty); }
+            set { SetValue(CustomVirtualKeyHandlerProperty, value); }
+        }
+
+        #endregion
+
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
         private Dictionary<ContentControl, VirtualKeyConfig> _virtualKeys;
@@ -159,6 +180,14 @@ namespace Polaris.Windows.Controls
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
             _timer.Tick += OnTimerTick;
+            Loaded += QuertyKeyboard_Loaded;
+        }
+
+        void QuertyKeyboard_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= QuertyKeyboard_Loaded;
+            CustomVirtualKeyHandler = new DefaultCustomVirtualKeyHandler();
+            KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
         }
 
         static void OnApplicationStartup(object sender, StartupEventArgs e)
@@ -200,19 +229,9 @@ namespace Polaris.Windows.Controls
 
         private void OnCustomKeyStroke(VirtualKeyConfig virtualKeyConfig)
         {
-            switch (virtualKeyConfig.DefaultContent.ToString())
-            {
-                case ".COM":
-                    VirtualKeyboardService.Instance.PressKey(KeysEx.VK_DECIMAL);
-                    VirtualKeyboardService.Instance.PressKey(KeysEx.VK_C);
-                    VirtualKeyboardService.Instance.PressKey(KeysEx.VK_O);
-                    VirtualKeyboardService.Instance.PressKey(KeysEx.VK_M);
-                    IsShiftPressed = false;
-                    VirtualKeyboardService.Instance.ReleaseStickyKeys();
-                    break;
-                default:
-                    break;
-            }
+            if (CustomVirtualKeyHandler == null)
+                return;
+            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, VirtualKeyboardService.Instance);
         }
 
         private void OnIsShiftPressedChanged()
@@ -366,12 +385,5 @@ namespace Polaris.Windows.Controls
             IsSticky = false;
             IsRepeatable = true;
         }
-    }
-
-    public enum KeyboardLayout
-    {
-        StandardKeyboard,
-        SplittedKeyboard,
-        NumericKeyboard,
     }
 }

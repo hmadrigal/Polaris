@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525"
         xmlns:Polaris_Wpf_Ui="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui"
+        xmlns:Polaris_SampleWpfApplication="clr-namespace:Polaris.SampleWpfApplication"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -11,6 +12,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" MinHeight="50"  />
-        <Polaris_Wpf_Ui:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  />
+        <Polaris_Wpf_Ui:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                       />
     </Grid>
 </Window>

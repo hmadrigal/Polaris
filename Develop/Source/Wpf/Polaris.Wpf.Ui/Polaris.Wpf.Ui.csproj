@@ -92,10 +92,13 @@
     <Compile Include="Controls\AnimatedLayoutItemsControl.cs" />
     <Compile Include="Controls\CarouselItem.cs" />
     <Compile Include="Controls\CarouselItemsControl.cs" />
+    <Compile Include="Controls\DefaultCustomVirtualKeyHandler.cs" />
+    <Compile Include="Controls\DefaultKeyboardLayout.cs" />
     <Compile Include="Controls\FontFormat.cs" />
     <Compile Include="Controls\FontFormatCollection.cs" />
     <Compile Include="Controls\FontFormatType.cs" />
     <Compile Include="Controls\FormattedTextBlock.cs" />
+    <Compile Include="Controls\IVirtualKeyHandler.cs" />
     <Compile Include="Controls\QuertyKeyboard.cs" />
     <Compile Include="Controls\ViewTransitionControl.cs" />
     <Compile Include="Controls\WatermarkTextBox.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Extensions\VisualStateExtensions.cs" />
     <Compile Include="Extensions\WeakEventHandling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IVirtualKeyboardService.cs" />
     <Compile Include="Services\KeysEx.cs" />
     <Compile Include="Services\NativeUser32.cs" />
     <Compile Include="Services\VirtualKeyboardService.cs" />

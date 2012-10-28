@@ -260,13 +260,13 @@
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDivide" DefaultContent="/" KeyCode="{x:Static services:KeysEx.VK_DIVIDE}" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDecimal" DefaultContent="." KeyCode="{x:Static services:KeysEx.VK_DECIMAL}" />
 
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyShowKeyboard" DefaultContent="KBSHOW" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyHideKeyboard" DefaultContent="KBHIDE" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExpandedKeyboard" DefaultContent="KBEXPAND" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCompactKeyboard" DefaultContent="KBCOMPACT" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNumericKeyboard" DefaultContent="KBNUMERIC" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLock" DefaultContent="KBLOCK" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyUnlock" DefaultContent="KBUNLOCK" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyShowKeyboard" KeyName="KBSHOW" DefaultContent="KBSHOW" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyHideKeyboard" KeyName="KBHIDE" DefaultContent="KBHIDE" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExpandedKeyboard" KeyName="KBEXPAND" DefaultContent="KBEXPAND" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCompactKeyboard" KeyName="KBCOMPACT" DefaultContent="KBCOMPACT" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNumericKeyboard" KeyName="KBNUMERIC" DefaultContent="KBNUMERIC" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLock" KeyName="KBLOCK" DefaultContent="KBLOCK" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyUnlock" KeyName="KBUNLOCK" DefaultContent="KBUNLOCK" IsRepeatable="False" IsSticky="False" />
 
 
     <!--QuertyKeyboard-->
@@ -275,11 +275,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:QuertyKeyboard}">
                     <Grid x:Name="KeyboardLayout">
-                        <i:Interaction.Triggers>
+                        <!--<i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <ic:GoToStateAction StateName="SplittedKeyboard"/>
                             </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>-->
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="KeyboardLayoutStates">
                                 <VisualState x:Name="SplittedKeyboard">
@@ -351,7 +351,18 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot">
-                            <Grid x:Name="NumericKeyboard">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyShowKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" />
+                            </StackPanel>
+                            <Grid Grid.Row="1" x:Name="NumericKeyboard">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -390,7 +401,7 @@
                                     <Button Grid.Row="4" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDecimal}" />
                                 </Grid>
                             </Grid>
-                            <Grid x:Name="SplittedKeyboard">
+                            <Grid Grid.Row="1" x:Name="SplittedKeyboard">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -484,7 +495,7 @@
                                     
                                 </Grid>
                             </Grid>
-                            <Grid x:Name="StandardKeyboard" >
+                            <Grid Grid.Row="1" x:Name="StandardKeyboard" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
