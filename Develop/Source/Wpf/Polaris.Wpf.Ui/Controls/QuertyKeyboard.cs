@@ -70,17 +70,17 @@ namespace Polaris.Windows.Controls
         /// KeyboardLayout Dependency Property
         /// </summary>
         public static readonly DependencyProperty KeyboardLayoutProperty =
-            DependencyProperty.Register("KeyboardLayout", typeof(KeyboardLayout), typeof(QuertyKeyboard),
-                new FrameworkPropertyMetadata((KeyboardLayout.QuertyState),
+            DependencyProperty.Register("KeyboardLayout", typeof(Enum), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata(default(Enum),
                     new PropertyChangedCallback(OnKeyboardLayoutChanged)));
 
         /// <summary>
-        /// Gets or sets the KeyboardLayout property.  This dependency property
-        /// indicates the current layout of the on-screen Stringboard.
+        /// Gets or sets the KeyboardLayout property.  This dependency property 
+        /// indicates ....
         /// </summary>
-        public KeyboardLayout KeyboardLayout
+        public Enum KeyboardLayout
         {
-            get { return (KeyboardLayout)GetValue(KeyboardLayoutProperty); }
+            get { return (Enum)GetValue(KeyboardLayoutProperty); }
             set { SetValue(KeyboardLayoutProperty, value); }
         }
 
@@ -100,8 +100,7 @@ namespace Polaris.Windows.Controls
             VisualStateManager.GoToState(this, e.NewValue.ToString(), true);
         }
 
-        #endregion KeyboardLayout
-
+        #endregion
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
@@ -239,8 +238,8 @@ namespace Polaris.Windows.Controls
         private object GetContent(ContentControl element, VirtualKeyConfig virtualKeyConfig, object fallbackContent = null)
         {
             var content =
-                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && !IsShiftPressed? virtualKeyConfig.CapitalizedContent :
-                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && IsShiftPressed? virtualKeyConfig.DefaultContent :
+                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && !IsShiftPressed ? virtualKeyConfig.CapitalizedContent :
+                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && IsShiftPressed ? virtualKeyConfig.DefaultContent :
                 virtualKeyConfig.ShiftContent != null && IsShiftPressed && !IsCapsLockActivated ? virtualKeyConfig.ShiftContent :
                 virtualKeyConfig.DefaultContent != null && IsShiftPressed && IsCapsLockActivated ? virtualKeyConfig.DefaultContent :
                 fallbackContent ?? element.Content;
@@ -371,7 +370,8 @@ namespace Polaris.Windows.Controls
 
     public enum KeyboardLayout
     {
-        QuertyState,
-        NumericState,
+        StandardKeyboard,
+        SplittedKeyboard,
+        NumericKeyboard,
     }
 }
