@@ -122,7 +122,7 @@ namespace Polaris.Windows.Controls
         }
 
         #endregion
-     
+
         public IVirtualKeyboardService KeyboardService
         {
             get { return _keyboardService; }
@@ -158,6 +158,13 @@ namespace Polaris.Windows.Controls
             }
         }
         private bool _isCapsLockActivated = false;
+
+        //public bool IsShiftSticked
+        //{
+        //    get { return _isShiftSticked; }
+        //    set { _isShiftSticked = value; }
+        //}
+        private bool _isShiftSticked = false;
 
         private readonly DispatcherTimer _timer;
 
@@ -224,12 +231,17 @@ namespace Polaris.Windows.Controls
                 case KeysEx.VK_LSHIFT:
                 case KeysEx.VK_RSHIFT:
                 case KeysEx.VK_SHIFT:
-                    IsShiftPressed = !IsShiftPressed;
                     KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
+                    IsShiftPressed = !IsShiftPressed;
+                    if (!_isShiftSticked)
+                        KeyboardService.ReleaseStickyKeys();
                     break;
                 default:
+                    if (_isShiftSticked)
+                        KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);    
                     KeyboardService.PressAndRelease(virtualKeyConfig.KeyCode);
-                    IsShiftPressed = false;
+                    if (!_isShiftSticked)
+                        IsShiftPressed = false; 
                     break;
             }
         }
@@ -266,7 +278,7 @@ namespace Polaris.Windows.Controls
             var content =
                 virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && !IsShiftPressed ? virtualKeyConfig.CapitalizedContent :
                 virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && IsShiftPressed ? virtualKeyConfig.DefaultContent :
-                virtualKeyConfig.ShiftContent != null && IsShiftPressed && !IsCapsLockActivated ? virtualKeyConfig.ShiftContent :
+                virtualKeyConfig.ShiftContent != null && (IsShiftPressed || _isShiftSticked) && !IsCapsLockActivated ? virtualKeyConfig.ShiftContent :
                 virtualKeyConfig.DefaultContent != null && IsShiftPressed && IsCapsLockActivated ? virtualKeyConfig.DefaultContent :
                 fallbackContent ?? element.Content;
             return content;
@@ -311,6 +323,11 @@ namespace Polaris.Windows.Controls
                     mouseUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseUp -= weakEventListenerParameter.OnEvent;
                     element.PreviewMouseUp += mouseUpEventListener.OnEvent;
 
+                    var mouseDoubleClickEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                    mouseDoubleClickEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDoubleClick(source, eventArgs);
+                    mouseDoubleClickEventListener.OnDetachAction = (weakEventListenerParameter) => element.PreviewMouseDoubleClick -= weakEventListenerParameter.OnEvent;
+                    element.PreviewMouseDoubleClick += mouseDoubleClickEventListener.OnEvent;
+
                     //OnShowCapitalize();
                     //OnShiftPressed();
                 }
@@ -336,6 +353,24 @@ namespace Polaris.Windows.Controls
         private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
             HandleButtonUp();
+        }
+
+        private void OnButtonMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var element = sender as ContentControl;
+            var virtualKeyConfig = _virtualKeys[element];
+            if (!virtualKeyConfig.IsSticky)
+                return;
+            _isShiftSticked = !_isShiftSticked;
+            if (_isShiftSticked)
+            {
+                KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
+            }
+            else
+            {
+                KeyboardService.ReleaseStickyKeys();
+            }
+            IsShiftPressed = _isShiftSticked;
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
