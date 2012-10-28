@@ -4,7 +4,10 @@
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Polaris.Windows.Controls">
+    xmlns:local="clr-namespace:Polaris.Windows.Controls"
+    xmlns:mscorlib="clr-namespace:System;assembly=mscorlib"
+    xmlns:services="clr-namespace:Polaris.Windows.Services"
+    >
 
     <!--AnimatedLayoutControl-->
     <Style TargetType="local:AnimatedLayoutControl">
@@ -173,158 +176,86 @@
     </Style>
     <!--FormattedTextBlock-->
 
-    <!--KeyboardButtonStyle-->
-    <Style x:Key="KeyboardButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="Width" Value="20"/>
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="Key" Margin="2.5" Width="Auto" Height="Auto" MinWidth="22" MinHeight="30" Background="{x:Null}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="SelectedStateGroup">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="00:00:00.1000000"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <ThicknessAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="2.5"/>
-                                        </ThicknessAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unselected">
-                                    <Storyboard>
-                                        <ThicknessAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="2.5"/>
-                                        </ThicknessAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="TouchStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="00:00:00.1100000" To="NoTouch">
-                                        <Storyboard>
-                                            <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.2100000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Stroke).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" To="0"/>
-                                            <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.2100000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Fill).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" To="-1"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition GeneratedDuration="00:00:00.1800000" To="TouchOver"/>
-                                    <VisualTransition GeneratedDuration="00:00:00.1500000" To="TouchInteracting"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="NoTouch">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Stroke).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Fill).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.3"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="TouchOver">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Fill).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Stroke).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="2"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.3"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Key" Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="22"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="TouchInteracting">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.705"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Glow" Storyboard.TargetProperty="(Shape.Fill).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="rectangle" Stroke="{x:Null}" Margin="0" Opacity="0.2">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFE3E3E3" Offset="0"/>
-                                    <GradientStop Color="#4CE3E3E3" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Rectangle x:Name="Glow" Opacity="0.3" RadiusX="1" RadiusY="1" StrokeThickness="0.5" RenderTransformOrigin="0.5,0.5" Margin="0">
-                            <Rectangle.Stroke>
-                                <LinearGradientBrush EndPoint="0.347,-0.494" StartPoint="0.347,-1.359">
-                                    <LinearGradientBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </LinearGradientBrush.RelativeTransform>
-                                    <GradientStop Offset="0"/>
-                                    <GradientStop Offset="1"/>
-                                    <GradientStop Color="White" Offset="0.37"/>
-                                    <GradientStop Color="White" Offset="0.66"/>
-                                </LinearGradientBrush>
-                            </Rectangle.Stroke>
-                            <Rectangle.Fill>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <LinearGradientBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                            <TranslateTransform Y="-1"/>
-                                        </TransformGroup>
-                                    </LinearGradientBrush.RelativeTransform>
-                                    <GradientStop Color="#00000000"/>
-                                    <GradientStop Offset="1" Color="#00000000"/>
-                                    <GradientStop Color="#66000000" Offset="0.41"/>
-                                    <GradientStop Color="#99000000" Offset="0.607"/>
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True">
-                            <!--<ContentPresenter.Effect>
-                                <DropShadowEffect ShadowDepth="0"/>
-                            </ContentPresenter.Effect>-->
-                        </ContentPresenter>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
-    </Style>
-    <!--KeyboardButtonStyle-->
-
     <!--WhiteBrush-->
     <SolidColorBrush x:Key="WhiteBrush" Color="White"/>
     <!--WhiteBrush-->
+
+    <!--<local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DefaultContent="a" ShiftContent="A" CapitalizedContent="A" KeyCode="{x:Static services:KeysEx.VK_A}"/>-->
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEsc" DefaultContent="ESC" KeyCode="{x:Static services:KeysEx.VK_ESCAPE}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExclamationMark" DefaultContent="1" KeyCode="{x:Static services:KeysEx.VK_EXCLAMATION}" ShiftContent="!"/>
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAt" DefaultContent="2" KeyCode="{x:Static services:KeysEx.VK_AT}" ShiftContent="@" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPound" DefaultContent="3" KeyCode="{x:Static services:KeysEx.VK_NUMBERSIGN}" ShiftContent="#" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDollar" DefaultContent="4" KeyCode="{x:Static services:KeysEx.VK_DOLLAR}" ShiftContent="$" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPercent" DefaultContent="5" KeyCode="{x:Static services:KeysEx.VK_PERCENTAGE}" ShiftContent="%" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCircumflex" DefaultContent="6" KeyCode="{x:Static services:KeysEx.VK_CIRCUMFLEX}" ShiftContent="^" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAmpersand" DefaultContent="7" KeyCode="{x:Static services:KeysEx.VK_AMPERSAND}" ShiftContent="&amp;" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAsterik" DefaultContent="8" KeyCode="{x:Static services:KeysEx.VK_ASTERISK}" ShiftContent="*" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftParenthesis" DefaultContent="9" KeyCode="{x:Static services:KeysEx.VK_LPARENTHESES}" ShiftContent="(" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightParenthesis" DefaultContent="0" KeyCode="{x:Static services:KeysEx.VK_RPARENTHESES}" ShiftContent=")" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDash" DefaultContent="-" KeyCode="{x:Static services:KeysEx.VK_OEM_MINUS}" ShiftContent="_" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEquals" DefaultContent="=" KeyCode="{x:Static services:KeysEx.VK_OEM_PLUS}" ShiftContent="+" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyBackspace" DefaultContent="BACKSPACE" KeyCode="{x:Static services:KeysEx.VK_BACK}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyTab" DefaultContent="TAB" KeyCode="{x:Static services:KeysEx.VK_TAB}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyQ" DefaultContent="q" CapitalizedContent="Q" KeyCode="{x:Static services:KeysEx.VK_Q}" ShiftContent="Q" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyW" DefaultContent="w" CapitalizedContent="W" KeyCode="{x:Static services:KeysEx.VK_W}" ShiftContent="W" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyE" DefaultContent="e" CapitalizedContent="E" KeyCode="{x:Static services:KeysEx.VK_E}" ShiftContent="E" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyR" DefaultContent="r" CapitalizedContent="R" KeyCode="{x:Static services:KeysEx.VK_R}" ShiftContent="R" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyT" DefaultContent="t" CapitalizedContent="T" KeyCode="{x:Static services:KeysEx.VK_T}" ShiftContent="T" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyY" DefaultContent="y" CapitalizedContent="Y" KeyCode="{x:Static services:KeysEx.VK_Y}" ShiftContent="Y" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyU" DefaultContent="u" CapitalizedContent="U" KeyCode="{x:Static services:KeysEx.VK_U}" ShiftContent="U" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyI" DefaultContent="i" CapitalizedContent="I" KeyCode="{x:Static services:KeysEx.VK_I}" ShiftContent="I" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyO" DefaultContent="o" CapitalizedContent="O" KeyCode="{x:Static services:KeysEx.VK_O}" ShiftContent="O" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyP" DefaultContent="p" CapitalizedContent="P" KeyCode="{x:Static services:KeysEx.VK_P}" ShiftContent="P" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftSquareBracket" DefaultContent="[" KeyCode="{x:Static services:KeysEx.VK_OEM_4}" ShiftContent="\{" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightSquareBracket" DefaultContent="]" KeyCode="{x:Static services:KeysEx.VK_OEM_6}" ShiftContent="\}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyBackSlash" DefaultContent="\" KeyCode="{x:Static services:KeysEx.VK_OEM_102}" ShiftContent="|" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDelete" DefaultContent="DEL" KeyCode="{x:Static services:KeysEx.VK_DELETE}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCapitalizeLock" DefaultContent="CAPSLOCK" KeyCode="{x:Static services:KeysEx.VK_CAPITAL}" IsRepeatable="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DefaultContent="a" CapitalizedContent="A" KeyCode="{x:Static services:KeysEx.VK_A}" ShiftContent="A" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyS" DefaultContent="s" CapitalizedContent="S" KeyCode="{x:Static services:KeysEx.VK_S}" ShiftContent="S" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyD" DefaultContent="d" CapitalizedContent="D" KeyCode="{x:Static services:KeysEx.VK_D}" ShiftContent="D" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyF" DefaultContent="f" CapitalizedContent="F" KeyCode="{x:Static services:KeysEx.VK_F}" ShiftContent="F" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyG" DefaultContent="g" CapitalizedContent="G" KeyCode="{x:Static services:KeysEx.VK_G}" ShiftContent="G" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyH" DefaultContent="h" CapitalizedContent="H" KeyCode="{x:Static services:KeysEx.VK_H}" ShiftContent="H" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyJ" DefaultContent="j" CapitalizedContent="J" KeyCode="{x:Static services:KeysEx.VK_J}" ShiftContent="J" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyK" DefaultContent="k" CapitalizedContent="K" KeyCode="{x:Static services:KeysEx.VK_K}" ShiftContent="K" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyL" DefaultContent="l" CapitalizedContent="L" KeyCode="{x:Static services:KeysEx.VK_L}" ShiftContent="L" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySemicolon" DefaultContent=";" KeyCode="{x:Static services:KeysEx.VK_OEM_1}" ShiftContent=":" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyApostrophe" DefaultContent="'" KeyCode="{x:Static services:KeysEx.VK_OEM_7}" ShiftContent="&quot;" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEnter" DefaultContent="◄┘" KeyCode="{x:Static services:KeysEx.VK_RETURN}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftShift" DefaultContent="LSHIFT" KeyCode="{x:Static services:KeysEx.VK_LSHIFT}" IsRepeatable="False" IsSticky="True" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyZ" DefaultContent="z" CapitalizedContent="Z" KeyCode="{x:Static services:KeysEx.VK_Z}" ShiftContent="Z" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyX" DefaultContent="x" CapitalizedContent="X" KeyCode="{x:Static services:KeysEx.VK_X}" ShiftContent="X" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyC" DefaultContent="c" CapitalizedContent="C" KeyCode="{x:Static services:KeysEx.VK_C}" ShiftContent="C" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyV" DefaultContent="v" CapitalizedContent="V" KeyCode="{x:Static services:KeysEx.VK_V}" ShiftContent="V" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyB" DefaultContent="b" CapitalizedContent="B" KeyCode="{x:Static services:KeysEx.VK_B}" ShiftContent="B" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyN" DefaultContent="n" CapitalizedContent="N" KeyCode="{x:Static services:KeysEx.VK_N}" ShiftContent="N" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyM" DefaultContent="m" CapitalizedContent="M" KeyCode="{x:Static services:KeysEx.VK_M}" ShiftContent="M" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyComma" DefaultContent="," KeyCode="{x:Static services:KeysEx.VK_OEM_COMMA}" ShiftContent="&lt;" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPeriod" DefaultContent="." KeyCode="{x:Static services:KeysEx.VK_OEM_PERIOD}" ShiftContent="&gt;" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySlash" DefaultContent="/" KeyCode="{x:Static services:KeysEx.VK_OEM_2}" ShiftContent="?" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightShift" DefaultContent="RSHIFT" KeyCode="{x:Static services:KeysEx.VK_RSHIFT}"  IsRepeatable="False" IsSticky="True" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftAlt" DefaultContent="LALT"  IsRepeatable="False" IsSticky="True" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftSpace" DefaultContent=" " KeyCode="{x:Static services:KeysEx.VK_SPACE}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightSpace" DefaultContent=" " KeyCode="{x:Static services:KeysEx.VK_SPACE}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightAlt" DefaultContent="RALT" IsRepeatable="False" IsSticky="True" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyUpArrow" DefaultContent="↑" KeyCode="{x:Static services:KeysEx.VK_UP}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDownArrow" DefaultContent="↓" KeyCode="{x:Static services:KeysEx.VK_DOWN}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftArrow" DefaultContent="←" KeyCode="{x:Static services:KeysEx.VK_LEFT}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightArrow" DefaultContent="→" KeyCode="{x:Static services:KeysEx.VK_RIGHT}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyShowKeyboard" DefaultContent="KBSHOW" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyHideKeyboard" DefaultContent="KBHIDE" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExpandedKeyboard" DefaultContent="KBEXPAND" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCompactKeyboard" DefaultContent="KBCOMPACT" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNumericKeyboard" DefaultContent="KBNUMERIC" IsRepeatable="False" IsSticky="False" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLock" DefaultContent="KBLOCK" IsRepeatable="False" IsSticky="False" />
 
     <!--QuertyKeyboard-->
     <Style TargetType="{x:Type local:QuertyKeyboard}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:QuertyKeyboard}">
-                    <Grid x:Name="KeyboardLayout" >
-
+                    <Grid x:Name="KeyboardLayout">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <ic:GoToStateAction StateName="QuertyState"/>
@@ -333,205 +264,101 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="KeyboardLayoutStates">
                                 <VisualState x:Name="NumericState">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(Panel.ZIndex)">
-                                            <SplineInt32KeyFrame KeyTime="00:00:00.1330000" Value="1"/>
-                                        </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(Panel.ZIndex)">
-                                            <SplineInt32KeyFrame KeyTime="00:00:00.1330000" Value="-1"/>
-                                        </Int32AnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Visible}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NUM" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ABC" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
-                                            <DiscreteBooleanKeyFrame KeyTime="00:00:00.1330000" Value="False"/>
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Duration="00:00:00.0010000">
-                                            <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(FrameworkElement.Height)" Duration="00:00:00.0010000">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="105"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                            <DiscreteDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <Storyboard/>
                                 </VisualState>
                                 <VisualState x:Name="QuertyState">
-                                    <Storyboard>
-                                        <Int32AnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(Panel.ZIndex)">
-                                            <SplineInt32KeyFrame KeyTime="00:00:00.1170000" Value="0"/>
-                                        </Int32AnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1170000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1170000" Value="{x:Static Visibility.Visible}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1170000" Value="{x:Static Visibility.Collapsed}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ABC" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1170000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NUM" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1170000" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)" Duration="00:00:00.0010000">
-                                            <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
-                                            <DiscreteBooleanKeyFrame KeyTime="00:00:00.1170000" Value="False"/>
-                                        </BooleanAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1170000" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="QuertyKeyboard" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="105"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1170000" Value="105"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                                            <DiscreteDoubleKeyFrame KeyTime="00:00:00.1170000" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <Storyboard />
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <StackPanel x:Name="QuertyKeyboard" Orientation="Vertical" >
-                            <StackPanel x:Name="Querty" Orientation="Horizontal" >
-                                <Button Focusable="False" x:Name="LetterQ"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterW"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterE"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterR"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterT"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterY"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterU"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterI"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterO"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterP"  Style="{DynamicResource KeyboardButtonStyle}" />
+                        <StackPanel x:Name="LayoutRoot" Orientation="Vertical">
+                            <!--<StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" />
+                            </StackPanel>-->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExclamationMark}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAt}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPound}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDollar}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPercent}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCircumflex}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAmpersand}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAsterik}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftParenthesis}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightParenthesis}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDash}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEquals}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" />
                             </StackPanel>
-                            <StackPanel x:Name="Asdfg" Orientation="Horizontal" >
-                                <Button Focusable="False"  x:Name="LetterA"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterS"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterD"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterF"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterG"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterH"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterJ"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterK"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False"  x:Name="LetterL"  Style="{DynamicResource KeyboardButtonStyle}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyQ}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyW}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyE}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyR}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyT}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyY}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyU}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyI}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyO}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyP}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftSquareBracket}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightSquareBracket}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackSlash}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDelete}" />
                             </StackPanel>
-                            <StackPanel x:Name="NumZxcv" Orientation="Horizontal" >
-                                <Button Focusable="False" x:Name="LetterZ"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterX"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterC"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterV"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterB"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterN"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="LetterM"  Style="{DynamicResource KeyboardButtonStyle}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCapitalizeLock}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyF}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyH}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyJ}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySemicolon}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" />
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel x:Name="NumericKeyboard" Orientation="Vertical" Opacity="0" Panel.ZIndex="-1" RenderTransformOrigin="0.5,0.5" >
-                            <StackPanel.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </StackPanel.RenderTransform>
-                            <StackPanel x:Name="Numbers" Orientation="Horizontal" >
-                                <Button Focusable="False" x:Name="Number1"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number2"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number3"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number4"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number5"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number6"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number7"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number8"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number9"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Number0"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="MultiplySign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="MinusSign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="DivideSign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="PlusSign"  Style="{DynamicResource KeyboardButtonStyle}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyV}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyB}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyN}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyM}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" />
                             </StackPanel>
-                            <StackPanel x:Name="Symbols" Orientation="Horizontal">
-                                <Button Focusable="False" x:Name="Colon"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="SemiColon"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="OpenParenthesis"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="CloseParenthesis"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="DollarSign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Ampersand"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="AtSign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="AsterixSign"  Style="{DynamicResource KeyboardButtonStyle}" />
-                            </StackPanel>
-                            <StackPanel x:Name="Symbols2" Orientation="Horizontal" >
-                                
-                                <Button Focusable="False" x:Name="DoubleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Period"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="Comma"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="QuestionMark"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="ExclamationMark"  Style="{DynamicResource KeyboardButtonStyle}" />
-                                <Button Focusable="False" x:Name="SingleQuotes"  Style="{DynamicResource KeyboardButtonStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel x:Name="SPACE"  Opacity="1" Orientation="Vertical" >
-                            <Button Focusable="False" x:Name="ShiftKey"  Style="{DynamicResource KeyboardButtonStyle}" />
-                            <Button Focusable="False" x:Name="Spacebar"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
-                            <Button Focusable="False" x:Name="Return"  Style="{DynamicResource KeyboardButtonStyle}"  Width="101"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftAlt}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftSpace}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightSpace}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightAlt}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUpArrow}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDownArrow}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyShowKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" />
+                                <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" />
 
-                            <Button Focusable="False" x:Name="NumericSwitch"  Style="{DynamicResource KeyboardButtonStyle}"  Width="47">
-                                <Grid Width="31.137" Height="17.837">
-                                    <TextBlock x:Name="NUM" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text=".,123" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="ABC" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  FontSize="14.667" Text="ABC" TextWrapping="Wrap"  Opacity="0" />
-                                </Grid>
-                            </Button>
-                            <Button Focusable="False" x:Name="Backspace"  MinHeight="30" MinWidth="20" Style="{DynamicResource KeyboardButtonStyle}"  Width="37">
-                                <Grid Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Width="17">
-                                    <Path Fill="White" Stretch="Fill"  Height="Auto" Data="M6.5795779,0 C7.1509755,-6.9975774E-17 14.838178,0 18.875011,0 L18.875011,12 C14.838178,12 6.9424925,12 6.7301802,12 6.4275065,12 6.1106885,11.628226 5.8853383,11.414484 4.8475659,10.43017 2.1740556,7.8737597 1.7437075,7.4091945 1.2199102,6.84375 0.81490785,6.546875 0.81490785,5.8753453 0.81490785,5.15625 1.7497092,4.4779279 1.7497092,4.4779279 1.7497092,4.4779279 1.7588366,4.4263343 5.8853383,0.51056054 6.1320644,0.276434 6.3070247,3.3378029E-17 6.5795779,0 z"/>
-                                    <Path Fill="#FF566262" Stretch="Fill" Width="6" Height="6" Data="M2.25,0 L3.75,0 3.75,2.25 6,2.25 6,3.75 3.75,3.75 3.75,6 2.25,6 2.25,3.75 0,3.75 0,2.25 2.25,2.25 z" HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,3,0">
-                                        <Path.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="45"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Grid>
-                            </Button>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <!--<Setter Property="Width" Value="275"/>-->
     </Style>
     <!--QuertyKeyboard-->
 

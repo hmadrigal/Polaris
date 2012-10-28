@@ -12,6 +12,7 @@ namespace Polaris.Windows.Services
     /// Relevant portions of this code were obtained from the following sources
     /// and are covered by their respective licenses:
     /// http://blogs.msdn.com/b/michkap/archive/2006/03/23/558658.aspx
+    /// If interested in WinRT see http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx (on legacy technologies)
     /// </remarks>
     public enum KeysEx : ushort
     {
@@ -247,7 +248,6 @@ namespace Polaris.Windows.Services
         /*
          * 0xFF : reserved
          */
-
         VK_RPARENTHESES = 0x130,
         VK_EXCLAMATION = 0x131,
         VK_AT = 0x132,
