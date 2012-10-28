@@ -2764,8 +2764,12 @@ DoubleAnimationHelper
                     );
             IdleScrollingAnimationHelper.Duration = IdleScrollingDuration;
             IdleScrollingAnimationHelper.EasingFunction = IdleScrollingEasingFunction;
+#if NETFX_CORE
+            IdleScrollingProcess();
+#else
             InitializeIdleScrollingTimer();
             IdleScrollingTimer.Elapsed += new ElapsedEventHandler(IdleScrollingTimer_Elapsed);
+#endif
         }
 
         private void StartIdleScrollingAnimation(double initialValue = 1.0, double finalValue = 0.0)
@@ -2809,16 +2813,29 @@ DoubleAnimationHelper
 
         public CarouselItemsControl()
         {
+#if NETFX_CORE
+#else
             System.Threading.ThreadPool.QueueUserWorkItem(ProcessChanges);
             CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
             InitializeIdleScrollingAnimation();
+#endif
         }
 
+
+
+#if NETFX_CORE
+        public async void ProcessChangesAsync()
+#else
         public void ProcessChanges(Object state)
+#endif
         {
             while (true)
             {
-                System.Threading.Thread.Sleep(20);
+#if NETFX_CORE
+                await Task.Delay(60);
+#else
+                System.Threading.Thread.Sleep(60);
+#endif
                 var currentDate = DateTime.Now;
                 ItemChangeSet[] pendingChangesArray = new ItemChangeSet[] { };
                 lock (pendingChangesSync)
@@ -2835,10 +2852,15 @@ DoubleAnimationHelper
                     {
                         pendingChanges.Remove(changeSet);
                     }
+#if NETFX_CORE
+                    ApplyChangeSet(changeSet);
+                    CompositionTarget_Rendering(this, EventArgs.Empty);
+#else
                     this.Dispatcher.BeginInvoke(new Action<ItemChangeSet>(itemChangeSet =>
                     {
                         ApplyChangeSet(itemChangeSet);
                     }), changeSet);
+#endif
                 }
             }
         }
@@ -2985,11 +3007,15 @@ DoubleAnimationHelper
         private void UpdateItems(double oldValue, double newValue)
         {
             var delta = newValue - oldValue;
+#if NETFX_CORE
+            ItemContainerGenerator.ItemsChanged += ItemContainerGenerator_ItemsChanged;
+#else
             if (ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
             {
                 ItemContainerGenerator.StatusChanged += new EventHandler(ItemContainerGenerator_StatusChanged);
                 return;
             }
+#endif
             //double? itemScrollPosition = null;
 
             var orderedItems = (from item in GetCarouselItems()
@@ -3116,15 +3142,29 @@ DoubleAnimationHelper
             }
         }
 
+
+#if NETFX_CORE
+
+        void ItemContainerGenerator_ItemsChanged(object sender, Windows.UI.Xaml.Controls.Primitives.ItemsChangedEventArgs e)
+        {
+            UpdateItems();
+        }
+#else
+
+
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
         {
             ItemContainerGenerator.StatusChanged -= new EventHandler(ItemContainerGenerator_StatusChanged);
             UpdateItems();
         }
+#endif
 
         private void UpdateItemsWithDelay(Double oldValue, Double newValue)
         {
+#if NETFX_CORE
+#else
             if (ItemContainerGenerator.Status == GeneratorStatus.NotStarted) { return; }
+#endif
             var isAscending = (newValue > oldValue);
             for (int i = 0; i < this.Items.Count; i++)
             {
