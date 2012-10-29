@@ -206,8 +206,8 @@
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyI" DefaultContent="i" CapitalizedContent="I" KeyCode="{x:Static services:KeysEx.VK_I}" ShiftContent="I" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyO" DefaultContent="o" CapitalizedContent="O" KeyCode="{x:Static services:KeysEx.VK_O}" ShiftContent="O" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyP" DefaultContent="p" CapitalizedContent="P" KeyCode="{x:Static services:KeysEx.VK_P}" ShiftContent="P" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftSquareBracket" DefaultContent="[" KeyCode="{x:Static services:KeysEx.VK_OEM_4}" ShiftContent="\{" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightSquareBracket" DefaultContent="]" KeyCode="{x:Static services:KeysEx.VK_OEM_6}" ShiftContent="\}" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftSquareBracket" DefaultContent="[" KeyCode="{x:Static services:KeysEx.VK_OEM_4}" ShiftContent="{}&#x7B;" />
+    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightSquareBracket" DefaultContent="]" KeyCode="{x:Static services:KeysEx.VK_OEM_6}" ShiftContent="{}&#x7D;" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyBackSlash" DefaultContent="\" KeyCode="{x:Static services:KeysEx.VK_OEM_102}" ShiftContent="|" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDelete" DefaultContent="DEL" KeyCode="{x:Static services:KeysEx.VK_DELETE}" />
     <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCapitalizeLock" DefaultContent="CAPSLOCK" KeyCode="{x:Static services:KeysEx.VK_CAPITAL}" IsRepeatable="False" />
