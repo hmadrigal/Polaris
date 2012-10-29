@@ -1194,6 +1194,7 @@ namespace Polaris.Windows.Controls
             Action updatePositionAction =
                 new Action(() =>
                 {
+                    
                     Canvas.SetTop(this, scrollPositionDescriptor.Top);
                     Canvas.SetLeft(this, scrollPositionDescriptor.Left);
                     this.Width = scrollPositionDescriptor.Width;
@@ -1212,7 +1213,7 @@ namespace Polaris.Windows.Controls
 
 #if NETFX_CORE
             Task updatePositionTask = new Task(updatePositionAction);
-            updatePositionTask.Start();
+            updatePositionTask.Start(TaskScheduler.FromCurrentSynchronizationContext());
 #else
             Dispatcher.BeginInvoke(updatePositionAction);
 #endif

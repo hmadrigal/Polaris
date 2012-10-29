@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="Carousel.Rt.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Carousel.Rt"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Polaris_Controls="using:Polaris.Controls"
+    xmlns:Carousel_Rt_ViewModels="using:Carousel.Rt.ViewModels"
+    mc:Ignorable="d">
+	<Page.Resources>
+		<ItemsPanelTemplate x:Key="CarouselPanel">
+			<Canvas/>
+		</ItemsPanelTemplate>
+		<DataTemplate x:Key="CarouselItemDataTemplate">
+			<Viewbox>
+				<Grid Height="500" Width="888">
+					<Image Source="{Binding ImageUriString}"/>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" FontSize="64" Margin="50"/>
+				</Grid>
+			</Viewbox>
+		</DataTemplate>
+        <ControlTemplate x:Key="CarouselItemContainerTemplate" TargetType="Polaris_Controls:CarouselItem">
+            <Viewbox>
+                <Grid Height="500" Width="888">
+                    <Image Source="{Binding ImageUriString}"/>
+                    <Grid VerticalAlignment="Bottom">
+                    	<Rectangle Fill="#66000000"/>
+                    	<StackPanel Margin="50" Orientation="Vertical">
+                    		<TextBlock TextWrapping="Wrap" Text="{Binding Name}" FontSize="64"/>
+                    		<TextBlock TextWrapping="Wrap" Text="{Binding Description}" FontSize="26.667" Margin="0,15,0,0"/>
+                    	</StackPanel>
+                    </Grid>
+                    <Border BorderBrush="#FFC13907" BorderThickness="5"/>
+                </Grid>
+            </Viewbox>
+        </ControlTemplate>
+        <Style TargetType="Polaris_Controls:CarouselItem" x:Key="CarouselItemContainerStyle">
+            <Setter Property="Template" Value="{StaticResource ResourceKey=CarouselItemContainerTemplate}"/>
+        </Style>
+	</Page.Resources>
+    <Page.DataContext>
+        <Carousel_Rt_ViewModels:MainViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <Grid Width="1366" Height="768">
+                <Polaris_Controls:CarouselItemsControl 
+                x:Name="Carousel"
+                ItemsPanel="{StaticResource CarouselPanel}" 
+                ItemsSource="{Binding CarouselItems}"
+                ItemContainerStyle="{StaticResource ResourceKey=CarouselItemContainerStyle}"
+                AnimatedScrollDuration="0:0:0.4" QuadrantASize="888,500" QuadrantBSize="710,400" QuadrantCSize="710,400" QuadrantDSize="710,400" QuadrantAPosition="239,134" QuadrantBPosition="3062,201" QuadrantCPosition="571,-2000" QuadrantDPosition="-2414,201" ScrollStep="1" VanishingPoint="QuadrantC"
+                >
+                	<Polaris_Controls:CarouselItemsControl.AnimatedScrollEasingFunction>
+                		<QuinticEase EasingMode="EaseInOut"/>
+                	</Polaris_Controls:CarouselItemsControl.AnimatedScrollEasingFunction>
+                </Polaris_Controls:CarouselItemsControl>
+                <Polaris_Controls:CarouselItem Content="CarouselItem" HorizontalAlignment="Left" VerticalAlignment="Top" Template="{StaticResource CarouselItemContainerTemplate}" DataContext="{Binding CarouselItems[0]}" Visibility="Collapsed"/>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Page>

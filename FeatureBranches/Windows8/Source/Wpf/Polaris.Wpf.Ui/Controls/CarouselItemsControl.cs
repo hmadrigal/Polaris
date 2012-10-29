@@ -2814,11 +2814,12 @@ DoubleAnimationHelper
         public CarouselItemsControl()
         {
 #if NETFX_CORE
+            ProcessChangesAsync();
 #else
             System.Threading.ThreadPool.QueueUserWorkItem(ProcessChanges);
             CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
-            InitializeIdleScrollingAnimation();
 #endif
+            InitializeIdleScrollingAnimation();
         }
 
 
@@ -2833,9 +2834,12 @@ DoubleAnimationHelper
             {
 #if NETFX_CORE
                 await Task.Delay(60);
+                CompositionTarget_Rendering(this, EventArgs.Empty);
 #else
                 System.Threading.Thread.Sleep(60);
 #endif
+
+
                 var currentDate = DateTime.Now;
                 ItemChangeSet[] pendingChangesArray = new ItemChangeSet[] { };
                 lock (pendingChangesSync)
@@ -2854,7 +2858,6 @@ DoubleAnimationHelper
                     }
 #if NETFX_CORE
                     ApplyChangeSet(changeSet);
-                    CompositionTarget_Rendering(this, EventArgs.Empty);
 #else
                     this.Dispatcher.BeginInvoke(new Action<ItemChangeSet>(itemChangeSet =>
                     {
@@ -2927,7 +2930,10 @@ DoubleAnimationHelper
                 IsBlurEnabled = this.IsBlurEnabled,
                 Opacity = (NewItemScrollPosition.HasValue ? 0 : 1),
             };
+
             newItemContainer.IsSynchronized = true;
+
+            //newItemContainer.Style = this.ItemContainerStyle;
 
             if (NewItemScrollPosition.HasValue)
             {
@@ -3008,7 +3014,7 @@ DoubleAnimationHelper
         {
             var delta = newValue - oldValue;
 #if NETFX_CORE
-            ItemContainerGenerator.ItemsChanged += ItemContainerGenerator_ItemsChanged;
+            //ItemContainerGenerator.ItemsChanged += ItemContainerGenerator_ItemsChanged;
 #else
             if (ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
             {
@@ -3071,7 +3077,11 @@ DoubleAnimationHelper
         {
             for (int i = 0; i < this.Items.Count; i++)
             {
-                yield return ItemContainerGenerator.ContainerFromIndex(i) as CarouselItem;
+                var carouselItem = ItemContainerGenerator.ContainerFromIndex(i) as CarouselItem;
+                if (carouselItem != null)
+                {
+                    yield return carouselItem;
+                }
             }
         }
 
@@ -3216,6 +3226,7 @@ DoubleAnimationHelper
         protected override void OnItemsChanged(object args)
         {
             var e = args as NotifyCollectionChangedEventArgs;
+            if (e == null) { return; }
 #else
         protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
         {
