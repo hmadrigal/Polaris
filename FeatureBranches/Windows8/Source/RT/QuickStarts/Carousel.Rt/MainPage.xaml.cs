@@ -25,32 +25,73 @@ namespace Carousel.Rt
 
         TaskScheduler _uiTaskScheduler;
 
+        DateTime? latestMouseWheelEvent;
+
+        TimeSpan idleTimeout = TimeSpan.FromSeconds(5);
 
         public MainPage()
         {
             this.InitializeComponent();
             _uiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             StartCarouselDemoProcessAsync();
+            Window.Current.CoreWindow.PointerWheelChanged += CoreWindow_PointerWheelChanged;
+        }
+
+
+
+        void CoreWindow_PointerWheelChanged(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.PointerEventArgs args)
+        {
+
+            if (Carousel.IsAnimating) { return; }
+
+            latestMouseWheelEvent = DateTime.Now;
+            var delta = args.CurrentPoint.Properties.MouseWheelDelta;
+
+            var animatedScrollPosition = Carousel.AnimatedScrollPosition;
+            animatedScrollPosition += delta * 3;
+            if (animatedScrollPosition == -360)
+            {
+                Carousel.ScrollPosition = 30;
+                animatedScrollPosition = 0;
+            }
+            Carousel.AnimatedScrollPosition = animatedScrollPosition;
+
         }
 
         private async void StartCarouselDemoProcessAsync()
         {
+            Action updateScrollPosition = new Action(() =>
+            {
+                var animatedScrollPosition = Carousel.AnimatedScrollPosition;
+                animatedScrollPosition -= 30;
+                if (animatedScrollPosition == -360)
+                {
+                    Carousel.ScrollPosition = 30;
+                    animatedScrollPosition = 0;
+                }
+                Carousel.AnimatedScrollPosition = animatedScrollPosition;
+            });
+
             while (true)
             {
                 await Task.Delay(2000);
-                Action updateScrollPosition = new Action(() =>
+
+                var isAutoScrollingEnabled = true;
+
+                if (latestMouseWheelEvent != null)
                 {
-                    var animatedScrollPosition = Carousel.AnimatedScrollPosition;
-                    animatedScrollPosition -= 30;
-                    if (animatedScrollPosition == -360)
+                    var elapsedTimeSinceLatestMouseWheelEvent = DateTime.Now - latestMouseWheelEvent.Value;
+                    if (elapsedTimeSinceLatestMouseWheelEvent < idleTimeout)
                     {
-                        Carousel.ScrollPosition = 30;
-                        animatedScrollPosition = 0;
+                        isAutoScrollingEnabled = false;
                     }
-                    Carousel.AnimatedScrollPosition = animatedScrollPosition;
-                });
-                var updateScrollPositionTask = new Task(updateScrollPosition);
-                updateScrollPositionTask.Start(_uiTaskScheduler);
+                }
+
+                if (isAutoScrollingEnabled)
+                {
+                    var updateScrollPositionTask = new Task(updateScrollPosition);
+                    updateScrollPositionTask.Start(_uiTaskScheduler);
+                }
             }
         }
 
