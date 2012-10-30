@@ -51,6 +51,7 @@ namespace Polaris.Windows.Services
         [DllImport("User32.dll", EntryPoint = "SendInput")]
         public static extern uint SendInput(uint nInputs, InputKeys[] inputs, int cbSize);
 
+        // Imported from http://stackoverflow.com/questions/577411/how-can-i-find-the-state-of-numlock-capslock-and-scrolllock-in-net
         [DllImport("User32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
         public static extern short GetKeyState(int keyCode);
     }
