@@ -45,10 +45,13 @@ namespace Polaris.Windows.Services
         public const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
         public const uint KEYEVENTF_KEYUP = 0x0002;
 
-        [DllImport("user32.dll")]
+        [DllImport("User32.dll")]
         public static extern uint SendInput(uint nInputs, ref INPUT pInputs, int cbSize);
 
-        [DllImport("User32.DLL", EntryPoint = "SendInput")]
+        [DllImport("User32.dll", EntryPoint = "SendInput")]
         public static extern uint SendInput(uint nInputs, InputKeys[] inputs, int cbSize);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+        public static extern short GetKeyState(int keyCode);
     }
 }

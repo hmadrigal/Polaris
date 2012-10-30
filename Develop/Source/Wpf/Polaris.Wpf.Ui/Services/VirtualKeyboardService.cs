@@ -27,9 +27,8 @@ namespace Polaris.Windows.Services
         #region Singleton Pattern w/ Constructor
 
         private VirtualKeyboardService()
-            : base()
         {
-            this.Initialize();
+            Initialize();
         }
 
         public static VirtualKeyboardService Instance
@@ -264,6 +263,15 @@ namespace Polaris.Windows.Services
                     if (LeftWin) PressKey(KeysEx.VK_LWIN); else ReleaseKey(KeysEx.VK_LWIN);
                 }
             }
+        }
+
+        public bool IsCapsLockActived { get { return (((ushort)NativeWin32.GetKeyState(0x14)) & 0xffff) != 0; } }
+        public bool IsNumLockActived { get { return (((ushort)NativeWin32.GetKeyState(0x90)) & 0xffff) != 0; } }
+        public bool IsScrollLockActived { get { return (((ushort)NativeWin32.GetKeyState(0x91)) & 0xffff) != 0; } }
+
+        public bool IsKeyPressed(KeysEx keyCode)
+        {
+            return NativeWin32.GetKeyState((int)keyCode) != 0;
         }
     }
 }
