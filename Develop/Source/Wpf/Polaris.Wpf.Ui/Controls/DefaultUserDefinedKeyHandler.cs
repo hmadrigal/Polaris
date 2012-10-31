@@ -6,12 +6,13 @@
 using Polaris.Windows.Services;
 namespace Polaris.Windows.Controls
 {
-    public class DefaultCustomVirtualKeyHandler : IVirtualKeyHandler
+    public class DefaultUserDefinedKeyHandler : IUserDefinedKeyHandler
     {
-        public void HandleCustomKeyStroke(QuertyKeyboard sender, VirtualKeyConfig virtualKeyConfig, IVirtualKeyboardService keyboardService)
+        public void HandleUserDefinedKey(QuertyKeyboard sender, ILogicalKey virtualKeyConfig, IKeyboardInput keyboardService)
         {
-            //var currentLayout = (KeyboardLayout)sender.KeyboardLayout;
-            var keyName = virtualKeyConfig.KeyName.ToString();
+            //var currentLayout = (QuertyKeyboard)sender.KeyboardLayout;
+
+            var keyName = (virtualKeyConfig as UserDefineKey).Id.ToString();
             switch (keyName)
             {
                 case @"KBEXPAND":

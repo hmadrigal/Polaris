@@ -4,9 +4,11 @@
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:Polaris.Windows.Controls"
     xmlns:mscorlib="clr-namespace:System;assembly=mscorlib"
     xmlns:services="clr-namespace:Polaris.Windows.Services"
+    xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
     >
 
     <!--AnimatedLayoutControl-->
@@ -180,93 +182,330 @@
     <SolidColorBrush x:Key="WhiteBrush" Color="White"/>
     <!--WhiteBrush-->
 
-    <!--<local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DefaultContent="a" ShiftContent="A" CapitalizedContent="A" KeyCode="{x:Static services:KeysEx.VK_A}"/>-->
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEsc" DefaultContent="ESC" KeyCode="{x:Static services:KeysEx.VK_ESCAPE}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExclamationMark" DefaultContent="1" KeyCode="{x:Static services:KeysEx.VK_EXCLAMATION}" ShiftContent="!"/>
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAt" DefaultContent="2" KeyCode="{x:Static services:KeysEx.VK_AT}" ShiftContent="@" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPound" DefaultContent="3" KeyCode="{x:Static services:KeysEx.VK_NUMBERSIGN}" ShiftContent="#" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDollar" DefaultContent="4" KeyCode="{x:Static services:KeysEx.VK_DOLLAR}" ShiftContent="$" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPercent" DefaultContent="5" KeyCode="{x:Static services:KeysEx.VK_PERCENTAGE}" ShiftContent="%" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCircumflex" DefaultContent="6" KeyCode="{x:Static services:KeysEx.VK_CIRCUMFLEX}" ShiftContent="^" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAmpersand" DefaultContent="7" KeyCode="{x:Static services:KeysEx.VK_AMPERSAND}" ShiftContent="&amp;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAsterik" DefaultContent="8" KeyCode="{x:Static services:KeysEx.VK_ASTERISK}" ShiftContent="*" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftParenthesis" DefaultContent="9" KeyCode="{x:Static services:KeysEx.VK_LPARENTHESES}" ShiftContent="(" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightParenthesis" DefaultContent="0" KeyCode="{x:Static services:KeysEx.VK_RPARENTHESES}" ShiftContent=")" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDash" DefaultContent="-" KeyCode="{x:Static services:KeysEx.VK_OEM_MINUS}" ShiftContent="_" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEquals" DefaultContent="=" KeyCode="{x:Static services:KeysEx.VK_OEM_PLUS}" ShiftContent="+" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyBackspace" DefaultContent="BACKSPACE" KeyCode="{x:Static services:KeysEx.VK_BACK}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyTab" DefaultContent="TAB" KeyCode="{x:Static services:KeysEx.VK_TAB}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyQ" DefaultContent="q" CapitalizedContent="Q" KeyCode="{x:Static services:KeysEx.VK_Q}" ShiftContent="Q" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyW" DefaultContent="w" CapitalizedContent="W" KeyCode="{x:Static services:KeysEx.VK_W}" ShiftContent="W" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyE" DefaultContent="e" CapitalizedContent="E" KeyCode="{x:Static services:KeysEx.VK_E}" ShiftContent="E" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyR" DefaultContent="r" CapitalizedContent="R" KeyCode="{x:Static services:KeysEx.VK_R}" ShiftContent="R" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyT" DefaultContent="t" CapitalizedContent="T" KeyCode="{x:Static services:KeysEx.VK_T}" ShiftContent="T" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyY" DefaultContent="y" CapitalizedContent="Y" KeyCode="{x:Static services:KeysEx.VK_Y}" ShiftContent="Y" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyU" DefaultContent="u" CapitalizedContent="U" KeyCode="{x:Static services:KeysEx.VK_U}" ShiftContent="U" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyI" DefaultContent="i" CapitalizedContent="I" KeyCode="{x:Static services:KeysEx.VK_I}" ShiftContent="I" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyO" DefaultContent="o" CapitalizedContent="O" KeyCode="{x:Static services:KeysEx.VK_O}" ShiftContent="O" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyP" DefaultContent="p" CapitalizedContent="P" KeyCode="{x:Static services:KeysEx.VK_P}" ShiftContent="P" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftSquareBracket" DefaultContent="[" KeyCode="{x:Static services:KeysEx.VK_OEM_4}" ShiftContent="{}&#x7B;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightSquareBracket" DefaultContent="]" KeyCode="{x:Static services:KeysEx.VK_OEM_6}" ShiftContent="{}&#x7D;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyBackSlash" DefaultContent="\" KeyCode="{x:Static services:KeysEx.VK_OEM_102}" ShiftContent="|" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDelete" DefaultContent="DEL" KeyCode="{x:Static services:KeysEx.VK_DELETE}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCapitalizeLock" DefaultContent="CAPSLOCK" KeyCode="{x:Static services:KeysEx.VK_CAPITAL}" IsRepeatable="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DefaultContent="a" CapitalizedContent="A" KeyCode="{x:Static services:KeysEx.VK_A}" ShiftContent="A" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyS" DefaultContent="s" CapitalizedContent="S" KeyCode="{x:Static services:KeysEx.VK_S}" ShiftContent="S" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyD" DefaultContent="d" CapitalizedContent="D" KeyCode="{x:Static services:KeysEx.VK_D}" ShiftContent="D" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyF" DefaultContent="f" CapitalizedContent="F" KeyCode="{x:Static services:KeysEx.VK_F}" ShiftContent="F" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyG" DefaultContent="g" CapitalizedContent="G" KeyCode="{x:Static services:KeysEx.VK_G}" ShiftContent="G" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyH" DefaultContent="h" CapitalizedContent="H" KeyCode="{x:Static services:KeysEx.VK_H}" ShiftContent="H" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyJ" DefaultContent="j" CapitalizedContent="J" KeyCode="{x:Static services:KeysEx.VK_J}" ShiftContent="J" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyK" DefaultContent="k" CapitalizedContent="K" KeyCode="{x:Static services:KeysEx.VK_K}" ShiftContent="K" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyL" DefaultContent="l" CapitalizedContent="L" KeyCode="{x:Static services:KeysEx.VK_L}" ShiftContent="L" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySemicolon" DefaultContent=";" KeyCode="{x:Static services:KeysEx.VK_OEM_1}" ShiftContent=":" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyApostrophe" DefaultContent="'" KeyCode="{x:Static services:KeysEx.VK_OEM_7}" ShiftContent="&quot;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyEnter" DefaultContent="◄┘" KeyCode="{x:Static services:KeysEx.VK_RETURN}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftShift" DefaultContent="LSHIFT" KeyCode="{x:Static services:KeysEx.VK_LSHIFT}" IsRepeatable="False" IsSticky="True" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyZ" DefaultContent="z" CapitalizedContent="Z" KeyCode="{x:Static services:KeysEx.VK_Z}" ShiftContent="Z" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyX" DefaultContent="x" CapitalizedContent="X" KeyCode="{x:Static services:KeysEx.VK_X}" ShiftContent="X" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyC" DefaultContent="c" CapitalizedContent="C" KeyCode="{x:Static services:KeysEx.VK_C}" ShiftContent="C" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyV" DefaultContent="v" CapitalizedContent="V" KeyCode="{x:Static services:KeysEx.VK_V}" ShiftContent="V" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyB" DefaultContent="b" CapitalizedContent="B" KeyCode="{x:Static services:KeysEx.VK_B}" ShiftContent="B" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyN" DefaultContent="n" CapitalizedContent="N" KeyCode="{x:Static services:KeysEx.VK_N}" ShiftContent="N" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyM" DefaultContent="m" CapitalizedContent="M" KeyCode="{x:Static services:KeysEx.VK_M}" ShiftContent="M" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyComma" DefaultContent="," KeyCode="{x:Static services:KeysEx.VK_OEM_COMMA}" ShiftContent="&lt;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyPeriod" DefaultContent="." KeyCode="{x:Static services:KeysEx.VK_OEM_PERIOD}" ShiftContent="&gt;" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySlash" DefaultContent="/" KeyCode="{x:Static services:KeysEx.VK_OEM_2}" ShiftContent="?" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightShift" DefaultContent="RSHIFT" KeyCode="{x:Static services:KeysEx.VK_RSHIFT}"  IsRepeatable="False" IsSticky="True" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftAlt" DefaultContent="LALT"  IsRepeatable="False" IsSticky="True" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySpace" DefaultContent=" " KeyCode="{x:Static services:KeysEx.VK_SPACE}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightAlt" DefaultContent="RALT" IsRepeatable="False" IsSticky="True" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyUpArrow" DefaultContent="↑" KeyCode="{x:Static services:KeysEx.VK_UP}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDownArrow" DefaultContent="↓" KeyCode="{x:Static services:KeysEx.VK_DOWN}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLeftArrow" DefaultContent="←" KeyCode="{x:Static services:KeysEx.VK_LEFT}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyRightArrow" DefaultContent="→" KeyCode="{x:Static services:KeysEx.VK_RIGHT}" />
-    
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNumLock" DefaultContent="NUMLOCK" KeyCode="{x:Static services:KeysEx.VK_NUMLOCK}" IsRepeatable="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum0" DefaultContent="0" KeyCode="{x:Static services:KeysEx.VK_NUMPAD0}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum1" DefaultContent="1" KeyCode="{x:Static services:KeysEx.VK_NUMPAD1}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum2" DefaultContent="2" KeyCode="{x:Static services:KeysEx.VK_NUMPAD2}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum3" DefaultContent="3" KeyCode="{x:Static services:KeysEx.VK_NUMPAD3}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum4" DefaultContent="4" KeyCode="{x:Static services:KeysEx.VK_NUMPAD4}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum5" DefaultContent="5" KeyCode="{x:Static services:KeysEx.VK_NUMPAD5}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum6" DefaultContent="6" KeyCode="{x:Static services:KeysEx.VK_NUMPAD6}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum7" DefaultContent="7" KeyCode="{x:Static services:KeysEx.VK_NUMPAD7}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum8" DefaultContent="8" KeyCode="{x:Static services:KeysEx.VK_NUMPAD8}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNum9" DefaultContent="9" KeyCode="{x:Static services:KeysEx.VK_NUMPAD9}" />    
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyMultiply" DefaultContent="*" KeyCode="{x:Static services:KeysEx.VK_MULTIPLY}"/>
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyAdd" DefaultContent="+" KeyCode="{x:Static services:KeysEx.VK_ADD}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeySubtract" DefaultContent="-" KeyCode="{x:Static services:KeysEx.VK_SUBTRACT}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDivide" DefaultContent="/" KeyCode="{x:Static services:KeysEx.VK_DIVIDE}" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyDecimal" DefaultContent="." KeyCode="{x:Static services:KeysEx.VK_DECIMAL}" />
+    <!--<local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DisplayName="a" ShiftContent="A" CapitalizedContent="A" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_A}"/>-->
+    <local:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="ESC" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" DisplayName="`" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>`</sys:String>
+            <sys:String>~</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyExclamationMark" DisplayName="1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_1}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>1</sys:String>
+            <sys:String>!</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAt" DisplayName="2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_2}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>2</sys:String>
+            <sys:String>@</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPound" DisplayName="3" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_3}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>3</sys:String>
+            <sys:String>#</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyDollar" DisplayName="4" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_4}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>4</sys:String>
+            <sys:String>$</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPercent" DisplayName="5" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_5}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>5</sys:String>
+            <sys:String>%</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyCircumflex" DisplayName="6" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_6}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>6</sys:String>
+            <sys:String>^</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAmpersand" DisplayName="7" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_7}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>7</sys:String>
+            <sys:String>&amp;</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAsterik" DisplayName="8" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_8}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>8</sys:String>
+            <sys:String>*</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyLeftParenthesis" DisplayName="9" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_9}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>9</sys:String>
+            <sys:String>(</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyRightParenthesis" DisplayName="0" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_0}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>0</sys:String>
+            <sys:String>)</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyDash" DisplayName="-" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_MINUS}" >
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>-</sys:String>
+            <sys:String>_</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyEquals" DisplayName="=" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_PLUS}" >
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>=</sys:String>
+            <sys:String>+</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyBackspace" DisplayName="BACKSPACE" KeyCode="{x:Static WindowsInput:VirtualKeyCode.BACK}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyTab" DisplayName="TAB" KeyCode="{x:Static WindowsInput:VirtualKeyCode.TAB}" />
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyQ" DisplayName="q" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Q}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>q</sys:String>
+            <sys:String>Q</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyW" DisplayName="w" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_W}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>w</sys:String>
+            <sys:String>W</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyE" DisplayName="e" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_E}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>e</sys:String>
+            <sys:String>E</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyR" DisplayName="r" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_R}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>r</sys:String>
+            <sys:String>R</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyT" DisplayName="t" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_T}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>t</sys:String>
+            <sys:String>T</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyY" DisplayName="y" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Y}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>y</sys:String>
+            <sys:String>Y</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyU" DisplayName="u" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_U}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>u</sys:String>
+            <sys:String>U</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyI" DisplayName="i" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_I}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>i</sys:String>
+            <sys:String>I</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyO" DisplayName="o" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_O}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>o</sys:String>
+            <sys:String>O</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyP" DisplayName="p" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_P}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>p</sys:String>
+            <sys:String>P</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyLeftSquareBracket" DisplayName="[" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_4}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>[</sys:String>
+            <sys:String>{</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyRightSquareBracket" DisplayName="]" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_6}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>]</sys:String>
+            <sys:String>}</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyBackSlash" DisplayName="\" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_102}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>\</sys:String>
+            <sys:String>|</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyDelete" DisplayName="DEL" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DELETE}" />
+    <local:TogglingModifierKey x:Key="QuertyKeyboardKeyCapitalizeLock" DisplayName="CAPSLOCK" KeyCode="{x:Static WindowsInput:VirtualKeyCode.CAPITAL}"/>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyA" DisplayName="a" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_A}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>a</sys:String>
+            <sys:String>A</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyS" DisplayName="s" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_S}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>s</sys:String>
+            <sys:String>S</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyD" DisplayName="d" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_D}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>d</sys:String>
+            <sys:String>D</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyF" DisplayName="f" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_F}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>f</sys:String>
+            <sys:String>F</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyG" DisplayName="g" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_G}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>g</sys:String>
+            <sys:String>G</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyH" DisplayName="h" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_H}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>h</sys:String>
+            <sys:String>H</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyJ" DisplayName="j" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_J}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>j</sys:String>
+            <sys:String>J</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyK" DisplayName="k" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_K}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>k</sys:String>
+            <sys:String>K</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyL" DisplayName="l" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_L}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>l</sys:String>
+            <sys:String>L</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeySemicolon" DisplayName=";" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_1}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>;</sys:String>
+            <sys:String>:</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyApostrophe" DisplayName="'" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_7}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>'</sys:String>
+            <sys:String>"</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyEnter" DisplayName="◄┘" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RETURN}" />
+    <local:InstantaneousModifierKey x:Key="QuertyKeyboardKeyLeftShift" DisplayName="LSHIFT" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}"/>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyZ" DisplayName="z" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Z}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>z</sys:String>
+            <sys:String>Z</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyX" DisplayName="x" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_X}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>x</sys:String>
+            <sys:String>X</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyC" DisplayName="c" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_C}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>c</sys:String>
+            <sys:String>C</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyV" DisplayName="v" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_V}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>v</sys:String>
+            <sys:String>V</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyB" DisplayName="b" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_B}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            
+            <sys:String>b</sys:String>
+            <sys:String>B</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyN" DisplayName="n" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_N}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>n</sys:String>
+            <sys:String>N</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:CaseSensitiveKey x:Key="QuertyKeyboardKeyM" DisplayName="m" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_M}">
+        <local:CaseSensitiveKey.KeyDisplays>
+            <sys:String>m</sys:String>
+            <sys:String>M</sys:String>
+        </local:CaseSensitiveKey.KeyDisplays>
+    </local:CaseSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyComma" DisplayName="," KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_COMMA}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>,</sys:String>
+            <sys:String>&lt;</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPeriod" DisplayName="." KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_PERIOD}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>.</sys:String>
+            <sys:String>&gt;</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeySlash" DisplayName="/" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_2}">
+        <local:ShiftSensitiveKey.KeyDisplays>
+            <sys:String>/</sys:String>
+            <sys:String>?</sys:String>
+        </local:ShiftSensitiveKey.KeyDisplays>
+    </local:ShiftSensitiveKey>
+    <local:InstantaneousModifierKey x:Key="QuertyKeyboardKeyRightShift" DisplayName="RSHIFT" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}"/>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyLeftAlt" DisplayName="LALT"/>
+    <local:VirtualKey x:Key="QuertyKeyboardKeySpace" DisplayName=" " KeyCode="{x:Static WindowsInput:VirtualKeyCode.SPACE}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyRightAlt" DisplayName="RALT"/>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyUpArrow" DisplayName="↑" KeyCode="{x:Static WindowsInput:VirtualKeyCode.UP}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyDownArrow" DisplayName="↓" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DOWN}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyLeftArrow" DisplayName="←" KeyCode="{x:Static WindowsInput:VirtualKeyCode.LEFT}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyRightArrow" DisplayName="→" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RIGHT}" />
 
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyShowKeyboard" KeyName="KBSHOW" DefaultContent="KBSHOW" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyHideKeyboard" KeyName="KBHIDE" DefaultContent="KBHIDE" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyExpandedKeyboard" KeyName="KBEXPAND" DefaultContent="KBEXPAND" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyCompactKeyboard" KeyName="KBCOMPACT" DefaultContent="KBCOMPACT" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyNumericKeyboard" KeyName="KBNUMERIC" DefaultContent="KBNUMERIC" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyLock" KeyName="KBLOCK" DefaultContent="KBLOCK" IsRepeatable="False" IsSticky="False" />
-    <local:VirtualKeyConfig x:Key="QuertyKeyboardKeyUnlock" KeyName="KBUNLOCK" DefaultContent="KBUNLOCK" IsRepeatable="False" IsSticky="False" />
+    <local:TogglingModifierKey x:Key="QuertyKeyboardKeyNumLock" DisplayName="NUMLOCK" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMLOCK}"/>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum0" DisplayName="0" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD0}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum1" DisplayName="1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD1}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum2" DisplayName="2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD2}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum3" DisplayName="3" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD3}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum4" DisplayName="4" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD4}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum5" DisplayName="5" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD5}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum6" DisplayName="6" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD6}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum7" DisplayName="7" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD7}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum8" DisplayName="8" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD8}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyNum9" DisplayName="9" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD9}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyMultiply" DisplayName="*" KeyCode="{x:Static WindowsInput:VirtualKeyCode.MULTIPLY}"/>
+    <local:VirtualKey x:Key="QuertyKeyboardKeyAdd" DisplayName="+" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ADD}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeySubtract" DisplayName="-" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SUBTRACT}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyDivide" DisplayName="/" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DIVIDE}" />
+    <local:VirtualKey x:Key="QuertyKeyboardKeyDecimal" DisplayName="." KeyCode="{x:Static WindowsInput:VirtualKeyCode.DECIMAL}" />
+
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyShowKeyboard" Id="KBSHOW" DisplayName="Show" />
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyHideKeyboard" Id="KBHIDE" DisplayName="Hide"/>
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyExpandedKeyboard" Id="KBEXPAND" DisplayName="Expand"/>
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyCompactKeyboard" Id="KBCOMPACT" DisplayName="Compact"/>
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyNumericKeyboard" Id="KBNUMERIC" DisplayName="Numeric"/>
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyLock" Id="KBLOCK" DisplayName="Lock"/>
+    <local:UserDefineKey x:Key="QuertyKeyboardKeyUnlock" Id="KBUNLOCK" DisplayName="Unlock"/>
 
 
     <!--QuertyKeyboard-->

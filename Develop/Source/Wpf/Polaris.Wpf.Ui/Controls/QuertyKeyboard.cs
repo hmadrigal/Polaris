@@ -16,10 +16,9 @@ namespace Polaris.Windows.Controls
     using Polaris.Windows.Extensions;
     using Polaris.Windows.Services;
     using Polaris.Wpf.Ui.Extensions;
+    using WindowsInput;
 
     [TemplatePart(Name = ElementLayoutRootName, Type = typeof(Panel))]
-    [TemplateVisualState(Name = VisualStateQuertyName, GroupName = VisualStateGroupKeyboardLayoutName)]
-    [TemplateVisualState(Name = VisualStateNumericName, GroupName = VisualStateGroupKeyboardLayoutName)]
     public class QuertyKeyboard : Control
     {
 
@@ -29,40 +28,28 @@ namespace Polaris.Windows.Controls
         /// VirtualKey Attached Dependency Property
         /// </summary>
         public static readonly DependencyProperty VirtualKeyProperty =
-            DependencyProperty.RegisterAttached("VirtualKey", typeof(VirtualKeyConfig), typeof(QuertyKeyboard),
+            DependencyProperty.RegisterAttached("VirtualKey", typeof(ILogicalKey), typeof(QuertyKeyboard),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// Gets the VirtualKey property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static VirtualKeyConfig GetVirtualKey(DependencyObject d)
+        public static ILogicalKey GetVirtualKey(DependencyObject d)
         {
-            return (VirtualKeyConfig)d.GetValue(VirtualKeyProperty);
+            return (ILogicalKey)d.GetValue(VirtualKeyProperty);
         }
 
         /// <summary>
         /// Sets the VirtualKey property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static void SetVirtualKey(DependencyObject d, VirtualKeyConfig value)
+        public static void SetVirtualKey(DependencyObject d, ILogicalKey value)
         {
             d.SetValue(VirtualKeyProperty, value);
         }
 
         #endregion
-
-        #region Visual states
-
-        private const String VisualStateGroupKeyboardLayoutName = "KeyboardLayoutStates";
-        private const String VisualStateQuertyName = "QuertyState";
-        private const String VisualStateNumericName = "NumericState";
-
-        private VisualStateGroup KeyboardLayoutVisualStateGroup;
-        private VisualState QuertyVisualState;
-        private VisualState NumericVisualState;
-
-        #endregion Visual states
 
         #region KeyboardLayout
 
@@ -102,79 +89,47 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
-        #region CustomVirtualKeyHandler
+        #region UserDefinedKeyHandler
 
         /// <summary>
-        /// CustomVirtualKeyHandler Dependency Property
+        /// UserDefinedKeyHandler Dependency Property
         /// </summary>
-        public static readonly DependencyProperty CustomVirtualKeyHandlerProperty =
-            DependencyProperty.Register("CustomVirtualKeyHandler", typeof(IVirtualKeyHandler), typeof(QuertyKeyboard),
-                new FrameworkPropertyMetadata(default(IVirtualKeyHandler)));
+        public static readonly DependencyProperty UserDefinedKeyHandlerProperty =
+            DependencyProperty.Register("UserDefinedKeyHandler", typeof(IUserDefinedKeyHandler), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata(new DefaultUserDefinedKeyHandler()));
 
         /// <summary>
-        /// Gets or sets the CustomVirtualKeyHandler property.  This dependency property 
+        /// Gets or sets the UserDefinedKeyHandler property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public IVirtualKeyHandler CustomVirtualKeyHandler
+        public IUserDefinedKeyHandler UserDefinedKeyHandler
         {
-            get { return (IVirtualKeyHandler)GetValue(CustomVirtualKeyHandlerProperty); }
-            set { SetValue(CustomVirtualKeyHandlerProperty, value); }
+            get { return (IUserDefinedKeyHandler)GetValue(UserDefinedKeyHandlerProperty); }
+            set { SetValue(UserDefinedKeyHandlerProperty, value); }
         }
 
         #endregion
 
-        public IVirtualKeyboardService KeyboardService
+        public IKeyboardInput KeyboardService
         {
             get { return _keyboardService; }
             set { _keyboardService = value; }
         }
-        private IVirtualKeyboardService _keyboardService = VirtualKeyboardService.Instance;
+        private IKeyboardInput _keyboardService = VirtualKeyboardInput.Instance;
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
-        private Dictionary<ContentControl, VirtualKeyConfig> _virtualKeys;
-
-        public bool IsShiftPressed
-        {
-            get { return _isShiftPressed; }
-            set
-            {
-                if (_isShiftPressed == value) return;
-                _isShiftPressed = value;
-                OnIsShiftPressedChanged();
-            }
-        }
-        private bool _isShiftPressed = false;
-
-        public bool IsCapsLockActivated
-        {
-            get { return _isCapsLockActivated; }
-            set
-            {
-                if (_isCapsLockActivated == value)
-                    return;
-                _isCapsLockActivated = value;
-                OnIsCapsLockActivatedChanged();
-            }
-        }
-        private bool _isCapsLockActivated = false;
-
-        //public bool IsShiftSticked
-        //{
-        //    get { return _isShiftSticked; }
-        //    set { _isShiftSticked = value; }
-        //}
-        private bool _isShiftSticked = false;
+        private Dictionary<ContentControl, ILogicalKey> _virtualKeys;
+        private readonly List<ModifierKeyBase> _modifierKeys;
+        private readonly List<ILogicalKey> _allLogicalKeys;
 
         private readonly DispatcherTimer _timer;
-
         public int PauseOnKeyPressedInitial
         {
             get { return _pauseOnKeyPressedInitial; }
             set { _pauseOnKeyPressedInitial = value; }
         }
         private int _pauseOnKeyPressedInitial = 500;
-
         public int PauseOnKeyPressedMinimum
         {
             get { return _pauseOnKeyPressedMinimum; }
@@ -190,98 +145,76 @@ namespace Polaris.Windows.Controls
         public QuertyKeyboard()
         {
             _timer = new DispatcherTimer();
+            _modifierKeys = new List<ModifierKeyBase>();
+            _allLogicalKeys = new List<ILogicalKey>();
             _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
             _timer.Tick += OnTimerTick;
-            Loaded += QuertyKeyboard_Loaded;
-            Application.Current.Startup += OnApplicationStartup;
-            Application.Current.Exit += OnApplicationExit;
+            Loaded += OnLoaded;
         }
 
-        void QuertyKeyboard_Loaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Loaded -= QuertyKeyboard_Loaded;
-            CustomVirtualKeyHandler = new DefaultCustomVirtualKeyHandler();
+            Loaded -= OnLoaded;
+            UserDefinedKeyHandler = new DefaultUserDefinedKeyHandler();
             KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
         }
 
-        void OnApplicationStartup(object sender, StartupEventArgs e)
+        private void HandleLogicKeyPressed(ILogicalKey logicalKey)
         {
-            KeyboardService.ReleaseStickyKeys();
-            Application.Current.Startup -= OnApplicationStartup;
-        }
-
-        void OnApplicationExit(object sender, ExitEventArgs e)
-        {
-            Application.Current.Exit -= OnApplicationExit;
-            KeyboardService.ReleaseStickyKeys();
-        }
-
-        private void OnSendKeyStroke(VirtualKeyConfig virtualKeyConfig)
-        {
-            //if (!OnCanExecuteStringStroke(keyStats.DefaultContent)) { return; }
-            switch (virtualKeyConfig.KeyCode)
+            if (logicalKey is ModifierKeyBase)
             {
-                case KeysEx.None:
-                    OnCustomKeyStroke(virtualKeyConfig);
-                    break;
-                case KeysEx.VK_CAPITAL:
-                    IsCapsLockActivated = !IsCapsLockActivated;
-                    KeyboardService.PressAndRelease(KeysEx.VK_CAPITAL);
-                    break;
-                case KeysEx.VK_LSHIFT:
-                case KeysEx.VK_RSHIFT:
-                case KeysEx.VK_SHIFT:
-                    KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
-                    IsShiftPressed = !IsShiftPressed;
-                    if (!_isShiftSticked)
-                        KeyboardService.ReleaseStickyKeys();
-                    break;
-                default:
-                    if (_isShiftSticked)
-                        KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);    
-                    KeyboardService.PressAndRelease(virtualKeyConfig.KeyCode);
-                    if (!_isShiftSticked)
-                        IsShiftPressed = false; 
-                    break;
+                var modifierKey = (ModifierKeyBase)logicalKey;
+                if (modifierKey.KeyCode == VirtualKeyCode.SHIFT)
+                {
+                    HandleShiftKeyPressed(modifierKey);
+                }
+                else if (modifierKey.KeyCode == VirtualKeyCode.CAPITAL)
+                {
+                    HandleCapsLockKeyPressed(modifierKey);
+                }
+                else if (modifierKey.KeyCode == VirtualKeyCode.NUMLOCK)
+                {
+                    HandleNumLockKeyPressed(modifierKey);
+                }
             }
-        }
-
-        private void OnCustomKeyStroke(VirtualKeyConfig virtualKeyConfig)
-        {
-            if (CustomVirtualKeyHandler == null)
-                return;
-            CustomVirtualKeyHandler.HandleCustomKeyStroke(this, virtualKeyConfig, KeyboardService);
-        }
-
-        private void OnIsShiftPressedChanged()
-        {
-            SetVirtualKeysContent();
-        }
-
-        private void OnIsCapsLockActivatedChanged()
-        {
-            SetVirtualKeysContent();
-        }
-
-        private void SetVirtualKeysContent()
-        {
-            foreach (var element in _virtualKeys.Keys)
+            else if (UserDefinedKeyHandler!=null && logicalKey is UserDefineKey)
             {
-                var virtualKeyConfig = _virtualKeys[element];
-                var content = GetContent(element, virtualKeyConfig, virtualKeyConfig.DefaultContent);
-                element.Content = content;
+                UserDefinedKeyHandler.HandleUserDefinedKey(this, logicalKey, KeyboardService);
             }
+            else
+            {
+                ResetInstantaneousModifierKeys();
+            }
+            _modifierKeys.OfType<InstantaneousModifierKey>().ToList().ForEach(x => x.SynchroniseKeyState());
+            SetKeysContent();
         }
 
-        private object GetContent(ContentControl element, VirtualKeyConfig virtualKeyConfig, object fallbackContent = null)
+        private void ResetInstantaneousModifierKeys()
         {
-            var content =
-                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && !IsShiftPressed ? virtualKeyConfig.CapitalizedContent :
-                virtualKeyConfig.CapitalizedContent != null && IsCapsLockActivated && IsShiftPressed ? virtualKeyConfig.DefaultContent :
-                virtualKeyConfig.ShiftContent != null && (IsShiftPressed || _isShiftSticked) && !IsCapsLockActivated ? virtualKeyConfig.ShiftContent :
-                virtualKeyConfig.DefaultContent != null && IsShiftPressed && IsCapsLockActivated ? virtualKeyConfig.DefaultContent :
-                fallbackContent ?? element.Content;
-            return content;
+            _modifierKeys.OfType<InstantaneousModifierKey>().ToList().ForEach(x => { if (x.IsInEffect) x.Press(); });
+        }
+
+        private void SynchroniseModifierKeyState()
+        {
+            _modifierKeys.ToList().ForEach(x => x.SynchroniseKeyState());
+        }
+
+        private void HandleShiftKeyPressed(ModifierKeyBase shiftKey)
+        {
+            _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
+                                                                             InputSimulator.IsTogglingKeyInEffect(VirtualKeyCode.CAPITAL) ^ shiftKey.IsInEffect ? 1 : 0);
+            _allLogicalKeys.OfType<ShiftSensitiveKey>().ToList().ForEach(x => x.SelectedIndex = shiftKey.IsInEffect ? 1 : 0);
+        }
+
+        private void HandleCapsLockKeyPressed(ModifierKeyBase capsLockKey)
+        {
+            _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
+                                                                             capsLockKey.IsInEffect ^ InputSimulator.IsKeyDownAsync(VirtualKeyCode.SHIFT) ? 1 : 0);
+        }
+
+        private void HandleNumLockKeyPressed(ModifierKeyBase numLockKey)
+        {
+            _allLogicalKeys.OfType<NumLockSensitiveKey>().ToList().ForEach(x => x.SelectedIndex = numLockKey.IsInEffect ? 1 : 0);
         }
 
         public override void OnApplyTemplate()
@@ -292,16 +225,17 @@ namespace Polaris.Windows.Controls
             if (_layoutRoot != null)
             {
                 _virtualKeys = (from dependencyObject in _layoutRoot.Descendants()
-                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as VirtualKeyConfig
+                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as ILogicalKey
                                 let element = dependencyObject as ContentControl
                                 where keyConfiguration != null && element != null
-                                select new KeyValuePair<ContentControl, VirtualKeyConfig>(element, keyConfiguration))
+                                select new KeyValuePair<ContentControl, ILogicalKey>(element, keyConfiguration))
                                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
                 foreach (var element in _virtualKeys.Keys)
                 {
-                    var keyConfiguration = _virtualKeys[element];
-                    element.Content = GetContent(element, keyConfiguration, keyConfiguration.DefaultContent);
+                    _virtualKeys[element].KeyboardService = KeyboardService;
+                    _virtualKeys[element].LogicalKeyPressed += (s, e) => { HandleLogicKeyPressed(e.Key); };
+                    //element.Content = _virtualKeys[element].DisplayName;
 
                     //var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
                     //touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
@@ -327,50 +261,35 @@ namespace Polaris.Windows.Controls
                     mouseDoubleClickEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDoubleClick(source, eventArgs);
                     mouseDoubleClickEventListener.OnDetachAction = (weakEventListenerParameter) => element.PreviewMouseDoubleClick -= weakEventListenerParameter.OnEvent;
                     element.PreviewMouseDoubleClick += mouseDoubleClickEventListener.OnEvent;
-
-                    //OnShowCapitalize();
-                    //OnShiftPressed();
                 }
+
+                _allLogicalKeys.AddRange(_virtualKeys.Values);
+                _modifierKeys.AddRange(_virtualKeys.Values.OfType<ModifierKeyBase>());
+                SynchroniseModifierKeyState();
+                SetKeysContent();
             }
-
-            KeyboardLayoutVisualStateGroup = GetTemplateChild(VisualStateGroupKeyboardLayoutName) as VisualStateGroup;
-            QuertyVisualState = GetTemplateChild(VisualStateQuertyName) as VisualState;
-            NumericVisualState = GetTemplateChild(VisualStateNumericName) as VisualState;
         }
 
-        private void OnButtonTouchDown(object sender, TouchEventArgs e)
+        private void SetKeysContent()
         {
-            var element = sender as ContentControl;
-            var virtualKeyConfig = _virtualKeys[element];
-            HandleButtonDown(virtualKeyConfig);
+            _virtualKeys.Keys.ForEach(element => element.Content = _virtualKeys[element].DisplayName);
         }
 
-        private void OnButtonTouchUp(object sender, TouchEventArgs e)
-        {
-            HandleButtonUp();
-        }
+        //private void OnButtonTouchDown(object sender, TouchEventArgs e)
+        //{
+        //    var element = sender as ContentControl;
+        //    var virtualKeyConfig = _virtualKeys[element];
+        //    HandleButtonDown(virtualKeyConfig);
+        //}
+
+        //private void OnButtonTouchUp(object sender, TouchEventArgs e)
+        //{
+        //    HandleButtonUp();
+        //}
 
         private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
             HandleButtonUp();
-        }
-
-        private void OnButtonMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var element = sender as ContentControl;
-            var virtualKeyConfig = _virtualKeys[element];
-            if (!virtualKeyConfig.IsSticky)
-                return;
-            _isShiftSticked = !_isShiftSticked;
-            if (_isShiftSticked)
-            {
-                KeyboardService.PressAndHold(KeysEx.VK_LSHIFT);
-            }
-            else
-            {
-                KeyboardService.ReleaseStickyKeys();
-            }
-            IsShiftPressed = _isShiftSticked;
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
@@ -380,60 +299,50 @@ namespace Polaris.Windows.Controls
             HandleButtonDown(virtualKeyConfig);
         }
 
-        private void HandleButtonUp()
+        private void OnButtonMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            _timer.IsEnabled = false;
-        }
-
-        private void HandleButtonDown(VirtualKeyConfig virtualKeyConfig)
-        {
-            _timer.Tag = virtualKeyConfig;
-            SendKeyStroke(virtualKeyConfig);
-            if (virtualKeyConfig.IsRepeatable && !virtualKeyConfig.IsSticky && !_timer.IsEnabled)
-            {
-                _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-                _timer.IsEnabled = true;
-            }
+            //var element = sender as ContentControl;
+            //var virtualKeyConfig = _virtualKeys[element];
+            //if (!virtualKeyConfig.IsSticky)
+            //    return;
+            //_isShiftSticked = !_isShiftSticked;
+            //if (_isShiftSticked)
+            //{
+            //    KeyboardService.PressAndHold(VirtualKeyCode .VK_LSHIFT);
+            //}
+            //else
+            //{
+            //    KeyboardService.ReleaseStickyKeys();
+            //}
+            //IsShiftPressed = _isShiftSticked;
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
             var timer = sender as DispatcherTimer;
-            var virtualKeyConfig = timer.Tag as VirtualKeyConfig;
+            var virtualKeyConfig = timer.Tag as ILogicalKey;
             if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
             {
                 timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
             }
-            SendKeyStroke(virtualKeyConfig);
+            virtualKeyConfig.Press();
         }
 
-        private void SendKeyStroke(VirtualKeyConfig keyStroke)
+        private void HandleButtonUp()
         {
-            OnSendKeyStroke(keyStroke);
+            _timer.IsEnabled = false;
         }
 
-        public void ReleaseKeys()
+        private void HandleButtonDown(ILogicalKey virtualKeyConfig)
         {
-            IsShiftPressed = false;
-            KeyboardService.ReleaseStickyKeys();
-        }
-    }
-
-    public class VirtualKeyConfig
-    {
-        public string KeyName { get; set; }
-        public KeysEx KeyCode { get; set; }
-        public bool IsSticky { get; set; }
-        public bool IsRepeatable { get; set; }
-        public object DefaultContent { get; set; }
-        public object ShiftContent { get; set; }
-        public object CapitalizedContent { get; set; }
-
-        public VirtualKeyConfig()
-        {
-            KeyCode = KeysEx.None;
-            IsSticky = false;
-            IsRepeatable = true;
+            _timer.Tag = virtualKeyConfig;
+            //HandleLogicKeyPressed(virtualKeyConfig);
+            virtualKeyConfig.Press();
+            if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
+            {
+                _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+                _timer.IsEnabled = true;
+            }
         }
     }
 }
