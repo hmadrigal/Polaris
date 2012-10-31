@@ -237,15 +237,15 @@ namespace Polaris.Windows.Controls
                     _virtualKeys[element].LogicalKeyPressed += (s, e) => { HandleLogicKeyPressed(e.Key); };
                     //element.Content = _virtualKeys[element].DisplayName;
 
-                    //var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                    //touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
-                    //touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
-                    //element.TouchUp += touchUpEventListener.OnEvent;
+                    var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                    touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
+                    touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
+                    element.TouchUp += touchUpEventListener.OnEvent;
 
-                    //var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                    //touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
-                    //touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
-                    //element.TouchDown += touchDownEventListener.OnEvent;
+                    var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                    touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
+                    touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
+                    element.TouchDown += touchDownEventListener.OnEvent;
 
                     var mouseDownEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
                     mouseDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDown(source, eventArgs);
@@ -275,21 +275,11 @@ namespace Polaris.Windows.Controls
             _virtualKeys.Keys.ForEach(element => element.Content = _virtualKeys[element].DisplayName);
         }
 
-        //private void OnButtonTouchDown(object sender, TouchEventArgs e)
-        //{
-        //    var element = sender as ContentControl;
-        //    var virtualKeyConfig = _virtualKeys[element];
-        //    HandleButtonDown(virtualKeyConfig);
-        //}
-
-        //private void OnButtonTouchUp(object sender, TouchEventArgs e)
-        //{
-        //    HandleButtonUp();
-        //}
-
-        private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
+        private void OnButtonTouchDown(object sender, TouchEventArgs e)
         {
-            HandleButtonUp();
+            var element = sender as ContentControl;
+            var virtualKeyConfig = _virtualKeys[element];
+            HandleButtonDown(virtualKeyConfig);
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
@@ -297,6 +287,16 @@ namespace Polaris.Windows.Controls
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
             HandleButtonDown(virtualKeyConfig);
+        }
+
+        private void OnButtonTouchUp(object sender, TouchEventArgs e)
+        {
+            HandleButtonUp();
+        }
+
+        private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            HandleButtonUp();
         }
 
         private void OnButtonMouseDoubleClick(object sender, MouseButtonEventArgs e)
