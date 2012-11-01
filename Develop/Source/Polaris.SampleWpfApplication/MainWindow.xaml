@@ -340,7 +340,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" MinHeight="50"  />
-        <local:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" InputEventType="TouchBasedEvent"
+        <local:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" InputEventType="MouseBasedEvent"
                                        />
     </Grid>
 </Window>
