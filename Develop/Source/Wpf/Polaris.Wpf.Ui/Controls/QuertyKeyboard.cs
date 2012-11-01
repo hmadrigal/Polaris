@@ -28,23 +28,23 @@ namespace Polaris.Windows.Controls
         /// VirtualKey Attached Dependency Property
         /// </summary>
         public static readonly DependencyProperty VirtualKeyProperty =
-            DependencyProperty.RegisterAttached("VirtualKey", typeof(ILogicalKey), typeof(QuertyKeyboard),
+            DependencyProperty.RegisterAttached("VirtualKey", typeof(DependencyObject), typeof(QuertyKeyboard),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// Gets the VirtualKey property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static ILogicalKey GetVirtualKey(DependencyObject d)
+        public static DependencyObject GetVirtualKey(DependencyObject d)
         {
-            return (ILogicalKey)d.GetValue(VirtualKeyProperty);
+            return (DependencyObject)d.GetValue(VirtualKeyProperty);
         }
 
         /// <summary>
         /// Sets the VirtualKey property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static void SetVirtualKey(DependencyObject d, ILogicalKey value)
+        public static void SetVirtualKey(DependencyObject d, DependencyObject value)
         {
             d.SetValue(VirtualKeyProperty, value);
         }
@@ -187,7 +187,7 @@ namespace Polaris.Windows.Controls
                     HandleNumLockKeyPressed(modifierKey);
                 }
             }
-            else if (UserDefinedKeyHandler!=null && logicalKey is UserDefineKey)
+            else if (UserDefinedKeyHandler!=null && logicalKey is UserDefinedKey)
             {
                 UserDefinedKeyHandler.HandleUserDefinedKey(this, logicalKey, KeyboardService);
             }
@@ -234,6 +234,7 @@ namespace Polaris.Windows.Controls
             _layoutRoot = GetTemplateChild(ElementLayoutRootName) as Panel;
             if (_layoutRoot != null)
             {
+
                 _virtualKeys = (from dependencyObject in _layoutRoot.Descendants()
                                 let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as ILogicalKey
                                 let element = dependencyObject as ContentControl

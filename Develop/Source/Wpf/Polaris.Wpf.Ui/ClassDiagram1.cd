@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Polaris.Windows.Controls.CaseSensitiveKey" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\CaseSensitiveKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.ChordKey" Collapsed="true">
+    <Position X="5.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\ChordKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.VirtualKey" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAACACAA=</HashCode>
+      <FileName>LogicalKeys\VirtualKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.InstantaneousModifierKey" Collapsed="true">
+    <Position X="12.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\InstantaneousModifierKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.VirtualKeyCodeList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\Lists.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Polaris.Windows.Controls.StringList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\Lists.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Polaris.Windows.Controls.LogicalKeyEventArgs" Collapsed="true">
+    <Position X="17.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\LogicalKeyBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.LogicalKeyBase" Collapsed="true">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAEAAAAAIEAQEAQAgAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\LogicalKeyBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Polaris.Windows.Controls.ModifierKeyBase" Collapsed="true">
+    <Position X="11.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>LogicalKeys\ModifierKeyBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.MultiCharacterKey" Collapsed="true">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAABAAAABAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\MultiCharacterKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.NumLockSensitiveKey" Collapsed="true">
+    <Position X="7.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\NumLockSensitiveKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.ShiftSensitiveKey" Collapsed="true">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\ShiftSensitiveKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.StringKey" Collapsed="true">
+    <Position X="7.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAQAAAAAAQAAA=</HashCode>
+      <FileName>LogicalKeys\StringKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.TogglingModifierKey" Collapsed="true">
+    <Position X="10.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\TogglingModifierKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polaris.Windows.Controls.UserDefinedKey" Collapsed="true">
+    <Position X="15" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\UserDefinedKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Polaris.Windows.Controls.ILogicalKey" Collapsed="true">
+    <Position X="17.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAEAQAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\ILogicalKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="Polaris.Windows.Controls.LogicalKeyPressedEventHandler" Collapsed="true">
+    <Position X="17.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>LogicalKeys\LogicalKeyBase.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

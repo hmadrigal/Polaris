@@ -183,7 +183,10 @@
     <!--WhiteBrush-->
 
     <!--<local:VirtualKeyConfig x:Key="QuertyKeyboardKeyA" DisplayName="a" ShiftContent="A" CapitalizedContent="A" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_A}"/>-->
-    <local:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="ESC" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
+    
+	<local:LogicalKeyBase x:Key="TestKey" DisplayName="TEST" />
+	
+	<local:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="ESC" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
     <local:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" DisplayName="`" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
         <local:ShiftSensitiveKey.KeyDisplays>
             <sys:String>`</sys:String>
@@ -499,13 +502,13 @@
     <local:VirtualKey x:Key="QuertyKeyboardKeyDivide" DisplayName="/" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DIVIDE}" />
     <local:VirtualKey x:Key="QuertyKeyboardKeyDecimal" DisplayName="." KeyCode="{x:Static WindowsInput:VirtualKeyCode.DECIMAL}" />
 
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyShowKeyboard" Id="KBSHOW" DisplayName="Show" />
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyHideKeyboard" Id="KBHIDE" DisplayName="Hide"/>
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyExpandedKeyboard" Id="KBEXPAND" DisplayName="Expand"/>
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyCompactKeyboard" Id="KBCOMPACT" DisplayName="Compact"/>
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyNumericKeyboard" Id="KBNUMERIC" DisplayName="Numeric"/>
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyLock" Id="KBLOCK" DisplayName="Lock"/>
-    <local:UserDefineKey x:Key="QuertyKeyboardKeyUnlock" Id="KBUNLOCK" DisplayName="Unlock"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyShowKeyboard" Id="KBSHOW" DisplayName="Show" />
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyHideKeyboard" Id="KBHIDE" DisplayName="Hide"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyExpandedKeyboard" Id="KBEXPAND" DisplayName="Expand"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyCompactKeyboard" Id="KBCOMPACT" DisplayName="Compact"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyNumericKeyboard" Id="KBNUMERIC" DisplayName="Numeric"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyLock" Id="KBLOCK" DisplayName="Lock"/>
+    <local:UserDefinedKey x:Key="QuertyKeyboardKeyUnlock" Id="KBUNLOCK" DisplayName="Unlock"/>
 
     <!--KeyboardButtonStyle-->
     <Style x:Key="KeyboardButtonStyle" TargetType="{x:Type Button}">
@@ -734,7 +737,7 @@
                                 <Button Style="{StaticResource KeyboardButtonStyle}" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" />
                                 <Button Style="{StaticResource KeyboardButtonStyle}" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" />
                             </StackPanel>
-                            <Grid Grid.Row="1" x:Name="NumericKeyboard">
+                            <Grid Grid.Row="1">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -773,7 +776,7 @@
                                     <Button Style="{StaticResource KeyboardButtonStyle}" Grid.Row="4" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDecimal}" />
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Row="1" x:Name="SplittedKeyboard">
+                            <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -867,7 +870,7 @@
                                     
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Row="1" x:Name="StandardKeyboard" >
+                            <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />

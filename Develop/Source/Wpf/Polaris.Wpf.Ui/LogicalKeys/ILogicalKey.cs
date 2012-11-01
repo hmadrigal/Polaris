@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
-using Polaris.Windows.Services;
-
-namespace Polaris.Windows.Controls
+﻿namespace Polaris.Windows.Controls
 {
+    using System.ComponentModel;
+    using Polaris.Windows.Services;
+    using System.Windows;
+
     public interface ILogicalKey : INotifyPropertyChanged
     {
         IKeyboardInput KeyboardService { get; set; }
-        string DisplayName { get; }
+        object DisplayName { get; }
         void Press();
         event LogicalKeyPressedEventHandler LogicalKeyPressed;
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Polaris.Windows.Controls
 {
-    public class UserDefineKey : LogicalKeyBase
+    public class UserDefinedKey : LogicalKeyBase
     {
         public object Id { get; set; }
 

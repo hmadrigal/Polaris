@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Polaris.Windows.Services;
+using System.Windows;
 
 namespace Polaris.Windows.Controls
 {
@@ -16,25 +17,47 @@ namespace Polaris.Windows.Controls
 
     public delegate void LogicalKeyPressedEventHandler(object sender, LogicalKeyEventArgs e);
 
-    public abstract class LogicalKeyBase : ILogicalKey
+    public class LogicalKeyBase : DependencyObject, ILogicalKey
     {
         public event LogicalKeyPressedEventHandler LogicalKeyPressed;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _displayName;
+        #region DisplayName
 
-        public virtual string DisplayName
+        /// <summary>
+        /// DisplayName Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty =
+            DependencyProperty.Register("DisplayName", typeof(object), typeof(LogicalKeyBase),
+                new FrameworkPropertyMetadata((object)null,
+                    new PropertyChangedCallback(OnDisplayNameChanged)));
+
+        /// <summary>
+        /// Gets or sets the DisplayName property.  This dependency property 
+        /// indicates the content to display on the key.
+        /// </summary>
+        public object DisplayName
         {
-            get { return _displayName; }
-            set
-            {
-                if (value != _displayName)
-                {
-                    _displayName = value;
-                    OnPropertyChanged("DisplayName");
-                }
-            }
+            get { return (object)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
         }
+
+        /// <summary>
+        /// Handles changes to the DisplayName property.
+        /// </summary>
+        private static void OnDisplayNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LogicalKeyBase)d).OnDisplayNameChanged(e);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the DisplayName property.
+        /// </summary>
+        protected virtual void OnDisplayNameChanged(DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        #endregion
 
         public IKeyboardInput KeyboardService
         {

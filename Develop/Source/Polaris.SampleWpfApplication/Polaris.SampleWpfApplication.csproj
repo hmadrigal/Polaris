@@ -99,25 +99,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Polaris.Common\Polaris.Common.csproj">
-      <Project>{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}</Project>
-      <Name>Polaris.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wpf\Polaris.UnityExtensions\Polaris.Wpf.UnityExtensions.csproj">
-      <Project>{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}</Project>
-      <Name>Polaris.Wpf.UnityExtensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wpf\Polaris.Wpf.Ui\Polaris.Wpf.Ui.csproj">
       <Project>{097603E9-D1FD-4A14-9F60-480C109D0263}</Project>
       <Name>Polaris.Wpf.Ui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wpf\Polaris.Wpf.ViewRegistry\Polaris.Wpf.ViewRegistry.csproj">
-      <Project>{6A0385F1-B440-4DF2-AC9D-011666E0759E}</Project>
-      <Name>Polaris.Wpf.ViewRegistry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wpf\Polaris.Wpf\Polaris.Wpf.csproj">
-      <Project>{969C8E8C-441B-40F3-8730-4BFA31E56DAE}</Project>
-      <Name>Polaris.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

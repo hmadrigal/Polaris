@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WindowsInput;
+using System.Windows;
 namespace Polaris.Windows.Controls
 {
     public class MultiCharacterKey : VirtualKey
@@ -21,7 +22,7 @@ namespace Polaris.Windows.Controls
         }
         private StringList _keyDisplays;
 
-        public string SelectedKeyDisplay { get; set; }
+        public object SelectedKeyDisplay { get; set; }
 
         public int SelectedIndex
         {

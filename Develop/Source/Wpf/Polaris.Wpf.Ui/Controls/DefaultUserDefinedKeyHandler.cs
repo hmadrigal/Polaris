@@ -12,7 +12,7 @@ namespace Polaris.Windows.Controls
         {
             //var currentLayout = (QuertyKeyboard)sender.KeyboardLayout;
 
-            var keyName = (virtualKeyConfig as UserDefineKey).Id.ToString();
+            var keyName = (virtualKeyConfig as UserDefinedKey).Id.ToString();
             switch (keyName)
             {
                 case @"KBEXPAND":
