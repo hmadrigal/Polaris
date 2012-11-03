@@ -6,34 +6,11 @@ namespace Polaris.Windows.Controls
 {
     public class StringKey : LogicalKeyBase
     {
-        private string _stringToSimulate;
-
-        public virtual string StringToSimulate
-        {
-            get { return _stringToSimulate; }
-            set
-            {
-                if (value != _stringToSimulate)
-                {
-                    _stringToSimulate = value;
-                    OnPropertyChanged("StringToSimulate");
-                }
-            }
-        }
-
-        //public StringKey(string displayName, string stringToSimulate)
-        //{
-        //    DisplayName = displayName;
-        //    _stringToSimulate = stringToSimulate;
-        //}
-
-        //public StringKey()
-        //{
-        //}
+        public virtual string StringToSimulate { get; set; }
 
         public override void Press()
         {
-            KeyboardService.SimulateTextEntry(_stringToSimulate);
+            KeyboardService.SimulateTextEntry(StringToSimulate);
             base.Press();
         }
     }

@@ -17,54 +17,18 @@ namespace Polaris.Windows.Controls
 
     public delegate void LogicalKeyPressedEventHandler(object sender, LogicalKeyEventArgs e);
 
-    public class LogicalKeyBase : DependencyObject, ILogicalKey
+    public class LogicalKeyBase :  ILogicalKey
     {
         public event LogicalKeyPressedEventHandler LogicalKeyPressed;
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        #region DisplayName
+        public IKeyboardInput KeyboardService { get; set; }
+        public object DisplayName { get; set; }
 
-        /// <summary>
-        /// DisplayName Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty DisplayNameProperty =
-            DependencyProperty.Register("DisplayName", typeof(object), typeof(LogicalKeyBase),
-                new FrameworkPropertyMetadata((object)null,
-                    new PropertyChangedCallback(OnDisplayNameChanged)));
-
-        /// <summary>
-        /// Gets or sets the DisplayName property.  This dependency property 
-        /// indicates the content to display on the key.
-        /// </summary>
-        public object DisplayName
+        public LogicalKeyBase()
         {
-            get { return (object)GetValue(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            KeyboardService = VirtualKeyboardInput.Instance;
         }
 
-        /// <summary>
-        /// Handles changes to the DisplayName property.
-        /// </summary>
-        private static void OnDisplayNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LogicalKeyBase)d).OnDisplayNameChanged(e);
-        }
-
-        /// <summary>
-        /// Provides derived classes an opportunity to handle changes to the DisplayName property.
-        /// </summary>
-        protected virtual void OnDisplayNameChanged(DependencyPropertyChangedEventArgs e)
-        {
-        }
-
-        #endregion
-
-        public IKeyboardInput KeyboardService
-        {
-            get { return _keyboardService; }
-            set { _keyboardService = value; }
-        }
-        private IKeyboardInput _keyboardService = VirtualKeyboardInput.Instance;
 
         public virtual void Press()
         {
@@ -76,14 +40,6 @@ namespace Polaris.Windows.Controls
             if (LogicalKeyPressed != null) LogicalKeyPressed(this, new LogicalKeyEventArgs(this));
         }
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                var args = new PropertyChangedEventArgs(propertyName);
-                handler(this, args);
-            }
-        }
+
     }
 }

@@ -4,39 +4,11 @@ namespace Polaris.Windows.Controls
 {
     public class VirtualKey : LogicalKeyBase
     {
-        private VirtualKeyCode _keyCode;
-
-        public virtual VirtualKeyCode KeyCode
-        {
-            get { return _keyCode; }
-            set
-            {
-                if (value != _keyCode)
-                {
-                    _keyCode = value;
-                    OnPropertyChanged("KeyCode");
-                }
-            }
-        }
-
-        //public VirtualKey(VirtualKeyCode keyCode, string displayName)
-        //{
-        //    DisplayName = displayName;
-        //    KeyCode = keyCode;
-        //}
-
-        //public VirtualKey(VirtualKeyCode keyCode)
-        //{
-        //    KeyCode = keyCode;
-        //}
-
-        //public VirtualKey()
-        //{
-        //}
+        public virtual VirtualKeyCode KeyCode { get; set; }
 
         public override void Press()
         {
-            KeyboardService.SimulateKeyPress(_keyCode);
+            KeyboardService.SimulateKeyPress(KeyCode);
             base.Press();
         }
     }

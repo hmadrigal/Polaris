@@ -4,12 +4,6 @@ namespace Polaris.Windows.Controls
 {
     public class TogglingModifierKey : ModifierKeyBase
     {
-        //public TogglingModifierKey(string displayName, VirtualKeyCode keyCode) :
-        //    base(keyCode)
-        //{
-        //    DisplayName = displayName;
-        //}
-
         public override void Press()
         {
             // This is a bit tricky because we can only get the state of a toggling key after the input has been

@@ -4,7 +4,7 @@
     using Polaris.Windows.Services;
     using System.Windows;
 
-    public interface ILogicalKey : INotifyPropertyChanged
+    public interface ILogicalKey 
     {
         IKeyboardInput KeyboardService { get; set; }
         object DisplayName { get; }

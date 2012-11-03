@@ -8,7 +8,5 @@ namespace Polaris.Windows.Controls
     public class UserDefinedKey : LogicalKeyBase
     {
         public object Id { get; set; }
-
-
     }
 }

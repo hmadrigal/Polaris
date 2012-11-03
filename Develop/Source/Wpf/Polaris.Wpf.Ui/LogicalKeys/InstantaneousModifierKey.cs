@@ -4,12 +4,6 @@ namespace Polaris.Windows.Controls
 {
     public class InstantaneousModifierKey : ModifierKeyBase
     {
-        //public InstantaneousModifierKey(string displayName, VirtualKeyCode keyCode) :
-        //    base(keyCode)
-        //{
-        //    DisplayName = displayName;
-        //}
-
         public override void Press()
         {
             if (IsInEffect) KeyboardService.SimulateKeyUp(KeyCode);
