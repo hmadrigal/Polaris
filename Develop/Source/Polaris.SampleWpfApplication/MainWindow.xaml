@@ -16,66 +16,66 @@
                                 <VisualStateGroup x:Name="KeyboardLayoutStates">
                                     <VisualState x:Name="SplittedKeyboard">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="1"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.000000" Value="{x:Static Visibility.Visible}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="StandardKeyboard">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="1"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.0000000" Value="{x:Static Visibility.Visible}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="NumericKeyboard">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="1"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NumericKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.000000" Value="{x:Static Visibility.Visible}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SplittedKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1330000" Value="0"/>
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboard" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StandardKeyboardPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
                                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1330000" Value="{x:Static Visibility.Collapsed}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -94,7 +94,7 @@
                                     <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" />
                                     <Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" Content="Numeric" />
                                 </StackPanel>
-                                <Grid x:Name="SplittedKeyboard" Grid.Row="1">
+                                <Grid x:Name="NumericKeyboardPanel" Grid.Row="1">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
@@ -133,7 +133,7 @@
                                         <Button Grid.Row="4" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDecimal}" Content="." />
                                     </Grid>
                                 </Grid>
-                                <Grid x:Name="NumericKeyboard" Grid.Row="1">
+                                <Grid x:Name="SplittedKeyboardPanel" Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
@@ -224,7 +224,7 @@
 
                                     </Grid>
                                 </Grid>
-                                <Grid x:Name="StandardKeyboard" Grid.Row="1">
+                                <Grid x:Name="StandardKeyboardPanel" Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
