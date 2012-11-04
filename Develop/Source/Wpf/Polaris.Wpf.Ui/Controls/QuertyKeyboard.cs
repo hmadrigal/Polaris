@@ -129,9 +129,9 @@ namespace Polaris.Windows.Controls
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
-        private Dictionary<ContentControl, ILogicalKey> _virtualKeys;
+        private Dictionary<ContentControl, DependencyLogicalKey> _virtualKeys;
         private readonly List<ModifierKeyBase> _modifierKeys;
-        private readonly List<ILogicalKey> _allLogicalKeys;
+        private readonly List<DependencyLogicalKey> _allLogicalKeys;
 
         private readonly DispatcherTimer _timer;
         public int PauseOnKeyPressedInitial
@@ -156,7 +156,7 @@ namespace Polaris.Windows.Controls
         {
             _timer = new DispatcherTimer();
             _modifierKeys = new List<ModifierKeyBase>();
-            _allLogicalKeys = new List<ILogicalKey>();
+            _allLogicalKeys = new List<DependencyLogicalKey>();
             _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
             _timer.Tick += OnTimerTick;
             Loaded += OnLoaded;
@@ -169,7 +169,7 @@ namespace Polaris.Windows.Controls
             KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
         }
 
-        private void HandleLogicKeyPressed(ILogicalKey logicalKey)
+        private void HandleLogicKeyPressed(DependencyLogicalKey logicalKey)
         {
             if (logicalKey is ModifierKeyBase)
             {
@@ -236,10 +236,10 @@ namespace Polaris.Windows.Controls
             {
 
                 _virtualKeys = (from dependencyObject in _layoutRoot.Descendants()
-                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as ILogicalKey
+                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as DependencyLogicalKey
                                 let element = dependencyObject as ContentControl
                                 where keyConfiguration != null && element != null
-                                select new KeyValuePair<ContentControl, ILogicalKey>(element, keyConfiguration))
+                                select new KeyValuePair<ContentControl, DependencyLogicalKey>(element, keyConfiguration))
                                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
                 foreach (var element in _virtualKeys.Keys)
@@ -336,7 +336,7 @@ namespace Polaris.Windows.Controls
         private void OnTimerTick(object sender, EventArgs e)
         {
             var timer = sender as DispatcherTimer;
-            var virtualKeyConfig = timer.Tag as ILogicalKey;
+            var virtualKeyConfig = timer.Tag as DependencyLogicalKey;
             if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
             {
                 timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
@@ -349,7 +349,7 @@ namespace Polaris.Windows.Controls
             _timer.IsEnabled = false;
         }
 
-        private void HandleButtonDown(ILogicalKey virtualKeyConfig)
+        private void HandleButtonDown(DependencyLogicalKey virtualKeyConfig)
         {
             _timer.Tag = virtualKeyConfig;
             //HandleLogicKeyPressed(virtualKeyConfig);

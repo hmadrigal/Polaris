@@ -7,9 +7,9 @@ namespace Polaris.Windows.Controls
 {
     public class LogicalKeyEventArgs : EventArgs
     {
-        public ILogicalKey Key { get; private set; }
+        public DependencyLogicalKey Key { get; private set; }
 
-        public LogicalKeyEventArgs(ILogicalKey key)
+        public LogicalKeyEventArgs(DependencyLogicalKey key)
         {
             Key = key;
         }
@@ -17,28 +17,9 @@ namespace Polaris.Windows.Controls
 
     public delegate void LogicalKeyPressedEventHandler(object sender, LogicalKeyEventArgs e);
 
-    public class LogicalKeyBase :  ILogicalKey
+    public class LogicalKeyBase :  DependencyLogicalKey
     {
-        public event LogicalKeyPressedEventHandler LogicalKeyPressed;
 
-        public IKeyboardInput KeyboardService { get; set; }
-        public object DisplayName { get; set; }
-
-        public LogicalKeyBase()
-        {
-            KeyboardService = VirtualKeyboardInput.Instance;
-        }
-
-
-        public virtual void Press()
-        {
-            OnKeyPressed();
-        }
-
-        protected void OnKeyPressed()
-        {
-            if (LogicalKeyPressed != null) LogicalKeyPressed(this, new LogicalKeyEventArgs(this));
-        }
 
 
     }

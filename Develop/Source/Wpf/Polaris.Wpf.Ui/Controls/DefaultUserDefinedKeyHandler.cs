@@ -8,7 +8,7 @@ namespace Polaris.Windows.Controls
 {
     public class DefaultUserDefinedKeyHandler : IUserDefinedKeyHandler
     {
-        public void HandleUserDefinedKey(QuertyKeyboard sender, ILogicalKey virtualKeyConfig, IKeyboardInput keyboardService)
+        public void HandleUserDefinedKey(QuertyKeyboard sender, DependencyLogicalKey virtualKeyConfig, IKeyboardInput keyboardService)
         {
             //var currentLayout = (QuertyKeyboard)sender.KeyboardLayout;
 

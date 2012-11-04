@@ -5,6 +5,6 @@ namespace Polaris.Windows.Controls
 {
     public interface IUserDefinedKeyHandler
     {
-        void HandleUserDefinedKey(QuertyKeyboard sender, ILogicalKey virtualKeyConfig, IKeyboardInput keyboardService);
+        void HandleUserDefinedKey(QuertyKeyboard sender, DependencyLogicalKey virtualKeyConfig, IKeyboardInput keyboardService);
     }
 }
