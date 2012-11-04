@@ -19,6 +19,9 @@ namespace Polaris.Windows.Controls
     using WindowsInput;
 using System.ComponentModel;
 
+    [Localizability(LocalizationCategory.Text)]
+    [DisplayName("Querty Keyboard")]
+    [Description("Allows to create a custom On Screen Keyboard")]
     [TemplatePart(Name = ElementLayoutRootName, Type = typeof(Panel))]
     public class QuertyKeyboard : Control
     {
@@ -66,6 +69,9 @@ using System.ComponentModel;
         /// Gets or sets the KeyboardLayout property.  This dependency property 
         /// indicates ....
         /// </summary>
+        [Description("Enum which will be used to identify the possible layout visual states by name")]
+        [Category("Querty OSK")]
+        [DisplayName("Keyboard Layout")]
         public Enum KeyboardLayout
         {
             get { return (Enum)GetValue(KeyboardLayoutProperty); }
@@ -134,12 +140,19 @@ using System.ComponentModel;
         private readonly List<DependencyLogicalKey> _allLogicalKeys;
 
         private readonly DispatcherTimer _timer;
+        [Description("Time in milliseconds before reporting constaly the first keydown")]
+        [Category("Querty OSK")]
+        [DisplayName("Pause on initial pressed key")]
         public int PauseOnKeyPressedInitial
         {
             get { return _pauseOnKeyPressedInitial; }
             set { _pauseOnKeyPressedInitial = value; }
         }
         private int _pauseOnKeyPressedInitial = 500;
+
+        [Description("Time in milliseconds minimum between reporting contantly key pressed.")]
+        [Category("Querty OSK")]
+        [DisplayName("Minimum paused on pressed key")]
         public int PauseOnKeyPressedMinimum
         {
             get { return _pauseOnKeyPressedMinimum; }
