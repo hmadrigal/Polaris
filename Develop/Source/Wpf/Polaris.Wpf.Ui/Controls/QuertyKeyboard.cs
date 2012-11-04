@@ -17,6 +17,7 @@ namespace Polaris.Windows.Controls
     using Polaris.Windows.Services;
     using Polaris.Wpf.Ui.Extensions;
     using WindowsInput;
+using System.ComponentModel;
 
     [TemplatePart(Name = ElementLayoutRootName, Type = typeof(Panel))]
     public class QuertyKeyboard : Control
@@ -110,11 +111,10 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
-        private VirtualKeyboardInputEvent? _inputEventType;
-
+        private VirtualKeyboardInputEvent _inputEventType = VirtualKeyboardInputEvent.MouseBasedEvent;
         public VirtualKeyboardInputEvent InputEventType
         {
-            get { return _inputEventType ?? (_inputEventType = VirtualKeyboardInputEvent.MouseBasedEvent).Value; }
+            get { return _inputEventType; }
             set { 
                 _inputEventType = value; 
             }
@@ -245,7 +245,7 @@ namespace Polaris.Windows.Controls
                 foreach (var element in _virtualKeys.Keys)
                 {
                     _virtualKeys[element].KeyboardService = KeyboardService;
-                    _virtualKeys[element].LogicalKeyPressed += (s, e) => { HandleLogicKeyPressed(e.Key); };
+                    //_virtualKeys[element].LogicalKeyPressed += (s, e) => { HandleLogicKeyPressed(e.Key); };
 
                     if (InputEventType == VirtualKeyboardInputEvent.TouchBasedEvent)
                     {
@@ -352,13 +352,13 @@ namespace Polaris.Windows.Controls
         private void HandleButtonDown(DependencyLogicalKey virtualKeyConfig)
         {
             _timer.Tag = virtualKeyConfig;
-            //HandleLogicKeyPressed(virtualKeyConfig);
             virtualKeyConfig.Press();
-            if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
-            {
-                _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-                _timer.IsEnabled = true;
-            }
+            HandleLogicKeyPressed(virtualKeyConfig);
+            //if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
+            //{
+            //    _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+            //    _timer.IsEnabled = true;
+            //}
         }
     }
 
