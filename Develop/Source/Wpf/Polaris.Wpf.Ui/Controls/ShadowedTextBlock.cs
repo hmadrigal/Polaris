@@ -14,8 +14,9 @@ namespace Polaris.Windows.Controls
     [Description("Displays a text and draws drop shadow with it.")]
     public class ShadowedTextBlock : Control
     {
-        internal Typeface typeface;
-        internal GlyphTypeface glyphTypeface;
+        internal Typeface _typeface;
+        internal GlyphTypeface _glyphTypeface;
+        protected char[] UNAVAILABLE_GLYPHS = new char[] { '\n', '\r' };
 
         ///<summary>
         /// Summary:
@@ -253,27 +254,17 @@ namespace Polaris.Windows.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ShadowedTextBlock), new FrameworkPropertyMetadata(typeof(ShadowedTextBlock)));
         }
 
-        private void InitializeDefaultFontFormat()
+        public override void EndInit()
         {
-            //DefaultFontFormat = new FontFormat()
-            //{
-            //    FontFamily = FontFamily,
-            //    FontSize = FontSize,
-            //    FontStretch = FontStretch,
-            //    FontStyle = FontStyle,
-            //    FontWeight = FontWeight,
-            //    Foreground = Foreground,
-            //    Style = Style,
-            //};
-            typeface = PrepareTypeface(out glyphTypeface);
-            TryInvalidateDisplay();
+            base.EndInit();
+            InitializeDefaultFontFormat();
         }
 
-        protected void ReloadShadowedTextBlock()
+        private void InitializeDefaultFontFormat()
         {
-            typeface = null;
-            glyphTypeface = null;
-            typeface = PrepareTypeface(out glyphTypeface);
+            _typeface = null;
+            _glyphTypeface = null;
+            _typeface = PrepareTypeface(out _glyphTypeface);
             TryInvalidateDisplay();
         }
 
@@ -303,5 +294,67 @@ namespace Polaris.Windows.Controls
 
             return typeface;
         }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            var renderSize = RenderSize;
+            var renderingXPosition = 0;
+            var renderingYPosition = 0;
+            var glyphIndexes = new List<ushort>();
+            var advanceWidths = new List<double>();
+            var currentGlyphTypeface = _glyphTypeface;
+            double currentLineWidth = renderingXPosition;
+            var currentCharIndex = 0;
+            var drawingText = Text;
+            var currentWord = Text;
+            var currentChar = drawingText[currentCharIndex];
+            var isRendered = false;
+            var remainingWordCharacters = Text;
+            var origin = new Point(renderingXPosition, renderingYPosition + LineHeight.Value);
+
+            while (currentCharIndex < drawingText.Length)
+            {
+                var isHorizontalSpaceAvailable = true;
+                currentChar = drawingText[currentCharIndex];
+                if (!UNAVAILABLE_GLYPHS.Contains(currentChar))
+                {
+                    if (!currentGlyphTypeface.CharacterToGlyphMap.ContainsKey(currentChar))
+                    {
+                        currentChar = '_';
+                    }
+                    var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
+                    var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * FontSize;
+                    //wordWidth += currentCharWidth;
+                    currentLineWidth += currentCharWidth;
+                    //wordHeight = Math.Max(wordHeight, currentGlyphTypeface.AdvanceHeights[currentCharGlyphIndex] * fontFormat.FontSize);
+
+                    isHorizontalSpaceAvailable = currentLineWidth < renderSize.Width;
+                    if (currentCharIndex != 0 && renderingXPosition == 0 && !isHorizontalSpaceAvailable)
+                    {
+                        //wordWidth -= currentCharWidth;
+                        currentLineWidth -= currentCharWidth;
+                        remainingWordCharacters = currentWord.Substring(currentCharIndex, currentWord.Length - currentCharIndex);
+                        isRendered = false;
+                        break;
+                    }
+                    //if (!isHorizontalSpaceAvailable)
+                    //{
+                    //    isRendered = false;
+                    //    return;
+                    //}
+                    glyphIndexes.Add(currentCharGlyphIndex);
+                    advanceWidths.Add(currentCharWidth);
+                }
+                currentCharIndex++;
+            }
+
+            var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, FontSize,
+                glyphIndexes, origin, advanceWidths, null, null, null, null,
+                null, null);
+            // Draws the current line
+            drawingContext.DrawGlyphRun(Foreground, glyphRun);
+        }
+
     }
 }
