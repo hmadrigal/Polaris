@@ -245,7 +245,10 @@ using System.ComponentModel;
                 foreach (var element in _virtualKeys.Keys)
                 {
                     _virtualKeys[element].KeyboardService = KeyboardService;
-                    //_virtualKeys[element].LogicalKeyPressed += (s, e) => { SetKeysContent(); };
+                    _virtualKeys[element].LogicalKeyPressed += (s, e) =>
+                    {
+                        HandleLogicKeyPressed(e.Key);
+                    };
 
                     if (InputEventType == VirtualKeyboardInputEvent.TouchBasedEvent)
                     {
@@ -353,7 +356,7 @@ using System.ComponentModel;
         {
             _timer.Tag = virtualKeyConfig;
             virtualKeyConfig.Press();
-            HandleLogicKeyPressed(virtualKeyConfig);
+            //HandleLogicKeyPressed(virtualKeyConfig);
             if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
             {
                 _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
