@@ -4,9 +4,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Polaris.Ui;component/Themes/Generic.xaml" />
-            </ResourceDictionary.MergedDictionaries>            
+           
         </ResourceDictionary>
 
     </Application.Resources>
