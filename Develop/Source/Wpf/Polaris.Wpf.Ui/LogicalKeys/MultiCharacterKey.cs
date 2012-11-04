@@ -6,13 +6,13 @@ namespace Polaris.Windows.Controls
 {
     public class MultiCharacterKey : VirtualKey
     {
-        private int _selectedIndex;
 
         public StringList KeyDisplays
         {
             get { return _keyDisplays ?? (_keyDisplays = new StringList()); }
-            set {
-                if (_keyDisplays == value || value == null || _keyDisplays.Count  == 0)
+            set
+            {
+                if (_keyDisplays == value || value == null || _keyDisplays.Count == 0)
                     return;
                 _keyDisplays = value;
                 SelectedKeyDisplay = _keyDisplays[0];
@@ -22,7 +22,19 @@ namespace Polaris.Windows.Controls
 
         public object SelectedKeyDisplay { get; set; }
 
-        public int SelectedIndex { get; set; }
-
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                if (value != _selectedIndex)
+                {
+                    _selectedIndex = value;
+                    SelectedKeyDisplay = KeyDisplays[value];
+                    DisplayName = SelectedKeyDisplay;
+                }
+            }
+        }
+        private int _selectedIndex;
     }
 }
