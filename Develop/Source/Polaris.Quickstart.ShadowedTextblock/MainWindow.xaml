@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Polaris_Windows_Controls="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui" x:Class="Polaris.Quickstart.ShadowedTextblock.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        
+    	<Polaris_Windows_Controls:ShadowedTextBlock/>
+        
+    </Grid>
+</Window>
