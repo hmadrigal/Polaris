@@ -300,7 +300,7 @@ namespace Polaris.Windows.Controls
             base.OnRender(drawingContext);
             var renderSize = RenderSize;
             var renderingXPosition = 0;
-            var renderingYPosition = 0;
+            double renderingYPosition = (LineHeight ?? 0d + FontSize);
             var glyphIndexes = new List<ushort>();
             var advanceWidths = new List<double>();
             var currentGlyphTypeface = _glyphTypeface;
@@ -315,6 +315,7 @@ namespace Polaris.Windows.Controls
 
             while (currentCharIndex < drawingText.Length)
             {
+                if (renderingYPosition > renderSize.Height) { return; }
                 var isHorizontalSpaceAvailable = true;
                 currentChar = drawingText[currentCharIndex];
                 if (!UNAVAILABLE_GLYPHS.Contains(currentChar))
