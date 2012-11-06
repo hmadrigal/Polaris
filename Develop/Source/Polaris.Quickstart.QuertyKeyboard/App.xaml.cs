@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Polaris.SampleWpfApplication
+namespace Polaris.Quickstart.QuertyKeyboard
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui"
-        xmlns:Polaris_SampleWpfApplication="clr-namespace:Polaris.SampleWpfApplication"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Polaris.SampleWpfApplication.MainWindow"
+        xmlns:Polaris_SampleWpfApplication="clr-namespace:Polaris.Quickstart.QuertyKeyboard"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Polaris.Quickstart.QuertyKeyboard.MainWindow"
         Title="MainWindow" WindowStartupLocation="CenterOwner" WindowState="Maximized" 
 		d:DesignWidth="1366" d:DesignHeight="768"
         >

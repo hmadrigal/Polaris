@@ -8,8 +8,8 @@
     <ProjectGuid>{310F9742-CB94-4480-8E1C-49B7920E3CDA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Polaris.SampleWpfApplication</RootNamespace>
-    <AssemblyName>Polaris.SampleWpfApplication</AssemblyName>
+    <RootNamespace>Polaris.Quickstart.QuertyKeyboard</RootNamespace>
+    <AssemblyName>Polaris.Quickstart.QuertyKeyboard</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

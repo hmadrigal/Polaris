@@ -1,4 +1,4 @@
-﻿<Application x:Class="Polaris.SampleWpfApplication.App"
+﻿<Application x:Class="Polaris.Quickstart.QuertyKeyboard.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">

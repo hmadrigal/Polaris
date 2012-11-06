@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.txt = README.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.SampleWpfApplication", "Polaris.SampleWpfApplication\Polaris.SampleWpfApplication.csproj", "{310F9742-CB94-4480-8E1C-49B7920E3CDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Quickstart.QuertyKeyboard", "Polaris.Quickstart.QuertyKeyboard\Polaris.Quickstart.QuertyKeyboard.csproj", "{310F9742-CB94-4480-8E1C-49B7920E3CDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Quickstart.ShadowedTextblock", "Polaris.Quickstart.ShadowedTextblock\Polaris.Quickstart.ShadowedTextblock.csproj", "{375F9254-9BB5-4395-BEE1-B8505CD6F040}"
 EndProject
@@ -78,12 +78,12 @@ Global
 		SccProjectTopLevelParentUniqueName9 = Polaris.sln
 		SccProjectName9 = Wpf/Polaris.Wpf.ViewRegistry
 		SccLocalPath9 = Wpf\\Polaris.Wpf.ViewRegistry
-		SccProjectUniqueName10 = Polaris.SampleWpfApplication\\Polaris.SampleWpfApplication.csproj
-		SccProjectName10 = Polaris.SampleWpfApplication
-		SccLocalPath10 = Polaris.SampleWpfApplication
-		SccProjectUniqueName11 = Polaris.Quickstart.ShadowedTextblock\\Polaris.Quickstart.ShadowedTextblock.csproj
-		SccProjectName11 = Polaris.Quickstart.ShadowedTextblock
-		SccLocalPath11 = Polaris.Quickstart.ShadowedTextblock
+		SccProjectUniqueName10 = Polaris.Quickstart.ShadowedTextblock\\Polaris.Quickstart.ShadowedTextblock.csproj
+		SccProjectName10 = Polaris.Quickstart.ShadowedTextblock
+		SccLocalPath10 = Polaris.Quickstart.ShadowedTextblock
+		SccProjectUniqueName11 = Polaris.Quickstart.QuertyKeyboard\\Polaris.Quickstart.QuertyKeyboard.csproj
+		SccProjectName11 = Polaris.Quickstart.QuertyKeyboard
+		SccLocalPath11 = Polaris.Quickstart.QuertyKeyboard
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
