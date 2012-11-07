@@ -300,7 +300,7 @@ namespace Polaris.Windows.Controls
             base.OnRender(drawingContext);
             var renderSize = RenderSize;
             var renderingXPosition = 0;
-            double renderingYPosition = (LineHeight ?? 0d + FontSize);
+            double renderingYPosition = ((LineHeight ?? 0d) + FontSize);
             var glyphIndexes = new List<ushort>();
             var advanceWidths = new List<double>();
             var currentGlyphTypeface = _glyphTypeface;

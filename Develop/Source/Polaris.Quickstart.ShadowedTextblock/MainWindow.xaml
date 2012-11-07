@@ -7,7 +7,7 @@
         
     	<Polaris_Windows_Controls:ShadowedTextBlock
             Foreground="White"
-            Text="Hello World!"/>
+            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum laoreet tellus id cursus. Aenean tristique interdum ante eget placerat. Duis lacinia risus sed diam molestie vehicula. "/>
         
     </Grid>
 </Window>
