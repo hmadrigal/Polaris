@@ -213,6 +213,12 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        [TypeConverter(typeof(LengthConverter))]
+        [Localizability(LocalizationCategory.None)]
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Description("Gets or sets the height of each line of content.")]
+        [DisplayName("Shadow Line Height")]
         #region ShadowLineHeight
         public double? ShadowLineHeight
         {
