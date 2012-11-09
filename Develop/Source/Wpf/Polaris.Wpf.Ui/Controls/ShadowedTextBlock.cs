@@ -317,7 +317,9 @@ namespace Polaris.Windows.Controls
             bool isHorizontalSpaceAvailable = true;
             //bool canRendered = false;
 
-
+            var fontSize = FontSize;
+            var foreground = Foreground;
+            var unavailableGlyphs = UNAVAILABLE_GLYPHS;
             Brush background = Brushes.Transparent;
             Brush borderBrush = Brushes.Transparent;
             if (Background != null) { background = Background; }
@@ -350,7 +352,7 @@ namespace Polaris.Windows.Controls
                 {
                     var currentChar = remainingWordCharacters[currentCharIndex];
                     // if it's a non visible char
-                    if (UNAVAILABLE_GLYPHS.Contains(currentChar))
+                    if (unavailableGlyphs.Contains(currentChar))
                     {
                         wordWidth = 0;
                         currentCharIndex++;
@@ -369,7 +371,7 @@ namespace Polaris.Windows.Controls
 
                     // Gets character dimensions
                     var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
-                    var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * FontSize;
+                    var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * fontSize;
 
                     isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < renderSize.Width;
                     if (isHorizontalSpaceAvailable)
@@ -382,7 +384,7 @@ namespace Polaris.Windows.Controls
                         // Reserves the space (width and height) of the current character
                         wordWidth += currentCharWidth;
                         currentLineWidth += currentCharWidth;
-                        currentLineHeight = Math.Max(currentLineHeight, currentGlyphTypeface.AdvanceHeights[currentCharGlyphIndex] * FontSize);
+                        currentLineHeight = Math.Max(currentLineHeight, currentGlyphTypeface.AdvanceHeights[currentCharGlyphIndex] * fontSize);
                     }
                     else
                     {
@@ -404,11 +406,11 @@ namespace Polaris.Windows.Controls
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
                     var origin = new Point(renderingXPosition, renderingYPosition + LineHeight.Value);
-                    var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, FontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
-                    drawingContext.DrawGlyphRun(Foreground == null ? Foreground : Foreground, glyphRun);
+                    var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, fontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
+                    drawingContext.DrawGlyphRun(foreground == null ? foreground : foreground, glyphRun);
                 }
 
-                renderingYPosition += (LineHeight ?? 0d) + FontSize;
+                renderingYPosition += (LineHeight ?? 0d) + fontSize;
                 renderingXPosition += currentLineWidth;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
 
