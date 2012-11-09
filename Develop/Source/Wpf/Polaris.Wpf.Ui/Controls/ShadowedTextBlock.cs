@@ -295,66 +295,130 @@ namespace Polaris.Windows.Controls
             return typeface;
         }
 
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            var desiredSize = RenderText(constraint);
+            return desiredSize;
+        }
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            var renderSize = RenderSize;
-            var renderingXPosition = 0;
-            double renderingYPosition = ((LineHeight ?? 0d) + FontSize);
-            var glyphIndexes = new List<ushort>();
-            var advanceWidths = new List<double>();
-            var currentGlyphTypeface = _glyphTypeface;
-            double currentLineWidth = renderingXPosition;
-            var currentCharIndex = 0;
-            var drawingText = Text;
-            var currentWord = Text;
-            var currentChar = drawingText[currentCharIndex];
-            var isRendered = false;
-            var remainingWordCharacters = Text;
-            var origin = new Point(renderingXPosition, renderingYPosition + LineHeight.Value);
+            RenderText(RenderSize, drawingContext);
+        }
 
-            while (currentCharIndex < drawingText.Length)
+
+        private Size RenderText(Size renderSize, DrawingContext drawingContext = null)
+        {
+            double renderingXPosition = 0d;
+            double renderingYPosition = (LineHeight ?? 0d) + FontSize;
+            double wordWidth = 0, currentLineHeight = 0;
+            bool isHorizontalSpaceAvailable = true;
+            //bool canRendered = false;
+
+
+            Brush background = Brushes.Transparent;
+            Brush borderBrush = Brushes.Transparent;
+            if (Background != null) { background = Background; }
+            if (BorderBrush != null) { borderBrush = BorderBrush; }
+
+            if (drawingContext != null)
             {
-                if (renderingYPosition > renderSize.Height) { return; }
-                var isHorizontalSpaceAvailable = true;
-                currentChar = drawingText[currentCharIndex];
-                if (!UNAVAILABLE_GLYPHS.Contains(currentChar))
-                {
-                    if (!currentGlyphTypeface.CharacterToGlyphMap.ContainsKey(currentChar))
-                    {
-                        currentChar = '_';
-                    }
-                    var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
-                    var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * FontSize;
-                    //wordWidth += currentCharWidth;
-                    currentLineWidth += currentCharWidth;
-                    //wordHeight = Math.Max(wordHeight, currentGlyphTypeface.AdvanceHeights[currentCharGlyphIndex] * fontFormat.FontSize);
-
-                    isHorizontalSpaceAvailable = currentLineWidth < renderSize.Width;
-                    if (currentCharIndex != 0 && renderingXPosition == 0 && !isHorizontalSpaceAvailable)
-                    {
-                        //wordWidth -= currentCharWidth;
-                        currentLineWidth -= currentCharWidth;
-                        remainingWordCharacters = currentWord.Substring(currentCharIndex, currentWord.Length - currentCharIndex);
-                        isRendered = false;
-                        break;
-                    }
-                    //if (!isHorizontalSpaceAvailable)
-                    //{
-                    //    isRendered = false;
-                    //    return;
-                    //}
-                    glyphIndexes.Add(currentCharGlyphIndex);
-                    advanceWidths.Add(currentCharWidth);
-                }
-                currentCharIndex++;
+                drawingContext.DrawRectangle(background, new Pen() { Brush = borderBrush }, new Rect(renderSize));
             }
 
-            var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, FontSize,
-                glyphIndexes, origin, advanceWidths, null, null, null, null,
-                null, null);
-            // Draws the current line
-            drawingContext.DrawGlyphRun(Foreground, glyphRun);
+            Size renderedSize = new Size(0, 0);
+            if (string.IsNullOrWhiteSpace(Text))
+                return renderedSize;
+
+            string remainingWordCharacters = Text;
+            var currentGlyphTypeface = _glyphTypeface;
+            while (remainingWordCharacters.Length > 0)
+            {
+                // End of vertical space
+                if (renderingYPosition > renderSize.Height) { break; }
+
+                wordWidth = 0;
+                var glyphIndexes = new List<ushort>();
+                var advanceWidths = new List<double>();
+                var currentLineWidth = renderingXPosition;
+                var currentCharIndex = 0;
+                var lastSpaceIndex = -1;
+
+                while (currentCharIndex < remainingWordCharacters.Length)
+                {
+                    var currentChar = remainingWordCharacters[currentCharIndex];
+                    // if it's a non visible char
+                    if (UNAVAILABLE_GLYPHS.Contains(currentChar))
+                    {
+                        wordWidth = 0;
+                        currentCharIndex++;
+                        continue;
+                    }
+                    // if it's a invalid character
+                    if (!currentGlyphTypeface.CharacterToGlyphMap.ContainsKey(currentChar))
+                        currentChar = '_';
+
+                    // keeps track of the last WhiteSpace
+                    if (char.IsWhiteSpace(currentChar))
+                    {
+                        wordWidth = 0;
+                        lastSpaceIndex = currentCharIndex;
+                    }
+
+                    // Gets character dimensions
+                    var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
+                    var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * FontSize;
+
+                    isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < renderSize.Width;
+                    if (isHorizontalSpaceAvailable)
+                    {
+                        // Add the current character to be rendered
+                        glyphIndexes.Add(currentCharGlyphIndex);
+                        advanceWidths.Add(currentCharWidth);
+                        currentCharIndex++;
+
+                        // Reserves the space (width and height) of the current character
+                        wordWidth += currentCharWidth;
+                        currentLineWidth += currentCharWidth;
+                        currentLineHeight = Math.Max(currentLineHeight, currentGlyphTypeface.AdvanceHeights[currentCharGlyphIndex] * FontSize);
+                    }
+                    else
+                    {
+                        if (lastSpaceIndex >= 0)
+                        {
+                            currentLineWidth -= wordWidth;
+                            while (glyphIndexes.Count > lastSpaceIndex)
+                                glyphIndexes.RemoveAt(glyphIndexes.Count - 1);
+                            while (advanceWidths.Count > lastSpaceIndex)
+                                advanceWidths.RemoveAt(advanceWidths.Count - 1);
+                            currentCharIndex = lastSpaceIndex;
+                        }
+                        break;
+                    }
+
+                }
+                remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
+
+                if (drawingContext != null && glyphIndexes.Count > 0)
+                {
+                    var origin = new Point(renderingXPosition, renderingYPosition + LineHeight.Value);
+                    var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, FontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
+                    drawingContext.DrawGlyphRun(Foreground == null ? Foreground : Foreground, glyphRun);
+                }
+
+                renderingYPosition += (LineHeight ?? 0d) + FontSize;
+                renderingXPosition += currentLineWidth;
+                renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
+
+                if (string.IsNullOrEmpty(remainingWordCharacters))
+                    break;
+                renderingXPosition = 0;
+
+            }
+            renderedSize.Height = renderingYPosition;
+            return renderedSize;
         }
 
     }
