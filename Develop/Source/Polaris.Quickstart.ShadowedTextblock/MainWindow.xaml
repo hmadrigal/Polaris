@@ -8,12 +8,12 @@
             Margin="25"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             Foreground="Red" Background="Orange"
-            FontSize="26"
-            LineHeight="2"
+            FontSize="48"
             Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum laoreet tellus id cursus. Aenean tristique interdum ante eget placerat. Duis lacinia risus sed diam molestie vehicula. "
             ShadowText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum laoreet tellus id cursus. Aenean tristique interdum ante eget placerat. Duis lacinia risus sed diam molestie vehicula. "
-            ShadowLineHeight="4"
             ShadowColor="Black"
+            ShadowLeftOffset="-1"
+            ShadowTopOffset="2"
         />
         <!--a b c d e f g h i j k l m n o p q r s t v w x y z A B C D E F G H I J K L M N O P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9 . -->
         <!--ABCDE FGHI JKLM OPQ RSTV.-->

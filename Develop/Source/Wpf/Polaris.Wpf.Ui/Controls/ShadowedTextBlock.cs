@@ -257,6 +257,92 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        #region ShadowLeftOffset
+
+        /// <summary>
+        /// ShadowLeftOffset Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ShadowLeftOffsetProperty =
+            DependencyProperty.Register("ShadowLeftOffset", typeof(double), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(0d,
+                    new PropertyChangedCallback(OnShadowLeftOffsetChanged)));
+
+        /// <summary>
+        /// Gets or sets the ShadowLeftOffset property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public double ShadowLeftOffset
+        {
+            get { return (double)GetValue(ShadowLeftOffsetProperty); }
+            set { SetValue(ShadowLeftOffsetProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the ShadowLeftOffset property.
+        /// </summary>
+        private static void OnShadowLeftOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ShadowedTextBlock target = (ShadowedTextBlock)d;
+            double oldShadowLeftOffset = (double)e.OldValue;
+            double newShadowLeftOffset = target.ShadowLeftOffset;
+            target.OnShadowLeftOffsetChanged(oldShadowLeftOffset, newShadowLeftOffset);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the ShadowLeftOffset property.
+        /// </summary>
+        protected virtual void OnShadowLeftOffsetChanged(double oldShadowLeftOffset, double newShadowLeftOffset)
+        {
+            TryInvalidateDisplay();
+        }
+
+        #endregion
+
+        #region ShadowTopOffset
+
+        /// <summary>
+        /// ShadowTopOffset Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ShadowTopOffsetProperty =
+            DependencyProperty.Register("ShadowTopOffset", typeof(double), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(0d,
+                    new PropertyChangedCallback(OnShadowTopOffsetChanged)));
+
+        /// <summary>
+        /// Gets or sets the ShadowTopOffset property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public double ShadowTopOffset
+        {
+            get { return (double)GetValue(ShadowTopOffsetProperty); }
+            set { SetValue(ShadowTopOffsetProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the ShadowTopOffset property.
+        /// </summary>
+        private static void OnShadowTopOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ShadowedTextBlock target = (ShadowedTextBlock)d;
+            double oldShadowTopOffset = (double)e.OldValue;
+            double newShadowTopOffset = target.ShadowTopOffset;
+            target.OnShadowTopOffsetChanged(oldShadowTopOffset, newShadowTopOffset);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the ShadowTopOffset property.
+        /// </summary>
+        protected virtual void OnShadowTopOffsetChanged(double oldShadowTopOffset, double newShadowTopOffset)
+        {
+            TryInvalidateDisplay();
+        }
+
+        #endregion
+
+        
+
+        
+
         static ShadowedTextBlock()
         {
             var refTextBlock = new TextBlock();
@@ -350,7 +436,9 @@ namespace Polaris.Windows.Controls
                     ref shadowRenderedSize,
                     ShadowText,
                     _shadowGlyphTypeface,
-                    ShadowLineHeight);
+                    ShadowLineHeight,
+                    ShadowLeftOffset,
+                    ShadowTopOffset);
 
             }
             Size renderedSize = new Size(0, 0);
@@ -365,15 +453,17 @@ namespace Polaris.Windows.Controls
                     ref renderedSize,
                     Text,
                     _mainGlyphTypeface,
-                    LineHeight);
+                    LineHeight, 
+                    0, 
+                    0);
             }
             return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width), Math.Max(shadowRenderedSize.Height, renderedSize.Height)); ;
         }
 
-        private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight)
+        private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
         {
-            double renderingXPosition = 0;
-            double renderingYPosition = (lineHeight ?? 0d) + FontSize; ;
+            double renderingXPosition = leftOffset;
+            double renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             double wordWidth = 0, currentLineHeight = 0;
             var isHorizontalSpaceAvailable = false;
             while (remainingWordCharacters.Length > 0)
@@ -450,13 +540,13 @@ namespace Polaris.Windows.Controls
                     drawingContext.DrawGlyphRun(foreground == null ? foreground : foreground, glyphRun);
                 }
 
-                renderingYPosition += (LineHeight ?? 0d) + fontSize;
+                renderingYPosition += (lineHeight ?? 0d) + FontSize;
                 renderingXPosition += currentLineWidth;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
 
                 if (string.IsNullOrEmpty(remainingWordCharacters))
                     break;
-                renderingXPosition = 0;
+                renderingXPosition = leftOffset;
 
             }
             renderedSize.Height = renderingYPosition + (LineHeight ?? 0d) - (fontSize * 0.5);
