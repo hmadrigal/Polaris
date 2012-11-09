@@ -14,8 +14,11 @@ namespace Polaris.Windows.Controls
     [Description("Displays a text and draws drop shadow with it.")]
     public class ShadowedTextBlock : Control
     {
-        internal Typeface _typeface;
-        internal GlyphTypeface _glyphTypeface;
+        internal Typeface _mainTypeface;
+        internal GlyphTypeface _mainGlyphTypeface;
+        internal Typeface _shadowTypeface;
+        internal GlyphTypeface _shadowGlyphTypeface;
+
         protected char[] UNAVAILABLE_GLYPHS = new char[] { '\n', '\r' };
 
         ///<summary>
@@ -262,9 +265,14 @@ namespace Polaris.Windows.Controls
 
         private void InitializeDefaultFontFormat()
         {
-            _typeface = null;
-            _glyphTypeface = null;
-            _typeface = PrepareTypeface(out _glyphTypeface);
+            _mainTypeface = null;
+            _mainGlyphTypeface = null;
+            _mainTypeface = PrepareTypeface(out _mainGlyphTypeface);
+
+            _shadowTypeface = null;
+            _shadowGlyphTypeface = null;
+            _shadowTypeface = PrepareTypeface(out _shadowGlyphTypeface);
+
             TryInvalidateDisplay();
         }
 
@@ -311,31 +319,57 @@ namespace Polaris.Windows.Controls
 
         private Size RenderText(Size renderSize, DrawingContext drawingContext = null)
         {
-            double renderingXPosition = 0d;
-            double renderingYPosition = (LineHeight ?? 0d) + FontSize;
-            double wordWidth = 0, currentLineHeight = 0;
-            bool isHorizontalSpaceAvailable = true;
-            //bool canRendered = false;
 
-            var fontSize = FontSize;
-            var foreground = Foreground;
             var unavailableGlyphs = UNAVAILABLE_GLYPHS;
+            // Draws the background
+            #region Draws background
             Brush background = Brushes.Transparent;
             Brush borderBrush = Brushes.Transparent;
             if (Background != null) { background = Background; }
             if (BorderBrush != null) { borderBrush = BorderBrush; }
 
             if (drawingContext != null)
-            {
                 drawingContext.DrawRectangle(background, new Pen() { Brush = borderBrush }, new Rect(renderSize));
+            #endregion
+
+            Size shadowRenderedSize = new Size(0, 0);
+            if (!string.IsNullOrWhiteSpace(ShadowText))
+            {
+                DrawText(
+                    renderSize,
+                    drawingContext,
+                    FontSize,
+                    ShadowColor,
+                    unavailableGlyphs,
+                    ref shadowRenderedSize,
+                    ShadowText,
+                    _shadowGlyphTypeface,
+                    ShadowLineHeight);
+
             }
-
             Size renderedSize = new Size(0, 0);
-            if (string.IsNullOrWhiteSpace(Text))
-                return renderedSize;
+            if (!string.IsNullOrWhiteSpace(Text))
+            {
+                DrawText(
+                    renderSize,
+                    drawingContext,
+                    FontSize,
+                    Foreground,
+                    unavailableGlyphs,
+                    ref renderedSize,
+                    Text,
+                    _mainGlyphTypeface,
+                    LineHeight);
+            }
+            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width), Math.Max(shadowRenderedSize.Height, renderedSize.Height)); ;
+        }
 
-            string remainingWordCharacters = Text;
-            var currentGlyphTypeface = _glyphTypeface;
+        private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight)
+        {
+            double renderingXPosition = 0;
+            double renderingYPosition = (lineHeight ?? 0d) + FontSize; ;
+            double wordWidth = 0, currentLineHeight = 0;
+            var isHorizontalSpaceAvailable = false;
             while (remainingWordCharacters.Length > 0)
             {
                 // End of vertical space
@@ -419,8 +453,7 @@ namespace Polaris.Windows.Controls
                 renderingXPosition = 0;
 
             }
-            renderedSize.Height = renderingYPosition;
-            return renderedSize;
+            renderedSize.Height = renderingYPosition + (LineHeight ?? 0d) - (fontSize * 0.5);
         }
 
     }

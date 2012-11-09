@@ -8,8 +8,12 @@
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Foreground="White"
             Background="Black"
-            FontSize="24"
-            Text="A B C D E F G H I J K L M N O P Q R S T V W X Y Z a b c d e f g h i j k l m n o p q r s t v w x y z 0 1 2 3 4 5 6 7 8 9 . "
+            FontSize="26"
+            LineHeight="2"
+            Text="a b c d e f g h i j k l m n o p q r s t v w x y z A B C D E F G H I J K L M N O P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9 . "
+            ShadowText="a b c d e f g h i j k l m n o p q r s t v w x y z A B C D E F G H I J K L M N O P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9 . "
+            ShadowLineHeight="4"
+            ShadowColor="Green"
         />
         <!--ABCDE FGHI JKLM OPQ RSTV.-->
         <!--Lorem ipsum dolor sit amet.-->
