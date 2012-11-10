@@ -257,16 +257,13 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        [TypeConverter(typeof(LengthConverter))]
+        [Localizability(LocalizationCategory.None)]
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Description("Gets or sets the shadow left offset")]
+        [DisplayName("Shadow Left Offset")]
         #region ShadowLeftOffset
-
-        /// <summary>
-        /// ShadowLeftOffset Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty ShadowLeftOffsetProperty =
-            DependencyProperty.Register("ShadowLeftOffset", typeof(double), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(0d,
-                    new PropertyChangedCallback(OnShadowLeftOffsetChanged)));
-
         /// <summary>
         /// Gets or sets the ShadowLeftOffset property. This dependency property 
         /// indicates ....
@@ -276,6 +273,13 @@ namespace Polaris.Windows.Controls
             get { return (double)GetValue(ShadowLeftOffsetProperty); }
             set { SetValue(ShadowLeftOffsetProperty, value); }
         }
+        /// <summary>
+        /// ShadowLeftOffset Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ShadowLeftOffsetProperty =
+            DependencyProperty.Register("ShadowLeftOffset", typeof(double), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(0d,
+                    new PropertyChangedCallback(OnShadowLeftOffsetChanged)));
 
         /// <summary>
         /// Handles changes to the ShadowLeftOffset property.
@@ -298,16 +302,13 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        [TypeConverter(typeof(LengthConverter))]
+        [Localizability(LocalizationCategory.None)]
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Description("Gets or sets the shadow top offset")]
+        [DisplayName("Shadow Top Offset")]
         #region ShadowTopOffset
-
-        /// <summary>
-        /// ShadowTopOffset Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty ShadowTopOffsetProperty =
-            DependencyProperty.Register("ShadowTopOffset", typeof(double), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(0d,
-                    new PropertyChangedCallback(OnShadowTopOffsetChanged)));
-
         /// <summary>
         /// Gets or sets the ShadowTopOffset property. This dependency property 
         /// indicates ....
@@ -317,6 +318,13 @@ namespace Polaris.Windows.Controls
             get { return (double)GetValue(ShadowTopOffsetProperty); }
             set { SetValue(ShadowTopOffsetProperty, value); }
         }
+        /// <summary>
+        /// ShadowTopOffset Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ShadowTopOffsetProperty =
+            DependencyProperty.Register("ShadowTopOffset", typeof(double), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(0d,
+                    new PropertyChangedCallback(OnShadowTopOffsetChanged)));
 
         /// <summary>
         /// Handles changes to the ShadowTopOffset property.
