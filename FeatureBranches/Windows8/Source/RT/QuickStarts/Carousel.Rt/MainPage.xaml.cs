@@ -27,7 +27,9 @@ namespace Carousel.Rt
 
         DateTime? latestMouseWheelEvent;
 
-        TimeSpan idleTimeout = TimeSpan.FromSeconds(5);
+        TimeSpan idleTimeout = TimeSpan.FromMilliseconds(200);
+
+        int latestMouseWheelDelta;
 
         public MainPage()
         {
@@ -45,10 +47,10 @@ namespace Carousel.Rt
             if (Carousel.IsAnimating) { return; }
 
             latestMouseWheelEvent = DateTime.Now;
-            var delta = args.CurrentPoint.Properties.MouseWheelDelta;
+            latestMouseWheelDelta = args.CurrentPoint.Properties.MouseWheelDelta;
 
             var animatedScrollPosition = Carousel.AnimatedScrollPosition;
-            animatedScrollPosition += delta * 3;
+            animatedScrollPosition += latestMouseWheelDelta * 0.1;
             if (animatedScrollPosition == -360)
             {
                 Carousel.ScrollPosition = 30;
@@ -62,8 +64,19 @@ namespace Carousel.Rt
         {
             Action updateScrollPosition = new Action(() =>
             {
-                var animatedScrollPosition = Carousel.AnimatedScrollPosition;
-                animatedScrollPosition -= 30;
+                var targetScrollPosition = Carousel.ScrollPosition;
+                targetScrollPosition = ((int)(targetScrollPosition / 30)) * 30;
+
+                if (latestMouseWheelDelta > 0)
+                {
+                    targetScrollPosition += 30;
+                }
+                else
+                {
+                    targetScrollPosition -= 30;
+                }
+
+                var animatedScrollPosition = targetScrollPosition;
                 if (animatedScrollPosition == -360)
                 {
                     Carousel.ScrollPosition = 30;
@@ -74,16 +87,17 @@ namespace Carousel.Rt
 
             while (true)
             {
-                await Task.Delay(2000);
+                await Task.Delay(60);
 
-                var isAutoScrollingEnabled = true;
+                var isAutoScrollingEnabled = false;
 
                 if (latestMouseWheelEvent != null)
                 {
                     var elapsedTimeSinceLatestMouseWheelEvent = DateTime.Now - latestMouseWheelEvent.Value;
-                    if (elapsedTimeSinceLatestMouseWheelEvent < idleTimeout)
+                    if (elapsedTimeSinceLatestMouseWheelEvent > idleTimeout)
                     {
-                        isAutoScrollingEnabled = false;
+                        isAutoScrollingEnabled = true;
+                        latestMouseWheelEvent = null;
                     }
                 }
 
@@ -91,6 +105,7 @@ namespace Carousel.Rt
                 {
                     var updateScrollPositionTask = new Task(updateScrollPosition);
                     updateScrollPositionTask.Start(_uiTaskScheduler);
+                    isAutoScrollingEnabled = false;
                 }
             }
         }
