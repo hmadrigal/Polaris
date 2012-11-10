@@ -121,7 +121,8 @@ namespace Polaris.Windows.Controls
 
         [Localizability(LocalizationCategory.Text)]
         [DefaultValue(null)]
-        [Category("Text displayed as shadow.")]
+        [Category("Common Properties")]
+        [Description("Text displayed as shadow.")]
         [Bindable(true)]
         #region ShadowText
 
