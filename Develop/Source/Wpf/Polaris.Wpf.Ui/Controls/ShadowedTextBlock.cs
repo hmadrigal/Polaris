@@ -339,9 +339,9 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
-        
 
-        
+
+
 
         static ShadowedTextBlock()
         {
@@ -453,11 +453,11 @@ namespace Polaris.Windows.Controls
                     ref renderedSize,
                     Text,
                     _mainGlyphTypeface,
-                    LineHeight, 
-                    0, 
+                    LineHeight,
+                    0,
                     0);
             }
-            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width), Math.Max(shadowRenderedSize.Height, renderedSize.Height)); ;
+            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width) + ShadowLeftOffset, Math.Max(shadowRenderedSize.Height, renderedSize.Height) + ShadowTopOffset); ;
         }
 
         private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
