@@ -5,6 +5,7 @@
         xmlns:Polaris_SampleWpfApplication="clr-namespace:Polaris.Quickstart.QuertyKeyboard"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Polaris.Quickstart.QuertyKeyboard.MainWindow"
         Title="MainWindow" WindowStartupLocation="CenterOwner" WindowState="Maximized" 
+        xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
 		d:DesignWidth="1366" d:DesignHeight="768"
         >
     <Window.Resources>
@@ -171,7 +172,153 @@
 				</Setter.Value>
 			</Setter>
     	</Style>
-		
+
+
+        <Style x:Key="ButtonContent" TargetType="{x:Type ContentControl}">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="{TemplateBinding Tag}" FontSize="16"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Image x:Key="IconKeyboardThumb" Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
+
+        
+        <ContentControl  x:Key="EnterButtonGeometry"  >
+            <Path Fill="Black" Height="27" Width="23" Stretch="Fill">
+                <Path.Data>
+                    <StreamGeometry>F1M404.0576,415.4819L402.4496,415.4819 402.4496,432.3579 384.3326,432.3579 393.4576,423.2589 391.1076,423.2589 381.1326,433.2329 391.1076,443.2079 393.4576,443.2079 384.3326,434.1079 404.0576,434.1079</StreamGeometry>
+                </Path.Data>
+            </Path>
+        </ContentControl>
+        
+
+        
+        <!-- Custom Key Content -->
+        <local:ShiftSensitiveKey x:Key="CustomKeyTilde" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="`"  Tag="~" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+                <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="`"  Tag="~" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="~"  Tag="`" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyExclamationMark" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_1}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="1"  Tag="!" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="1"  Tag="!" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="!"  Tag="1" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyAt" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_2}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="2"  Tag="@" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="2"  Tag="@" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="@"  Tag="2" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyPound" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_3}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="3"  Tag="#" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="3"  Tag="#" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="#"  Tag="3" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyDollar" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_4}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="4"  Tag="$" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="4"  Tag="$" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="$"  Tag="4" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyPercent" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_5}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="5"  Tag="%" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="5"  Tag="%" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="%"  Tag="5" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyCircumflex" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_6}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="6"  Tag="^" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="6"  Tag="^" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="^"  Tag="6" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyAmpersand" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_7}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="7"  Tag="&amp;" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="7"  Tag="&amp;" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="&amp;"  Tag="7" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyAsterik" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_8}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="8"  Tag="*" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="8"  Tag="*" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="*"  Tag="8" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyLeftParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_9}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="9"  Tag="(" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="9"  Tag="(" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content="("  Tag="9" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+        <local:ShiftSensitiveKey x:Key="CustomKeyRightParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_0}">
+            <local:ShiftSensitiveKey.DisplayName>
+                <ContentControl Content="0"  Tag=")" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.DisplayName>
+            <local:ShiftSensitiveKey.KeyDisplays>
+                <ContentControl Content="0"  Tag=")" Style="{StaticResource ButtonContent}"/>
+                <ContentControl Content=")"  Tag="0" Style="{StaticResource ButtonContent}"/>
+            </local:ShiftSensitiveKey.KeyDisplays>
+        </local:ShiftSensitiveKey>
+
+
+        <local:VirtualKey x:Key="CustomKeyEnter" DisplayName="{StaticResource EnterButtonGeometry}" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RETURN}" />
+
+        <local:UserDefinedKey x:Key="CustomKeyExpandedKeyboard" Id="KBEXPAND" DisplayName="{StaticResource IconKeyboardThumb}"/>
+
+        <!-- Custom Key Content -->
+
         <!--QuertyKeyboard QuertyKeyboard-->
         <Style TargetType="{x:Type local:QuertyKeyboard}">
             <Setter Property="Template">
@@ -275,12 +422,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="Esc" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum1}" Content="1" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum2}" Content="2" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum3}" Content="3" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum4}" Content="4" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum5}" Content="5" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="Esc" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum1}" Content="1" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum2}" Content="2" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum3}" Content="3" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum4}" Content="4" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum5}" Content="5" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="1">
@@ -292,12 +439,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="70"/>
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70"/>
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="2">
@@ -309,12 +456,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="80" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="3">
@@ -324,11 +471,11 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="*" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="Lock" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUnlock}" Content="Unlock" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Expand" Style="{DynamicResource KeyboardButtonStyle}"/>
-	                        					<Button Grid.Row="3" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="Lock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUnlock}" Content="Unlock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}"/>
+	                        					<Button Grid.Row="3" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 	                        			</Grid>
 										
@@ -357,12 +504,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="0" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum6}" Content="6" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum7}" Content="7" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum8}" Content="8" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum9}" Content="9" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum0}" Content="0" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="bksp" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum6}" Content="6" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum7}" Content="7" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum8}" Content="8" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum9}" Content="9" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNum0}" Content="0" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="bksp" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -374,13 +521,13 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="1" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="ENTER" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="70" />
+	                        					<Button Grid.Row="1" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="2" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -392,12 +539,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="2" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="80" />
+	                        					<Button Grid.Row="2" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="3" Grid.ColumnSpan="6">
@@ -407,10 +554,10 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{DynamicResource KeyboardButtonStyle}" />
+	                        					<Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
 	                        				</Grid>
 											
 	                        			</Grid>
@@ -438,12 +585,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="Esc" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyQ}" Content="q" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyW}" Content="w" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyE}" Content="w" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyR}" Content="" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyT}" Content="T" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="Esc" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyQ}" Content="q" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyW}" Content="w" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyE}" Content="w" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyR}" Content="" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyT}" Content="T" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="1">
@@ -455,12 +602,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="70"/>
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" Content="A" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" Content="S" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" Content="D" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyF}" Content="F" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70"/>
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" Content="A" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" Content="S" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" Content="D" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyF}" Content="F" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="2">
@@ -472,12 +619,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="80" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyV}" Content="V" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyB}" Content="B" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyV}" Content="V" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyB}" Content="B" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="3">
@@ -487,11 +634,11 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="*" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="Lock" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUnlock}" Content="Unlock" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" Content="Numeric" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="3" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="Lock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUnlock}" Content="Unlock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyNumericKeyboard}" Content="Numeric" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="3" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 	                        			</Grid>
 										
@@ -520,12 +667,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="0" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyY}" Content="Y" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyU}" Content="U" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyI}" Content="I" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyO}" Content="O" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyP}" Content="P" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="0" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="bksp" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyY}" Content="Y" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyU}" Content="U" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyI}" Content="I" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyO}" Content="O" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyP}" Content="P" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="0" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="bksp" Style="{StaticResource KeyboardSplittedButtonStyle}" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -537,13 +684,13 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="1" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyH}" Content="H" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyJ}" Content="J" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" Content="K" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="`" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="1" Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="ENTER" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="70" />
+	                        					<Button Grid.Row="1" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyH}" Content="H" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyJ}" Content="J" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" Content="K" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="`" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="1" Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="2" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -555,12 +702,12 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Grid.Row="2" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyN}" Content="N" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyM}" Content="M" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Row="2" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{DynamicResource KeyboardSplittedButtonStyle}" Width="80" />
+	                        					<Button Grid.Row="2" Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyN}" Content="N" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyM}" Content="M" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Row="2" Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
 	                        				</Grid>
 											
 	                        				<Grid Grid.Row="3" Grid.ColumnSpan="6">
@@ -570,10 +717,10 @@
 	                        						<ColumnDefinition Width="Auto" />
 	                        						<ColumnDefinition Width="Auto" />
 	                        					</Grid.ColumnDefinitions>
-	                        					<Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{DynamicResource KeyboardSplittedButtonStyle}" />
-	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{DynamicResource KeyboardButtonStyle}" />
+	                        					<Button Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
+	                        					<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
+	                        					<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+	                        					<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
 	                        				</Grid>
 											
 	                        			</Grid>
@@ -605,21 +752,21 @@
 	                        					<ColumnDefinition Width="Auto" />
 	                        					<ColumnDefinition Width="*" />
 	                        				</Grid.ColumnDefinitions>
-	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="ESCAPE" Style="{DynamicResource KeyboardButtonStyle}" Width="108" />
-	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTilde}" Content="`" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExclamationMark}" Content="1" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAt}" Content="2" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPound}" Content="3" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDollar}" Content="4" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPercent}" Content="5" Style="{DynamicResource KeyboardButtonStyle}"  />
-	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCircumflex}" Content="6" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAmpersand}" Content="7" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAsterik}" Content="8" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftParenthesis}" Content="9" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightParenthesis}" Content="0" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDash}" Content="-" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="13" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEquals}" Content="=" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="14" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="Backspace" Style="{DynamicResource KeyboardButtonStyle}"/>
+	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="ESCAPE" Style="{StaticResource KeyboardButtonStyle}" Width="108" />
+                                            <Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyTilde}" Content="`" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExclamationMark}" Content="1" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAt}" Content="2" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyPound}" Content="3" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyDollar}" Content="4" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyPercent}" Content="5" Style="{StaticResource KeyboardButtonStyle}"  />
+                                            <Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyCircumflex}" Content="6" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAmpersand}" Content="7" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAsterik}" Content="8" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyLeftParenthesis}" Content="9" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyRightParenthesis}" Content="0" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDash}" Content="-" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="13" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEquals}" Content="=" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="14" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="Backspace" Style="{StaticResource KeyboardButtonStyle}"/>
 	                        			</Grid>
 										
 	                        			<Grid x:Name="StandardLine2" Grid.Row="1">
@@ -640,21 +787,21 @@
 	                        					<ColumnDefinition Width="Auto" />
 	                        					<ColumnDefinition Width="*" />
 	                        				</Grid.ColumnDefinitions>
-	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{DynamicResource KeyboardButtonStyle}" Width="150" />
-	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyQ}" Content="Q" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyW}" Content="W" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyE}" Content="E" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyR}" Content="R" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyT}" Content="T" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyY}" Content="Y" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyU}" Content="U" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyI}" Content="I" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyO}" Content="O" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyP}" Content="P" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftSquareBracket}" Content="[" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightSquareBracket}" Content="]" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="13" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackSlash}" Content="\" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="14" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDelete}" Content="Del" Style="{DynamicResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTab}" Content="Tab" Style="{StaticResource KeyboardButtonStyle}" Width="150" />
+	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyQ}" Content="Q" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyW}" Content="W" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyE}" Content="E" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyR}" Content="R" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyT}" Content="T" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyY}" Content="Y" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyU}" Content="U" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyI}" Content="I" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyO}" Content="O" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyP}" Content="P" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftSquareBracket}" Content="[" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightSquareBracket}" Content="]" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="13" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackSlash}" Content="\" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="14" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDelete}" Content="Del" Style="{StaticResource KeyboardButtonStyle}" />
 	                        			</Grid>
 										
 	                        			<Grid x:Name="StandardLine3" Grid.Row="2">
@@ -673,19 +820,19 @@
 	                        					<ColumnDefinition Width="Auto" />
 	                        					<ColumnDefinition Width="*" />
 	                        				</Grid.ColumnDefinitions>
-	                        				<ToggleButton Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCapitalizeLock}" Content="Caps Lock" Style="{DynamicResource KeyboardToggleButtonStyle}" Width="190" />
-	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" Content="A" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" Content="S" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" Content="D" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyF}" Content="F" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyH}" Content="H" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyJ}" Content="J" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" Content="K" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySemicolon}" Content=";" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="'" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="Enter" Style="{DynamicResource KeyboardButtonStyle}" />
+	                        				<ToggleButton Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCapitalizeLock}" Content="Caps Lock" Style="{StaticResource KeyboardToggleButtonStyle}" Width="190" />
+	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" Content="A" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" Content="S" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" Content="D" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyF}" Content="F" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyG}" Content="G" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyH}" Content="H" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyJ}" Content="J" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" Content="K" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySemicolon}" Content=";" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="'" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="Enter" Style="{StaticResource KeyboardButtonStyle}" />
 	                        			</Grid>
 										
 	                        			<Grid x:Name="StandardLine4" Grid.Row="3">
@@ -704,19 +851,19 @@
 	                        					<ColumnDefinition Width="Auto" />
 	                        					<ColumnDefinition Width="*" />
 	                        				</Grid.ColumnDefinitions>
-	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{DynamicResource KeyboardButtonStyle}" Width="225" />
-	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyV}" Content="V" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyB}" Content="B" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyN}" Content="N" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyM}" Content="M" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUpArrow}" Content="Up" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="RShift" Style="{DynamicResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardButtonStyle}" Width="225" />
+	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="4" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyV}" Content="V" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyB}" Content="B" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyN}" Content="N" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyM}" Content="M" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUpArrow}" Content="Up" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="RShift" Style="{StaticResource KeyboardButtonStyle}" />
 	                        			</Grid>
 										
 	                        			<Grid x:Name="StandardLine5" Grid.Row="4">
@@ -730,18 +877,18 @@
 	                        					<ColumnDefinition Width="Auto" />
 	                        					<ColumnDefinition Width="Auto" />
 	                        				</Grid.ColumnDefinitions>
-	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="KeyLock" Style="{DynamicResource KeyboardButtonStyle}" Width="110" />
-	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Expand" Style="{DynamicResource KeyboardButtonStyle}" Width="110" />
-	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDownArrow}" Content="Down" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<!--<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyShowKeyboard}" Content="Show" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Hide" Style="{DynamicResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{DynamicResource KeyboardButtonStyle}" />-->
-	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{DynamicResource KeyboardButtonStyle}" Width="133" />
+	                        				<Button Grid.Column="0" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="KeyLock" Style="{StaticResource KeyboardButtonStyle}" Width="110" />
+	                        				<Button Grid.Column="1" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}" Width="110" />
+	                        				<Button Grid.Column="2" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="3" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="5" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDownArrow}" Content="Down" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="6" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<!--<Button Grid.Column="7" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="8" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyShowKeyboard}" Content="Show" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="9" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="10" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="11" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{StaticResource KeyboardButtonStyle}" />-->
+	                        				<Button Grid.Column="12" Focusable="False" local:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" Width="133" />
 	                        			</Grid>
 	                        		</Grid>
 	                        	</Grid>
@@ -751,21 +898,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ButtonContent" TargetType="{x:Type ContentControl}">
-        	<Setter Property="FontFamily" Value="Arial"/>
-        	<Setter Property="Template">
-        		<Setter.Value>
-        			<ControlTemplate TargetType="{x:Type ContentControl}">
-        				<Grid>
-        					<TextBlock Text="{TemplateBinding Content}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-							<TextBlock Text="{TemplateBinding Tag}" FontSize="16"/>  				
-						</Grid>
-        			</ControlTemplate>
-        		</Setter.Value>
-        	</Setter>
-        </Style>
-        <StreamGeometry x:Key="EnterButtonGeometry">F1M404.0576,415.4819L402.4496,415.4819 402.4496,432.3579 384.3326,432.3579 393.4576,423.2589 391.1076,423.2589 381.1326,433.2329 391.1076,443.2079 393.4576,443.2079 384.3326,434.1079 404.0576,434.1079</StreamGeometry>
+        <!--QuertyKeyboard QuertyKeyboard-->
 
+
+        
+        
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -773,45 +910,46 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" MinHeight="50"  />
+
         <local:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" 
                               InputEventType="MouseBasedEvent"
                               />
+
 		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="30,30,0,0" VerticalAlignment="Top">
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-        		<ContentControl Content="1"  Tag="!" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="1"  Tag="!" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-        		<ContentControl Content="2"  Tag="@" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="2"  Tag="@" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-        		<ContentControl Content="3"  Tag="#" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="3"  Tag="#" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-        		<ContentControl Content="4"  Tag="$" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="4"  Tag="$" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-        		<ContentControl Content="5"  Tag="%" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="5"  Tag="%" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<ContentControl Content="6"  Tag="^" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+				<ContentControl Content="6"  Tag="^" Style="{StaticResource ButtonContent}"/>
 			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<ContentControl Content="7"  Tag="&amp;" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+				<ContentControl Content="7"  Tag="&amp;" Style="{StaticResource ButtonContent}"/>
 			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<ContentControl Content="8"  Tag="*" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+				<ContentControl Content="8"  Tag="*" Style="{StaticResource ButtonContent}"/>
 			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<ContentControl Content="9"  Tag="(" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+				<ContentControl Content="9"  Tag="(" Style="{StaticResource ButtonContent}"/>
 			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<ContentControl Content="0"  Tag=")" Style="{DynamicResource ButtonContent}"/>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+				<ContentControl Content="0"  Tag=")" Style="{StaticResource ButtonContent}"/>
 			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
-				<Path Data="{DynamicResource EnterButtonGeometry}" Fill="Black" Height="27" Width="23" Stretch="Fill"/>
-			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="114" Style="{DynamicResource KeyboardButtonStyle}">
+            <!--<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="{StaticResource EnterButtonGeometry}" />-->
+            <Button HorizontalAlignment="Left" Height="62" Width="114" Style="{StaticResource KeyboardButtonStyle}">
 				<Image Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
 			</Button>
 		</StackPanel>
