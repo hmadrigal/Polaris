@@ -15,6 +15,8 @@
     		<Setter Property="MinWidth" Value="74"/>
     		<Setter Property="MinHeight" Value="62"/>
 			<Setter Property="Margin" Value="4"/>
+			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Stretch"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type Button}">
@@ -749,6 +751,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ButtonContent" TargetType="{x:Type ContentControl}">
+        	<Setter Property="FontFamily" Value="Arial"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="{x:Type ContentControl}">
+        				<Grid>
+        					<TextBlock Text="{TemplateBinding Content}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<TextBlock Text="{TemplateBinding Tag}" FontSize="16"/>  				
+						</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+        <StreamGeometry x:Key="EnterButtonGeometry">F1M404.0576,415.4819L402.4496,415.4819 402.4496,432.3579 384.3326,432.3579 393.4576,423.2589 391.1076,423.2589 381.1326,433.2329 391.1076,443.2079 393.4576,443.2079 384.3326,434.1079 404.0576,434.1079</StreamGeometry>
 
     </Window.Resources>
     <Grid>
@@ -761,5 +777,44 @@
         <local:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" 
                               InputEventType="MouseBasedEvent"
                               />
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="30,30,0,0" VerticalAlignment="Top">
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+        		<ContentControl Content="1"  Tag="!" Style="{DynamicResource ButtonContent}"/>
+        	</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+        		<ContentControl Content="2"  Tag="@" Style="{DynamicResource ButtonContent}"/>
+        	</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+        		<ContentControl Content="3"  Tag="#" Style="{DynamicResource ButtonContent}"/>
+        	</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+        		<ContentControl Content="4"  Tag="$" Style="{DynamicResource ButtonContent}"/>
+        	</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+        		<ContentControl Content="5"  Tag="%" Style="{DynamicResource ButtonContent}"/>
+        	</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<ContentControl Content="6"  Tag="^" Style="{DynamicResource ButtonContent}"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<ContentControl Content="7"  Tag="&amp;" Style="{DynamicResource ButtonContent}"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<ContentControl Content="8"  Tag="*" Style="{DynamicResource ButtonContent}"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<ContentControl Content="9"  Tag="(" Style="{DynamicResource ButtonContent}"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<ContentControl Content="0"  Tag=")" Style="{DynamicResource ButtonContent}"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{DynamicResource KeyboardButtonStyle}">
+				<Path Data="{DynamicResource EnterButtonGeometry}" Fill="Black" Height="27" Width="23" Stretch="Fill"/>
+			</Button>
+			<Button HorizontalAlignment="Left" Height="62" Width="114" Style="{DynamicResource KeyboardButtonStyle}">
+				<Image Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
+			</Button>
+		</StackPanel>
+        
     </Grid>
 </Window>
