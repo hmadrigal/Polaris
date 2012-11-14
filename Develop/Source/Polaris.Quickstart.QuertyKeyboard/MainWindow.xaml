@@ -916,43 +916,61 @@
         <local:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" 
                               InputEventType="MouseBasedEvent"
                               />
-
-		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="30,30,0,0" VerticalAlignment="Top">
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-        		<ContentControl Content="1"  Tag="!" Style="{StaticResource ButtonContent}"/>
+        <WrapPanel Margin="30,30,68,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top">
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="_"  Tag="-" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-        		<ContentControl Content="2"  Tag="@" Style="{StaticResource ButtonContent}"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="="  Tag="+" Style="{StaticResource ButtonContent}"/>
         	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-        		<ContentControl Content="3"  Tag="#" Style="{StaticResource ButtonContent}"/>
-        	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-        		<ContentControl Content="4"  Tag="$" Style="{StaticResource ButtonContent}"/>
-        	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-        		<ContentControl Content="5"  Tag="%" Style="{StaticResource ButtonContent}"/>
-        	</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-				<ContentControl Content="6"  Tag="^" Style="{StaticResource ButtonContent}"/>
-			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-				<ContentControl Content="7"  Tag="&amp;" Style="{StaticResource ButtonContent}"/>
-			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-				<ContentControl Content="8"  Tag="*" Style="{StaticResource ButtonContent}"/>
-			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-				<ContentControl Content="9"  Tag="(" Style="{StaticResource ButtonContent}"/>
-			</Button>
-			<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
-				<ContentControl Content="0"  Tag=")" Style="{StaticResource ButtonContent}"/>
-			</Button>
             <!--<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="{StaticResource EnterButtonGeometry}" />-->
-            <Button HorizontalAlignment="Left" Height="62" Width="114" Style="{StaticResource KeyboardButtonStyle}">
-				<Image Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
-			</Button>
-		</StackPanel>
+        	<Button HorizontalAlignment="Left" Height="62" Width="114" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardHide.png" Width="46" Height="27"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="114" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardShift.png" Width="33" Height="25"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="114" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardEnter.png" Width="24" Height="29"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="["  Tag="{}{" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="]"  Tag="}" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="\"  Tag="|" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content=";"  Tag=":" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="'"  Tag="&quot;" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content=","  Tag="&lt;" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="."  Tag="&gt;" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<ContentControl Content="/"  Tag="?" Style="{StaticResource ButtonContent}"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardArrowUp.png" Width="40" Height="40"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardArrowLeft.png" Width="40" Height="40"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardArrowRight.png" Width="40" Height="40"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
+        		<Image Source="Images/IconKeyboardArrowDown.png" Width="40" Height="40"/>
+        	</Button>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="123"/>
+        </WrapPanel>
         
     </Grid>
 </Window>

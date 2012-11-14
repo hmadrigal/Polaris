@@ -116,6 +116,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\IconKeyboardArrowDown.png" />
+    <Resource Include="Images\IconKeyboardArrowLeft.png" />
+    <Resource Include="Images\IconKeyboardArrowRight.png" />
+    <Resource Include="Images\IconKeyboardArrowUp.png" />
+    <Resource Include="Images\IconKeyboardEnter.png" />
+    <Resource Include="Images\IconKeyboardHide.png" />
+    <Resource Include="Images\IconKeyboardShift.png" />
     <Resource Include="Images\IconKeyboardThumb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
