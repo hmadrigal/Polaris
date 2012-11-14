@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>0.0.0.3</version>
+    <version>0.0.0.4</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -29,5 +29,6 @@
   </metadata>
   <files>
     <file src="..\..\Develop\Bin\Wpf\Polaris.Ui.dll" target="lib\net40-client"/>
+    <file src="..\..\Develop\Bin\Wpf\InputSimulator.dll" target="lib\net40-client"/>
   </files>
 </package>
