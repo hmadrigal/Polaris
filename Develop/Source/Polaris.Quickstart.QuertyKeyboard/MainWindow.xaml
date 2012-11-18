@@ -969,7 +969,36 @@
         	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">
         		<Image Source="Images/IconKeyboardArrowDown.png" Width="40" Height="40"/>
         	</Button>
-        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="123"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="1"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="2"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="3"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="4"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="5"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="6"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="7"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="8"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="9"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="0"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="!"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="@"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="#"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="$"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="%"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="^"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="&amp;"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="*"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="("/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content=")"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="~"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="`"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="&lt;"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="&gt;"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="/"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content=";"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content=":"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="'"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="&quot;"/>
+        	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}" Content="_"/>
         </WrapPanel>
         
     </Grid>
