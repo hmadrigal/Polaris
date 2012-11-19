@@ -5,8 +5,12 @@
     xmlns:polarisWindowsControls="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui"
     xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
 >
-	<!-- Resource dictionary entries should be defined here. -->
-    
+    <!-- Load default styles -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Polaris.Ui;component/Themes/QuertyKeyboard.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Resource dictionary entries should be defined here. -->    
     <Image x:Key="IconKeyboardThumb" Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
 
     <ContentControl  x:Key="EnterButtonGeometry"  >
