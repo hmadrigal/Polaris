@@ -4,14 +4,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:polarisWindowsControls="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui"
     xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
 >
-    <!-- Load default styles -->
+    <!-- Loads default keyboard resources  -->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Polaris.Ui;component/Themes/QuertyKeyboard.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Resource dictionary entries should be defined here. -->    
-    <Image x:Key="IconKeyboardThumb" Source="Images/IconKeyboardThumb.png" Width="45" Height="19"/>
+    <!-- Resource dictionary entries should be defined here. -->
+    <BitmapImage x:Key="KeyboardShiftBitmapImage" UriSource="Images/IconKeyboardShift.png" />
+    <BitmapImage x:Key="KeyboardThumbBitmapImage" UriSource="Images/IconKeyboardThumb.png" />
+    <BitmapImage x:Key="KeyboardHideBitmapImage" UriSource="Images/IconKeyboardHide.png" />
+
+    <BitmapImage x:Key="KeyboardArrowUpBitmapImage" UriSource="Images/IconKeyboardArrowUp.png" />
+    <BitmapImage x:Key="KeyboardArrowLeftBitmapImage" UriSource="Images/IconKeyboardArrowLeft.png" />
+    <BitmapImage x:Key="KeyboardArrowRightBitmapImage" UriSource="Images/IconKeyboardArrowRight.png" />
+    <BitmapImage x:Key="KeyboardArrowDownBitmapImage" UriSource="Images/IconKeyboardArrowDown.png" />
+
 
     <ContentControl  x:Key="EnterButtonGeometry"  >
         <Path Fill="Black" Height="27" Width="23" Stretch="Fill">
@@ -198,8 +207,10 @@
         </Setter>
     </Style>
 
-    <!-- Custom Key Content -->
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyTilde" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
+    <!-- overrides keyboard resources -->
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="esc" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
+    
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="'"  Tag="~" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -209,7 +220,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyExclamationMark" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_1}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyExclamationMark" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_1}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="1"  Tag="!" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -219,7 +230,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyAt" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_2}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAt" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_2}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="2"  Tag="@" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -229,7 +240,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyPound" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_3}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPound" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_3}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="3"  Tag="#" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -239,7 +250,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyDollar" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_4}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyDollar" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_4}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="4"  Tag="$" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -249,7 +260,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyPercent" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_5}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPercent" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_5}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="5"  Tag="%" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -259,7 +270,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyCircumflex" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_6}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyCircumflex" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_6}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="6"  Tag="^" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -269,7 +280,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyAmpersand" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_7}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAmpersand" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_7}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="7"  Tag="&amp;" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -279,7 +290,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyAsterik" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_8}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyAsterik" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_8}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="8"  Tag="*" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -289,7 +300,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyLeftParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_9}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyLeftParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_9}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="9"  Tag="(" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -299,7 +310,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="CustomKeyRightParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_0}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyRightParenthesis" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_0}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content="0"  Tag=")" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
@@ -309,12 +320,241 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyDash" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_MINUS}" >
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="_"  Tag="-" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="-"  Tag="_" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="_"  Tag="-" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:VirtualKey x:Key="CustomKeyEnter" DisplayName="{StaticResource EnterButtonGeometry}" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RETURN}" />
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyEquals" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_PLUS}" >
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="="  Tag="+" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="+"  Tag="=" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="="  Tag="+" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
 
-    <polarisWindowsControls:UserDefinedKey x:Key="CustomKeyExpandedKeyboard" Id="KBEXPAND" DisplayName="{StaticResource IconKeyboardThumb}"/>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyEnter" DisplayName="{StaticResource EnterButtonGeometry}" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RETURN}" />
 
-    <!-- Custom Key Content -->
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyExpandedKeyboard" Id="KBEXPAND" >
+        <polarisWindowsControls:UserDefinedKey.DisplayName>
+            <Image Source="{StaticResource KeyboardThumbBitmapImage}" Width="45" Height="19"/>
+        </polarisWindowsControls:UserDefinedKey.DisplayName>
+    </polarisWindowsControls:UserDefinedKey>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyBackspace" DisplayName="bksp" KeyCode="{x:Static WindowsInput:VirtualKeyCode.BACK}"/>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyTab" DisplayName="tab" KeyCode="{x:Static WindowsInput:VirtualKeyCode.TAB}" />
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyDelete" DisplayName="del" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DELETE}" />
+
+    <polarisWindowsControls:TogglingModifierKey x:Key="QuertyKeyboardKeyCapitalizeLock" DisplayName="caps" KeyCode="{x:Static WindowsInput:VirtualKeyCode.CAPITAL}"/>
+
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyLeftShift" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>   
+    </polarisWindowsControls:InstantaneousModifierKey>
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyRightShift" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+    </polarisWindowsControls:InstantaneousModifierKey>
+
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyLeftShift1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+    </polarisWindowsControls:InstantaneousModifierKey>
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyRightShift1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+    </polarisWindowsControls:InstantaneousModifierKey>
+
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyLeftShift2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+    </polarisWindowsControls:InstantaneousModifierKey>
+    <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyRightShift2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
+        <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+            <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
+    </polarisWindowsControls:InstantaneousModifierKey>
+
+
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyHideKeyboard" Id="KBHIDE" >
+        <polarisWindowsControls:UserDefinedKey.DisplayName>
+            <Image Source="{StaticResource KeyboardHideBitmapImage}" Width="46" Height="27"/>
+        </polarisWindowsControls:UserDefinedKey.DisplayName>
+    </polarisWindowsControls:UserDefinedKey>
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyHideKeyboard1" Id="KBHIDE" >
+        <polarisWindowsControls:UserDefinedKey.DisplayName>
+            <Image Source="{StaticResource KeyboardHideBitmapImage}" Width="46" Height="27"/>
+        </polarisWindowsControls:UserDefinedKey.DisplayName>
+    </polarisWindowsControls:UserDefinedKey>
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyHideKeyboard2" Id="KBHIDE" >
+        <polarisWindowsControls:UserDefinedKey.DisplayName>
+            <Image Source="{StaticResource KeyboardHideBitmapImage}" Width="46" Height="27"/>
+        </polarisWindowsControls:UserDefinedKey.DisplayName>
+    </polarisWindowsControls:UserDefinedKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyLeftSquareBracket" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_4}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="["  Style="{StaticResource ButtonContent}">
+                <ContentControl.Tag>
+                    <sys:String>{</sys:String>
+                </ContentControl.Tag>
+            </ContentControl>
+            <ContentControl Tag="[" Style="{StaticResource ButtonContent}">
+                <ContentControl.Content>
+                    <sys:String>{</sys:String>
+                </ContentControl.Content>
+            </ContentControl>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="["  Style="{StaticResource ButtonContent}">
+                <ContentControl.Tag>
+                    <sys:String>{</sys:String>
+                </ContentControl.Tag>
+            </ContentControl>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyRightSquareBracket" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_6}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="]"  Style="{StaticResource ButtonContent}">
+                <ContentControl.Tag>
+                    <sys:String>}</sys:String>
+                </ContentControl.Tag>
+            </ContentControl>
+            <ContentControl Tag="]" Style="{StaticResource ButtonContent}">
+                <ContentControl.Content>
+                    <sys:String>}</sys:String>
+                </ContentControl.Content>
+            </ContentControl>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="]"  Style="{StaticResource ButtonContent}">
+                <ContentControl.Tag>
+                    <sys:String>}</sys:String>
+                </ContentControl.Tag>
+            </ContentControl>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyBackSlash" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_102}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="\"  Tag="|" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="|"  Tag="\" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="\"  Tag="|" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeySemicolon" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_1}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content=";"  Tag=":" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content=":"  Tag=";" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content=";"  Tag=":" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>    
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyApostrophe" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_7}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="'"  Tag="&quot;" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="&quot;"  Tag="'" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="'"  Tag="&quot;" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyComma" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_COMMA}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="," Tag="&lt;" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Tag="," Content="&lt;" Style="{StaticResource ButtonContent}" />
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="," Tag="&lt;" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+    
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPeriod" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_PERIOD}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="."  Tag="&gt;" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="&gt;"  Tag="." Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="."  Tag="&gt;" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeySlash" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_2}">
+        <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+            <ContentControl Content="/"  Tag="?" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="?"  Tag="/" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
+        <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+            <ContentControl Content="/"  Tag="?" Style="{StaticResource ButtonContent}"/>
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
+    </polarisWindowsControls:ShiftSensitiveKey>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyUpArrow" KeyCode="{x:Static WindowsInput:VirtualKeyCode.UP}">
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowUpBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyDownArrow" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DOWN}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowDownBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyLeftArrow" KeyCode="{x:Static WindowsInput:VirtualKeyCode.LEFT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowLeftBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyRightArrow" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RIGHT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowRightBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyLeftArrow1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.LEFT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowLeftBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyRightArrow1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RIGHT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowRightBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyLeftArrow2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.LEFT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowLeftBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyRightArrow2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.RIGHT}" >
+        <polarisWindowsControls:VirtualKey.DisplayName>
+            <Image Source="{StaticResource KeyboardArrowRightBitmapImage}" />
+        </polarisWindowsControls:VirtualKey.DisplayName>
+    </polarisWindowsControls:VirtualKey>
+
+    <!-- overrides keyboard resources -->
 
     <!--QuertyKeyboard QuertyKeyboard-->
     <Style TargetType="{x:Type polarisWindowsControls:QuertyKeyboard}">
@@ -471,7 +711,7 @@
                                             <Button Grid.Row="3" Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="Lock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="3" Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUnlock}" Content="Unlock" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="3" Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <Button Grid.Row="3" Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}"/>
+                                            <Button Grid.Row="3" Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}"/>
                                             <Button Grid.Row="3" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                         </Grid>
                                     </Grid>
@@ -524,7 +764,7 @@
                                             <Button Grid.Row="1" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="1" Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="1" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="XX" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <Button Grid.Row="1" Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
+                                            <Button Grid.Row="1" Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
                                         </Grid>
 
                                         <Grid Grid.Row="2" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -616,7 +856,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
+                                            <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift1}" Content="LShift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
                                             <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardSplittedButtonStyle}" />
@@ -687,7 +927,7 @@
                                             <Button Grid.Row="1" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyK}" Content="K" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="1" Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="1" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="'" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <Button Grid.Row="1" Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
+                                            <Button Grid.Row="1" Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="ENTER" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="70" />
                                         </Grid>
 
                                         <Grid Grid.Row="2" Grid.ColumnSpan="6" HorizontalAlignment="Right">
@@ -704,7 +944,7 @@
                                             <Button Grid.Row="2" Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <Button Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
+                                            <Button Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift1}" Content="Rshift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
                                         </Grid>
 
                                         <Grid Grid.Row="3" Grid.ColumnSpan="6">
@@ -715,9 +955,9 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <Button Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
-                                            <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
-                                            <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow1}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow1}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+                                            <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard1}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
                                         </Grid>
 
                                     </Grid>
@@ -750,17 +990,17 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="ESCAPE" Style="{StaticResource KeyboardButtonStyle}" Width="108" />
-                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyTilde}" Content="'" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExclamationMark}" Content="1" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAt}" Content="2" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyPound}" Content="3" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyDollar}" Content="4" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyPercent}" Content="5" Style="{StaticResource KeyboardButtonStyle}"  />
-                                        <Button Grid.Column="7" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyCircumflex}" Content="6" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="8" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAmpersand}" Content="7" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyAsterik}" Content="8" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyLeftParenthesis}" Content="9" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyRightParenthesis}" Content="0" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTilde}" Content="'" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExclamationMark}" Content="1" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAt}" Content="2" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPound}" Content="3" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDollar}" Content="4" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPercent}" Content="5" Style="{StaticResource KeyboardButtonStyle}"  />
+                                        <Button Grid.Column="7" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCircumflex}" Content="6" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="8" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAmpersand}" Content="7" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAsterik}" Content="8" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftParenthesis}" Content="9" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightParenthesis}" Content="0" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDash}" Content="-" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="13" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEquals}" Content="=" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="14" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyBackspace}" Content="Backspace" Style="{StaticResource KeyboardButtonStyle}"/>
@@ -829,7 +1069,7 @@
                                         <Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyL}" Content="L" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySemicolon}" Content=";" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyApostrophe}" Content="'" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyEnter}" Content="Enter" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEnter}" Content="Enter" Style="{StaticResource KeyboardButtonStyle}" />
                                     </Grid>
 
                                     <Grid x:Name="StandardLine4" Grid.Row="3">
@@ -848,7 +1088,7 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardButtonStyle}" Width="225" />
+                                        <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift2}" Content="LShift" Style="{StaticResource KeyboardButtonStyle}" Width="225" />
                                         <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardButtonStyle}" />
@@ -860,7 +1100,7 @@
                                         <Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUpArrow}" Content="Up" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="RShift" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift2}" Content="RShift" Style="{StaticResource KeyboardButtonStyle}" />
                                     </Grid>
 
                                     <Grid x:Name="StandardLine5" Grid.Row="4">
@@ -875,17 +1115,17 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLock}" Content="KeyLock" Style="{StaticResource KeyboardButtonStyle}" Width="110" />
-                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}" Width="110" />
+                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Expand" Style="{StaticResource KeyboardButtonStyle}" Width="110" />
                                         <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySpace}" Content=" " Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftArrow2}" Content="Left" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyDownArrow}" Content="Down" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <Button Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="6" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow2}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
                                         <!--<Button Grid.Column="7" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightArrow}" Content="Right" Style="{StaticResource KeyboardButtonStyle}" />
 	                        				<Button Grid.Column="8" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyShowKeyboard}" Content="Show" Style="{StaticResource KeyboardButtonStyle}" />
 	                        				<Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="" Style="{StaticResource KeyboardButtonStyle}" />
-	                        				<Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource CustomKeyExpandedKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
+	                        				<Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExpandedKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" />
 	                        				<Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCompactKeyboard}" Content="Compact" Style="{StaticResource KeyboardButtonStyle}" />-->
-                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" Width="133" />
+                                        <Button Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyHideKeyboard2}" Content="Hide" Style="{StaticResource KeyboardButtonStyle}" Width="133" />
                                     </Grid>
                                 </Grid>
                             </Grid>
