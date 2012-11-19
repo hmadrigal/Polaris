@@ -16,7 +16,7 @@
     <!--WhiteBrush-->
 
     <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="ESC" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
-    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" DisplayName="'" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
+    <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" DisplayName="`" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
         <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
             <sys:String>`</sys:String>
             <sys:String>~</sys:String>
