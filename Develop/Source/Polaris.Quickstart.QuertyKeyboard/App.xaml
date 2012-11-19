@@ -6,6 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Polaris.Ui;component/Themes/QuertyKeyboard.xaml"/>
+                <ResourceDictionary Source="CustomKeyboardResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
