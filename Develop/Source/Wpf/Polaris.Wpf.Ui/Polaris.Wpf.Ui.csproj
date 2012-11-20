@@ -134,6 +134,7 @@
     <Compile Include="LogicalKeys\UserDefinedKey.cs" />
     <Compile Include="LogicalKeys\VirtualKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DebugKeyboardInput.cs" />
     <Compile Include="Services\IKeyboardInput.cs">
       <SubType>Code</SubType>
     </Compile>
