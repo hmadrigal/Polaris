@@ -117,6 +117,8 @@ using System.ComponentModel;
 
         #endregion
 
+        
+
         private VirtualKeyboardInputEvent _inputEventType = VirtualKeyboardInputEvent.MouseBasedEvent;
         public VirtualKeyboardInputEvent InputEventType
         {
@@ -131,7 +133,7 @@ using System.ComponentModel;
             get { return _keyboardService; }
             set { _keyboardService = value; }
         }
-        private IKeyboardInput _keyboardService = VirtualKeyboardInput.Instance;
+        private IKeyboardInput _keyboardService = DebugKeyboardInput.Instance;
 
         private const String ElementLayoutRootName = "LayoutRoot";
         private Panel _layoutRoot;
@@ -139,26 +141,26 @@ using System.ComponentModel;
         private readonly List<ModifierKeyBase> _modifierKeys;
         private readonly List<DependencyLogicalKey> _allLogicalKeys;
 
-        private readonly DispatcherTimer _timer;
-        [Description("Time in milliseconds before reporting constaly the first keydown")]
-        [Category("Querty OSK")]
-        [DisplayName("Pause on initial pressed key")]
-        public int PauseOnKeyPressedInitial
-        {
-            get { return _pauseOnKeyPressedInitial; }
-            set { _pauseOnKeyPressedInitial = value; }
-        }
-        private int _pauseOnKeyPressedInitial = 500;
+        //private readonly DispatcherTimer _timer;
+        //[Description("Time in milliseconds before reporting constaly the first keydown")]
+        //[Category("Querty OSK")]
+        //[DisplayName("Pause on initial pressed key")]
+        //public int PauseOnKeyPressedInitial
+        //{
+        //    get { return _pauseOnKeyPressedInitial; }
+        //    set { _pauseOnKeyPressedInitial = value; }
+        //}
+        //private int _pauseOnKeyPressedInitial = 500;
 
-        [Description("Time in milliseconds minimum between reporting contantly key pressed.")]
-        [Category("Querty OSK")]
-        [DisplayName("Minimum paused on pressed key")]
-        public int PauseOnKeyPressedMinimum
-        {
-            get { return _pauseOnKeyPressedMinimum; }
-            set { _pauseOnKeyPressedMinimum = value; }
-        }
-        private int _pauseOnKeyPressedMinimum = 50;
+        //[Description("Time in milliseconds minimum between reporting contantly key pressed.")]
+        //[Category("Querty OSK")]
+        //[DisplayName("Minimum paused on pressed key")]
+        //public int PauseOnKeyPressedMinimum
+        //{
+        //    get { return _pauseOnKeyPressedMinimum; }
+        //    set { _pauseOnKeyPressedMinimum = value; }
+        //}
+        //private int _pauseOnKeyPressedMinimum = 50;
 
         static QuertyKeyboard()
         {
@@ -167,11 +169,11 @@ using System.ComponentModel;
 
         public QuertyKeyboard()
         {
-            _timer = new DispatcherTimer();
+            //_timer = new DispatcherTimer();
             _modifierKeys = new List<ModifierKeyBase>();
             _allLogicalKeys = new List<DependencyLogicalKey>();
-            _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-            _timer.Tick += OnTimerTick;
+            //_timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+            //_timer.Tick += OnTimerTick;
             Loaded += OnLoaded;
         }
 
@@ -242,6 +244,8 @@ using System.ComponentModel;
 
         public override void OnApplyTemplate()
         {
+            _keyboardService = System.Diagnostics.Debugger.IsAttached ? DebugKeyboardInput.Instance as IKeyboardInput : VirtualKeyboardInput.Instance as IKeyboardInput;
+
             base.OnApplyTemplate();
 
             _layoutRoot = GetTemplateChild(ElementLayoutRootName) as Panel;
@@ -349,32 +353,32 @@ using System.ComponentModel;
             //IsShiftPressed = _isShiftSticked;
         }
 
-        private void OnTimerTick(object sender, EventArgs e)
-        {
-            var timer = sender as DispatcherTimer;
-            var virtualKeyConfig = timer.Tag as DependencyLogicalKey;
-            if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
-            {
-                timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
-            }
-            virtualKeyConfig.Press();
-        }
+        //private void OnTimerTick(object sender, EventArgs e)
+        //{
+        //    var timer = sender as DispatcherTimer;
+        //    var virtualKeyConfig = timer.Tag as DependencyLogicalKey;
+        //    if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
+        //    {
+        //        timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
+        //    }
+        //    virtualKeyConfig.Press();
+        //}
 
         private void HandleButtonUp()
         {
-            _timer.IsEnabled = false;
+            //_timer.IsEnabled = false;
         }
 
         private void HandleButtonDown(DependencyLogicalKey virtualKeyConfig)
         {
-            _timer.Tag = virtualKeyConfig;
+            //_timer.Tag = virtualKeyConfig;
             virtualKeyConfig.Press();
             //HandleLogicKeyPressed(virtualKeyConfig);
-            if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
-            {
-                _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-                _timer.IsEnabled = true;
-            }
+            //if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
+            //{
+            //    _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
+            //    _timer.IsEnabled = true;
+            //}
         }
     }
 
