@@ -117,7 +117,16 @@ using System.ComponentModel;
 
         #endregion
 
-        
+        /// <summary>
+        /// Whether or not use the Debugger Keyboard Service instead of the Virtual Keyboard Service.
+        /// <remarks>Other than settings this to true, the app should run attached to a debugger</remarks>
+        /// </summary>
+        public bool LatchDebugger
+        {
+            get { return _latchDebugger; }
+            set { _latchDebugger = value; }
+        }
+        private bool _latchDebugger = true;
 
         private VirtualKeyboardInputEvent _inputEventType = VirtualKeyboardInputEvent.MouseBasedEvent;
         public VirtualKeyboardInputEvent InputEventType
@@ -244,7 +253,7 @@ using System.ComponentModel;
 
         public override void OnApplyTemplate()
         {
-            _keyboardService = System.Diagnostics.Debugger.IsAttached ? DebugKeyboardInput.Instance as IKeyboardInput : VirtualKeyboardInput.Instance as IKeyboardInput;
+            _keyboardService = System.Diagnostics.Debugger.IsAttached && LatchDebugger ? DebugKeyboardInput.Instance as IKeyboardInput : VirtualKeyboardInput.Instance as IKeyboardInput;
 
             base.OnApplyTemplate();
 
