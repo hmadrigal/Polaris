@@ -508,7 +508,7 @@ namespace Polaris.Windows.Controls
                 drawingContext.DrawRectangle(background, new Pen() { Brush = borderBrush }, new Rect(renderSize));
             #endregion
 
-            Size shadowRenderedSize = new Size(0, 0);
+            var shadowRenderedSize = new Size(0, 0);
             if (!string.IsNullOrWhiteSpace(ShadowText))
             {
                 DrawText(
@@ -525,7 +525,7 @@ namespace Polaris.Windows.Controls
                     ShadowTopOffset);
 
             }
-            Size renderedSize = new Size(0, 0);
+            var renderedSize = new Size(0, 0);
             if (!string.IsNullOrWhiteSpace(Text))
             {
                 DrawText(
@@ -546,16 +546,15 @@ namespace Polaris.Windows.Controls
 
         private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
         {
-            double renderingXPosition = leftOffset;
-            double renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
-            double wordWidth = 0, currentLineHeight = 0;
-            var isHorizontalSpaceAvailable = false;
+            var renderingXPosition = leftOffset;
+            var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
+            var currentLineHeight = 0d;
             while (remainingWordCharacters.Length > 0)
             {
                 // End of vertical space
                 if (renderingYPosition > renderSize.Height) { break; }
 
-                wordWidth = 0;
+                double wordWidth = 0;
                 var glyphIndexes = new List<ushort>();
                 var advanceWidths = new List<double>();
                 var currentLineWidth = renderingXPosition;
@@ -587,7 +586,7 @@ namespace Polaris.Windows.Controls
                     var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
                     var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * fontSize;
 
-                    isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < renderSize.Width;
+                    var isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < renderSize.Width;
                     if (isHorizontalSpaceAvailable)
                     {
                         // Add the current character to be rendered
@@ -619,9 +618,9 @@ namespace Polaris.Windows.Controls
 
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
-                    var origin = new Point(renderingXPosition, renderingYPosition + LineHeight.Value);
+                    var origin = new Point(renderingXPosition, renderingYPosition + (LineHeight ?? 0d));
                     var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, fontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
-                    drawingContext.DrawGlyphRun(foreground == null ? foreground : foreground, glyphRun);
+                    drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
 
                 renderingYPosition += (lineHeight ?? 0d) + FontSize;
