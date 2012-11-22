@@ -348,9 +348,84 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        #region TextTrimming
+        /// <summary>
+        /// Gets or sets the TextTrimming property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public System.Windows.TextTrimming TextTrimming
+        {
+            get { return (System.Windows.TextTrimming)GetValue(TextTrimmingProperty); }
+            set { SetValue(TextTrimmingProperty, value); }
+        }
+
+        /// <summary>
+        /// TextTrimming Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty TextTrimmingProperty =
+            DependencyProperty.Register("TextTrimming", typeof(System.Windows.TextTrimming), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(System.Windows.TextTrimming.None,
+                    new PropertyChangedCallback(OnTextTrimmingChanged)));
+
+        /// <summary>
+        /// Handles changes to the TextTrimming property.
+        /// </summary>
+        private static void OnTextTrimmingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ShadowedTextBlock target = (ShadowedTextBlock)d;
+            System.Windows.TextTrimming oldTextTrimming = (System.Windows.TextTrimming)e.OldValue;
+            System.Windows.TextTrimming newTextTrimming = target.TextTrimming;
+            target.OnTextTrimmingChanged(oldTextTrimming, newTextTrimming);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the TextTrimming property.
+        /// </summary>
+        protected virtual void OnTextTrimmingChanged(System.Windows.TextTrimming oldTextTrimming, System.Windows.TextTrimming newTextTrimming)
+        {
+        }
+
+        #endregion
+
+        #region TextWrapping
+        /// <summary>
+        /// Gets or sets the TextWrapping property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public System.Windows.TextWrapping TextWrapping
+        {
+            get { return (System.Windows.TextWrapping)GetValue(TextWrappingProperty); }
+            set { SetValue(TextWrappingProperty, value); }
+        }
+
+        /// <summary>
+        /// TextWrapping Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty TextWrappingProperty =
+            DependencyProperty.Register("TextWrapping", typeof(System.Windows.TextWrapping), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(System.Windows.TextWrapping.Wrap,
+                    new PropertyChangedCallback(OnTextWrappingChanged)));
 
 
+        /// <summary>
+        /// Handles changes to the TextWrapping property.
+        /// </summary>
+        private static void OnTextWrappingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ShadowedTextBlock target = (ShadowedTextBlock)d;
+            System.Windows.TextWrapping oldTextWrapping = (System.Windows.TextWrapping)e.OldValue;
+            System.Windows.TextWrapping newTextWrapping = target.TextWrapping;
+            target.OnTextWrappingChanged(oldTextWrapping, newTextWrapping);
+        }
 
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the TextWrapping property.
+        /// </summary>
+        protected virtual void OnTextWrappingChanged(System.Windows.TextWrapping oldTextWrapping, System.Windows.TextWrapping newTextWrapping)
+        {
+        }
+
+        #endregion
 
         static ShadowedTextBlock()
         {
