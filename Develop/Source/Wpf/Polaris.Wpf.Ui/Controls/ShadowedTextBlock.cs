@@ -549,6 +549,9 @@ namespace Polaris.Windows.Controls
             var renderingXPosition = leftOffset;
             var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
+            var periodChar = '.';
+            ushort periodGlyphMap = currentGlyphTypeface.CharacterToGlyphMap[periodChar];
+            double periodAdvanceWidth = currentGlyphTypeface.AdvanceWidths[periodChar] * fontSize;
             while (remainingWordCharacters.Length > 0)
             {
                 double wordWidth = 0;
@@ -609,8 +612,8 @@ namespace Polaris.Windows.Controls
                         }
                         break;
                     }
-
                 }
+
                 remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
@@ -619,15 +622,16 @@ namespace Polaris.Windows.Controls
                     drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
 
-                renderingYPosition += (lineHeight ?? 0d) + FontSize;
+                var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 renderingXPosition += currentLineWidth;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
 
                 // End of vertical space
-                if (renderingYPosition > renderSize.Height) { break; }
+                if (nextRenderingYPosition > renderSize.Height) { break; }
                 if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
                     
+                renderingYPosition = nextRenderingYPosition;
                 renderingXPosition = leftOffset;
 
             }
