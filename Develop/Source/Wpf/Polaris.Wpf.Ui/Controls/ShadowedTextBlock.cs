@@ -611,8 +611,6 @@ namespace Polaris.Windows.Controls
                     }
 
                 }
-                if (renderingYPosition > renderSize.Height) { break; }
-                if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
@@ -626,8 +624,10 @@ namespace Polaris.Windows.Controls
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
 
                 // End of vertical space
-                
-                
+                if (renderingYPosition > renderSize.Height) { break; }
+                if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
+                if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
+                    
                 renderingXPosition = leftOffset;
 
             }
