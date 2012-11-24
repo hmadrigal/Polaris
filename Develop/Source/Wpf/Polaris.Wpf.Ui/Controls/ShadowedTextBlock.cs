@@ -551,9 +551,6 @@ namespace Polaris.Windows.Controls
             var currentLineHeight = 0d;
             while (remainingWordCharacters.Length > 0)
             {
-                // End of vertical space
-                if (renderingYPosition > renderSize.Height) { break; }
-
                 double wordWidth = 0;
                 var glyphIndexes = new List<ushort>();
                 var advanceWidths = new List<double>();
@@ -614,8 +611,9 @@ namespace Polaris.Windows.Controls
                     }
 
                 }
+                if (renderingYPosition > renderSize.Height) { break; }
+                if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
-
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
                     var origin = new Point(renderingXPosition, renderingYPosition + (LineHeight ?? 0d));
@@ -627,8 +625,9 @@ namespace Polaris.Windows.Controls
                 renderingXPosition += currentLineWidth;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
 
-                if (string.IsNullOrEmpty(remainingWordCharacters))
-                    break;
+                // End of vertical space
+                
+                
                 renderingXPosition = leftOffset;
 
             }

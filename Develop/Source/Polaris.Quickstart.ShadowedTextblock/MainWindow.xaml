@@ -13,6 +13,7 @@
             ShadowText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum laoreet tellus id cursus. Aenean tristique interdum ante eget placerat. Duis lacinia risus sed diam molestie vehicula. "
             ShadowLeftOffset="1"
             ShadowTopOffset="1"
+            TextTrimming="CharacterEllipsis"
         >
         	<Polaris_Windows_Controls:ShadowedTextBlock.ShadowColor>
         		<RadialGradientBrush>
