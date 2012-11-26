@@ -612,8 +612,28 @@ namespace Polaris.Windows.Controls
                         break;
                     }
                 }
-
-                remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
+                var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
+                var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
+                //if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length>0)
+                //{
+                //    remainingWordCharacters = string.Empty;
+                //    var glyphIndexesToRemove = glyphIndexes.Skip(Math.Max(0, glyphIndexes.Count() - 3)).Take(3).ToArray();
+                //    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
+                //        glyphIndexes.Remove(glyphIndexesToRemove[i]);
+                //    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
+                //        glyphIndexes.Add(periodGlyphMap);
+                    
+                //    var advanceWidthsToRemove = advanceWidths.Skip(Math.Max(0, advanceWidths.Count() - 3)).Take(3).ToArray();
+                //    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
+                //        advanceWidths.Remove(advanceWidthsToRemove[i]);
+                //    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
+                //        advanceWidths.Add(periodAdvanceWidth);
+                //}
+                //else
+                //{
+                    remainingWordCharacters = nextRemainingWordCharacters;
+                //}
+                
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
                     var origin = new Point(renderingXPosition + leftOffset, renderingYPosition + (LineHeight ?? 0d) + topOffset);
@@ -621,7 +641,7 @@ namespace Polaris.Windows.Controls
                     drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
 
-                var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
+                
                 renderingXPosition += currentLineWidth;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition);
 
