@@ -546,12 +546,12 @@ namespace Polaris.Windows.Controls
 
         private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
         {
-            var renderingXPosition = leftOffset;
-            var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
+            var renderingXPosition = 0d;
+            var renderingYPosition = (lineHeight ?? 0d) + FontSize;
             var currentLineHeight = 0d;
             var periodChar = '.';
-            ushort periodGlyphMap = currentGlyphTypeface.CharacterToGlyphMap[periodChar];
-            double periodAdvanceWidth = currentGlyphTypeface.AdvanceWidths[periodChar] * fontSize;
+            var periodGlyphMap = currentGlyphTypeface.CharacterToGlyphMap[periodChar];
+            var periodAdvanceWidth = currentGlyphTypeface.AdvanceWidths[periodChar] * fontSize;
             while (remainingWordCharacters.Length > 0)
             {
                 double wordWidth = 0;
@@ -617,7 +617,7 @@ namespace Polaris.Windows.Controls
                 remainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
-                    var origin = new Point(renderingXPosition, renderingYPosition + (LineHeight ?? 0d));
+                    var origin = new Point(renderingXPosition + leftOffset, renderingYPosition + (LineHeight ?? 0d) + topOffset);
                     var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, fontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
                     drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
@@ -630,7 +630,7 @@ namespace Polaris.Windows.Controls
                 if (nextRenderingYPosition > renderSize.Height) { break; }
                 if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
-                    
+
                 renderingYPosition = nextRenderingYPosition;
                 renderingXPosition = leftOffset;
 
