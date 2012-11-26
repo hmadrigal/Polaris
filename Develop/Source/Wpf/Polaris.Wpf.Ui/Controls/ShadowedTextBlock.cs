@@ -614,25 +614,25 @@ namespace Polaris.Windows.Controls
                 }
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
-                //if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length>0)
-                //{
-                //    remainingWordCharacters = string.Empty;
-                //    var glyphIndexesToRemove = glyphIndexes.Skip(Math.Max(0, glyphIndexes.Count() - 3)).Take(3).ToArray();
-                //    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
-                //        glyphIndexes.Remove(glyphIndexesToRemove[i]);
-                //    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
-                //        glyphIndexes.Add(periodGlyphMap);
-                    
-                //    var advanceWidthsToRemove = advanceWidths.Skip(Math.Max(0, advanceWidths.Count() - 3)).Take(3).ToArray();
-                //    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
-                //        advanceWidths.Remove(advanceWidthsToRemove[i]);
-                //    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
-                //        advanceWidths.Add(periodAdvanceWidth);
-                //}
-                //else
-                //{
+                if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0)
+                {
+                    remainingWordCharacters = string.Empty;
+                    var glyphIndexesToRemove = glyphIndexes.Skip(Math.Max(0, glyphIndexes.Count() - 3)).Take(3).ToArray();
+                    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
+                        glyphIndexes.Remove(glyphIndexesToRemove[i]);
+                    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
+                        glyphIndexes.Add(periodGlyphMap);
+
+                    var advanceWidthsToRemove = advanceWidths.Skip(Math.Max(0, advanceWidths.Count() - 3)).Take(3).ToArray();
+                    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
+                        advanceWidths.Remove(advanceWidthsToRemove[i]);
+                    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
+                        advanceWidths.Add(periodAdvanceWidth);
+                }
+                else
+                {
                     remainingWordCharacters = nextRemainingWordCharacters;
-                //}
+                }
                 
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
@@ -647,7 +647,7 @@ namespace Polaris.Windows.Controls
 
                 // End of vertical space
                 //if (nextRenderingYPosition > renderSize.Height) { break; }
-                if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
+                //if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
 
                 renderingYPosition = nextRenderingYPosition;
