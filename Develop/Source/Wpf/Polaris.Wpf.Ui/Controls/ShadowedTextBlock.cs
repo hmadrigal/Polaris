@@ -478,8 +478,7 @@ namespace Polaris.Windows.Controls
 
             return typeface;
         }
-
-
+        
         protected override Size MeasureOverride(Size constraint)
         {
             var desiredSize = RenderText(constraint);
@@ -491,7 +490,6 @@ namespace Polaris.Windows.Controls
             base.OnRender(drawingContext);
             RenderText(RenderSize, drawingContext);
         }
-
 
         private Size RenderText(Size renderSize, DrawingContext drawingContext = null)
         {
@@ -541,19 +539,20 @@ namespace Polaris.Windows.Controls
                     0,
                     0);
             }
-            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width) + ShadowLeftOffset, Math.Max(shadowRenderedSize.Height, renderedSize.Height) + ShadowTopOffset); ;
+            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width) , Math.Max(shadowRenderedSize.Height, renderedSize.Height)); 
         }
 
         private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
         {
-            var renderingXPosition = 0d;
-            var renderingYPosition = (lineHeight ?? 0d) + FontSize;
+            var renderingXPosition = leftOffset;
+            var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
             var periodChar = '.';
             var periodGlyphMap = currentGlyphTypeface.CharacterToGlyphMap[periodChar];
             var periodAdvanceWidth = currentGlyphTypeface.AdvanceWidths[periodChar] * fontSize;
-            while (remainingWordCharacters.Length > 0)
+            while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) < renderSize.Height))
             {
+
                 double wordWidth = 0;
                 var glyphIndexes = new List<ushort>();
                 var advanceWidths = new List<double>();
@@ -586,7 +585,7 @@ namespace Polaris.Windows.Controls
                     var currentCharGlyphIndex = currentGlyphTypeface.CharacterToGlyphMap[currentChar];
                     var currentCharWidth = currentGlyphTypeface.AdvanceWidths[currentCharGlyphIndex] * fontSize;
 
-                    var isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < renderSize.Width;
+                    var isHorizontalSpaceAvailable = (currentLineWidth + currentCharWidth) < (renderSize.Width + Math.Abs(leftOffset));
                     if (isHorizontalSpaceAvailable)
                     {
                         // Add the current character to be rendered
@@ -624,10 +623,10 @@ namespace Polaris.Windows.Controls
 
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 renderingXPosition += currentLineWidth;
-                renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition + 1);
+                renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition);
 
                 // End of vertical space
-                if (nextRenderingYPosition > renderSize.Height) { break; }
+                //if (nextRenderingYPosition > renderSize.Height) { break; }
                 if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
 
@@ -635,7 +634,7 @@ namespace Polaris.Windows.Controls
                 renderingXPosition = leftOffset;
 
             }
-            renderedSize.Height = renderingYPosition + (LineHeight ?? 0d) - (fontSize * 0.5);
+            renderedSize.Height = renderingYPosition;
         }
 
     }
