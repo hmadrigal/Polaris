@@ -602,6 +602,7 @@ namespace Polaris.Windows.Controls
                     {
                         if (lastSpaceIndex >= 0)
                         {
+                            lastSpaceIndex++;
                             currentLineWidth -= wordWidth;
                             while (glyphIndexes.Count > lastSpaceIndex)
                                 glyphIndexes.RemoveAt(glyphIndexes.Count - 1);
