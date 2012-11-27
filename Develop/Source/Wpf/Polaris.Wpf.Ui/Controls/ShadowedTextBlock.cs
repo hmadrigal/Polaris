@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Media;
+using Polaris.Windows.Extensions;
 
 namespace Polaris.Windows.Controls
 {
@@ -617,18 +618,16 @@ namespace Polaris.Windows.Controls
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0)
                 {
-                    remainingWordCharacters = string.Empty;
-                    var glyphIndexesToRemove = glyphIndexes.Skip(Math.Max(0, glyphIndexes.Count() - 3)).Take(3).ToArray();
+
+                    var glyphIndexesToRemove = glyphIndexes.Last(3).ToArray();
                     for (int i = 0; i < glyphIndexesToRemove.Length; i++)
                         glyphIndexes.Remove(glyphIndexesToRemove[i]);
-                    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
-                        glyphIndexes.Add(periodGlyphMap);
 
-                    var advanceWidthsToRemove = advanceWidths.Skip(Math.Max(0, advanceWidths.Count() - 3)).Take(3).ToArray();
+                    var advanceWidthsToRemove = advanceWidths.Last(3).ToArray();
                     for (int i = 0; i < advanceWidthsToRemove.Length; i++)
                         advanceWidths.Remove(advanceWidthsToRemove[i]);
-                    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
-                        advanceWidths.Add(periodAdvanceWidth);
+                    remainingWordCharacters = new string(advanceWidthsToRemove.Select(i => periodChar).ToArray());
+                    //continue;
                 }
                 else
                 {

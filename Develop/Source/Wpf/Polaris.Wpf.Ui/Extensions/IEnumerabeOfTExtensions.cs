@@ -17,5 +17,10 @@ namespace Polaris.Windows.Extensions
         {
             collection.Select((item, index) => { action(item, index); return index; }).LastOrDefault();
         }
+
+        public static IEnumerable<T>  Last<T>(this IEnumerable<T> collection, int count)
+        {
+            return collection.Skip(Math.Max(0, collection.Count() - count)).Take(count);
+        }
     }
 }
