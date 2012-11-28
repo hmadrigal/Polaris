@@ -668,9 +668,6 @@ namespace Polaris.Windows.Controls
                 //if (nextRenderingYPosition > renderSize.Height) { break; }
                 //if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
-
-                
-
             }
             renderedSize.Height = renderingYPosition;
         }
