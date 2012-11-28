@@ -617,7 +617,7 @@ namespace Polaris.Windows.Controls
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0 && TextTrimming != System.Windows.TextTrimming.None)
                 {
-                    var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 4d;
+                    var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 3d;
                     var currentTrimWidth = 0d;
                     List<double> advanceWidthsToRemove = new List<double>();
                     foreach (var advanceWidth in (advanceWidths as IEnumerable<double>).Reverse())

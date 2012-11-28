@@ -14,8 +14,7 @@
             ShadowLeftOffset="1"
             ShadowTopOffset="1"
             TextWrapping="Wrap"
-            TextTrimming="CharacterEllipsis"
-            
+            TextTrimming="WordEllipsis"
         >
         	<Polaris_Windows_Controls:ShadowedTextBlock.ShadowColor>
         		<RadialGradientBrush>
