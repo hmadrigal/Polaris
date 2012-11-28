@@ -14,6 +14,7 @@
             ShadowLeftOffset="1"
             ShadowTopOffset="1"
             TextWrapping="Wrap"
+            TextTrimming="CharacterEllipsis"
             MaxHeight="450" MaxWidth="625"
         >
         	<Polaris_Windows_Controls:ShadowedTextBlock.ShadowColor>

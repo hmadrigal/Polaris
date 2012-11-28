@@ -479,7 +479,7 @@ namespace Polaris.Windows.Controls
 
             return typeface;
         }
-        
+
         protected override Size MeasureOverride(Size constraint)
         {
             var desiredSize = RenderText(constraint);
@@ -540,7 +540,7 @@ namespace Polaris.Windows.Controls
                     0,
                     0);
             }
-            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width), Math.Max(shadowRenderedSize.Height, renderedSize.Height)); 
+            return new Size(Math.Max(shadowRenderedSize.Width, renderedSize.Width), Math.Max(shadowRenderedSize.Height, renderedSize.Height));
         }
 
         private void DrawText(Size renderSize, DrawingContext drawingContext, double fontSize, Brush foreground, char[] unavailableGlyphs, ref Size renderedSize, string remainingWordCharacters, GlyphTypeface currentGlyphTypeface, double? lineHeight, double leftOffset, double topOffset)
@@ -615,9 +615,9 @@ namespace Polaris.Windows.Controls
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 var nextRenderingXPosition = renderingXPosition + currentLineWidth;
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
-                if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0)
+                if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0 && TextTrimming != System.Windows.TextTrimming.None)
                 {
-                    var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 3d;
+                    var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 4d;
                     var currentTrimWidth = 0d;
                     List<double> advanceWidthsToRemove = new List<double>();
                     foreach (var advanceWidth in (advanceWidths as IEnumerable<double>).Reverse())
@@ -641,17 +641,17 @@ namespace Polaris.Windows.Controls
                         glyphIndexes.Add(currentGlyphTypeface.CharacterToGlyphMap[periodChar]);
                         advanceWidths.Add(currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize);
                     }
-                    
+
                     nextRenderingYPosition = nextRenderingYPosition - (lineHeight ?? 0d) + FontSize;
                     nextRenderingXPosition = nextRenderingXPosition - requieredTrimWidth;
                     nextRemainingWordCharacters = string.Empty;
-                    
+
                 }
                 else
                 {
                     remainingWordCharacters = nextRemainingWordCharacters;
                 }
-                
+
                 if (drawingContext != null && glyphIndexes.Count > 0)
                 {
                     var origin = new Point(renderingXPosition + leftOffset, renderingYPosition + (LineHeight ?? 0d) + topOffset);
@@ -660,16 +660,16 @@ namespace Polaris.Windows.Controls
                 }
 
 
-                renderingXPosition = nextRenderingXPosition;
-                renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition);
+                renderedSize.Width = Math.Max(renderedSize.Width, nextRenderingXPosition);
+                renderingYPosition = nextRenderingYPosition;
+                renderingXPosition = leftOffset;
 
                 // End of vertical space
                 //if (nextRenderingYPosition > renderSize.Height) { break; }
                 //if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
 
-                renderingYPosition = nextRenderingYPosition;
-                renderingXPosition = leftOffset;
+                
 
             }
             renderedSize.Height = renderingYPosition;
