@@ -549,8 +549,6 @@ namespace Polaris.Windows.Controls
             var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
             var periodChar = '.';
-            var periodGlyphMap = currentGlyphTypeface.CharacterToGlyphMap[periodChar];
-            var periodAdvanceWidth = currentGlyphTypeface.AdvanceWidths[periodChar] * fontSize;
             while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) < (renderSize.Height + Math.Abs(topOffset))))
             {
 
@@ -619,16 +617,40 @@ namespace Polaris.Windows.Controls
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0)
                 {
+                    var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 3d;
+                    var currentTrimWidth = 0d;
+                    List<double> advanceWidthsToRemove = new List<double>();
+                    foreach (var advanceWidth in (advanceWidths as IEnumerable<double>).Reverse())
+                    {
+                        if (currentTrimWidth < requieredTrimWidth)
+                        {
+                            currentTrimWidth += advanceWidth * fontSize;
+                            advanceWidthsToRemove.Add(advanceWidth);
+                            continue;
+                        }
+                        break;
+                    }
 
-                    var glyphIndexesToRemove = glyphIndexes.Last(3).ToArray();
+                    for (int i = 0; i < advanceWidthsToRemove.Count; i++)
+                        advanceWidths.Remove(advanceWidthsToRemove[i]);
+                    var glyphIndexesToRemove = glyphIndexes.Last(advanceWidthsToRemove.Count).ToArray();
                     for (int i = 0; i < glyphIndexesToRemove.Length; i++)
                         glyphIndexes.Remove(glyphIndexesToRemove[i]);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        glyphIndexes.Add(currentGlyphTypeface.CharacterToGlyphMap[periodChar]);
+                        advanceWidths.Add(currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]]);
+                    }
 
-                    var advanceWidthsToRemove = advanceWidths.Last(3).ToArray();
-                    for (int i = 0; i < advanceWidthsToRemove.Length; i++)
-                        advanceWidths.Remove(advanceWidthsToRemove[i]);
-                    remainingWordCharacters = new string(advanceWidthsToRemove.Select(i => periodChar).ToArray());
-                    continue;
+                    //remainingWordCharacters = new string(Enumerable.Range(1, 3).Select(i => periodChar).ToArray());
+
+                    nextRenderingYPosition = nextRenderingYPosition - (lineHeight ?? 0d) + FontSize;
+                    //renderingYPosition -= (lineHeight ?? 0d) + FontSize;
+                    nextRenderingXPosition = nextRenderingXPosition - requieredTrimWidth;
+                    //renderingXPosition = advanceWidths.Sum(i => i * fontSize) + leftOffset;
+                    //renderingXPosition += currentLineWidth;
+                    nextRemainingWordCharacters = string.Empty;
+                    
                 }
                 else
                 {
