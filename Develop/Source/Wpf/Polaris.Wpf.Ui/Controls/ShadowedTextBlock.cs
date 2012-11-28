@@ -600,7 +600,7 @@ namespace Polaris.Windows.Controls
                     else
                     {
                         var hasFilledVerticalSpace = HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, renderingYPosition + (lineHeight ?? 0d) + FontSize);
-                        if (hasFilledVerticalSpace && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis)
+                        if (hasFilledVerticalSpace && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis || (TextWrapping == System.Windows.TextWrapping.NoWrap && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis))
                             break;
                         if (lastSpaceIndex >= 0 )
                         {
@@ -634,11 +634,12 @@ namespace Polaris.Windows.Controls
                         break;
                     }
 
-                    for (int i = 0; i < advanceWidthsToRemove.Count; i++)
-                        advanceWidths.Remove(advanceWidthsToRemove[i]);
-                    var glyphIndexesToRemove = glyphIndexes.Last(advanceWidthsToRemove.Count).ToArray();
-                    for (int i = 0; i < glyphIndexesToRemove.Length; i++)
-                        glyphIndexes.Remove(glyphIndexesToRemove[i]);
+                    for (int i = 0; i < advanceWidthsToRemove.Count && advanceWidths.Count>0; i++)
+                    {
+                        advanceWidths.Remove(advanceWidths[advanceWidths.Count-1]);
+                        glyphIndexes.Remove(glyphIndexes[glyphIndexes.Count-1]);
+                    }
+
                     for (int i = 0; i < 3; i++)
                     {
                         glyphIndexes.Add(currentGlyphTypeface.CharacterToGlyphMap[periodChar]);
@@ -667,9 +668,6 @@ namespace Polaris.Windows.Controls
                 renderingYPosition = nextRenderingYPosition;
                 renderingXPosition = leftOffset;
 
-                // End of vertical space
-                //if (nextRenderingYPosition > renderSize.Height) { break; }
-                //if (string.IsNullOrEmpty(remainingWordCharacters)) { break; }
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
             }
             renderedSize.Height = renderingYPosition;
