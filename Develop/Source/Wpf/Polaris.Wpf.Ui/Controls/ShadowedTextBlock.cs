@@ -599,7 +599,10 @@ namespace Polaris.Windows.Controls
                     }
                     else
                     {
-                        if (lastSpaceIndex >= 0)
+                        var hasFilledVerticalSpace = HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, renderingYPosition + (lineHeight ?? 0d) + FontSize);
+                        if (hasFilledVerticalSpace && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis)
+                            break;
+                        if (lastSpaceIndex >= 0 )
                         {
                             lastSpaceIndex++;
                             currentLineWidth -= wordWidth;
@@ -615,7 +618,7 @@ namespace Polaris.Windows.Controls
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 var nextRenderingXPosition = renderingXPosition + currentLineWidth;
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
-                if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0 && TextTrimming != System.Windows.TextTrimming.None)
+                if (HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, nextRenderingYPosition) && nextRemainingWordCharacters.Length > 0 && TextTrimming != System.Windows.TextTrimming.None)
                 {
                     var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 3d;
                     var currentTrimWidth = 0d;
@@ -670,6 +673,11 @@ namespace Polaris.Windows.Controls
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
             }
             renderedSize.Height = renderingYPosition;
+        }
+
+        private bool HasFilledVerticalSpace(ref Size renderSize, double? lineHeight, double topOffset, double nextRenderingYPosition)
+        {
+            return ((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset)));
         }
 
     }
