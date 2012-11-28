@@ -8,13 +8,14 @@
             Margin="25"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             Foreground="Red" Background="Orange"
+            FontFamily="Segoe UI"
             FontSize="48"
             Text="Cuando crea imágenes, organigramas o diagramas, también se coordinan con la apariencia actual de su documento. Puede cambiar fácilmente el formato del texto seleccionado en el documento eligiendo una apariencia para el texto seleccionado desde la galería de Estilos rápidos de la ficha Inicio."
             ShadowText="Cuando crea imágenes, organigramas o diagramas, también se coordinan con la apariencia actual de su documento. Puede cambiar fácilmente el formato del texto seleccionado en el documento eligiendo una apariencia para el texto seleccionado desde la galería de Estilos rápidos de la ficha Inicio."
             ShadowLeftOffset="1"
             ShadowTopOffset="1"
             TextWrapping="Wrap"
-            TextTrimming="WordEllipsis"
+            TextTrimming="CharacterEllipsis"
         >
         	<Polaris_Windows_Controls:ShadowedTextBlock.ShadowColor>
         		<RadialGradientBrush>
