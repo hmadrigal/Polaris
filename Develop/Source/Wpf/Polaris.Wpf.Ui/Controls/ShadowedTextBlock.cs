@@ -641,14 +641,9 @@ namespace Polaris.Windows.Controls
                         glyphIndexes.Add(currentGlyphTypeface.CharacterToGlyphMap[periodChar]);
                         advanceWidths.Add(currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize);
                     }
-
-                    //remainingWordCharacters = new string(Enumerable.Range(1, 3).Select(i => periodChar).ToArray());
-
+                    
                     nextRenderingYPosition = nextRenderingYPosition - (lineHeight ?? 0d) + FontSize;
-                    //renderingYPosition -= (lineHeight ?? 0d) + FontSize;
                     nextRenderingXPosition = nextRenderingXPosition - requieredTrimWidth;
-                    //renderingXPosition = advanceWidths.Sum(i => i * fontSize) + leftOffset;
-                    //renderingXPosition += currentLineWidth;
                     nextRemainingWordCharacters = string.Empty;
                     
                 }
