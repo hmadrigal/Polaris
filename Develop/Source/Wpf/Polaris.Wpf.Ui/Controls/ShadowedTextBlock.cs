@@ -615,6 +615,7 @@ namespace Polaris.Windows.Controls
                     }
                 }
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
+                var nextRenderingXPosition = renderingXPosition + currentLineWidth;
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
                 if (((nextRenderingYPosition + (lineHeight ?? 0d) + FontSize) >= (renderSize.Height + Math.Abs(topOffset))) && nextRemainingWordCharacters.Length > 0)
                 {
@@ -627,7 +628,7 @@ namespace Polaris.Windows.Controls
                     for (int i = 0; i < advanceWidthsToRemove.Length; i++)
                         advanceWidths.Remove(advanceWidthsToRemove[i]);
                     remainingWordCharacters = new string(advanceWidthsToRemove.Select(i => periodChar).ToArray());
-                    //continue;
+                    continue;
                 }
                 else
                 {
@@ -641,8 +642,8 @@ namespace Polaris.Windows.Controls
                     drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
 
-                
-                renderingXPosition += currentLineWidth;
+
+                renderingXPosition = nextRenderingXPosition;
                 renderedSize.Width = Math.Max(renderedSize.Width, renderingXPosition);
 
                 // End of vertical space
