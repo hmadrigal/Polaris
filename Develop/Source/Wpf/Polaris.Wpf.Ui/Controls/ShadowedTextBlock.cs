@@ -549,7 +549,7 @@ namespace Polaris.Windows.Controls
             var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
             var periodChar = '.';
-            while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) < (renderSize.Height + Math.Abs(topOffset))))
+            while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) <= (renderSize.Height + Math.Abs(topOffset))))
             {
 
                 double wordWidth = 0;
