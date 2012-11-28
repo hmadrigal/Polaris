@@ -639,7 +639,7 @@ namespace Polaris.Windows.Controls
                     for (int i = 0; i < 3; i++)
                     {
                         glyphIndexes.Add(currentGlyphTypeface.CharacterToGlyphMap[periodChar]);
-                        advanceWidths.Add(currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]]);
+                        advanceWidths.Add(currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize);
                     }
 
                     //remainingWordCharacters = new string(Enumerable.Range(1, 3).Select(i => periodChar).ToArray());
