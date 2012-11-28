@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Polaris_Windows_Controls="clr-namespace:Polaris.Windows.Controls;assembly=Polaris.Ui" x:Class="Polaris.Quickstart.ShadowedTextblock.MainWindow"
         Title="MainWindow" Height="350" Width="525">
-    <Grid Background="CornflowerBlue">
+    <Grid Background="Black">
         <Polaris_Windows_Controls:ShadowedTextBlock
             Margin="25"
             HorizontalAlignment="Center" VerticalAlignment="Center"
-            Foreground="Red" Background="Orange"
+            Foreground="LimeGreen" Background="CornflowerBlue"
             FontFamily="Segoe UI"
             FontSize="48"
             Text="Cuando crea imágenes, organigramas o diagramas, también se coordinan con la apariencia actual de su documento. Puede cambiar fácilmente el formato del texto seleccionado en el documento eligiendo una apariencia para el texto seleccionado desde la galería de Estilos rápidos de la ficha Inicio."
@@ -16,6 +16,7 @@
             ShadowTopOffset="1"
             TextWrapping="Wrap"
             TextTrimming="CharacterEllipsis"
+            MaxHeight="600" MaxWidth="800"
         >
         	<Polaris_Windows_Controls:ShadowedTextBlock.ShadowColor>
         		<RadialGradientBrush>
