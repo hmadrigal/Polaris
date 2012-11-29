@@ -158,6 +158,7 @@ namespace Polaris.Windows.Controls
         /// </summary>
         protected virtual void OnShadowTextChanged(DependencyPropertyChangedEventArgs e)
         {
+            TryInvalidateDisplay();
         }
 
         #endregion
@@ -384,6 +385,7 @@ namespace Polaris.Windows.Controls
         /// </summary>
         protected virtual void OnTextTrimmingChanged(System.Windows.TextTrimming oldTextTrimming, System.Windows.TextTrimming newTextTrimming)
         {
+            TryInvalidateDisplay();
         }
 
         #endregion
@@ -424,6 +426,7 @@ namespace Polaris.Windows.Controls
         /// </summary>
         protected virtual void OnTextWrappingChanged(System.Windows.TextWrapping oldTextWrapping, System.Windows.TextWrapping newTextWrapping)
         {
+            TryInvalidateDisplay();
         }
 
         #endregion
