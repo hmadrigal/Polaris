@@ -120,49 +120,6 @@ namespace Polaris.Windows.Controls
 
         #endregion Text
 
-        [Localizability(LocalizationCategory.Text)]
-        [DefaultValue(null)]
-        [Category("Common Properties")]
-        [Description("Text displayed as shadow.")]
-        [Bindable(true)]
-        #region ShadowText
-
-        /// <summary>
-        /// ShadowText Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty ShadowTextProperty =
-            DependencyProperty.Register("ShadowText", typeof(string), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(string.Empty,
-                    new PropertyChangedCallback(OnShadowTextChanged)));
-
-        /// <summary>
-        /// Gets or sets the ShadowText property.  This dependency property 
-        /// indicates ....
-        /// </summary>
-        public string ShadowText
-        {
-            get { return (string)GetValue(ShadowTextProperty); }
-            set { SetValue(ShadowTextProperty, value); }
-        }
-
-        /// <summary>
-        /// Handles changes to the ShadowText property.
-        /// </summary>
-        private static void OnShadowTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((ShadowedTextBlock)d).OnShadowTextChanged(e);
-        }
-
-        /// <summary>
-        /// Provides derived classes an opportunity to handle changes to the ShadowText property.
-        /// </summary>
-        protected virtual void OnShadowTextChanged(DependencyPropertyChangedEventArgs e)
-        {
-            TryInvalidateDisplay();
-        }
-
-        #endregion
-
         ///<summary>
         /// Summary:
         ///     Gets or sets a brush that describes the ShadowColor color.
@@ -511,7 +468,7 @@ namespace Polaris.Windows.Controls
             #endregion
 
             var shadowRenderedSize = new Size(0, 0);
-            if (!string.IsNullOrWhiteSpace(ShadowText))
+            if (!string.IsNullOrWhiteSpace(Text))
             {
                 DrawText(
                     renderSize,
@@ -520,7 +477,7 @@ namespace Polaris.Windows.Controls
                     ShadowColor,
                     unavailableGlyphs,
                     ref shadowRenderedSize,
-                    ShadowText,
+                    Text,
                     _shadowGlyphTypeface,
                     ShadowLineHeight,
                     ShadowLeftOffset,
