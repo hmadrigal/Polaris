@@ -509,6 +509,7 @@ namespace Polaris.Windows.Controls
             var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
             var periodChar = '.';
+            var lineCount = 0d;
             while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) <= (renderSize.Height + Math.Abs(topOffset))))
             {
 
@@ -622,7 +623,7 @@ namespace Polaris.Windows.Controls
                     var glyphRun = new GlyphRun(currentGlyphTypeface, 0, false, fontSize, glyphIndexes, origin, advanceWidths, null, null, null, null, null, null);
                     drawingContext.DrawGlyphRun(foreground, glyphRun);
                 }
-
+                lineCount += 1;
 
                 renderedSize.Width = Math.Max(renderedSize.Width, nextRenderingXPosition);
                 renderingYPosition = nextRenderingYPosition;
@@ -630,7 +631,8 @@ namespace Polaris.Windows.Controls
 
                 if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
             }
-            renderedSize.Height = renderingYPosition;
+            //renderedSize.Height = renderingYPosition;
+            renderedSize.Height = lineCount * ((lineHeight ?? 0d) + FontSize) + topOffset;
         }
 
         private bool HasFilledVerticalSpace(ref Size renderSize, double? lineHeight, double topOffset, double nextRenderingYPosition)
