@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Controls;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Media;
-using Polaris.Windows.Extensions;
 
 namespace Polaris.Windows.Controls
 {
@@ -48,7 +46,7 @@ namespace Polaris.Windows.Controls
             get
             {
                 var value = (double?)GetValue(LineHeightProperty);
-                return value ?? (FontFamily == null ? FontFamily.LineSpacing : System.Windows.SystemFonts.MessageFontFamily.LineSpacing);
+                return value ?? (FontFamily ?? SystemFonts.MessageFontFamily).LineSpacing;
             }
             set { SetValue(LineHeightProperty, value); }
         }
@@ -59,7 +57,7 @@ namespace Polaris.Windows.Controls
         public static readonly DependencyProperty LineHeightProperty =
             DependencyProperty.Register("LineHeight", typeof(double?), typeof(FontFormat),
                 new FrameworkPropertyMetadata(null,
-                    new PropertyChangedCallback(OnLineHeightChanged)));
+                    OnLineHeightChanged));
 
 
         /// <summary>
@@ -99,7 +97,7 @@ namespace Polaris.Windows.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(ShadowedTextBlock),
                 new FrameworkPropertyMetadata(string.Empty,
-                    new PropertyChangedCallback(OnTextChanged)));
+                    OnTextChanged));
 
         /// <summary>
         /// Handles changes to the Text property.
@@ -114,7 +112,6 @@ namespace Polaris.Windows.Controls
         /// </summary>
         protected virtual void OnTextChanged(DependencyPropertyChangedEventArgs e)
         {
-            var newValue = e.NewValue as string;
             TryInvalidateDisplay();
         }
 
@@ -132,28 +129,19 @@ namespace Polaris.Windows.Controls
         [Category("Appearance")]
         [Description("Gets or sets a brush that describes the ShadowColor color.")]
         #region ShadowColor
-
-        /// <summary>
-        /// ShadowColor Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(null,
-                    new PropertyChangedCallback(OnShadowColorChanged)));
-
-        /// <summary>
-        /// Gets or sets the ShadowColor property.  This dependency property 
-        /// indicates ....
-        /// </summary>
         public Brush ShadowColor
         {
             get
             {
                 var value = (Brush)GetValue(ShadowColorProperty);
-                return value ?? (System.Windows.SystemColors.ControlTextBrush);
+                return value ?? (SystemColors.ControlTextBrush);
             }
             set { SetValue(ShadowColorProperty, value); }
         }
+        public static readonly DependencyProperty ShadowColorProperty =
+            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(null,
+                    OnShadowColorChanged));
 
         /// <summary>
         /// Handles changes to the ShadowColor property.
@@ -185,7 +173,7 @@ namespace Polaris.Windows.Controls
             get
             {
                 var value = (double?)GetValue(ShadowLineHeightProperty);
-                return value ?? (FontFamily == null ? FontFamily.LineSpacing : System.Windows.SystemFonts.MessageFontFamily.LineSpacing);
+                return value ?? (FontFamily ?? SystemFonts.MessageFontFamily).LineSpacing;
             }
             set { SetValue(ShadowLineHeightProperty, value); }
         }
@@ -196,7 +184,7 @@ namespace Polaris.Windows.Controls
         public static readonly DependencyProperty ShadowLineHeightProperty =
             DependencyProperty.Register("ShadowLineHeight", typeof(double?), typeof(FontFormat),
                 new FrameworkPropertyMetadata(null,
-                    new PropertyChangedCallback(OnShadowLineHeightChanged)));
+                    OnShadowLineHeightChanged));
 
 
         /// <summary>
@@ -217,6 +205,10 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        /// <summary>
+        /// Gets or sets the ShadowLeftOffset property. This dependency property 
+        /// indicates ....
+        /// </summary>
         [TypeConverter(typeof(LengthConverter))]
         [Localizability(LocalizationCategory.None)]
         [Bindable(true)]
@@ -224,10 +216,7 @@ namespace Polaris.Windows.Controls
         [Description("Gets or sets the shadow left offset")]
         [DisplayName("Shadow Left Offset")]
         #region ShadowLeftOffset
-        /// <summary>
-        /// Gets or sets the ShadowLeftOffset property. This dependency property 
-        /// indicates ....
-        /// </summary>
+
         public double ShadowLeftOffset
         {
             get { return (double)GetValue(ShadowLeftOffsetProperty); }
@@ -239,16 +228,16 @@ namespace Polaris.Windows.Controls
         public static readonly DependencyProperty ShadowLeftOffsetProperty =
             DependencyProperty.Register("ShadowLeftOffset", typeof(double), typeof(ShadowedTextBlock),
                 new FrameworkPropertyMetadata(0d,
-                    new PropertyChangedCallback(OnShadowLeftOffsetChanged)));
+                    OnShadowLeftOffsetChanged));
 
         /// <summary>
         /// Handles changes to the ShadowLeftOffset property.
         /// </summary>
         private static void OnShadowLeftOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ShadowedTextBlock target = (ShadowedTextBlock)d;
-            double oldShadowLeftOffset = (double)e.OldValue;
-            double newShadowLeftOffset = target.ShadowLeftOffset;
+            var target = (ShadowedTextBlock)d;
+            var oldShadowLeftOffset = (double)e.OldValue;
+            var newShadowLeftOffset = target.ShadowLeftOffset;
             target.OnShadowLeftOffsetChanged(oldShadowLeftOffset, newShadowLeftOffset);
         }
 
@@ -262,6 +251,10 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
+        /// <summary>
+        /// Gets or sets the ShadowTopOffset property. This dependency property 
+        /// indicates ....
+        /// </summary>
         [TypeConverter(typeof(LengthConverter))]
         [Localizability(LocalizationCategory.None)]
         [Bindable(true)]
@@ -269,10 +262,7 @@ namespace Polaris.Windows.Controls
         [Description("Gets or sets the shadow top offset")]
         [DisplayName("Shadow Top Offset")]
         #region ShadowTopOffset
-        /// <summary>
-        /// Gets or sets the ShadowTopOffset property. This dependency property 
-        /// indicates ....
-        /// </summary>
+
         public double ShadowTopOffset
         {
             get { return (double)GetValue(ShadowTopOffsetProperty); }
@@ -284,16 +274,16 @@ namespace Polaris.Windows.Controls
         public static readonly DependencyProperty ShadowTopOffsetProperty =
             DependencyProperty.Register("ShadowTopOffset", typeof(double), typeof(ShadowedTextBlock),
                 new FrameworkPropertyMetadata(0d,
-                    new PropertyChangedCallback(OnShadowTopOffsetChanged)));
+                    OnShadowTopOffsetChanged));
 
         /// <summary>
         /// Handles changes to the ShadowTopOffset property.
         /// </summary>
         private static void OnShadowTopOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ShadowedTextBlock target = (ShadowedTextBlock)d;
-            double oldShadowTopOffset = (double)e.OldValue;
-            double newShadowTopOffset = target.ShadowTopOffset;
+            var target = (ShadowedTextBlock)d;
+            var oldShadowTopOffset = (double)e.OldValue;
+            var newShadowTopOffset = target.ShadowTopOffset;
             target.OnShadowTopOffsetChanged(oldShadowTopOffset, newShadowTopOffset);
         }
 
@@ -307,14 +297,22 @@ namespace Polaris.Windows.Controls
 
         #endregion
 
-        #region TextTrimming
+
         /// <summary>
         /// Gets or sets the TextTrimming property. This dependency property 
         /// indicates ....
         /// </summary>
-        public System.Windows.TextTrimming TextTrimming
+        [TypeConverter(typeof(EnumConverter))]
+        [Localizability(LocalizationCategory.None)]
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Description("Indicates whether or not the control must show an indicator that not all the text is visible")]
+        [DisplayName("Text Trimming")]
+        #region TextTrimming
+
+        public TextTrimming TextTrimming
         {
-            get { return (System.Windows.TextTrimming)GetValue(TextTrimmingProperty); }
+            get { return (TextTrimming)GetValue(TextTrimmingProperty); }
             set { SetValue(TextTrimmingProperty, value); }
         }
 
@@ -322,39 +320,46 @@ namespace Polaris.Windows.Controls
         /// TextTrimming Dependency Property
         /// </summary>
         public static readonly DependencyProperty TextTrimmingProperty =
-            DependencyProperty.Register("TextTrimming", typeof(System.Windows.TextTrimming), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(System.Windows.TextTrimming.None,
-                    new PropertyChangedCallback(OnTextTrimmingChanged)));
+            DependencyProperty.Register("TextTrimming", typeof(TextTrimming), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(TextTrimming.None,
+                    OnTextTrimmingChanged));
 
         /// <summary>
         /// Handles changes to the TextTrimming property.
         /// </summary>
         private static void OnTextTrimmingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ShadowedTextBlock target = (ShadowedTextBlock)d;
-            System.Windows.TextTrimming oldTextTrimming = (System.Windows.TextTrimming)e.OldValue;
-            System.Windows.TextTrimming newTextTrimming = target.TextTrimming;
+            var target = (ShadowedTextBlock)d;
+            var oldTextTrimming = (TextTrimming)e.OldValue;
+            var newTextTrimming = target.TextTrimming;
             target.OnTextTrimmingChanged(oldTextTrimming, newTextTrimming);
         }
 
         /// <summary>
         /// Provides derived classes an opportunity to handle changes to the TextTrimming property.
         /// </summary>
-        protected virtual void OnTextTrimmingChanged(System.Windows.TextTrimming oldTextTrimming, System.Windows.TextTrimming newTextTrimming)
+        protected virtual void OnTextTrimmingChanged(TextTrimming oldTextTrimming, TextTrimming newTextTrimming)
         {
             TryInvalidateDisplay();
         }
 
         #endregion
 
-        #region TextWrapping
+
         /// <summary>
         /// Gets or sets the TextWrapping property. This dependency property 
         /// indicates ....
         /// </summary>
-        public System.Windows.TextWrapping TextWrapping
+        [TypeConverter(typeof(EnumConverter))]
+        [Localizability(LocalizationCategory.None)]
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Description("Indicates whether the control should try to write text in the next line when current horizontal space is not available")]
+        [DisplayName("Text wrapping")]
+        #region TextWrapping
+        public TextWrapping TextWrapping
         {
-            get { return (System.Windows.TextWrapping)GetValue(TextWrappingProperty); }
+            get { return (TextWrapping)GetValue(TextWrappingProperty); }
             set { SetValue(TextWrappingProperty, value); }
         }
 
@@ -362,9 +367,9 @@ namespace Polaris.Windows.Controls
         /// TextWrapping Dependency Property
         /// </summary>
         public static readonly DependencyProperty TextWrappingProperty =
-            DependencyProperty.Register("TextWrapping", typeof(System.Windows.TextWrapping), typeof(ShadowedTextBlock),
-                new FrameworkPropertyMetadata(System.Windows.TextWrapping.Wrap,
-                    new PropertyChangedCallback(OnTextWrappingChanged)));
+            DependencyProperty.Register("TextWrapping", typeof(TextWrapping), typeof(ShadowedTextBlock),
+                new FrameworkPropertyMetadata(TextWrapping.Wrap,
+                    OnTextWrappingChanged));
 
 
         /// <summary>
@@ -372,16 +377,16 @@ namespace Polaris.Windows.Controls
         /// </summary>
         private static void OnTextWrappingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ShadowedTextBlock target = (ShadowedTextBlock)d;
-            System.Windows.TextWrapping oldTextWrapping = (System.Windows.TextWrapping)e.OldValue;
-            System.Windows.TextWrapping newTextWrapping = target.TextWrapping;
+            var target = (ShadowedTextBlock)d;
+            var oldTextWrapping = (TextWrapping)e.OldValue;
+            var newTextWrapping = target.TextWrapping;
             target.OnTextWrappingChanged(oldTextWrapping, newTextWrapping);
         }
 
         /// <summary>
         /// Provides derived classes an opportunity to handle changes to the TextWrapping property.
         /// </summary>
-        protected virtual void OnTextWrappingChanged(System.Windows.TextWrapping oldTextWrapping, System.Windows.TextWrapping newTextWrapping)
+        protected virtual void OnTextWrappingChanged(TextWrapping oldTextWrapping, TextWrapping newTextWrapping)
         {
             TryInvalidateDisplay();
         }
@@ -390,7 +395,6 @@ namespace Polaris.Windows.Controls
 
         static ShadowedTextBlock()
         {
-            var refTextBlock = new TextBlock();
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ShadowedTextBlock), new FrameworkPropertyMetadata(typeof(ShadowedTextBlock)));
         }
 
@@ -421,17 +425,15 @@ namespace Polaris.Windows.Controls
 
         internal Typeface PrepareTypeface(out GlyphTypeface glyphTypeface)
         {
-            Typeface typeface = null;
             // If there is not typeface, it creates one
-            if (typeface == null)
-            { typeface = new Typeface(FontFamily, FontStyle, FontWeight, FontStretch); }
+            var typeface = _mainTypeface ?? new Typeface(FontFamily, FontStyle, FontWeight, FontStretch);
 
             // Tries to load the glyphTypeface
             if (!typeface.TryGetGlyphTypeface(out glyphTypeface))
             {
                 // If failed loading the glyphTypeface, the it tries with the default
-                typeface = System.Windows.SystemFonts.MessageFontFamily.GetTypefaces().FirstOrDefault();
-                if (!typeface.TryGetGlyphTypeface(out glyphTypeface))
+                typeface = SystemFonts.MessageFontFamily.GetTypefaces().FirstOrDefault();
+                if (typeface != null && !typeface.TryGetGlyphTypeface(out glyphTypeface))
                 {
                     throw new InvalidOperationException("Application failed loading GlyphTypeFace for the specified font and the default font.");
                 }
@@ -464,7 +466,7 @@ namespace Polaris.Windows.Controls
             if (BorderBrush != null) { borderBrush = BorderBrush; }
 
             if (drawingContext != null)
-                drawingContext.DrawRectangle(background, new Pen() { Brush = borderBrush }, new Rect(renderSize));
+                drawingContext.DrawRectangle(background, new Pen { Brush = borderBrush }, new Rect(renderSize));
             #endregion
 
             var shadowRenderedSize = new Size(0, 0);
@@ -508,7 +510,7 @@ namespace Polaris.Windows.Controls
             var renderingXPosition = leftOffset;
             var renderingYPosition = (lineHeight ?? 0d) + FontSize + topOffset;
             var currentLineHeight = 0d;
-            var periodChar = '.';
+            const char periodChar = '.';
             var lineCount = 0d;
             while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) <= (renderSize.Height + Math.Abs(topOffset))))
             {
@@ -561,9 +563,9 @@ namespace Polaris.Windows.Controls
                     else
                     {
                         var hasFilledVerticalSpace = HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, renderingYPosition + (lineHeight ?? 0d) + FontSize);
-                        if (hasFilledVerticalSpace && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis || (TextWrapping == System.Windows.TextWrapping.NoWrap && TextTrimming == System.Windows.TextTrimming.CharacterEllipsis))
+                        if (hasFilledVerticalSpace && TextTrimming == TextTrimming.CharacterEllipsis || (TextWrapping == TextWrapping.NoWrap && TextTrimming == TextTrimming.CharacterEllipsis))
                             break;
-                        if (lastSpaceIndex >= 0 )
+                        if (lastSpaceIndex >= 0)
                         {
                             lastSpaceIndex++;
                             currentLineWidth -= wordWidth;
@@ -579,11 +581,11 @@ namespace Polaris.Windows.Controls
                 var nextRenderingYPosition = renderingYPosition + (lineHeight ?? 0d) + FontSize;
                 var nextRenderingXPosition = renderingXPosition + currentLineWidth;
                 var nextRemainingWordCharacters = new String(remainingWordCharacters.Skip(currentCharIndex).ToArray());
-                if (HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, nextRenderingYPosition) && nextRemainingWordCharacters.Length > 0 && TextTrimming != System.Windows.TextTrimming.None)
+                if (HasFilledVerticalSpace(ref renderSize, lineHeight, topOffset, nextRenderingYPosition) && nextRemainingWordCharacters.Length > 0 && TextTrimming != TextTrimming.None)
                 {
                     var requieredTrimWidth = currentGlyphTypeface.AdvanceWidths[currentGlyphTypeface.CharacterToGlyphMap[periodChar]] * fontSize * 3d;
                     var currentTrimWidth = 0d;
-                    List<double> advanceWidthsToRemove = new List<double>();
+                    var advanceWidthsToRemove = new List<double>();
                     foreach (var advanceWidth in (advanceWidths as IEnumerable<double>).Reverse())
                     {
                         if (currentTrimWidth < requieredTrimWidth)
@@ -595,10 +597,10 @@ namespace Polaris.Windows.Controls
                         break;
                     }
 
-                    for (int i = 0; i < advanceWidthsToRemove.Count && advanceWidths.Count>0; i++)
+                    for (int i = 0; i < advanceWidthsToRemove.Count && advanceWidths.Count > 0; i++)
                     {
-                        advanceWidths.Remove(advanceWidths[advanceWidths.Count-1]);
-                        glyphIndexes.Remove(glyphIndexes[glyphIndexes.Count-1]);
+                        advanceWidths.Remove(advanceWidths[advanceWidths.Count - 1]);
+                        glyphIndexes.Remove(glyphIndexes[glyphIndexes.Count - 1]);
                     }
 
                     for (int i = 0; i < 3; i++)
@@ -609,8 +611,6 @@ namespace Polaris.Windows.Controls
 
                     nextRenderingYPosition = nextRenderingYPosition - (lineHeight ?? 0d) + FontSize;
                     nextRenderingXPosition = nextRenderingXPosition - requieredTrimWidth;
-                    nextRemainingWordCharacters = string.Empty;
-
                 }
                 else
                 {
@@ -629,7 +629,7 @@ namespace Polaris.Windows.Controls
                 renderingYPosition = nextRenderingYPosition;
                 renderingXPosition = leftOffset;
 
-                if (TextWrapping == System.Windows.TextWrapping.NoWrap) { break; }
+                if (TextWrapping == TextWrapping.NoWrap) { break; }
             }
             //renderedSize.Height = renderingYPosition;
             renderedSize.Height = lineCount * ((lineHeight ?? 0d) + FontSize) + topOffset;
