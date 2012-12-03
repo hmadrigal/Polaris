@@ -13,12 +13,12 @@ namespace Polaris.Windows.Controls
     [Description("Displays a text and draws drop shadow with it.")]
     public class ShadowedTextBlock : Control
     {
-        internal Typeface _mainTypeface;
-        internal GlyphTypeface _mainGlyphTypeface;
-        internal Typeface _shadowTypeface;
-        internal GlyphTypeface _shadowGlyphTypeface;
+        internal Typeface MainTypeface;
+        internal GlyphTypeface MainGlyphTypeface;
+        internal Typeface ShadowTypeface;
+        internal GlyphTypeface ShadowGlyphTypeface;
 
-        protected char[] UNAVAILABLE_GLYPHS = new char[] { '\n', '\r' };
+        protected char[] UNAVAILABLE_GLYPHS = new[] { '\n', '\r' };
 
         ///<summary>
         /// Summary:
@@ -406,13 +406,13 @@ namespace Polaris.Windows.Controls
 
         private void InitializeDefaultFontFormat()
         {
-            _mainTypeface = null;
-            _mainGlyphTypeface = null;
-            _mainTypeface = PrepareTypeface(out _mainGlyphTypeface);
+            MainTypeface = null;
+            MainGlyphTypeface = null;
+            MainTypeface = PrepareTypeface(out MainGlyphTypeface);
 
-            _shadowTypeface = null;
-            _shadowGlyphTypeface = null;
-            _shadowTypeface = PrepareTypeface(out _shadowGlyphTypeface);
+            ShadowTypeface = null;
+            ShadowGlyphTypeface = null;
+            ShadowTypeface = PrepareTypeface(out ShadowGlyphTypeface);
 
             TryInvalidateDisplay();
         }
@@ -426,7 +426,7 @@ namespace Polaris.Windows.Controls
         internal Typeface PrepareTypeface(out GlyphTypeface glyphTypeface)
         {
             // If there is not typeface, it creates one
-            var typeface = _mainTypeface ?? new Typeface(FontFamily, FontStyle, FontWeight, FontStretch);
+            var typeface = MainTypeface ?? new Typeface(FontFamily, FontStyle, FontWeight, FontStretch);
 
             // Tries to load the glyphTypeface
             if (!typeface.TryGetGlyphTypeface(out glyphTypeface))
@@ -480,7 +480,7 @@ namespace Polaris.Windows.Controls
                     unavailableGlyphs,
                     ref shadowRenderedSize,
                     Text,
-                    _shadowGlyphTypeface,
+                    ShadowGlyphTypeface,
                     ShadowLineHeight,
                     ShadowLeftOffset,
                     ShadowTopOffset);
@@ -497,7 +497,7 @@ namespace Polaris.Windows.Controls
                     unavailableGlyphs,
                     ref renderedSize,
                     Text,
-                    _mainGlyphTypeface,
+                    MainGlyphTypeface,
                     LineHeight,
                     0,
                     0);
