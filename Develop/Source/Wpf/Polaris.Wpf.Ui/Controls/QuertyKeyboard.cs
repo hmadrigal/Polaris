@@ -55,15 +55,6 @@ using System.ComponentModel;
 
         #endregion
 
-        #region KeyboardLayout
-
-        /// <summary>
-        /// KeyboardLayout Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty KeyboardLayoutProperty =
-            DependencyProperty.Register("KeyboardLayout", typeof(Enum), typeof(QuertyKeyboard),
-                new FrameworkPropertyMetadata(default(Enum),
-                    new PropertyChangedCallback(OnKeyboardLayoutChanged)));
 
         /// <summary>
         /// Gets or sets the KeyboardLayout property.  This dependency property 
@@ -72,11 +63,20 @@ using System.ComponentModel;
         [Description("Enum which will be used to identify the possible layout visual states by name")]
         [Category("Querty OSK")]
         [DisplayName("Keyboard Layout")]
+        #region KeyboardLayout
         public Enum KeyboardLayout
         {
             get { return (Enum)GetValue(KeyboardLayoutProperty); }
             set { SetValue(KeyboardLayoutProperty, value); }
         }
+
+        /// <summary>
+        /// KeyboardLayout Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty KeyboardLayoutProperty =
+            DependencyProperty.Register("KeyboardLayout", typeof(Enum), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata(default(Enum),
+                    new PropertyChangedCallback(OnKeyboardLayoutChanged)));
 
         /// <summary>
         /// Handles changes to the KeyboardLayout property.
@@ -121,21 +121,46 @@ using System.ComponentModel;
         /// Whether or not use the Debugger Keyboard Service instead of the Virtual Keyboard Service.
         /// <remarks>Other than settings this to true, the app should run attached to a debugger</remarks>
         /// </summary>
+        [Description("When set to true it tries to use the IKeyboardInput in debug mode")]
+        [Category("Querty OSK")]
+        [DisplayName("Latch Debugger")]
+        #region LatchDebugger
         public bool LatchDebugger
         {
-            get { return _latchDebugger; }
-            set { _latchDebugger = value; }
+            get { return (bool)GetValue(LatchDebuggerProperty); }
+            set { SetValue(LatchDebuggerProperty, value); }
         }
-        private bool _latchDebugger = true;
 
-        private VirtualKeyboardInputEvent _inputEventType = VirtualKeyboardInputEvent.MouseBasedEvent;
+        /// <summary>
+        /// LatchDebugger Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty LatchDebuggerProperty =
+            DependencyProperty.Register("LatchDebugger", typeof(bool), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata((bool)false));
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the InputEventType property.  This dependency property 
+        /// indicates ....
+        /// </summary>
+        [Description("Indicates if the input comes from Mouse Events or Touch events")]
+        [Category("Querty OSK")]
+        [DisplayName("Input event type")]
+        #region InputEventType
         public VirtualKeyboardInputEvent InputEventType
         {
-            get { return _inputEventType; }
-            set { 
-                _inputEventType = value; 
-            }
+            get { return (VirtualKeyboardInputEvent)GetValue(InputEventTypeProperty); }
+            set { SetValue(InputEventTypeProperty, value); }
         }
+
+        /// <summary>
+        /// InputEventType Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty InputEventTypeProperty =
+            DependencyProperty.Register("InputEventType", typeof(VirtualKeyboardInputEvent), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata((VirtualKeyboardInputEvent)VirtualKeyboardInputEvent.MouseBasedEvent));
+        #endregion
 
         public IKeyboardInput KeyboardService
         {

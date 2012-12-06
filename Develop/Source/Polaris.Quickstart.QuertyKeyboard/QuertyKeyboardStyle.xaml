@@ -6,11 +6,6 @@
     xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
 >
-    <!-- Loads default keyboard resources  -->
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Polaris.Ui;component/Themes/QuertyKeyboard.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- Resource dictionary entries should be defined here. -->
     <BitmapImage x:Key="KeyboardShiftBitmapImage" UriSource="Images/IconKeyboardShift.png" />
     <BitmapImage x:Key="KeyboardThumbBitmapImage" UriSource="Images/IconKeyboardThumb.png" />
@@ -21,6 +16,76 @@
     <BitmapImage x:Key="KeyboardArrowRightBitmapImage" UriSource="Images/IconKeyboardArrowRight.png" />
     <BitmapImage x:Key="KeyboardArrowDownBitmapImage" UriSource="Images/IconKeyboardArrowDown.png" />
 
+    <Style x:Key="KeyboardButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="MinWidth" Value="74"/>
+        <Setter Property="MinHeight" Value="62"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="LayoutRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.5"/>
+                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                    <VisualTransition GeneratedDuration="0" To="Pressed"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxOver">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.3"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxPressed">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxFocused">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="BoxBackground" Opacity="1" RadiusX="5" RadiusY="5">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE7E7E7" Offset="0"/>
+                                    <GradientStop Color="#FFA3A3A3" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="BoxOver" Fill="Black" Opacity="0" RadiusX="5" RadiusY="5"/>
+                        <Rectangle x:Name="BoxPressed" Fill="Black" Opacity="0" RadiusX="5" RadiusY="5"/>
+                        <Rectangle x:Name="BoxFocused" Opacity="0" RadiusX="5" RadiusY="5" Stroke="Black"/>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="10"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <ContentControl  x:Key="EnterButtonGeometry"  >
         <Path Fill="Black" Height="27" Width="23" Stretch="Fill">
@@ -43,11 +108,11 @@
             </Path.Data>
         </Path>
     </ContentControl>
-    
+
     <Style x:Key="KeyboardSplittedButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource KeyboardButtonStyle}">
         <Setter Property="MinWidth" Value="62"/>
     </Style>
-    
+
     <Style x:Key="ButtonContent" TargetType="{x:Type ContentControl}">
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="Template">
@@ -150,87 +215,18 @@
         </Setter>
     </Style>
 
-    <Style x:Key="KeyboardButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="MinWidth" Value="74"/>
-        <Setter Property="MinHeight" Value="62"/>
-        <Setter Property="Margin" Value="4"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="LayoutRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.5"/>
-                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                    <VisualTransition GeneratedDuration="0" To="Pressed"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxOver">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.3"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxPressed">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Unfocused"/>
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BoxFocused">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="BoxBackground" Opacity="1" RadiusX="5" RadiusY="5">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFE7E7E7" Offset="0"/>
-                                    <GradientStop Color="#FFA3A3A3" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Rectangle x:Name="BoxOver" Fill="Black" Opacity="0" RadiusX="5" RadiusY="5"/>
-                        <Rectangle x:Name="BoxPressed" Fill="Black" Opacity="0" RadiusX="5" RadiusY="5"/>
-                        <Rectangle x:Name="BoxFocused" Opacity="0" RadiusX="5" RadiusY="5" Stroke="Black"/>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="10"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
 
     <!-- overrides keyboard resources -->
     <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyEsc" DisplayName="esc" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ESCAPE}" />
-    
+
     <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyTilde" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_3}">
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
-            <ContentControl Content="`"  Tag="~" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="'"  Tag="~" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
         <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
-            <ContentControl Content="`"  Tag="~" Style="{StaticResource ButtonContent}"/>
-            <ContentControl Content="~"  Tag="`" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="'"  Tag="~" Style="{StaticResource ButtonContent}"/>
+            <ContentControl Content="~"  Tag="'" Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
     </polarisWindowsControls:ShiftSensitiveKey>
 
@@ -375,7 +371,7 @@
     <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyLeftShift" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
         <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
             <Image Source="{StaticResource KeyboardShiftBitmapImage}" Width="33" Height="25"/>
-        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>   
+        </polarisWindowsControls:InstantaneousModifierKey.DisplayName>
     </polarisWindowsControls:InstantaneousModifierKey>
     <polarisWindowsControls:InstantaneousModifierKey x:Key="QuertyKeyboardKeyRightShift" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SHIFT}">
         <polarisWindowsControls:InstantaneousModifierKey.DisplayName>
@@ -483,7 +479,7 @@
         </polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
         <polarisWindowsControls:ShiftSensitiveKey.DisplayName>
             <ContentControl Content=";"  Tag=":" Style="{StaticResource ButtonContent}" />
-        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>    
+        </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
     </polarisWindowsControls:ShiftSensitiveKey>
 
     <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyApostrophe" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_7}">
@@ -523,7 +519,7 @@
             <ContentControl Content="," Tag="&lt;"  Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
     </polarisWindowsControls:ShiftSensitiveKey>
-    
+
     <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeyPeriod" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_PERIOD}">
         <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
             <ContentControl Content="." Tag="&gt;"  Style="{StaticResource ButtonContent}"/>
@@ -542,7 +538,7 @@
             <ContentControl Content="." Tag="&gt;"  Style="{StaticResource ButtonContent}"/>
         </polarisWindowsControls:ShiftSensitiveKey.DisplayName>
     </polarisWindowsControls:ShiftSensitiveKey>
-    
+
     <polarisWindowsControls:ShiftSensitiveKey x:Key="QuertyKeyboardKeySlash" KeyCode="{x:Static WindowsInput:VirtualKeyCode.OEM_2}">
         <polarisWindowsControls:ShiftSensitiveKey.KeyDisplays>
             <ContentControl Content="/" Tag="?"  Style="{StaticResource ButtonContent}"/>
@@ -615,7 +611,7 @@
     <polarisWindowsControls:StringKey x:Key="StringKeyMultiply" DisplayName="*" StringToSimulate="*"/>
     <polarisWindowsControls:StringKey x:Key="StringKeyLeftParenthesis" DisplayName="(" StringToSimulate="("/>
     <polarisWindowsControls:StringKey x:Key="StringKeyRightParenthesis" DisplayName=")" StringToSimulate=")"/>
-    <polarisWindowsControls:StringKey x:Key="StringKeyTilde" DisplayName="`" StringToSimulate="`"/>
+    <polarisWindowsControls:StringKey x:Key="StringKeyTilde" DisplayName="'" StringToSimulate="'"/>
     <polarisWindowsControls:StringKey x:Key="StringKeyTittle" DisplayName="~" StringToSimulate="~"/>
     <polarisWindowsControls:StringKey x:Key="StringKeyLowerThan" DisplayName="&lt;" StringToSimulate="&lt;"/>
     <polarisWindowsControls:StringKey x:Key="StringKeyGreaterThan" DisplayName="&gt;" StringToSimulate="&gt;"/>
@@ -628,6 +624,194 @@
 
 
     <!-- overrides keyboard resources -->
+
+
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyQ" DisplayName="q" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Q}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>q</sys:String>
+            <sys:String>Q</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyW" DisplayName="w" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_W}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>w</sys:String>
+            <sys:String>W</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyE" DisplayName="e" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_E}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>e</sys:String>
+            <sys:String>E</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyR" DisplayName="r" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_R}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>r</sys:String>
+            <sys:String>R</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyT" DisplayName="t" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_T}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>t</sys:String>
+            <sys:String>T</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyY" DisplayName="y" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Y}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>y</sys:String>
+            <sys:String>Y</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyU" DisplayName="u" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_U}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>u</sys:String>
+            <sys:String>U</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyI" DisplayName="i" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_I}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>i</sys:String>
+            <sys:String>I</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyO" DisplayName="o" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_O}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>o</sys:String>
+            <sys:String>O</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyP" DisplayName="p" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_P}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>p</sys:String>
+            <sys:String>P</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyA" DisplayName="a" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_A}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>a</sys:String>
+            <sys:String>A</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyS" DisplayName="s" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_S}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>s</sys:String>
+            <sys:String>S</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyD" DisplayName="d" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_D}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>d</sys:String>
+            <sys:String>D</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyF" DisplayName="f" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_F}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>f</sys:String>
+            <sys:String>F</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyG" DisplayName="g" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_G}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>g</sys:String>
+            <sys:String>G</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyH" DisplayName="h" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_H}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>h</sys:String>
+            <sys:String>H</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyJ" DisplayName="j" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_J}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>j</sys:String>
+            <sys:String>J</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyK" DisplayName="k" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_K}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>k</sys:String>
+            <sys:String>K</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyL" DisplayName="l" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_L}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>l</sys:String>
+            <sys:String>L</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyZ" DisplayName="z" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_Z}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>z</sys:String>
+            <sys:String>Z</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyX" DisplayName="x" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_X}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>x</sys:String>
+            <sys:String>X</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyC" DisplayName="c" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_C}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>c</sys:String>
+            <sys:String>C</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyV" DisplayName="v" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_V}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>v</sys:String>
+            <sys:String>V</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyB" DisplayName="b" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_B}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+
+            <sys:String>b</sys:String>
+            <sys:String>B</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyN" DisplayName="n" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_N}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>n</sys:String>
+            <sys:String>N</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+    <polarisWindowsControls:CaseSensitiveKey x:Key="QuertyKeyboardKeyM" DisplayName="m" KeyCode="{x:Static WindowsInput:VirtualKeyCode.VK_M}">
+        <polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+            <sys:String>m</sys:String>
+            <sys:String>M</sys:String>
+        </polarisWindowsControls:CaseSensitiveKey.KeyDisplays>
+    </polarisWindowsControls:CaseSensitiveKey>
+
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyLeftAlt" DisplayName="LALT"/>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeySpace" DisplayName=" " KeyCode="{x:Static WindowsInput:VirtualKeyCode.SPACE}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyRightAlt" DisplayName="RALT"/>
+
+    <polarisWindowsControls:TogglingModifierKey x:Key="QuertyKeyboardKeyNumLock" DisplayName="NUMLOCK" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMLOCK}"/>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum0" DisplayName="0" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD0}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum1" DisplayName="1" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD1}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum2" DisplayName="2" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD2}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum3" DisplayName="3" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD3}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum4" DisplayName="4" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD4}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum5" DisplayName="5" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD5}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum6" DisplayName="6" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD6}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum7" DisplayName="7" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD7}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum8" DisplayName="8" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD8}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyNum9" DisplayName="9" KeyCode="{x:Static WindowsInput:VirtualKeyCode.NUMPAD9}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyMultiply" DisplayName="*" KeyCode="{x:Static WindowsInput:VirtualKeyCode.MULTIPLY}"/>
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyAdd" DisplayName="+" KeyCode="{x:Static WindowsInput:VirtualKeyCode.ADD}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeySubtract" DisplayName="-" KeyCode="{x:Static WindowsInput:VirtualKeyCode.SUBTRACT}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyDivide" DisplayName="/" KeyCode="{x:Static WindowsInput:VirtualKeyCode.DIVIDE}" />
+    <polarisWindowsControls:VirtualKey x:Key="QuertyKeyboardKeyDecimal" DisplayName="." KeyCode="{x:Static WindowsInput:VirtualKeyCode.DECIMAL}" />
+
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyShowKeyboard" Id="KBSHOW" DisplayName="Show" />
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyCompactKeyboard" Id="KBCOMPACT" DisplayName="Compact"/>
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyNumericKeyboard" Id="KBNUMERIC" DisplayName="Numeric"/>
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyLock" Id="KBLOCK" DisplayName="Lock"/>
+    <polarisWindowsControls:UserDefinedKey x:Key="QuertyKeyboardKeyUnlock" Id="KBUNLOCK" DisplayName="Unlock"/>
 
     <!--QuertyKeyboard QuertyKeyboard-->
     <Style TargetType="{x:Type polarisWindowsControls:QuertyKeyboard}">
@@ -767,7 +951,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardSplittedButtonStyle}" Width="80" />
-                                            <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyTilde}" Content="`" Style="{StaticResource KeyboardSplittedButtonStyle}" />
+                                            <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyTilde}" Content="'" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyTittle}" Content="~" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyLowerThan}" Content="&lt;" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyGreaterThan}" Content="&gt;" Style="{StaticResource KeyboardSplittedButtonStyle}" />
@@ -1063,7 +1247,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Button Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyEsc}" Content="ESCAPE" Style="{StaticResource KeyboardButtonStyle}" Width="108" />
-                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTilde}" Content="`" Style="{StaticResource KeyboardButtonStyle}" />
+                                        <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyTilde}" Content="'" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyExclamationMark}" Content="1" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyAt}" Content="2" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPound}" Content="3" Style="{StaticResource KeyboardButtonStyle}" />
