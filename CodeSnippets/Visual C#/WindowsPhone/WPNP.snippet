@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>0 -- Windows Phone Notify Property -- Magic String</Title>
+      <Shortcut>wpnp</Shortcut>
+      <Description>INotifyPropertyChanged Property: Use this to create a new property INotifyPropertyChanged implementation using Magic Strings</Description>
+      <Author>Herberth Madrigal (Adapted from Polaris at CodePlex)</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>publicProperty</ID>
+          <ToolTip>The name of the private property</ToolTip>
+          <Default>MyProperty</Default>
+        </Literal>
+        <Literal>
+          <ID>privateProperty</ID>
+          <ToolTip>The name of the public property</ToolTip>
+          <Default>myProperty</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>The type of the property (e.g. string, double, bool, Brush, etc.)</ToolTip>
+          <Default>string</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[#region $publicProperty$ (INotifyPropertyChanged Property)
+        public $type$ $publicProperty$ 
+        {
+            get{ return _$privateProperty$;}
+            set
+            {
+                if(_$privateProperty$ != value)
+                {
+                    _$privateProperty$ = value;
+                    RaisePropertyChanged("$publicProperty$");
+                }
+            }
+        }
+        private $type$ _$privateProperty$;
+        #endregion
+       $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

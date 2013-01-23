@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Define .NET (C#) class that implements a IDisposable pattern</Title>
+      <Author>Herberth Madrigal</Author>
+      <Description>Code snippet create class which implements IDisposable pattern. This pattern is used to release unmanged resources</Description>
+      <HelpUrl>http://msdn.microsoft.com/en-us/library/fs2xkftw.aspx</HelpUrl>
+      <Shortcut>ptdispose</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>className</ID>
+          <ToolTip>Class name</ToolTip>
+          <Default>DisposableResource</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+
+        <Literal Editable="true">
+          <ID>disposableType</ID>
+          <ToolTip>A type which implements IDisposable</ToolTip>
+          <Default>System.IO.Stream</Default>
+        </Literal>
+        
+        <Literal Editable="true">
+          <ID>resourcePropertyName</ID>
+          <ToolTip>Property name for the disposable resource.</ToolTip>
+          <Default>resource</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+  <![CDATA[
+
+    // Implementation of a Disposable pattern from http://msdn.microsoft.com/en-us/library/fs2xkftw.aspx
+    // This class shows how to use a disposable resource. The resource is first initialized and passed to the constructor, 
+    // but it could also be initialized in the constructor. The lifetime of the resource does not exceed the lifetime of this instance.
+    // This type does not need a finalizer because it does not directly create a native resource like a file handle or memory in the unmanaged heap.
+    public class $className$ : System.IDisposable
+    {
+
+        private $disposableType$ _$resourcePropertyName$;
+        
+
+        // The $resourcePropertyName$ passed to the constructor  must be readable and not null.
+        public $className$($disposableType$ $resourcePropertyName$)
+        {
+            if ($resourcePropertyName$ == null)
+                throw new System.ArgumentNullException("$resourcePropertyName$ in null.");
+
+            _$resourcePropertyName$ = $resourcePropertyName$;
+
+            _disposed = false;
+        }
+
+        // Demonstrates using the resource $resourcePropertyName$.  It must not be already disposed.
+        public void DoSomethingWith$resourcePropertyName$()
+        {
+            if (_disposed)
+                throw new System.ObjectDisposedException("Resource was disposed.");
+
+            // Write your code which access the disposable resource
+            throw new System.NotImplementedException();
+        }
+        
+
+#region IDisposable Pattern
+        private bool _disposed;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // If you need thread safety, use a lock around these  operations, as well as in your methods that use the resource.
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_$resourcePropertyName$ != null)
+                        _$resourcePropertyName$.Dispose();
+                }
+
+                // Indicate that the instance has been disposed.
+                _$resourcePropertyName$ = null;
+                _disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // Use SupressFinalize in case a subclass of this type implements a finalizer.
+            System.GC.SuppressFinalize(this);
+        }
+#endregion
+
+    }
+    
+$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

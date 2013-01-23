@@ -5,10 +5,11 @@
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
-      <Title>0 -- Singleon -- .NET 2.0 thead safe</Title>
-      <Author>Herberth Madrigal</Author>
-      <Description>Code snippet create a thread safe singleton class for .NET 2.0</Description>
+      <Title>1 -- Singleon -- .NET 4.0 Lazy constructor </Title>
+      <Author>Herberth Madrigal (from Rick Dailey suggestion)</Author>
+      <Description>Code snippet create a lazily instanciate singleton class for .NET 4.0</Description>
       <HelpUrl>
+        http://csharpindepth.com/Articles/General/Singleton.aspx
       </HelpUrl>
       <Shortcut>ptsngltn</Shortcut>
     </Header>
@@ -27,37 +28,31 @@
           <Function>
           </Function>
         </Literal>
+        <Literal Editable="true">
+          <ID>lazyfieldName</ID>
+          <ToolTip> propertyName which hold Lazy instance of the singletonclass.</ToolTip>
+          <Default>lazy</Default>
+          <Function>
+          </Function>
+        </Literal>
       </Declarations>
-      <Code Language="csharp"><![CDATA[
+      <Code Language="csharp">
+  <![CDATA[
 
 public sealed class $classname$
 {
-private void Initialize$classname$()
-{
-    throw new NotImplementedException();
-}
-#region Singleton Pattern w/ Constructor
 private $classname$()
-    : base()
-{
-    Initialize$classname$();
-}
-public static $classname$ $propertyname$
-{
-    get
     {
-        return Singleton$classname$Creator._$propertyname$;
     }
-}
-private class Singleton$classname$Creator
-{
-    private Singleton$classname$Creator() { }
-    public static $classname$ _$propertyname$ = new $classname$();
-}
-#endregion
-}
+#region Singleton Pattern w/ Constructor
+private static readonly Lazy<$classname$> _lazyfieldName =
+        new Lazy<$classname$>(() => new $classname$());
     
-$end$]]></Code>
+    public static $classname$ $propertyname$ { get { return _lazyfieldName.Value; } }
+
+    
+#endregion
+}$end$]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
