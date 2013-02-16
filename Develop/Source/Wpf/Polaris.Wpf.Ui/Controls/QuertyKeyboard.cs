@@ -25,7 +25,6 @@ using System.ComponentModel;
     [TemplatePart(Name = ElementLayoutRootName, Type = typeof(Panel))]
     public class QuertyKeyboard : Control
     {
-
         #region VirtualKey
 
         /// <summary>
@@ -55,6 +54,26 @@ using System.ComponentModel;
 
         #endregion
 
+        #region UserDefinedKeyHandler
+
+        /// <summary>
+        /// UserDefinedKeyHandler Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty UserDefinedKeyHandlerProperty =
+            DependencyProperty.Register("UserDefinedKeyHandler", typeof(IUserDefinedKeyHandler), typeof(QuertyKeyboard),
+                new FrameworkPropertyMetadata(new DefaultUserDefinedKeyHandler()));
+
+        /// <summary>
+        /// Gets or sets the UserDefinedKeyHandler property.  This dependency property 
+        /// indicates ....
+        /// </summary>
+        public IUserDefinedKeyHandler UserDefinedKeyHandler
+        {
+            get { return (IUserDefinedKeyHandler)GetValue(UserDefinedKeyHandlerProperty); }
+            set { SetValue(UserDefinedKeyHandlerProperty, value); }
+        }
+
+        #endregion
 
         /// <summary>
         /// Gets or sets the KeyboardLayout property.  This dependency property 
@@ -96,27 +115,6 @@ using System.ComponentModel;
 
         #endregion
 
-        #region UserDefinedKeyHandler
-
-        /// <summary>
-        /// UserDefinedKeyHandler Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty UserDefinedKeyHandlerProperty =
-            DependencyProperty.Register("UserDefinedKeyHandler", typeof(IUserDefinedKeyHandler), typeof(QuertyKeyboard),
-                new FrameworkPropertyMetadata(new DefaultUserDefinedKeyHandler()));
-
-        /// <summary>
-        /// Gets or sets the UserDefinedKeyHandler property.  This dependency property 
-        /// indicates ....
-        /// </summary>
-        public IUserDefinedKeyHandler UserDefinedKeyHandler
-        {
-            get { return (IUserDefinedKeyHandler)GetValue(UserDefinedKeyHandlerProperty); }
-            set { SetValue(UserDefinedKeyHandlerProperty, value); }
-        }
-
-        #endregion
-
         /// <summary>
         /// Whether or not use the Debugger Keyboard Service instead of the Virtual Keyboard Service.
         /// <remarks>Other than settings this to true, the app should run attached to a debugger</remarks>
@@ -136,7 +134,7 @@ using System.ComponentModel;
         /// </summary>
         public static readonly DependencyProperty LatchDebuggerProperty =
             DependencyProperty.Register("LatchDebugger", typeof(bool), typeof(QuertyKeyboard),
-                new FrameworkPropertyMetadata((bool)false));
+                new FrameworkPropertyMetadata(false));
 
         #endregion
 
@@ -175,27 +173,6 @@ using System.ComponentModel;
         private readonly List<ModifierKeyBase> _modifierKeys;
         private readonly List<DependencyLogicalKey> _allLogicalKeys;
 
-        //private readonly DispatcherTimer _timer;
-        //[Description("Time in milliseconds before reporting constaly the first keydown")]
-        //[Category("Querty OSK")]
-        //[DisplayName("Pause on initial pressed key")]
-        //public int PauseOnKeyPressedInitial
-        //{
-        //    get { return _pauseOnKeyPressedInitial; }
-        //    set { _pauseOnKeyPressedInitial = value; }
-        //}
-        //private int _pauseOnKeyPressedInitial = 500;
-
-        //[Description("Time in milliseconds minimum between reporting contantly key pressed.")]
-        //[Category("Querty OSK")]
-        //[DisplayName("Minimum paused on pressed key")]
-        //public int PauseOnKeyPressedMinimum
-        //{
-        //    get { return _pauseOnKeyPressedMinimum; }
-        //    set { _pauseOnKeyPressedMinimum = value; }
-        //}
-        //private int _pauseOnKeyPressedMinimum = 50;
-
         static QuertyKeyboard()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(QuertyKeyboard), new FrameworkPropertyMetadata(typeof(QuertyKeyboard)));
@@ -203,11 +180,8 @@ using System.ComponentModel;
 
         public QuertyKeyboard()
         {
-            //_timer = new DispatcherTimer();
             _modifierKeys = new List<ModifierKeyBase>();
             _allLogicalKeys = new List<DependencyLogicalKey>();
-            //_timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-            //_timer.Tick += OnTimerTick;
             Loaded += OnLoaded;
         }
 
@@ -327,7 +301,6 @@ using System.ComponentModel;
                         element.PreviewMouseUp += mouseUpEventListener.OnEvent;
 
                         var mouseDoubleClickEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
-                        mouseDoubleClickEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDoubleClick(source, eventArgs);
                         mouseDoubleClickEventListener.OnDetachAction = (weakEventListenerParameter) => element.PreviewMouseDoubleClick -= weakEventListenerParameter.OnEvent;
                         element.PreviewMouseDoubleClick += mouseDoubleClickEventListener.OnEvent;
                     }
@@ -349,71 +322,39 @@ using System.ComponentModel;
         {
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
-            HandleButtonDown(virtualKeyConfig);
+            OnHandleButtonDown(virtualKeyConfig);
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
-            HandleButtonDown(virtualKeyConfig);
+            OnHandleButtonDown(virtualKeyConfig);
+        }
+
+        private void OnHandleButtonDown(DependencyLogicalKey virtualKeyConfig)
+        {
+            virtualKeyConfig.Press();
         }
 
         private void OnButtonTouchUp(object sender, TouchEventArgs e)
         {
-            HandleButtonUp();
+            var element = sender as ContentControl;
+            var virtualKeyConfig = _virtualKeys[element];
+            OnHandleButtonUp(virtualKeyConfig);
         }
 
         private void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
-            HandleButtonUp();
+            var element = sender as ContentControl;
+            var virtualKeyConfig = _virtualKeys[element];
+            OnHandleButtonUp(virtualKeyConfig);
         }
 
-        private void OnButtonMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void OnHandleButtonUp(DependencyLogicalKey virtualKeyConfig)
         {
-            //var element = sender as ContentControl;
-            //var virtualKeyConfig = _virtualKeys[element];
-            //if (!virtualKeyConfig.IsSticky)
-            //    return;
-            //_isShiftSticked = !_isShiftSticked;
-            //if (_isShiftSticked)
-            //{
-            //    KeyboardService.PressAndHold(VirtualKeyCode .VK_LSHIFT);
-            //}
-            //else
-            //{
-            //    KeyboardService.ReleaseStickyKeys();
-            //}
-            //IsShiftPressed = _isShiftSticked;
         }
 
-        //private void OnTimerTick(object sender, EventArgs e)
-        //{
-        //    var timer = sender as DispatcherTimer;
-        //    var virtualKeyConfig = timer.Tag as DependencyLogicalKey;
-        //    if (timer.Interval.TotalMilliseconds > PauseOnKeyPressedMinimum)
-        //    {
-        //        timer.Interval = TimeSpan.FromMilliseconds(timer.Interval.TotalMilliseconds / 2);
-        //    }
-        //    virtualKeyConfig.Press();
-        //}
-
-        private void HandleButtonUp()
-        {
-            //_timer.IsEnabled = false;
-        }
-
-        private void HandleButtonDown(DependencyLogicalKey virtualKeyConfig)
-        {
-            //_timer.Tag = virtualKeyConfig;
-            virtualKeyConfig.Press();
-            //HandleLogicKeyPressed(virtualKeyConfig);
-            //if (!_timer.IsEnabled && !(virtualKeyConfig is ModifierKeyBase))
-            //{
-            //    _timer.Interval = TimeSpan.FromMilliseconds(PauseOnKeyPressedInitial);
-            //    _timer.IsEnabled = true;
-            //}
-        }
     }
 
     public enum VirtualKeyboardInputEvent
