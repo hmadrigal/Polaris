@@ -17,7 +17,7 @@ namespace Polaris.Windows.Controls
     using Polaris.Windows.Services;
     using Polaris.Wpf.Ui.Extensions;
     using WindowsInput;
-using System.ComponentModel;
+    using System.ComponentModel;
 
     [Localizability(LocalizationCategory.Text)]
     [DisplayName("Querty Keyboard")]
@@ -210,7 +210,7 @@ using System.ComponentModel;
                     HandleNumLockKeyPressed(modifierKey);
                 }
             }
-            else if (UserDefinedKeyHandler!=null && logicalKey is UserDefinedKey)
+            else if (UserDefinedKeyHandler != null && logicalKey is UserDefinedKey)
             {
                 UserDefinedKeyHandler.HandleUserDefinedKey(this, logicalKey, KeyboardService);
             }
@@ -235,14 +235,14 @@ using System.ComponentModel;
         private void HandleShiftKeyPressed(ModifierKeyBase shiftKey)
         {
             _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
-                                                                             InputSimulator.IsTogglingKeyInEffect(VirtualKeyCode.CAPITAL) ^ shiftKey.IsInEffect ? 1 : 0);
+                                                                             KeyboardService.IsTogglingKeyInEffect(VirtualKeyCode.CAPITAL) ^ shiftKey.IsInEffect ? 1 : 0);
             _allLogicalKeys.OfType<ShiftSensitiveKey>().ToList().ForEach(x => x.SelectedIndex = shiftKey.IsInEffect ? 1 : 0);
         }
 
         private void HandleCapsLockKeyPressed(ModifierKeyBase capsLockKey)
         {
             _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
-                                                                             capsLockKey.IsInEffect ^ InputSimulator.IsKeyDownAsync(VirtualKeyCode.SHIFT) ? 1 : 0);
+                                                                             capsLockKey.IsInEffect ^ KeyboardService.IsKeyDownAsync(VirtualKeyCode.SHIFT) ? 1 : 0);
         }
 
         private void HandleNumLockKeyPressed(ModifierKeyBase numLockKey)
