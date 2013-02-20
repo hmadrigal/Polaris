@@ -218,36 +218,54 @@ namespace Polaris.Windows.Controls
             {
                 ResetInstantaneousModifierKeys();
             }
-            _modifierKeys.OfType<InstantaneousModifierKey>().ToList().ForEach(x => x.SynchroniseKeyState());
+            _modifierKeys
+                .OfType<InstantaneousModifierKey>()
+                .ToList()
+                .ForEach(x => x.SynchroniseKeyState());
             SetKeysContent();
         }
 
         private void ResetInstantaneousModifierKeys()
         {
-            _modifierKeys.OfType<InstantaneousModifierKey>().ToList().ForEach(x => { if (x.IsInEffect) x.Press(); });
+            _modifierKeys
+                .OfType<InstantaneousModifierKey>()
+                .ToList()
+                .ForEach(x => { if (x.IsInEffect) x.Press(); });
         }
 
         private void SynchroniseModifierKeyState()
         {
-            _modifierKeys.ToList().ForEach(x => x.SynchroniseKeyState());
+            _modifierKeys
+                .ToList()
+                .ForEach(x => x.SynchroniseKeyState());
         }
 
         private void HandleShiftKeyPressed(ModifierKeyBase shiftKey)
         {
-            _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
-                                                                             KeyboardService.IsTogglingKeyInEffect(VirtualKeyCode.CAPITAL) ^ shiftKey.IsInEffect ? 1 : 0);
-            _allLogicalKeys.OfType<ShiftSensitiveKey>().ToList().ForEach(x => x.SelectedIndex = shiftKey.IsInEffect ? 1 : 0);
+            _allLogicalKeys
+                .OfType<CaseSensitiveKey>()
+                .ToList()
+                .ForEach(x => x.SelectedIndex = KeyboardService.IsTogglingKeyInEffect(VirtualKeyCode.CAPITAL) ^ shiftKey.IsInEffect ? 1 : 0);
+            _allLogicalKeys
+                .OfType<ShiftSensitiveKey>()
+                .ToList()
+                .ForEach(x => x.SelectedIndex = shiftKey.IsInEffect ? 1 : 0);
         }
 
         private void HandleCapsLockKeyPressed(ModifierKeyBase capsLockKey)
         {
-            _allLogicalKeys.OfType<CaseSensitiveKey>().ToList().ForEach(x => x.SelectedIndex =
-                                                                             capsLockKey.IsInEffect ^ KeyboardService.IsKeyDownAsync(VirtualKeyCode.SHIFT) ? 1 : 0);
+            _allLogicalKeys
+                .OfType<CaseSensitiveKey>()
+                .ToList()
+                .ForEach(x => x.SelectedIndex = capsLockKey.IsInEffect ^ KeyboardService.IsKeyDownAsync(VirtualKeyCode.SHIFT) ? 1 : 0);
         }
 
         private void HandleNumLockKeyPressed(ModifierKeyBase numLockKey)
         {
-            _allLogicalKeys.OfType<NumLockSensitiveKey>().ToList().ForEach(x => x.SelectedIndex = numLockKey.IsInEffect ? 1 : 0);
+            _allLogicalKeys
+                .OfType<NumLockSensitiveKey>()
+                .ToList()
+                .ForEach(x => x.SelectedIndex = numLockKey.IsInEffect ? 1 : 0);
         }
 
         public override void OnApplyTemplate()
@@ -315,7 +333,8 @@ namespace Polaris.Windows.Controls
 
         private void SetKeysContent()
         {
-            _virtualKeys.Keys.ForEach(element => element.Content = _virtualKeys[element].DisplayName);
+            _virtualKeys.Keys
+                .ForEach(element => element.Content = _virtualKeys[element].DisplayName);
         }
 
         private void OnButtonTouchDown(object sender, TouchEventArgs e)
