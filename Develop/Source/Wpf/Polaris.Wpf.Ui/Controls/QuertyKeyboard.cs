@@ -182,14 +182,17 @@ namespace Polaris.Windows.Controls
         {
             _modifierKeys = new List<ModifierKeyBase>();
             _allLogicalKeys = new List<DependencyLogicalKey>();
+            UserDefinedKeyHandler = new DefaultUserDefinedKeyHandler();
             Loaded += OnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Loaded -= OnLoaded;
-            UserDefinedKeyHandler = new DefaultUserDefinedKeyHandler();
-            KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
+            if (KeyboardLayout == default(Enum))
+            {
+                KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;                
+            }
         }
 
         private void HandleLogicKeyPressed(DependencyLogicalKey logicalKey)
