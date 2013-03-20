@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 
 namespace Polaris.MSBuild.Common
 {
+    //http://msdn.microsoft.com/en-us/library/microsoft.build.framework.itaskitem.aspx
+
     public class AssemblyInfoWriterTask : Task
     {
         public string AssemblyInfoFilePath
@@ -23,47 +25,60 @@ namespace Polaris.MSBuild.Common
         protected readonly Regex AssemblyVersionRegEx = new Regex(@"""(?<Major>\d+)\.(?<Minor>\d+)(?:\.*)(?<Build>\*|(\d*))(?:\.*)(?<Revision>\*|(\d*))""", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         //[assembly: AssemblyTitle("FooLibrary.MsBuild")]
+        [Output]        
         public string AssemblyTitle { get; set; }
         private const string AssemblyTitleAttributeName = @"AssemblyTitle";
 
         //[assembly: AssemblyDescription("")]
+        [Output]
         public string AssemblyDescription { get; set; }
         private const string AssemblyDescriptionAttributeName = @"AssemblyDescription";
 
         //[assembly: AssemblyConfiguration("")]
+        [Output]
         public string AssemblyConfiguration { get; set; }
         private const string AssemblyConfigurationAttributeName = @"AssemblyConfiguration";
 
         //[assembly: AssemblyCompany("")]
+        [Output]
         public string AssemblyCompany { get; set; }
         private const string AssemblyCompanyAttributeName = @"AssemblyCompany";
 
         //[assembly: AssemblyProduct("FooLibrary.MsBuild")]
+        [Output]
         public string AssemblyProduct { get; set; }
         private const string AssemblyProductAttributeName = @"AssemblyProduct";
 
         //[assembly: AssemblyCopyright("Copyright ©  2013")]
+        [Output]
         public string AssemblyCopyright { get; set; }
         private const string AssemblyCopyrightAttributeName = @"AssemblyCopyright";
 
         //[assembly: AssemblyTrademark("")]
+        [Output]
         public string AssemblyTrademark { get; set; }
         private const string AssemblyTrademarkAttributeName = @"AssemblyTrademark";
 
         //[assembly: AssemblyCulture("")]
+        [Output]
         public string AssemblyCulture { get; set; }
         private const string AssemblyCultureAttributeName = @"AssemblyCulture";
 
         //[assembly: AssemblyInformationalVersion("")]
+        [Output]
         public string AssemblyInformationalVersion { get; set; }
         private const string AssemblyInformationalVersionAttributeName = @"AssemblyInformationalVersion";
 
         //[assembly: AssemblyVersion("1.0.0.0")]
+        [Output]
+        public string AssemblyVersion { get; set; }
         private const string AssemblyVersionAttributeName = @"AssemblyVersion";
 
         //[assembly: AssemblyFileVersion("1.0.0.0")]
+        [Output]
         public string AssemblyFileVersion { get; set; }
         private const string AssemblyFileVersionAttributeName = @"AssemblyFileVersion";
+
 
         public override bool Execute()
         {
@@ -73,6 +88,7 @@ namespace Polaris.MSBuild.Common
                 return false;
             }
 
+            var KeyValueAttributes = new List<ITask>();
             var programCode = System.IO.File.ReadAllText(AssemblyInfoFilePath);
             CSharpParser parser = new CSharpParser();
             SyntaxTree syntaxTree = parser.Parse(programCode);
@@ -159,6 +175,7 @@ namespace Polaris.MSBuild.Common
                                 string.IsNullOrEmpty(revision) ? revision : string.Concat(".", "*" == revision ? revision : newRevisionNumber.ToString())
                                 );
                             newPrimitiveExpression.LiteralValue = newVersion;
+                            AssemblyVersion = newVersion;
                             break;
 
                         default:

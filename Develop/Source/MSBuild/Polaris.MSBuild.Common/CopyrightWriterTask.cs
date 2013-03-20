@@ -163,9 +163,16 @@ namespace Polaris.MSBuild.Common
         private static System.Xml.XmlComment CreateXmlComment(string finalCopyrights, System.Xml.XmlDocument xmlDocument, System.Xml.XmlComment xmlComment, bool hasXmlDeclaration)
         {
             xmlComment = xmlDocument.CreateComment(finalCopyrights);
-            if (xmlDocument.HasChildNodes || !hasXmlDeclaration)
+            if (xmlDocument.HasChildNodes)
             {
-                xmlDocument.InsertAfter(xmlComment, xmlDocument.FirstChild);
+                if (hasXmlDeclaration)
+                {
+                    xmlDocument.InsertAfter(xmlComment, xmlDocument.FirstChild);
+                }
+                else
+                {
+                    xmlDocument.InsertBefore(xmlComment, xmlDocument.FirstChild);
+                }
             }
             else
             {

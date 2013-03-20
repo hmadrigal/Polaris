@@ -66,8 +66,8 @@
 
   <!-- ******************************************************************* -->
   
-  <UsingTask AssemblyFile="../MSBuild/Polaris.MSBuild.Common/bin/$(Configuration)/Polaris.MSBuild.Common.dll" TaskName="AssemblyInfoWriterTask" />
-  <UsingTask AssemblyFile="../MSBuild/Polaris.MSBuild.Common/bin/$(Configuration)/Polaris.MSBuild.Common.dll" TaskName="CopyrightWriterTask" />
+  <UsingTask AssemblyFile="C:\Projects\polaris\Develop\Source\MSBuild\Polaris.MSBuild.Common\bin\Debug\Polaris.MSBuild.Common.dll" TaskName="AssemblyInfoWriterTask" />
+  <UsingTask AssemblyFile="C:\Projects\polaris\Develop\Source\MSBuild\Polaris.MSBuild.Common\bin\Debug\Polaris.MSBuild.Common.dll" TaskName="CopyrightWriterTask" />
   <Target Name="BeforeBuild">
     <ItemGroup>
       <AssemblyInfo Include="Properties\AssemblyInfo.cs" />
@@ -83,18 +83,14 @@
       <AssemblyCompany>The Foo Company</AssemblyCompany>
       <AssemblyProduct>Foo MSBuild Library V1.0</AssemblyProduct>
       <AssemblyCopyright>Copyright (c) $([System.DateTime]::UtcNow.ToString(`yyyy`))</AssemblyCopyright>
-      <AssemblyTrademark>
-      </AssemblyTrademark>
-      <AssemblyCulture>
-      </AssemblyCulture>
-      <AssemblyInformationalVersion>
-      </AssemblyInformationalVersion>
     </PropertyGroup>
-    <AssemblyInfoWriterTask AssemblyInfoFilePath="@(AssemblyInfo)"/>
+    <AssemblyInfoWriterTask AssemblyInfoFilePath="@(AssemblyInfo)">
+      <Output TaskParameter="AssemblyVersion" PropertyName="NewAssemblyVersion"/>
+    </AssemblyInfoWriterTask>
     <PropertyGroup>
       <CopyrightHeader>
         <![CDATA[
- * $(AssemblyCopyright) $(AssemblyCompany)
+ * $(AssemblyCopyright) $(AssemblyCompany) ver. $(NewAssemblyVersion)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software

@@ -1,6 +1,6 @@
 #region Copyright
 /*
- * Copyright (c) 2013 The Foo Company
+ * Copyright (c) 2013 The Foo Company ver. "1.0.14055.18490"
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software
