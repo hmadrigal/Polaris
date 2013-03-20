@@ -95,6 +95,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Constants\CommonRegionNames.cs" />
     <Compile Include="Constants\GlobalInstanceNames.cs" />
     <Compile Include="Exceptions\ServiceInitializationException.cs" />

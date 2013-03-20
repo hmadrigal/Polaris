@@ -95,6 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Extensions\RetryManagerExtensions.cs" />
     <Compile Include="Handlers\CacheHandler.cs" />
     <Compile Include="DefaultCacheKeyGenerator.cs" />

@@ -60,12 +60,50 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="IViewModelLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <AssemblyVersionFile Include="..\..\AssemblyVersion.cs" />
+    </ItemGroup>
+    <Message Text="======================================================" Importance="high" />
+    <ReadLinesFromFile File="@(AssemblyVersionFile)">
+      <Output TaskParameter="Lines" ItemName="ItemsFromFile" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <Pattern>(\d+)\.(\d+)\.(\d+)</Pattern>
+      <InputFile>@(ItemsFromFile)</InputFile>
+      <OutputMatch>$([System.Text.RegularExpressions.Regex]::Match($(InputFile), $(Pattern)))</OutputMatch>
+      <AssemblyMajorVersion>$(OutputMatch.Split(`.`)[0])</AssemblyMajorVersion>
+      <AssemblyMinorVersion>$(OutputMatch.Split(`.`)[1])</AssemblyMinorVersion>
+      <AssemblyBuildNumber>$(OutputMatch.Split(`.`)[2])</AssemblyBuildNumber>
+      <NewAssemblyBuildNumber>$([MSBuild]::Modulo($([System.Int32]::Parse($([System.DateTime]::UtcNow.ToString(`yyMM`)))), 65535))</NewAssemblyBuildNumber>
+      <NewAssemblyRevision>$([System.Convert]::ToInt32($([MSBuild]::Multiply($([MSBuild]::Divide($([System.Int32]::Parse($([System.DateTime]::UtcNow.ToString(`dHHmm`)))), 312359)),65535))))</NewAssemblyRevision>
+      <NewAssemblyVersionAttribute>[assembly: System.Reflection.AssemblyVersion("$(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)")]</NewAssemblyVersionAttribute>
+      <NewAssemblyCopyrightAttribute>[assembly: System.Reflection.AssemblyCopyright("Copyright Polaris $([System.DateTime]::UtcNow.ToString(`yyyy`))")]</NewAssemblyCopyrightAttribute>
+      <NweAssemblyVersionFile>
+<![CDATA[
+$(NewAssemblyVersionAttribute)
+$(NewAssemblyCopyrightAttribute)
+]]>
+      </NweAssemblyVersionFile>
+    </PropertyGroup>
+    <Message Text="Found AssemblyVersion : $(OutputMatch)" Importance="high" />
+    <Message Text="AssemblyMajorVersion : $(AssemblyMajorVersion)" Importance="high" />
+    <Message Text="AssemblyMinorVersion : $(AssemblyMinorVersion)" Importance="high" />
+    <Message Text="AssemblyBuildNumber : $(AssemblyBuildNumber)" Importance="high" />
+    <Message Text="New AssemblyVersion : $(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)" Importance="high" />
+    <Exec Command="attrib -r @(AssemblyVersionFile)" />
+    <WriteLinesToFile File="@(AssemblyVersionFile)" Lines="$(NweAssemblyVersionFile)" Overwrite="true" />
+    <Message Text="======================================================" Importance="high" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
