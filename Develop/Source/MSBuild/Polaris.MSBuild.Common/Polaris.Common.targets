@@ -8,7 +8,7 @@ Polaris.Common.targets
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="Polaris.MSBuild.Common.dll" TaskName="Polaris.MSBuild.Common.AssemblyInfoWriterTask" />
-  <UsingTask AssemblyFile="Polaris.MSBuild.Common.dll" TaskName="Polaris.MSBuild.Common.CopyrightWriterTask" />
+  <UsingTask AssemblyFile="Polaris.MSBuild.Common.dll" TaskName="AssemblyInfoWriterTask" />
+  <UsingTask AssemblyFile="Polaris.MSBuild.Common.dll" TaskName="CopyrightWriterTask" />
   
 </Project>
