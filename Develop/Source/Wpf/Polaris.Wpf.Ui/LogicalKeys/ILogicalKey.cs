@@ -4,20 +4,12 @@
     using Polaris.Windows.Services;
     using System.Windows;
 
-    public interface ILogicalKey 
-    {
-        IKeyboardInput KeyboardService { get; set; }
-        object DisplayName { get; }
-        void Press();
-        event LogicalKeyPressedEventHandler LogicalKeyPressed;
-    }
-
     public class DependencyLogicalKey : DependencyObject, ILogicalKey
     {
         public event LogicalKeyPressedEventHandler LogicalKeyPressed;
 
         public IKeyboardInput KeyboardService { get; set; }
-        //public object DisplayName { get; set; }
+        
         #region DisplayName
 
         /// <summary>
@@ -39,13 +31,10 @@
 
         #endregion
 
-        
-
         public DependencyLogicalKey()
         {
             KeyboardService = VirtualKeyboardInput.Instance;
         }
-
 
         public virtual void Press()
         {

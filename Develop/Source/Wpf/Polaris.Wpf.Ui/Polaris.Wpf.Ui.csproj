@@ -104,10 +104,12 @@
     <Compile Include="Controls\FontFormatCollection.cs" />
     <Compile Include="Controls\FontFormatType.cs" />
     <Compile Include="Controls\FormattedTextBlock.cs" />
+    <Compile Include="Controls\ILogicalKey.cs" />
     <Compile Include="Controls\IUserDefinedKeyHandler.cs" />
     <Compile Include="Controls\QuertyKeyboard.cs" />
     <Compile Include="Controls\ShadowedTextBlock.cs" />
     <Compile Include="Controls\ViewTransitionControl.cs" />
+    <Compile Include="Controls\VirtualKeyboardInputEvent.cs" />
     <Compile Include="Controls\WatermarkTextBox.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToResource.cs" />

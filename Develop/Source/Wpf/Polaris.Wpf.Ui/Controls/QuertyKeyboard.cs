@@ -186,12 +186,75 @@ namespace Polaris.Windows.Controls
             Loaded += OnLoaded;
         }
 
+        public override void OnApplyTemplate()
+        {
+            _keyboardService = System.Diagnostics.Debugger.IsAttached && LatchDebugger ? DebugKeyboardInput.Instance as IKeyboardInput : VirtualKeyboardInput.Instance as IKeyboardInput;
+
+            base.OnApplyTemplate();
+
+            _layoutRoot = GetTemplateChild(ElementLayoutRootName) as Panel;
+            if (_layoutRoot != null)
+            {
+
+                _virtualKeys = (from dependencyObject in _layoutRoot.Descendants()
+                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as DependencyLogicalKey
+                                let element = dependencyObject as ContentControl
+                                where keyConfiguration != null && element != null
+                                select new KeyValuePair<ContentControl, DependencyLogicalKey>(element, keyConfiguration))
+                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+                foreach (var element in _virtualKeys.Keys)
+                {
+                    _virtualKeys[element].KeyboardService = KeyboardService;
+                    _virtualKeys[element].LogicalKeyPressed += (s, e) =>
+                    {
+                        HandleLogicKeyPressed(e.Key);
+                    };
+
+                    if (InputEventType == VirtualKeyboardInputEvent.TouchBasedEvent)
+                    {
+                        var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                        touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
+                        touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
+                        element.TouchUp += touchUpEventListener.OnEvent;
+
+                        var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
+                        touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
+                        touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
+                        element.TouchDown += touchDownEventListener.OnEvent;
+                    }
+
+                    if (InputEventType == VirtualKeyboardInputEvent.MouseBasedEvent)
+                    {
+                        var mouseDownEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                        mouseDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDown(source, eventArgs);
+                        mouseDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseDown -= weakEventListenerParameter.OnEvent;
+                        element.PreviewMouseDown += mouseDownEventListener.OnEvent;
+
+                        var mouseUpEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                        mouseUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseUp(source, eventArgs);
+                        mouseUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseUp -= weakEventListenerParameter.OnEvent;
+                        element.PreviewMouseUp += mouseUpEventListener.OnEvent;
+
+                        var mouseDoubleClickEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
+                        mouseDoubleClickEventListener.OnDetachAction = (weakEventListenerParameter) => element.PreviewMouseDoubleClick -= weakEventListenerParameter.OnEvent;
+                        element.PreviewMouseDoubleClick += mouseDoubleClickEventListener.OnEvent;
+                    }
+                }
+
+                _allLogicalKeys.AddRange(_virtualKeys.Values);
+                _modifierKeys.AddRange(_virtualKeys.Values.OfType<ModifierKeyBase>());
+                SynchroniseModifierKeyState();
+                SetKeysContent();
+            }
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Loaded -= OnLoaded;
             if (KeyboardLayout == default(Enum))
             {
-                KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;                
+                KeyboardLayout = DefaultKeyboardLayout.StandardKeyboard;
             }
         }
 
@@ -271,69 +334,6 @@ namespace Polaris.Windows.Controls
                 .ForEach(x => x.SelectedIndex = numLockKey.IsInEffect ? 1 : 0);
         }
 
-        public override void OnApplyTemplate()
-        {
-            _keyboardService = System.Diagnostics.Debugger.IsAttached && LatchDebugger ? DebugKeyboardInput.Instance as IKeyboardInput : VirtualKeyboardInput.Instance as IKeyboardInput;
-
-            base.OnApplyTemplate();
-
-            _layoutRoot = GetTemplateChild(ElementLayoutRootName) as Panel;
-            if (_layoutRoot != null)
-            {
-
-                _virtualKeys = (from dependencyObject in _layoutRoot.Descendants()
-                                let keyConfiguration = dependencyObject.GetValue(QuertyKeyboard.VirtualKeyProperty) as DependencyLogicalKey
-                                let element = dependencyObject as ContentControl
-                                where keyConfiguration != null && element != null
-                                select new KeyValuePair<ContentControl, DependencyLogicalKey>(element, keyConfiguration))
-                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                foreach (var element in _virtualKeys.Keys)
-                {
-                    _virtualKeys[element].KeyboardService = KeyboardService;
-                    _virtualKeys[element].LogicalKeyPressed += (s, e) =>
-                    {
-                        HandleLogicKeyPressed(e.Key);
-                    };
-
-                    if (InputEventType == VirtualKeyboardInputEvent.TouchBasedEvent)
-                    {
-                        var touchUpEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                        touchUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchUp(source, eventArgs);
-                        touchUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchUp -= weakEventListenerParameter.OnEvent;
-                        element.TouchUp += touchUpEventListener.OnEvent;
-
-                        var touchDownEventListener = new WeakEventListener<QuertyKeyboard, object, TouchEventArgs>(this);
-                        touchDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonTouchDown(source, eventArgs);
-                        touchDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.TouchDown -= weakEventListenerParameter.OnEvent;
-                        element.TouchDown += touchDownEventListener.OnEvent;
-                    }
-
-                    if (InputEventType == VirtualKeyboardInputEvent.MouseBasedEvent)
-                    {
-                        var mouseDownEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
-                        mouseDownEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseDown(source, eventArgs);
-                        mouseDownEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseDown -= weakEventListenerParameter.OnEvent;
-                        element.PreviewMouseDown += mouseDownEventListener.OnEvent;
-
-                        var mouseUpEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
-                        mouseUpEventListener.OnEventAction = (instance, source, eventArgs) => instance.OnButtonMouseUp(source, eventArgs);
-                        mouseUpEventListener.OnDetachAction = (weakEventListenerParameter) => element.MouseUp -= weakEventListenerParameter.OnEvent;
-                        element.PreviewMouseUp += mouseUpEventListener.OnEvent;
-
-                        var mouseDoubleClickEventListener = new WeakEventListener<QuertyKeyboard, object, MouseButtonEventArgs>(this);
-                        mouseDoubleClickEventListener.OnDetachAction = (weakEventListenerParameter) => element.PreviewMouseDoubleClick -= weakEventListenerParameter.OnEvent;
-                        element.PreviewMouseDoubleClick += mouseDoubleClickEventListener.OnEvent;
-                    }
-                }
-
-                _allLogicalKeys.AddRange(_virtualKeys.Values);
-                _modifierKeys.AddRange(_virtualKeys.Values.OfType<ModifierKeyBase>());
-                SynchroniseModifierKeyState();
-                SetKeysContent();
-            }
-        }
-
         private void SetKeysContent()
         {
             _virtualKeys.Keys
@@ -377,11 +377,5 @@ namespace Polaris.Windows.Controls
         {
         }
 
-    }
-
-    public enum VirtualKeyboardInputEvent
-    {
-        MouseBasedEvent,
-        TouchBasedEvent
     }
 }
