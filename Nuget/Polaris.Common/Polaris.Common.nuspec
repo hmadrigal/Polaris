@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>0.0.0.5</version>
+    <version>1.0.1304.2128</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -25,7 +25,7 @@
     <tags>wpf silverlight toolkit framework polaris interface ui prism</tags>
   </metadata>
   <files>
-    <file src="..\..\Develop\Bin\Common\Polaris.Common.dll" target="lib\net40-client"/>
-    <file src="..\..\Develop\Bin\Wpf\Polaris.dll" target="lib\net40-client"/>
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.dll" target="lib\net40-client" />
+    <file src="..\..\Develop\Bin\Wpf\Polaris.dll" target="lib\net40-client" />
   </files>
 </package>

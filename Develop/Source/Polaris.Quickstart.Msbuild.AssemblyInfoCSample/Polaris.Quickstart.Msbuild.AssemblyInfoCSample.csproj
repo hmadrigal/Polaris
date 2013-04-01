@@ -65,9 +65,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 
   <!-- ******************************************************************* -->
-  
-  <UsingTask AssemblyFile="C:\Projects\polaris\Develop\Source\MSBuild\Polaris.MSBuild.Common\bin\Debug\Polaris.MSBuild.Common.dll" TaskName="AssemblyInfoWriterTask" />
-  <UsingTask AssemblyFile="C:\Projects\polaris\Develop\Source\MSBuild\Polaris.MSBuild.Common\bin\Debug\Polaris.MSBuild.Common.dll" TaskName="CopyrightWriterTask" />
+  <Import Project="$(SolutionDir)\..\..\MSBuild\Polaris.MSBuild.Common\bin\$(Configuration)\Polaris.Common.targets" />
   <Target Name="BeforeBuild">
     <ItemGroup>
       <AssemblyInfo Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +88,7 @@
     <PropertyGroup>
       <CopyrightHeader>
         <![CDATA[
- * $(AssemblyCopyright) $(AssemblyCompany) ver. $(NewAssemblyVersion)
+ * $(AssemblyCopyright) $(AssemblyCompany) Ver.$(Configuration) #$(NewAssemblyVersion) 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software

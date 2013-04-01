@@ -39,13 +39,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Quickstart.Shadowed
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{5E78F150-7304-4C1A-9E09-B06AAA3BEF71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Quickstart.Msbuild.AssemblyInfoCSample", "Polaris.Quickstart.Msbuild.AssemblyInfoCSample\Polaris.Quickstart.Msbuild.AssemblyInfoCSample.csproj", "{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.MSBuild.Common", "MSBuild\Polaris.MSBuild.Common\Polaris.MSBuild.Common.csproj", "{DCD4BDAC-E67A-49BD-8EE7-FD2FB61F12CB}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 14
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -91,13 +89,10 @@ Global
 		SccProjectUniqueName11 = Polaris.Quickstart.QuertyKeyboard\\Polaris.Quickstart.QuertyKeyboard.csproj
 		SccProjectName11 = Polaris.Quickstart.QuertyKeyboard
 		SccLocalPath11 = Polaris.Quickstart.QuertyKeyboard
-		SccProjectUniqueName12 = Polaris.Quickstart.Msbuild.AssemblyInfoCSample\\Polaris.Quickstart.Msbuild.AssemblyInfoCSample.csproj
-		SccProjectName12 = Polaris.Quickstart.Msbuild.AssemblyInfoCSample
-		SccLocalPath12 = Polaris.Quickstart.Msbuild.AssemblyInfoCSample
-		SccProjectUniqueName13 = MSBuild\\Polaris.MSBuild.Common\\Polaris.MSBuild.Common.csproj
-		SccProjectTopLevelParentUniqueName13 = Polaris.sln
-		SccProjectName13 = MSBuild/Polaris.MSBuild.Common
-		SccLocalPath13 = MSBuild\\Polaris.MSBuild.Common
+		SccProjectUniqueName12 = MSBuild\\Polaris.MSBuild.Common\\Polaris.MSBuild.Common.csproj
+		SccProjectTopLevelParentUniqueName12 = Polaris.sln
+		SccProjectName12 = MSBuild/Polaris.MSBuild.Common
+		SccLocalPath12 = MSBuild\\Polaris.MSBuild.Common
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -264,21 +259,6 @@ Global
 		{375F9254-9BB5-4395-BEE1-B8505CD6F040}.Release|Mixed Platforms.Build.0 = Release|x86
 		{375F9254-9BB5-4395-BEE1-B8505CD6F040}.Release|x86.ActiveCfg = Release|x86
 		{375F9254-9BB5-4395-BEE1-B8505CD6F040}.Release|x86.Build.0 = Release|x86
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Nuget Deploy|Any CPU.ActiveCfg = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Nuget Deploy|Any CPU.Build.0 = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Nuget Deploy|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Nuget Deploy|Mixed Platforms.Build.0 = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Nuget Deploy|x86.ActiveCfg = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7196CCBB-A5AB-41C7-AFB6-85AF526E78F2}.Release|x86.ActiveCfg = Release|Any CPU
 		{DCD4BDAC-E67A-49BD-8EE7-FD2FB61F12CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCD4BDAC-E67A-49BD-8EE7-FD2FB61F12CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCD4BDAC-E67A-49BD-8EE7-FD2FB61F12CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

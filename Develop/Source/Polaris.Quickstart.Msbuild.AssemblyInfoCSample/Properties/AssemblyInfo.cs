@@ -1,6 +1,6 @@
 #region Copyright
 /*
- * Copyright (c) 2013 The Foo Company ver. "1.0.14055.18490"
+ * Copyright (c) 2013 The Foo Company Ver.Debug #"1.0.14057.19196" 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software
@@ -50,5 +50,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ("1.0.14056.18786")]
+[assembly: AssemblyVersion ("1.0.14058.19341")]
 [assembly: AssemblyFileVersion ("1.0.0.0")]
