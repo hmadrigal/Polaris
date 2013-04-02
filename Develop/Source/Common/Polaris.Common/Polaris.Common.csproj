@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <UsingTask TaskName="ReadAllTextTask" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
-    <ParameterGroup>
-      <Path ParameterType="System.String" Required="true" />
-      <FileContent ParameterType="System.String" Output="true" />
-    </ParameterGroup>
-    <Task>
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-FileContent = File.ReadAllText(Path);
-]]>
-      </Code>
-    </Task>
-  </UsingTask>
-
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -64,6 +50,51 @@ FileContent = File.ReadAllText(Path);
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|AnyCPU'">
+    <OutputPath>bin\NugetDeploy\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Nuget Deploy|x86'">
+    <OutputPath>bin\x86\Nuget Deploy\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|x86'">
+    <OutputPath>bin\x86\NugetDeploy\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -74,7 +105,7 @@ FileContent = File.ReadAllText(Path);
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\AssemblyVersion.cs">
+    <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Extensions\NumericExtensions.cs" />
@@ -83,136 +114,6 @@ FileContent = File.ReadAllText(Path);
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <ItemGroup>
-      <AssemblyVersionFile Include="..\..\AssemblyVersion.cs" />
-    </ItemGroup>
-    <Message Text="======================================================" Importance="high" />
-    <ReadLinesFromFile File="@(AssemblyVersionFile)">
-      <Output TaskParameter="Lines" ItemName="ItemsFromFile" />
-    </ReadLinesFromFile>
-    <PropertyGroup>
-      <Pattern>(\d+)\.(\d+)\.(\d+)</Pattern>
-      <InputFile>@(ItemsFromFile)</InputFile>
-      <OutputMatch>$([System.Text.RegularExpressions.Regex]::Match($(InputFile), $(Pattern)))</OutputMatch>
-      <AssemblyMajorVersion>$(OutputMatch.Split(`.`)[0])</AssemblyMajorVersion>
-      <AssemblyMinorVersion>$(OutputMatch.Split(`.`)[1])</AssemblyMinorVersion>
-      <AssemblyBuildNumber>$(OutputMatch.Split(`.`)[2])</AssemblyBuildNumber>
-      <NewAssemblyBuildNumber>$([MSBuild]::Modulo($([System.Int32]::Parse($([System.DateTime]::UtcNow.ToString(`yyMM`)))), 65535))</NewAssemblyBuildNumber>
-      <NewAssemblyRevision>$([System.Convert]::ToInt32($([MSBuild]::Multiply($([MSBuild]::Divide($([System.Int32]::Parse($([System.DateTime]::UtcNow.ToString(`dHHmm`)))), 312359)),65535))))</NewAssemblyRevision>
-      <NewAssemblyVersionAttribute>[assembly: System.Reflection.AssemblyVersion("$(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)")]</NewAssemblyVersionAttribute>
-      <NewAssemblyCopyrightAttribute>[assembly: System.Reflection.AssemblyCopyright("Copyright Polaris $([System.DateTime]::UtcNow.ToString(`yyyy`))")]</NewAssemblyCopyrightAttribute>
-      <NewAssemblyVersionFile>
-        <![CDATA[
-$(NewAssemblyVersionAttribute)
-$(NewAssemblyCopyrightAttribute)
-]]>
-      </NewAssemblyVersionFile>
-    </PropertyGroup>
-    <Message Text="Found AssemblyVersion : $(OutputMatch)" Importance="high" />
-    <Message Text="AssemblyMajorVersion : $(AssemblyMajorVersion)" Importance="high" />
-    <Message Text="AssemblyMinorVersion : $(AssemblyMinorVersion)" Importance="high" />
-    <Message Text="AssemblyBuildNumber : $(AssemblyBuildNumber)" Importance="high" />
-    <Message Text="New AssemblyVersion : $(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)" Importance="high" />
-    <Exec Command="attrib -r @(AssemblyVersionFile)" />
-    <WriteLinesToFile File="@(AssemblyVersionFile)" Lines="$(NewAssemblyVersionFile)" Overwrite="true" />
-    <Message Text="======================================================" Importance="high" />
-  </Target>
-  <Target Name="AfterBuild" >
-    <CallTarget Condition="'$(Configuration)' == 'Nuget Deploy'" Targets="NugetUpdateTask">
-
-    </CallTarget>
-  </Target>
-  <Target Name="NugetUpdateTask" >
-    <PropertyGroup>
-      <NugetXslt>
-        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0" 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nuspec="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd" xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
-  <xsl:output method="xml" indent="yes"/>
-  
-  <xsl:template match="/nuspec:package/nuspec:metadata/nuspec:version">
-	<xsl:element name="version" namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">$(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)</xsl:element>
-  </xsl:template>
-  
-  <xsl:template match="/nuspec:package/nuspec:metadata/nuspec:dependencies/nuspec:dependency">
-	<xsl:element name="dependency" namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">		
-		<xsl:attribute name="id">
-			<xsl:value-of select="@id"/>
-		</xsl:attribute>
-		<xsl:choose>
-			<xsl:when test="starts-with(@id, 'Polaris')">
-				<xsl:attribute name="version">$(AssemblyMajorVersion).$(AssemblyMinorVersion).$(NewAssemblyBuildNumber).$(NewAssemblyRevision)</xsl:attribute>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:attribute name="version">
-					<xsl:value-of select="@version"/>
-				</xsl:attribute>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:element>
-  </xsl:template>
-  <!-- Copy all the remaining nodes -->
-  <xsl:template match="node()|@*">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*"/>
-    </xsl:copy>
-  </xsl:template>
-</xsl:stylesheet>]]>
-      </NugetXslt>
-    </PropertyGroup>
-    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec">
-      <Output PropertyName="NugetPolariUiFileContent" TaskParameter="FileContent" />
-    </ReadAllTextTask>
-    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolariUiFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec"
-    />
-
-    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec">
-      <Output PropertyName="NugetPolarisCommonFileContent" TaskParameter="FileContent" />
-    </ReadAllTextTask>
-    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisCommonFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec"
-    />
-
-    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec">
-      <Output PropertyName="NugetPolarisKinectFileContent" TaskParameter="FileContent" />
-    </ReadAllTextTask>
-    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisKinectFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec"
-    />
-
-    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec">
-      <Output PropertyName="NugetPolarisServicesFileContent" TaskParameter="FileContent" />
-    </ReadAllTextTask>
-    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisServicesFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec"
-    />
-
-    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec">
-      <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
-    </ReadAllTextTask>
-    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisUnityExtensionsFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec"
-    />
-
-  </Target>
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
