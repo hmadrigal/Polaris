@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(SolutionDir)/MSBuild/Polaris.CSharp.targets"/>
+  <Import Project="$(SolutionDir)/MSBuild/Polaris.CSharp.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -52,7 +52,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|AnyCPU'">
-    <OutputPath>bin\NugetDeploy\</OutputPath>
+    <OutputPath>..\..\..\Bin\Common\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -115,17 +115,16 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Target Name="NugetUpdateTask" >
-  <SetTimeBaseAssemblyVersion AssemblyInfoFilepath="$(SolutionDir)\SolutionItems\AssemblyVersion.cs" UpdateAssemblyInfoFile="True">
-      <Output TaskParameter="AssemblyVersion"  PropertyName="AssemblyVersionPolarisCommon" />
-      <Output TaskParameter="AssemblyVersionMajor"  PropertyName="AssemblyVersionMajorPolarisCommon" />
-      <Output TaskParameter="AssemblyVersionMinor"  PropertyName="AssemblyVersionMinorPolarisCommon" />
-      <Output TaskParameter="AssemblyVersionBuild"  PropertyName="AssemblyVersionBuildPolarisCommon" />
-      <Output TaskParameter="AssemblyVersionRevision"  PropertyName="AssemblyVersionRevisionPolarisCommon" />
-    </SetTimeBaseAssemblyVersion> 
+  <Target Name="NugetUpdateTask">
+    <SetTimeBaseAssemblyVersion AssemblyInfoFilepath="$(SolutionDir)\SolutionItems\AssemblyVersion.cs" UpdateAssemblyInfoFile="True">
+      <Output TaskParameter="AssemblyVersion" PropertyName="AssemblyVersionPolarisCommon" />
+      <Output TaskParameter="AssemblyVersionMajor" PropertyName="AssemblyVersionMajorPolarisCommon" />
+      <Output TaskParameter="AssemblyVersionMinor" PropertyName="AssemblyVersionMinorPolarisCommon" />
+      <Output TaskParameter="AssemblyVersionBuild" PropertyName="AssemblyVersionBuildPolarisCommon" />
+      <Output TaskParameter="AssemblyVersionRevision" PropertyName="AssemblyVersionRevisionPolarisCommon" />
+    </SetTimeBaseAssemblyVersion>
     <PropertyGroup>
-      <NugetXslt>
-        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+      <NugetXslt><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nuspec="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd" xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
   <xsl:output method="xml" indent="yes"/>
@@ -157,62 +156,36 @@
       <xsl:apply-templates select="node()|@*"/>
     </xsl:copy>
   </xsl:template>
-</xsl:stylesheet>]]>
-      </NugetXslt>
+</xsl:stylesheet>]]></NugetXslt>
     </PropertyGroup>
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec">
       <Output PropertyName="NugetPolariUiFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolariUiFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec"
-    />
-
+    <XslTransformation XmlContent="$(NugetPolariUiFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Ui\Polaris.Ui.nuspec" />
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec">
       <Output PropertyName="NugetPolarisCommonFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisCommonFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec"
-    />
-
+    <XslTransformation XmlContent="$(NugetPolarisCommonFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common\Polaris.Common.nuspec" />
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec">
       <Output PropertyName="NugetPolarisKinectFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisKinectFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec"
-    />
-
+    <XslTransformation XmlContent="$(NugetPolarisKinectFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Kinect\Polaris.Kinect.nuspec" />
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec">
       <Output PropertyName="NugetPolarisServicesFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisServicesFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec"
-    />
-
+    <XslTransformation XmlContent="$(NugetPolarisServicesFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Services\Polaris.Services.nuspec" />
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec" />
-    <XslTransformation
-          XmlContent="$(NugetPolarisUnityExtensionsFileContent)"
-          XslContent="$(NugetXslt)"
-          OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec"
-    />
+    <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec" />
   </Target>
   <Target Name="BeforeBuild">
-	<CallTarget Condition="'$(Configuration)' == 'NugetDeploy'" Targets="NugetUpdateTask">
-
+    <CallTarget Condition="'$(Configuration)' == 'NugetDeploy'" Targets="NugetUpdateTask">
     </CallTarget>
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -53,7 +53,7 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|AnyCPU'">
-    <OutputPath>bin\NugetDeploy\</OutputPath>
+    <OutputPath>..\..\..\Bin\Wpf\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

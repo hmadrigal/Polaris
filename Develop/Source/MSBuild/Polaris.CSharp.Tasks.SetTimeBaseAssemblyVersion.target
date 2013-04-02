@@ -91,13 +91,13 @@
                         AssemblyVersionBuild,
                         AssemblyVersionRevision
                     );
-                    if (AssemblyVersionBuild.StartsWith("."))
+                    if (AssemblyVersionBuild.StartsWith(".") && !AssemblyVersionBuild.StartsWith(".*"))
                     {
-                        AssemblyVersionBuild = AssemblyVersionBuild.Substring(1, AssemblyVersionBuild.Length - 1);
+                        AssemblyVersionBuild = AssemblyVersionBuild.Substring(1);
                     }
-                    if (AssemblyVersionRevision.StartsWith("."))
+                    if (AssemblyVersionRevision.StartsWith(".") && !AssemblyVersionRevision.StartsWith(".*"))
                     {
-                        AssemblyVersionRevision = AssemblyVersionRevision.Substring(1, AssemblyVersionBuild.Length - 1);
+                        AssemblyVersionRevision = AssemblyVersionRevision.Substring(1);
                     }
                     fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(\"", AssemblyVersion, "\")]");
                 }

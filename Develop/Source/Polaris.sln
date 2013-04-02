@@ -33,6 +33,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuickStars", "QuickStars", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kinect", "Kinect", "{E8F8F1E6-D94D-44D7-B494-612E9254A602}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{410F146B-41D7-4322-A3EA-F162C7B5888A}"
+	ProjectSection(SolutionItems) = preProject
+		MSBuild\Polaris.CSharp.targets = MSBuild\Polaris.CSharp.targets
+		MSBuild\Polaris.CSharp.Tasks.ReadAllText.target = MSBuild\Polaris.CSharp.Tasks.ReadAllText.target
+		MSBuild\Polaris.CSharp.Tasks.ReadAssemblyInfo.target = MSBuild\Polaris.CSharp.Tasks.ReadAssemblyInfo.target
+		MSBuild\Polaris.CSharp.Tasks.SetTimeBaseAssemblyVersion.target = MSBuild\Polaris.CSharp.Tasks.SetTimeBaseAssemblyVersion.target
+		MSBuild\Polaris.CSharp.Tasks.TransformWMAppManifest.target = MSBuild\Polaris.CSharp.Tasks.TransformWMAppManifest.target
+		MSBuild\Polaris.CSharp.Tasks.WriteAssemblyInfo.target = MSBuild\Polaris.CSharp.Tasks.WriteAssemblyInfo.target
+		MSBuild\WMAppManifest.xslt = MSBuild\WMAppManifest.xslt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8
