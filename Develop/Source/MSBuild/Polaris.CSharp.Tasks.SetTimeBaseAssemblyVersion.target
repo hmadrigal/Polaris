@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Reads all a given input file and sets its content to a output parameter-->
+  <UsingTask TaskName="SetTimeBaseAssemblyVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <AssemblyInfoFilepath ParameterType="System.String" Required="true" />
+      <UpdateAssemblyInfoFile ParameterType="System.Boolean" Required="false" />
+      <AssemblyVersion ParameterType="System.String" Output="true" />
+      <AssemblyVersionMajor ParameterType="System.String" Output="true" />
+      <AssemblyVersionMinor ParameterType="System.String" Output="true" />
+      <AssemblyVersionBuild ParameterType="System.String" Output="true" />
+      <AssemblyVersionRevision ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            #region SetTimeBaseAssemblyVersion
+
+            AssemblyVersion = string.Empty;
+            AssemblyVersionMajor = string.Empty;
+            AssemblyVersionMinor = string.Empty;
+            AssemblyVersionBuild = string.Empty;
+            AssemblyVersionRevision = string.Empty;
+
+
+            const int NotIndexed = -1;
+            var firstStringParameterRegEx = new System.Text.RegularExpressions.Regex(@"""(?<parameter>.*)""", System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+            var startIndex = NotIndexed;
+            var fileLines = System.IO.File.ReadAllLines(AssemblyInfoFilepath);
+            var line = string.Empty;
+            System.Text.RegularExpressions.Match parameterMatch;
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+                startIndex = NotIndexed;
+                line = fileLines[i];
+                if (line.StartsWith("//"))
+                { continue; }
+                if ((startIndex = line.IndexOf("/*")) != NotIndexed)
+                {
+                    line = line.Substring(0, startIndex);
+                    while (i < fileLines.Length && !line.Contains("*/"))
+                    {
+                        i++;
+                        line = fileLines[i];
+                    }
+                    if (i == fileLines.Length)
+                    { break; }
+                }
+
+                if ((startIndex = line.IndexOf(@"AssemblyVersion")) != NotIndexed)
+                {
+
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyVersion = parameterMatch.Groups["parameter"].Value;
+
+                    var assemblyVersionRegEx = new System.Text.RegularExpressions.Regex(@"(?<AssemblyVersionMajor>\d+)\.(?<AssemblyVersionMinor>\d+)(?:\.*)(?<AssemblyVersionBuild>\*|(\d*))(?:\.*)(?<AssemblyVersionRevision>\*|(\d*))", System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+                    var versionMatches = assemblyVersionRegEx.Match(AssemblyVersion);
+                    if (versionMatches.Groups.Count == 0)
+                    {
+                        //Log.LogMessage(MessageImportance.High, "Task could not analyze version '{0}'.", newPrimitiveExpression.LiteralValue);
+                        continue;
+                    }
+                    AssemblyVersionMajor = versionMatches.Groups["AssemblyVersionMajor"].Value;
+                    AssemblyVersionMinor = versionMatches.Groups["AssemblyVersionMinor"].Value;
+                    AssemblyVersionBuild = versionMatches.Groups["AssemblyVersionBuild"].Value;
+                    AssemblyVersionRevision = versionMatches.Groups["AssemblyVersionRevision"].Value;
+
+                    //TODO: Provide mechanism for customizing build/revision computation. This is only one of the tons of possible computations
+                    // Computing the build number based on how much of the year has lapsed
+                    #region Computing new Build and Revision
+                    var utcNow = DateTime.UtcNow;
+                    var endOfThisYear = new DateTime(utcNow.Year, 12, 31, 23, 59, 59, 999, DateTimeKind.Utc);
+                    var beginOfThisYear = new DateTime(utcNow.Year, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                    var totalOfMillisecondOfThisYear = (endOfThisYear - beginOfThisYear).TotalMilliseconds;
+                    var totalOfMillisecondUntilNow = (utcNow - beginOfThisYear).TotalMilliseconds;
+                    ushort newBuildNumber = Convert.ToUInt16((totalOfMillisecondUntilNow / totalOfMillisecondOfThisYear) * ushort.MaxValue);
+                    // Computing the revision number based on how much of the day has lapsed
+                    double totalOfMillisecondsOfADay = 86400000L;
+                    double totalOfMillisecondsOnlyToday = (utcNow - utcNow.Date).TotalMilliseconds;
+                    ushort newRevisionNumber = Convert.ToUInt16((totalOfMillisecondsOnlyToday / totalOfMillisecondsOfADay) * ushort.MaxValue);
+                    #endregion
+
+                    // Generates the new version based on the old version and the computed version
+                    AssemblyVersionBuild = string.IsNullOrEmpty(AssemblyVersionBuild) ? AssemblyVersionBuild : string.Concat(".", "*" == AssemblyVersionBuild ? AssemblyVersionBuild : newBuildNumber.ToString());
+                    AssemblyVersionRevision = string.IsNullOrEmpty(AssemblyVersionRevision) ? AssemblyVersionRevision : string.Concat(".", "*" == AssemblyVersionRevision ? AssemblyVersionRevision : newRevisionNumber.ToString());
+                    AssemblyVersion = string.Format("\"{0}.{1}{2}{3}\"",
+                        AssemblyVersionMajor,
+                        AssemblyVersionMinor,
+                        AssemblyVersionBuild,
+                        AssemblyVersionRevision
+                    );
+
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(", AssemblyVersion, ")]");
+                }
+            }
+            #endregion
+
+            if (UpdateAssemblyInfoFile) {
+              System.IO.File.WriteAllLines(AssemblyInfoFilepath, fileLines);
+            }
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

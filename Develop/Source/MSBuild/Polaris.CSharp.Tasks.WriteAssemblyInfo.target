@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Reads all a given input file and sets its content to a output parameter-->
+  <UsingTask TaskName="WriteAssemblyInfo" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <AssemblyInfoFilepath ParameterType="System.String" Required="true" />
+      <AssemblyTitle ParameterType="System.String" Required="false" />
+      <AssemblyDescription ParameterType="System.String" Required="false" />
+      <AssemblyConfiguration ParameterType="System.String" Required="false" />
+      <AssemblyCompany ParameterType="System.String" Required="false" />
+      <AssemblyProduct ParameterType="System.String" Required="false" />
+      <AssemblyCopyright ParameterType="System.String" Required="false" />
+      <AssemblyTrademark ParameterType="System.String" Required="false" />
+      <AssemblyCulture ParameterType="System.String" Required="false" />
+      <AssemblyVersion ParameterType="System.String" Required="false" />
+      <AssemblyVersionMajor ParameterType="System.String" Required="false" />
+      <AssemblyVersionMinor ParameterType="System.String" Required="false" />
+      <AssemblyVersionBuild ParameterType="System.String" Required="false" />
+      <AssemblyVersionRevision ParameterType="System.String" Required="false" />
+      <AssemblyFileVersion ParameterType="System.String" Required="false" />
+      <AssemblyInformationalVersion ParameterType="System.String" Required="false" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            const int NotIndexed = -1;
+            var firstStringParameterRegEx = new System.Text.RegularExpressions.Regex(@"""(?<parameter>.*)""", System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+            var startIndex = NotIndexed;
+            var fileLines = System.IO.File.ReadAllLines(AssemblyInfoFilepath);
+            var line = string.Empty;
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+                startIndex = NotIndexed;
+                line = fileLines[i];
+                if (line.StartsWith("//"))
+                { continue; }
+                if ((startIndex = line.IndexOf("/*")) != NotIndexed)
+                {
+                    line = line.Substring(0, startIndex);
+                    while (i < fileLines.Length && !line.Contains("*/"))
+                    {
+                        i++;
+                        line = fileLines[i];
+                    }
+                    if (i == fileLines.Length)
+                    { break; }
+                }
+
+                if (!string.IsNullOrEmpty(AssemblyTitle) && (startIndex = line.IndexOf(@"AssemblyTitle")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyTitle(\"", AssemblyTitle, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyDescription) && (startIndex = line.IndexOf(@"AssemblyDescription")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyDescription(\"", AssemblyDescription, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyConfiguration) && (startIndex = line.IndexOf(@"AssemblyConfiguration")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyConfiguration(\"", AssemblyConfiguration, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyCompany) && (startIndex = line.IndexOf(@"AssemblyCompany")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyCompany(\"", AssemblyCompany, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyProduct) && (startIndex = line.IndexOf(@"AssemblyProduct")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyProduct(\"", AssemblyProduct, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyCopyright) && (startIndex = line.IndexOf(@"AssemblyCopyright")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyCopyright(\"", AssemblyCopyright, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyTrademark) && (startIndex = line.IndexOf(@"AssemblyTrademark")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyTrademark(\"", AssemblyTrademark, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyCulture) && (startIndex = line.IndexOf(@"AssemblyCulture")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyCulture(\"", AssemblyCulture, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyVersion) && (startIndex = line.IndexOf(@"AssemblyVersion")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(\"", AssemblyVersion, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyVersionMajor) && !string.IsNullOrEmpty(AssemblyVersionMinor) && (startIndex = line.IndexOf(@"AssemblyVersion")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(\"", AssemblyVersionMajor, ".", AssemblyVersionMinor, ".",
+                        string.IsNullOrEmpty(AssemblyVersionBuild) ? string.Empty : "." + AssemblyVersionBuild,
+                        string.IsNullOrEmpty(AssemblyVersionRevision) ? string.Empty : "." + AssemblyVersionRevision,
+                         "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyFileVersion) && (startIndex = line.IndexOf(@"AssemblyFileVersion")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyFileVersion(\"", AssemblyFileVersion, "\")]");
+                }
+                else if (!string.IsNullOrEmpty(AssemblyInformationalVersion) && (startIndex = line.IndexOf(@"AssemblyInformationalVersion")) != NotIndexed)
+                {
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyInformationalVersion(\"", AssemblyInformationalVersion, "\")]");
+                }
+            }
+            #endregion
+
+            System.IO.File.WriteAllLines(AssemblyInfoFilepath, fileLines);
+            ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Reads all a given input file and sets its content to a output parameter-->
+  <UsingTask TaskName="ReadAssemblyInfo" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <AssemblyInfoFilepath ParameterType="System.String" Required="true" />
+      <AssemblyTitle ParameterType="System.String" Output="true" />
+      <AssemblyDescription ParameterType="System.String" Output="true" />
+      <AssemblyConfiguration ParameterType="System.String" Output="true" />
+      <AssemblyCompany ParameterType="System.String" Output="true" />
+      <AssemblyProduct ParameterType="System.String" Output="true" />
+      <AssemblyCopyright ParameterType="System.String" Output="true" />
+      <AssemblyTrademark ParameterType="System.String" Output="true" />
+      <AssemblyCulture ParameterType="System.String" Output="true" />
+      <AssemblyVersion ParameterType="System.String" Output="true" />
+      <AssemblyVersionMajor ParameterType="System.String" Output="true" />
+      <AssemblyVersionMinor ParameterType="System.String" Output="true" />
+      <AssemblyVersionBuild ParameterType="System.String" Output="true" />
+      <AssemblyVersionRevision ParameterType="System.String" Output="true" />
+      <AssemblyFileVersion ParameterType="System.String" Output="true" />
+      <AssemblyInformationalVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            AssemblyTitle = string.Empty;
+            AssemblyDescription = string.Empty;
+            AssemblyConfiguration = string.Empty;
+            AssemblyCompany = string.Empty;
+            AssemblyProduct = string.Empty;
+            AssemblyCopyright = string.Empty;
+            AssemblyTrademark = string.Empty;
+            AssemblyCulture = string.Empty;
+            AssemblyVersion = string.Empty;
+            AssemblyVersionMajor = string.Empty;
+            AssemblyVersionMinor = string.Empty;
+            AssemblyVersionBuild = string.Empty;
+            AssemblyVersionRevision = string.Empty;
+            AssemblyFileVersion = string.Empty;
+            AssemblyInformationalVersion = string.Empty;
+
+
+            const int NotIndexed = -1;
+            var firstStringParameterRegEx = new System.Text.RegularExpressions.Regex(@"""(?<parameter>.*)""", System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+            var startIndex = NotIndexed;
+            var fileLines = System.IO.File.ReadAllLines(AssemblyInfoFilepath);
+            var line = string.Empty;
+            System.Text.RegularExpressions.Match parameterMatch;
+            for (int i = 0; i < fileLines.Length; i++)
+            {
+                startIndex = NotIndexed;
+                line = fileLines[i];
+                if (line.StartsWith("//"))
+                { continue; }
+                if ((startIndex = line.IndexOf("/*")) != NotIndexed)
+                {
+                    line = line.Substring(0, startIndex);
+                    while (i < fileLines.Length && !line.Contains("*/"))
+                    {
+                        i++;
+                        line = fileLines[i];
+                    }
+                    if (i == fileLines.Length)
+                    { break; }
+                }
+
+                if ((startIndex = line.IndexOf(@"AssemblyTitle")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyTitle = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyDescription")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyDescription = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyConfiguration")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyConfiguration = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyCompany")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyCompany = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyProduct")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyProduct = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyCopyright")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyCopyright = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyTrademark")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyTrademark = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyCulture")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyCulture = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyVersion")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyVersion = parameterMatch.Groups["parameter"].Value;
+
+                    var assemblyVersionRegEx = new System.Text.RegularExpressions.Regex(@"(?<AssemblyVersionMajor>\d+)\.(?<AssemblyVersionMinor>\d+)(?:\.*)(?<AssemblyVersionBuild>\*|(\d*))(?:\.*)(?<AssemblyVersionRevision>\*|(\d*))", System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+                    var versionMatches = assemblyVersionRegEx.Match(AssemblyVersion);
+                    if (versionMatches.Groups.Count == 0)
+                    {
+                        //Log.LogMessage(MessageImportance.High, "Task could not analyze version '{0}'.", newPrimitiveExpression.LiteralValue);
+                        continue;
+                    }
+                    AssemblyVersionMajor = versionMatches.Groups["AssemblyVersionMajor"].Value;
+                    AssemblyVersionMinor = versionMatches.Groups["AssemblyVersionMinor"].Value;
+                    AssemblyVersionBuild = versionMatches.Groups["AssemblyVersionBuild"].Value;
+                    AssemblyVersionRevision = versionMatches.Groups["AssemblyVersionRevision"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyFileVersion")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyFileVersion = parameterMatch.Groups["parameter"].Value;
+                }
+                else if ((startIndex = line.IndexOf(@"AssemblyInformationalVersion")) != NotIndexed)
+                {
+                    parameterMatch = firstStringParameterRegEx.Match(line, startIndex);
+                    if (parameterMatch.Groups.Count == 0)
+                        continue;
+                    AssemblyInformationalVersion = parameterMatch.Groups["parameter"].Value;
+                }
+            }
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>
