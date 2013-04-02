@@ -83,16 +83,23 @@
                     #endregion
 
                     // Generates the new version based on the old version and the computed version
-                    AssemblyVersionBuild = string.IsNullOrEmpty(AssemblyVersionBuild) ? AssemblyVersionBuild : string.Concat(".", "*" == AssemblyVersionBuild ? AssemblyVersionBuild : newBuildNumber.ToString());
-                    AssemblyVersionRevision = string.IsNullOrEmpty(AssemblyVersionRevision) ? AssemblyVersionRevision : string.Concat(".", "*" == AssemblyVersionRevision ? AssemblyVersionRevision : newRevisionNumber.ToString());
-                    AssemblyVersion = string.Format("\"{0}.{1}{2}{3}\"",
+                    AssemblyVersionBuild = string.IsNullOrEmpty(AssemblyVersionBuild) ? string.Empty : string.Concat(".", "*" == AssemblyVersionBuild ? "*" : newBuildNumber.ToString());
+                    AssemblyVersionRevision = string.IsNullOrEmpty(AssemblyVersionRevision) ? string.Empty : string.Concat(".", "*" == AssemblyVersionRevision ? "*" : newRevisionNumber.ToString());
+                    AssemblyVersion = string.Format("{0}.{1}{2}{3}",
                         AssemblyVersionMajor,
                         AssemblyVersionMinor,
                         AssemblyVersionBuild,
                         AssemblyVersionRevision
                     );
-
-                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(", AssemblyVersion, ")]");
+                    if (AssemblyVersionBuild.StartsWith("."))
+                    {
+                        AssemblyVersionBuild = AssemblyVersionBuild.Substring(1, AssemblyVersionBuild.Length - 1);
+                    }
+                    if (AssemblyVersionRevision.StartsWith("."))
+                    {
+                        AssemblyVersionRevision = AssemblyVersionRevision.Substring(1, AssemblyVersionBuild.Length - 1);
+                    }
+                    fileLines[i] = string.Concat(line.Substring(0, startIndex), "AssemblyVersion(\"", AssemblyVersion, "\")]");
                 }
             }
             #endregion
