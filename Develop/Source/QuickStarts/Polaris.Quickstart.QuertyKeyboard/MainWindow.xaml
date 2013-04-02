@@ -6,8 +6,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Polaris.Quickstart.QuertyKeyboard.MainWindow"
         Title="MainWindow" WindowStartupLocation="CenterOwner" WindowState="Maximized" 
         xmlns:WindowsInput="clr-namespace:WindowsInput;assembly=InputSimulator"
+        xmlns:PolarisQuickstartQuertyKeyboard="clr-namespace:Polaris.Quickstart.QuertyKeyboard"
 		d:DesignWidth="1366" d:DesignHeight="768"
+        
         >
+    <Window.Resources>
+        <PolarisQuickstartQuertyKeyboard:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource MainWindowViewModel}" />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,7 +26,7 @@
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" MinHeight="50"  />
 
         <polarisWindowsControls:QuertyKeyboard Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" 
-                              InputEventType="MouseBasedEvent"
+                              InputEventType="MouseBasedEvent" 
                               />
         <WrapPanel Margin="30,30,68,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top">
         	<Button HorizontalAlignment="Left" Height="62" Width="74" Style="{StaticResource KeyboardButtonStyle}">

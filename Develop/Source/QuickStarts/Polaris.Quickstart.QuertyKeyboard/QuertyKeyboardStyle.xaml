@@ -1037,7 +1037,9 @@
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <ToggleButton Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
+                                            <ToggleButton 
+                                                IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                                Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift}" Content="LShift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
                                             <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyTilde}" Content="'" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyTittle}" Content="~" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyLowerThan}" Content="&lt;" Style="{StaticResource KeyboardSplittedButtonStyle}" />
@@ -1125,7 +1127,9 @@
                                             <Button Grid.Row="2" Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyApostrophe}" Content="&apos;" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyQuote}" Content="&quot;" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource StringKeyUnderscore}" Content="_" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <ToggleButton Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
+                                            <ToggleButton 
+                                                IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                                Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift}" Content="Rshift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
                                         </Grid>
 
                                         <Grid Grid.Row="3" Grid.ColumnSpan="6">
@@ -1200,7 +1204,9 @@
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <ToggleButton Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift1}" Content="LShift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
+                                            <ToggleButton 
+                                                IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                                Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift1}" Content="LShift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
                                             <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardSplittedButtonStyle}" />
@@ -1288,7 +1294,9 @@
                                             <Button Grid.Row="2" Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyComma}" Content="," Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod}" Content="." Style="{StaticResource KeyboardSplittedButtonStyle}" />
                                             <Button Grid.Row="2" Grid.Column="4" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash}" Content="/" Style="{StaticResource KeyboardSplittedButtonStyle}" />
-                                            <ToggleButton Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift1}" Content="Rshift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
+                                            <ToggleButton 
+                                                IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                                Grid.Row="2" Grid.Column="5" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift1}" Content="Rshift" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="80" />
                                         </Grid>
 
                                         <Grid Grid.Row="3" Grid.ColumnSpan="6">
@@ -1401,7 +1409,8 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <ToggleButton Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCapitalizeLock}" Content="Caps Lock" Style="{StaticResource KeyboardToggleButtonStyle}" Width="190" />
+                                        <ToggleButton 
+                                            Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyCapitalizeLock}" Content="Caps Lock" Style="{StaticResource KeyboardToggleButtonStyle}" Width="190" />
                                         <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyA}" Content="A" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyS}" Content="S" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyD}" Content="D" Style="{StaticResource KeyboardButtonStyle}" />
@@ -1432,7 +1441,9 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <ToggleButton Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift2}" Content="LShift" HorizontalContentAlignment="Left" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="225" />
+                                        <ToggleButton 
+                                            IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                            Grid.Column="0" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyLeftShift2}" Content="LShift" HorizontalContentAlignment="Left" Style="{StaticResource KeyboardImageToggleButtonStyle}" Width="225" />
                                         <Button Grid.Column="1" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyZ}" Content="Z" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="2" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyX}" Content="X" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="3" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyC}" Content="C" Style="{StaticResource KeyboardButtonStyle}" />
@@ -1444,7 +1455,9 @@
                                         <Button Grid.Column="9" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyPeriod1}" Content="." Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="10" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeySlash1}" Content="/" Style="{StaticResource KeyboardButtonStyle}" />
                                         <Button Grid.Column="11" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyUpArrow}" Content="Up" Style="{StaticResource KeyboardButtonStyle}" />
-                                        <ToggleButton Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift2}" Content="RShift" HorizontalContentAlignment="Right" Style="{StaticResource KeyboardImageToggleButtonStyle}" />
+                                        <ToggleButton 
+                                            IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type polarisWindowsControls:QuertyKeyboard}}, Path=DataContext.IsShiftEnabled,Mode=TwoWay}"
+                                            Grid.Column="12" Focusable="False" polarisWindowsControls:QuertyKeyboard.VirtualKey="{StaticResource QuertyKeyboardKeyRightShift2}" Content="RShift" HorizontalContentAlignment="Right" Style="{StaticResource KeyboardImageToggleButtonStyle}" />
                                     </Grid>
 
                                     <Grid x:Name="StandardLine5" Grid.Row="4">
