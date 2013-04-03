@@ -99,9 +99,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InputSimulator">
-      <HintPath>..\packages\InputSimulator.0.1.0.0\lib\NET35\InputSimulator.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.0\Libraries\Microsoft.Expression.Interactions.dll</HintPath>
@@ -146,12 +143,14 @@
     <Compile Include="Controls\CarouselItemsControl.cs" />
     <Compile Include="Controls\DefaultUserDefinedKeyHandler.cs" />
     <Compile Include="Controls\DefaultKeyboardLayout.cs" />
+    <Compile Include="Controls\DefaultWpfVisualKeyboardHandler.cs" />
     <Compile Include="Controls\FontFormat.cs" />
     <Compile Include="Controls\FontFormatCollection.cs" />
     <Compile Include="Controls\FontFormatType.cs" />
     <Compile Include="Controls\FormattedTextBlock.cs" />
     <Compile Include="Controls\ILogicalKey.cs" />
     <Compile Include="Controls\IUserDefinedKeyHandler.cs" />
+    <Compile Include="Controls\IVisualKeyboardHandler.cs" />
     <Compile Include="Controls\QuertyKeyboard.cs" />
     <Compile Include="Controls\ShadowedTextBlock.cs" />
     <Compile Include="Controls\ViewTransitionControl.cs" />
@@ -195,6 +194,10 @@
     <ProjectReference Include="..\..\Common\Polaris.Common\Polaris.Common.csproj">
       <Project>{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}</Project>
       <Name>Polaris.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\packages\InputSimulator.0.1.0.0\src\InputSimulator\InputSimulator.csproj">
+      <Project>{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}</Project>
+      <Name>InputSimulator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

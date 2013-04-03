@@ -160,6 +160,17 @@ namespace Polaris.Windows.Controls
                 new FrameworkPropertyMetadata((VirtualKeyboardInputEvent)VirtualKeyboardInputEvent.MouseBasedEvent));
         #endregion
 
+
+        [Description("Provides a mechanism for customizing how visual keys.")]
+        [Category("Querty OSK")]
+        [DisplayName("Input event type")]
+        public IVisualKeyboardHandler VisualKeyboardHandler
+        {
+            get { return _visualKeyboardHandler; }
+            set { _visualKeyboardHandler = value; }
+        }
+        private IVisualKeyboardHandler _visualKeyboardHandler = DefaultWpfVisualKeyboardHandler.Instance;
+
         public IKeyboardInput KeyboardService
         {
             get { return _keyboardService; }
@@ -172,6 +183,7 @@ namespace Polaris.Windows.Controls
         private Dictionary<ContentControl, DependencyLogicalKey> _virtualKeys;
         private readonly List<ModifierKeyBase> _modifierKeys;
         private readonly List<DependencyLogicalKey> _allLogicalKeys;
+        private VirtualKey _lastVirtualKeyPressed = null;
 
         static QuertyKeyboard()
         {
@@ -205,11 +217,12 @@ namespace Polaris.Windows.Controls
 
                 foreach (var element in _virtualKeys.Keys)
                 {
-                    _virtualKeys[element].KeyboardService = KeyboardService;
-                    _virtualKeys[element].LogicalKeyPressed += (s, e) =>
-                    {
-                        HandleLogicKeyPressed(e.Key);
-                    };
+                    //_virtualKeys[element].KeyboardService = KeyboardService;
+                    //_virtualKeys[element].LogicalKeyPressed += (s, e) =>
+                    //{
+                    //    HandleLogicKeyPressed(e.Key);
+                    //};
+                    VisualKeyboardHandler.RegisterKey(element);
 
                     if (InputEventType == VirtualKeyboardInputEvent.TouchBasedEvent)
                     {
@@ -344,19 +357,27 @@ namespace Polaris.Windows.Controls
         {
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
-            OnHandleButtonDown(virtualKeyConfig);
+            OnHandleButtonDown(element, virtualKeyConfig);
         }
 
         private void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = sender as ContentControl;
             var virtualKeyConfig = _virtualKeys[element];
-            OnHandleButtonDown(virtualKeyConfig);
+            OnHandleButtonDown(element, virtualKeyConfig);
         }
 
-        private void OnHandleButtonDown(DependencyLogicalKey virtualKeyConfig)
+        private void OnHandleButtonDown(ContentControl sender, DependencyLogicalKey virtualKeyConfig)
         {
             virtualKeyConfig.Press();
+            HandleLogicKeyPressed(virtualKeyConfig);
+            VisualKeyboardHandler.HandleKeyDown(sender, virtualKeyConfig, _virtualKeys);
+
+            if (_lastVirtualKeyPressed != null && _lastVirtualKeyPressed.KeyCode == VirtualKeyCode.SHIFT)
+            {
+                HandleShiftKeyPressed(_lastVirtualKeyPressed as ModifierKeyBase);
+            }
+            _lastVirtualKeyPressed = virtualKeyConfig as VirtualKey;
         }
 
         private void OnButtonTouchUp(object sender, TouchEventArgs e)
