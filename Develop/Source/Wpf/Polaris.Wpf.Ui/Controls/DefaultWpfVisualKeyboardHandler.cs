@@ -12,7 +12,28 @@ namespace Polaris.Windows.Controls
         public void HandleKeyDown(System.Windows.Controls.ContentControl sender, DependencyLogicalKey virtualKeyConfig, Dictionary<ContentControl, DependencyLogicalKey> virtualKeys)
         {
             var virtualKey = QuertyKeyboard.GetVirtualKey(sender) as VirtualKey;
+            var userDefineKey = QuertyKeyboard.GetVirtualKey(sender) as UserDefinedKey;
             var isShiftVirtualKey = GetIsShiftVirtualKey(virtualKey);
+            if (userDefineKey != null)
+            {
+                foreach (var kvp in _shiftKeys)
+                {
+                    foreach (var control in _shiftKeys[kvp.Key])
+                    {
+                        if (control is System.Windows.Controls.CheckBox)
+                        {
+                            var checkBox = control as System.Windows.Controls.CheckBox;
+                            checkBox.IsChecked = false;
+                        }
+                        else if (control is System.Windows.Controls.Primitives.ToggleButton)
+                        {
+                            var toggleButton = control as System.Windows.Controls.Primitives.ToggleButton;
+                            toggleButton.IsChecked = false;
+                        }
+                    }
+                }
+            }
+
             if (isShiftVirtualKey || virtualKey == null)
             { return; }
 
@@ -20,17 +41,16 @@ namespace Polaris.Windows.Controls
             {
                 foreach (var control in _shiftKeys[kvp.Key])
                 {
+                    var isKeyDown = virtualKey.KeyboardService.IsKeyDownAsync(kvp.Key);
                     if (control is System.Windows.Controls.CheckBox)
                     {
                         var checkBox = control as System.Windows.Controls.CheckBox;
-                        checkBox.IsChecked = null;
-                        checkBox.IsChecked = virtualKey.KeyboardService.IsKeyDownAsync(kvp.Key);
+                        checkBox.IsChecked = isKeyDown;
                     }
                     else if (control is System.Windows.Controls.Primitives.ToggleButton)
                     {
                         var toggleButton = control as System.Windows.Controls.Primitives.ToggleButton;
-                        toggleButton.IsChecked = null;
-                        toggleButton.IsChecked = virtualKey.KeyboardService.IsKeyDownAsync(kvp.Key);
+                        toggleButton.IsChecked = isKeyDown;
                     }
                 } 
             }

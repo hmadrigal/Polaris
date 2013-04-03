@@ -292,6 +292,7 @@ namespace Polaris.Windows.Controls
             else if (UserDefinedKeyHandler != null && logicalKey is UserDefinedKey)
             {
                 UserDefinedKeyHandler.HandleUserDefinedKey(this, logicalKey, KeyboardService);
+                ResetInstantaneousModifierKeys();
             }
             else
             {
@@ -373,7 +374,7 @@ namespace Polaris.Windows.Controls
             HandleLogicKeyPressed(virtualKeyConfig);
             VisualKeyboardHandler.HandleKeyDown(sender, virtualKeyConfig, _virtualKeys);
 
-            if (_lastVirtualKeyPressed != null && _lastVirtualKeyPressed.KeyCode == VirtualKeyCode.SHIFT)
+            if (_lastVirtualKeyPressed != null && (_lastVirtualKeyPressed.KeyCode == VirtualKeyCode.SHIFT))
             {
                 HandleShiftKeyPressed(_lastVirtualKeyPressed as ModifierKeyBase);
                 ResetInstantaneousModifierKeys();
@@ -383,7 +384,7 @@ namespace Polaris.Windows.Controls
                     .ForEach(x => x.SynchroniseKeyState());
                 SetKeysContent();
             }
-            _lastVirtualKeyPressed = virtualKeyConfig as VirtualKey;
+            _lastVirtualKeyPressed = virtualKeyConfig as VirtualKey; 
         }
 
         private void OnButtonTouchUp(object sender, TouchEventArgs e)
