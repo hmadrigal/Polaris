@@ -26,7 +26,7 @@ namespace WindowsInput
         /// This function does not reset the keyboard's current state. Any keys that are already pressed when the function is called might interfere with the events that this function generates. To avoid this problem, check the keyboard's state with the GetAsyncKeyState function and correct as necessary.
         /// </remarks>
         [DllImport("user32.dll", SetLastError = true)]
-        static extern UInt32 SendInput(UInt32 numberOfInputs, INPUT[] inputs, Int32 sizeOfInputStructure);
+        static extern UInt32 SendInput(UInt32 numberOfInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] inputs, Int32 sizeOfInputStructure);
 
         /// <summary>
         /// The GetAsyncKeyState function determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState. (See: http://msdn.microsoft.com/en-us/library/ms646293(VS.85).aspx)
@@ -64,7 +64,7 @@ namespace WindowsInput
         /// These left- and right-distinguishing constants are only available when you call the GetKeyboardState, SetKeyboardState, GetAsyncKeyState, GetKeyState, and MapVirtualKey functions. 
         /// </remarks>
         [DllImport("user32.dll", SetLastError = true)]
-        static extern Int16 GetAsyncKeyState(UInt16 virtualKeyCode);
+        static extern Int16 GetAsyncKeyState(Int32 virtualKeyCode);
 
         /// <summary>
         /// The GetKeyState function retrieves the status of the specified virtual key. The status specifies whether the key is up, down, or toggled (on, off alternating each time the key is pressed). (See: http://msdn.microsoft.com/en-us/library/ms646301(VS.85).aspx)
