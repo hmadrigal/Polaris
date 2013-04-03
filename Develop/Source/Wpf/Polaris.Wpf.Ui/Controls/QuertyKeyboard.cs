@@ -376,6 +376,12 @@ namespace Polaris.Windows.Controls
             if (_lastVirtualKeyPressed != null && _lastVirtualKeyPressed.KeyCode == VirtualKeyCode.SHIFT)
             {
                 HandleShiftKeyPressed(_lastVirtualKeyPressed as ModifierKeyBase);
+                ResetInstantaneousModifierKeys();
+                _modifierKeys
+                    .OfType<InstantaneousModifierKey>()
+                    .ToList()
+                    .ForEach(x => x.SynchroniseKeyState());
+                SetKeysContent();
             }
             _lastVirtualKeyPressed = virtualKeyConfig as VirtualKey;
         }

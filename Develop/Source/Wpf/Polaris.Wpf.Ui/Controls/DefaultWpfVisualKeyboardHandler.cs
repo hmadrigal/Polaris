@@ -13,7 +13,7 @@ namespace Polaris.Windows.Controls
         {
             var virtualKey = QuertyKeyboard.GetVirtualKey(sender) as VirtualKey;
             var isShiftVirtualKey = GetIsShiftVirtualKey(virtualKey);
-            if (isShiftVirtualKey)
+            if (isShiftVirtualKey || virtualKey == null)
             { return; }
 
             foreach (var kvp in _shiftKeys)
