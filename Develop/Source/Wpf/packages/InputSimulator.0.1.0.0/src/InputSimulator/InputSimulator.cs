@@ -136,8 +136,8 @@ namespace WindowsInput
         /// </remarks>
         public static bool IsKeyDownAsync(VirtualKeyCode keyCode)
         {
-            Int16 result = GetAsyncKeyState((UInt16)keyCode);
-            return (result < 0);
+            Int32 result = GetAsyncKeyState((Int32)keyCode) & 0x8000;
+            return 0 != (result);
         }
 
         /// <summary>
