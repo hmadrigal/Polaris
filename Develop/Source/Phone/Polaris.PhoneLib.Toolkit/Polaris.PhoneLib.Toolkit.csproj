@@ -87,6 +87,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Actions\FormatHtmlContent.cs" />
     <Compile Include="Actions\FormatHtmlPage.cs" />
     <Compile Include="Actions\GoToEnumStateAction.cs" />
