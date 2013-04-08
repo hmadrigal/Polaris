@@ -56,9 +56,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Mvvm", "Ph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.SystemEx", "Phone\Polaris.PhoneLib.SystemEx\Polaris.PhoneLib.SystemEx.csproj", "{C77A37AE-6202-4FBF-AAEE-791E13064F82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Quickstart.CalPhoneApp", "QuickStarts\Polaris.Quickstart.CalPhoneApp\Polaris.Quickstart.CalPhoneApp.csproj", "{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 13
+		SccNumberOfProjects = 14
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -110,6 +112,10 @@ Global
 		SccProjectTopLevelParentUniqueName12 = Polaris.sln
 		SccProjectName12 = Phone/Polaris.PhoneLib.SystemEx
 		SccLocalPath12 = Phone\\Polaris.PhoneLib.SystemEx
+		SccProjectUniqueName13 = QuickStarts\\Polaris.Quickstart.CalPhoneApp\\Polaris.Quickstart.CalPhoneApp.csproj
+		SccProjectTopLevelParentUniqueName13 = Polaris.sln
+		SccProjectName13 = QuickStarts/Polaris.Quickstart.CalPhoneApp
+		SccLocalPath13 = QuickStarts\\Polaris.Quickstart.CalPhoneApp
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +384,36 @@ Global
 		{C77A37AE-6202-4FBF-AAEE-791E13064F82}.Release|x64.ActiveCfg = Release|Any CPU
 		{C77A37AE-6202-4FBF-AAEE-791E13064F82}.Release|x86.ActiveCfg = Release|x86
 		{C77A37AE-6202-4FBF-AAEE-791E13064F82}.Release|x86.Build.0 = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|ARM.ActiveCfg = Debug|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|ARM.Build.0 = Debug|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|ARM.Deploy.0 = Debug|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|x86.ActiveCfg = Debug|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|x86.Build.0 = Debug|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Debug|x86.Deploy.0 = Debug|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|Any CPU.Build.0 = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|Any CPU.Deploy.0 = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|ARM.ActiveCfg = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|ARM.Build.0 = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|ARM.Deploy.0 = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|x64.ActiveCfg = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|x86.ActiveCfg = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|x86.Build.0 = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.NugetDeploy|x86.Deploy.0 = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|ARM.ActiveCfg = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|ARM.Build.0 = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|ARM.Deploy.0 = Release|ARM
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|x64.ActiveCfg = Release|Any CPU
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|x86.ActiveCfg = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|x86.Build.0 = Release|x86
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,6 +430,7 @@ Global
 		{C77A37AE-6202-4FBF-AAEE-791E13064F82} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
 		{375F9254-9BB5-4395-BEE1-B8505CD6F040} = {777753FA-F0D5-4EF9-A19C-162834F81A5E}
 		{310F9742-CB94-4480-8E1C-49B7920E3CDA} = {777753FA-F0D5-4EF9-A19C-162834F81A5E}
+		{92D9F540-E2E7-44A0-BC82-3A3FA0C54832} = {777753FA-F0D5-4EF9-A19C-162834F81A5E}
 		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A} = {43066DA0-E4EB-4848-B781-734A47888A36}
 	EndGlobalSection
 EndGlobal
