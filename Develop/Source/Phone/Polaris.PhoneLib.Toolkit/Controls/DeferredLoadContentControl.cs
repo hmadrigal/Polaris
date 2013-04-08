@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 
 
-namespace FooWPhoneLibrary.Toolkit.Controls
+namespace Polaris.PhoneLib.Toolkit.Controls
 {
     /// <summary>
     /// A control which defers the loading of its content.

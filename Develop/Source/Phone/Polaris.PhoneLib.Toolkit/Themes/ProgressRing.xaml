@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Controls="clr-namespace:FooWPhoneLibrary.Toolkit.Controls">
+                    xmlns:Controls="clr-namespace:Polaris.PhoneLib.Toolkit">
     
     <Style TargetType="Controls:ProgressRing">
         <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>

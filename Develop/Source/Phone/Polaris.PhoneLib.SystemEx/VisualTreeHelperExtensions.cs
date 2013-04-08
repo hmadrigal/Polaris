@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace FooWPhoneLibrary.Toolkit.Extensions
+namespace Polaris.PhoneLib.Toolkit.Extensions
 {
     public static class VisualTreeHelperExtensions
     {

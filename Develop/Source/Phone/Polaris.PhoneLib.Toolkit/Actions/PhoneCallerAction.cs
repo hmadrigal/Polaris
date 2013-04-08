@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interactivity;
 
-namespace FooWPhoneLibrary.Toolkit.Actions
+namespace Polaris.PhoneLib.Toolkit.Actions
 {
     public class PhoneCallerAction : TargetedTriggerAction<ButtonBase>
     {

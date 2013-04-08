@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace FooWPhoneLibrary.Toolkit.Actions
+namespace Polaris.PhoneLib.Toolkit.Actions
 {
     public class FormatHtmlPage : WebBrowserAdapter
     {

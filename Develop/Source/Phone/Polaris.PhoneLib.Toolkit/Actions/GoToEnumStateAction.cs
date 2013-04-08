@@ -1,4 +1,4 @@
-﻿namespace FooWPhoneLibrary.Toolkit.Actions
+﻿namespace Polaris.PhoneLib.Toolkit.Actions
 {
     using System;
     using System.Net;

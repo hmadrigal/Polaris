@@ -3,7 +3,7 @@ using System.Windows.Shapes;
 using System.Windows.Data;
 using System.Windows;
 
-namespace FooWPhoneLibrary.Toolkit.Converters
+namespace Polaris.PhoneLib.Toolkit.Converters
 {
     public class EqualityToVisibilityConverter : IValueConverter
     {

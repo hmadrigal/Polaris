@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
 
-namespace FooWPhoneLibrary.Toolkit
+namespace Polaris.PhoneLib.Toolkit
 {
     public class PageViewModelBase<TResource> : ViewModelModelBase<TResource>, INavigatableViewModel where TResource : class
     {

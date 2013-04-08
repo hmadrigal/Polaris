@@ -91,6 +91,7 @@
     <Compile Include="Actions\FormatHtmlPage.cs" />
     <Compile Include="Actions\GoToEnumStateAction.cs" />
     <Compile Include="Actions\IActionableWebBrowser.cs" />
+    <Compile Include="Actions\InvokeMethodAction.cs" />
     <Compile Include="Actions\PhoneCallerAction.cs" />
     <Compile Include="Actions\WebBrowserAdapter.cs" />
     <Compile Include="Controls\CoolDownButton.cs" />

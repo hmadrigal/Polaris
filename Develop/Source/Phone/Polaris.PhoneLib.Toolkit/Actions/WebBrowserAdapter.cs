@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace FooWPhoneLibrary.Toolkit.Actions
+namespace Polaris.PhoneLib.Toolkit.Actions
 {
     public abstract class WebBrowserAdapter : Behavior<WebBrowser>
     {

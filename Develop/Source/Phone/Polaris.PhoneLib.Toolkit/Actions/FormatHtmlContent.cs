@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.ComponentModel;
 
-namespace FooWPhoneLibrary.Toolkit.Actions
+namespace Polaris.PhoneLib.Toolkit.Actions
 {
     /// <summary>
     /// Allows to Bind HtmlContent to a WebView using Mvvm approach. Moreover it provides some level of 

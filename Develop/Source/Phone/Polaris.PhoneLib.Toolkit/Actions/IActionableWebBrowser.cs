@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FooWPhoneLibrary.Toolkit.Actions
+namespace Polaris.PhoneLib.Toolkit.Actions
 {
     public interface IActionableWebBrowser
     {

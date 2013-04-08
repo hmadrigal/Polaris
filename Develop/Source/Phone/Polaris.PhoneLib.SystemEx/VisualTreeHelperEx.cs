@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace FooWPhoneLibrary.Toolkit.Extensions
+namespace Polaris.PhoneLib.Toolkit.Extensions
 {
     /// <summary>
     /// Provides addition visual tree helper methods.

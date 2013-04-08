@@ -123,25 +123,25 @@ namespace Polaris.PhoneLib.IoC
             return default(TInterface);
         }
 
-        private void InitializeFooServiceLocator()
+        private void InitializePhoneServiceLocatorServiceLocator()
         { }
 
         #region Singleton Pattern w/ Constructor
         private PhoneServiceLocator()
             : base()
         {
-            InitializeFooServiceLocator();
+            InitializePhoneServiceLocatorServiceLocator();
         }
         public static PhoneServiceLocator Instance
         {
             get
             {
-                return SingletonFooServiceLocatorCreator._Instance;
+                return SingletonPhoneServiceLocatorServiceLocatorCreator._Instance;
             }
         }
-        private class SingletonFooServiceLocatorCreator
+        private class SingletonPhoneServiceLocatorServiceLocatorCreator
         {
-            private SingletonFooServiceLocatorCreator() { }
+            private SingletonPhoneServiceLocatorServiceLocatorCreator() { }
             public static PhoneServiceLocator _Instance = new PhoneServiceLocator();
         }
         #endregion

@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 
 
-namespace FooWPhoneLibrary.Toolkit.Controls
+namespace Polaris.PhoneLib.Toolkit.Controls
 {
     [TemplateVisualState(Name = "Large", GroupName = "SizeStates")]
     [TemplateVisualState(Name = "Small", GroupName = "SizeStates")]

@@ -4,7 +4,7 @@ using System.Xaml.Linq;
 using System.Linq;
 using Microsoft.Phone.Shell;
 
-namespace FooWPhoneLibrary.Toolkit.Controls
+namespace Polaris.PhoneLib.Toolkit.Controls
 {
     public class PhoneApplicationNavigablePage : PhoneApplicationPage
     {

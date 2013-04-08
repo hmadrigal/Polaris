@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace FooWPhoneLibrary.Toolkit.Converters
+namespace Polaris.PhoneLib.Toolkit.Converters
 {
     public class FactorConverter : IValueConverter
     {

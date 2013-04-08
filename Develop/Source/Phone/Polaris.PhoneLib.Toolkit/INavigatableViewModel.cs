@@ -3,7 +3,7 @@ using System.Windows.Navigation;
 using System.Windows.Controls;
 using System.Collections.Generic;
 
-namespace FooWPhoneLibrary.Toolkit
+namespace Polaris.PhoneLib.Toolkit
 {
     public interface INavigatableViewModel : INavigate
     {

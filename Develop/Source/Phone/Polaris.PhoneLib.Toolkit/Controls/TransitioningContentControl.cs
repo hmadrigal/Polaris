@@ -5,9 +5,9 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
-using FooWPhoneLibrary.Toolkit.Extensions;
+using Polaris.PhoneLib.Toolkit.Extensions;
 
-namespace FooWPhoneLibrary.Toolkit.Controls
+namespace Polaris.PhoneLib.Toolkit.Controls
 {
 
     /// <summary>

@@ -6,7 +6,7 @@ using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace FooWPhoneLibrary.Toolkit
+namespace Polaris.PhoneLib.Toolkit
 {
     public abstract class ViewModelModelBase<TResource> : ViewModelBase where TResource : class
     {
