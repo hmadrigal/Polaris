@@ -1,0 +1,9 @@
+﻿<ResourceDictionary 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FooWPhoneLibrary.Toolkit.Controls"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/FooWPhoneLibrary.Toolkit;component/Themes/ProgressRing.xaml" />
+        <ResourceDictionary Source="/FooWPhoneLibrary.Toolkit;component/Themes/DeferredLoadContentControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
