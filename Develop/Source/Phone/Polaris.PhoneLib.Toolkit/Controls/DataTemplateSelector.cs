@@ -19,6 +19,21 @@ namespace Polaris.PhoneLib.Toolkit.Controls
     /// </remarks>
     public class DataTemplateSelector : ContentControl
     {
+        public string ResourceKeyFormat
+        {
+            get { return _resourceKeyFormat; }
+            set { _resourceKeyFormat = value; }
+        }
+        private string _resourceKeyFormat = @"{0}";
+
+
+        public string FallbackResourceKey
+        {
+            get { return _fallbackResourceKey; }
+            set { _fallbackResourceKey = value; }
+        }
+        private string _fallbackResourceKey = string.Empty;
+
         /// <summary>
         /// Called when the value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property changes.
         /// 
@@ -32,9 +47,16 @@ namespace Polaris.PhoneLib.Toolkit.Controls
         {
             base.OnContentChanged(oldContent, newContent);
 
+            if (newContent == null)
+                return;
+
             var dataTemplate = GetDataTemplate(newContent, this);
-            if (dataTemplate == null && newContent != null)
-                dataTemplate = Resources[newContent.GetType().Name] as DataTemplate;
+
+            if (dataTemplate == null)
+                dataTemplate = Resources[string.Format(ResourceKeyFormat, newContent.GetType().Name)] as DataTemplate;
+
+            if (dataTemplate == null && !string.IsNullOrEmpty(FallbackResourceKey))
+                dataTemplate = Resources[FallbackResourceKey] as DataTemplate;
             ContentTemplate = dataTemplate;
         }
 
