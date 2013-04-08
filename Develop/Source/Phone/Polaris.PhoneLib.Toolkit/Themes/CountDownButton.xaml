@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:Polaris.PhoneLib.Toolkit.Controls">
+
+    <Style TargetType="Controls:CountDownButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Controls:CountDownButton">
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

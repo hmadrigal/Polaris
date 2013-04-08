@@ -112,11 +112,22 @@
     <Compile Include="Events\EventHandlerExtensions.cs" />
     <Compile Include="Events\WeakEventListener.cs" />
     <Compile Include="INavigatableViewModel.cs" />
+    <Compile Include="Messages\AppLifeCycleMessage.cs" />
+    <Compile Include="Messages\LifeCycleState.cs" />
     <Compile Include="PageViewModelBase.cs" />
+    <Compile Include="PolarisPhoneApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\CoolDownButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\CountDownButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\DeferredLoadContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
