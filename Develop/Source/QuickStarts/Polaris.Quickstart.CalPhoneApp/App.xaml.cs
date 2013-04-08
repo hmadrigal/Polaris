@@ -8,10 +8,11 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Polaris.Quickstart.CalPhoneApp.Resources;
 using Polaris.Quickstart.CalPhoneApp.ViewModels;
+using Polaris.PhoneLib.Toolkit;
 
 namespace Polaris.Quickstart.CalPhoneApp
 {
-    public partial class App : Application
+    public partial class App : PolarisPhoneApp
     {
         private static MainViewModel viewModel = null;
 
@@ -85,6 +86,7 @@ namespace Polaris.Quickstart.CalPhoneApp
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            base.OnApplicationActivated(sender, e);
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataLoaded)
             {
@@ -97,6 +99,7 @@ namespace Polaris.Quickstart.CalPhoneApp
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             // Ensure that required application state is persisted here.
+            base.OnApplicationDeactivated(sender,e);
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

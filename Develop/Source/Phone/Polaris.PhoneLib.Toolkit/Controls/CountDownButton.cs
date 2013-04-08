@@ -11,8 +11,52 @@ namespace Polaris.PhoneLib.Toolkit.Controls
     [TemplateVisualState(Name = StartCountingDown, GroupName = CountDownStatesGroupName)]
     [TemplateVisualState(Name = CompleteCountingDown, GroupName = CountDownStatesGroupName)]
     [TemplateVisualState(Name = InterruptCountingDown, GroupName = CountDownStatesGroupName)]
+    [TemplateVisualState(Name = RestartCountingDown, GroupName = CountDownStatesGroupName)]
     public class CountDownButton : ButtonBase
     {
+        #region CurrentCountDownState
+
+        /// <summary>
+        /// CurrentCountDownState Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CurrentCountDownStateProperty =
+            DependencyProperty.Register("CurrentCountDownState", typeof(CountDownState), typeof(CountDownButton),
+                new PropertyMetadata(CountDownState.RestartCountingDown,
+                    new PropertyChangedCallback(OnCurrentCountDownStateChanged)));
+
+        /// <summary>
+        /// Gets or sets the CurrentCountDownState property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public CountDownState CurrentCountDownState
+        {
+            get { return (CountDownState)GetValue(CurrentCountDownStateProperty); }
+            set { SetValue(CurrentCountDownStateProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the CurrentCountDownState property.
+        /// </summary>
+        private static void OnCurrentCountDownStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            CountDownButton target = (CountDownButton)d;
+            CountDownState oldCurrentCountDownState = (CountDownState)e.OldValue;
+            CountDownState newCurrentCountDownState = target.CurrentCountDownState;
+            target.OnCurrentCountDownStateChanged(oldCurrentCountDownState, newCurrentCountDownState);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the CurrentCountDownState property.
+        /// </summary>
+        protected virtual void OnCurrentCountDownStateChanged(CountDownState oldCurrentCountDownState, CountDownState newCurrentCountDownState)
+        {
+            if (oldCurrentCountDownState != newCurrentCountDownState)
+            {
+                VisualStateManager.GoToState(this, newCurrentCountDownState.ToString(), true);
+            }
+        }
+
+        #endregion
 
         #region Visual States
 
@@ -26,10 +70,9 @@ namespace Polaris.PhoneLib.Toolkit.Controls
         protected const string StartCountingDown = @"StartCountingDownState";
         protected const string CompleteCountingDown = @"CompleteCountingDownState";
         protected const string InterruptCountingDown = @"InterruptCountingDownState";
+        protected const string RestartCountingDown = @"RestartCountingDown";
 
         #endregion CountDownStatesGroupName
-
-
 
         #endregion Visual States
 
@@ -37,43 +80,60 @@ namespace Polaris.PhoneLib.Toolkit.Controls
 
         public CountDownButton()
         {
-            Unloaded += OnCountDownButtonUnloaded;
+            //Unloaded += OnCountDownButtonUnloaded;
             Loaded += OnCountDownButtonLoaded;
         }
 
-        void OnCountDownButtonLoaded(object sender, RoutedEventArgs e)
+        public override void OnApplyTemplate()
         {
-            if (_countDownVisualStates != null)
-            {
-                Unsubscribe(_countDownVisualStates);
-                _countDownVisualStates.Clear();
-                _countDownVisualStates = null;
-            }
-
+            RemoveVisualStateEventHandlers();
+            base.OnApplyTemplate();
             var countDownStatesVisualStateGroup = VisualStateManager.GetVisualStateGroups(this).OfType<VisualStateGroup>().FirstOrDefault(vsg => vsg.Name == CountDownStatesGroupName);
-            
+            AddVisualStateEventHandlers(countDownStatesVisualStateGroup);
+        }
+
+        protected virtual void OnCountDownButtonLoaded(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, CurrentCountDownState.ToString(), false);
+            //var countDownButton = sender as CountDownButton;
+            //countDownButton.Loaded -= OnCountDownButtonLoaded;
+            //ResetVisualStateEventHandlers();
+        }
+
+        //protected virtual void OnCountDownButtonUnloaded(object sender, RoutedEventArgs e)
+        //{
+        //    var countDownButton = sender as CountDownButton;
+        //    countDownButton.Unloaded -= OnCountDownButtonUnloaded;
+        //    RemoveVisualStateEventHandlers();
+        //}
+
+        private void ResetVisualStateEventHandlers()
+        {
+            RemoveVisualStateEventHandlers();
+            var countDownStatesVisualStateGroup = VisualStateManager.GetVisualStateGroups(this).OfType<VisualStateGroup>().FirstOrDefault(vsg => vsg.Name == CountDownStatesGroupName);
+            AddVisualStateEventHandlers(countDownStatesVisualStateGroup);
+        }
+
+        private void AddVisualStateEventHandlers(VisualStateGroup countDownStatesVisualStateGroup)
+        {
             if (countDownStatesVisualStateGroup != null)
             {
                 _countDownVisualStates = countDownStatesVisualStateGroup.States.OfType<VisualState>().ToDictionary(vs => vs.Name, vs => vs);
-                Subscribe(_countDownVisualStates);
+                SubscribeEvents(_countDownVisualStates);
             }
         }
 
-        void OnCountDownButtonUnloaded(object sender, RoutedEventArgs e)
+        private void RemoveVisualStateEventHandlers()
         {
-            var countDownButton = sender as CountDownButton;
-            countDownButton.Unloaded += OnCountDownButtonUnloaded;
             if (_countDownVisualStates != null)
             {
-                Unsubscribe(_countDownVisualStates);
+                UnsubscribeEvents(_countDownVisualStates);
                 _countDownVisualStates.Clear();
                 _countDownVisualStates = null;
             }
         }
 
-        
-
-        private void Subscribe(Dictionary<string, VisualState> countDownVisualStates)
+        private void SubscribeEvents(Dictionary<string, VisualState> countDownVisualStates)
         {
             foreach (var visualStateKvp in countDownVisualStates)
             {
@@ -88,11 +148,14 @@ namespace Polaris.PhoneLib.Toolkit.Controls
                     case InterruptCountingDown:
                         visualStateKvp.Value.Storyboard.Completed += OnInterruptCountingDownStoryboardCompleted;
                         break;
+                    case RestartCountingDown:
+                        visualStateKvp.Value.Storyboard.Completed += OnRestartCountingStoryboardCompleted;
+                        break;
                 }
             }
         }
 
-        private void Unsubscribe(Dictionary<string, VisualState> countDownVisualStates)
+        private void UnsubscribeEvents(Dictionary<string, VisualState> countDownVisualStates)
         {
             foreach (var visualStateKvp in countDownVisualStates)
             {
@@ -111,7 +174,17 @@ namespace Polaris.PhoneLib.Toolkit.Controls
             }
         }
 
+        protected virtual void OnStartCountingDownStoryboardCompleted(object sender, EventArgs e)
+        {
+            CurrentCountDownState = CountDownState.RestartCountingDown;
+        }
+
         protected virtual void OnInterruptCountingDownStoryboardCompleted(object sender, EventArgs e)
+        {
+            CurrentCountDownState = CountDownState.RestartCountingDown;
+        }
+
+        protected virtual void OnRestartCountingStoryboardCompleted(object sender, EventArgs e)
         {
         }
 
@@ -119,19 +192,38 @@ namespace Polaris.PhoneLib.Toolkit.Controls
         {
         }
 
-        protected virtual void OnStartCountingDownStoryboardCompleted(object sender, EventArgs e)
+        protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
         {
+            //base.OnMouseLeftButtonDown(e);
+            CurrentCountDownState = CountDownState.StartCountingDown;
         }
 
-        protected override void OnIsPressedChanged(System.Windows.DependencyPropertyChangedEventArgs e)
+        protected override void OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs e)
         {
-            var newIsPressedValue = (bool)e.NewValue;
-            var oldIsPressedValue = (bool)e.OldValue;
-            if (newIsPressedValue && !oldIsPressedValue)
+            base.OnMouseLeftButtonUp(e);
+            if (CurrentCountDownState == CountDownState.StartCountingDown)
             {
-                // Start counting down
+                CurrentCountDownState = CountDownState.InterruptCountingDown;
             }
-            base.OnIsPressedChanged(e);
         }
+
+        //protected override void OnIsPressedChanged(System.Windows.DependencyPropertyChangedEventArgs e)
+        //{
+        //    var newIsPressedValue = (bool)e.NewValue;
+        //    var oldIsPressedValue = (bool)e.OldValue;
+        //    if (newIsPressedValue && !oldIsPressedValue)
+        //    {
+        //        // Start counting down
+        //    }
+        //    base.OnIsPressedChanged(e);
+        //}
+    }
+
+    public enum CountDownState
+    {
+        StartCountingDown,
+        CompleteCountingDown,
+        InterruptCountingDown,
+        RestartCountingDown
     }
 }
