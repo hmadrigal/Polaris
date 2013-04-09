@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Polaris.PhoneLib.Toolkit.Extensions
@@ -40,6 +41,16 @@ namespace Polaris.PhoneLib.Toolkit.Extensions
                 return null;
             }
             return (VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement);
+        }
+
+        public static void Activate(this VisualState state, Control control, bool useTransitions)
+        {
+            VisualStateManager.GoToState(control, state.Name, useTransitions);
+        }
+
+        public static void Activate(this VisualState state, Control control)
+        {
+            state.Activate(control, true);
         }
 
     }

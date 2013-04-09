@@ -17,7 +17,7 @@
     >
 
     <!--Data context is set to sample data above and first item in sample data collection below and LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" d:DataContext="{Binding Items[0]}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,12 +26,12 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding LineOne}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding SelectedItem.LineOne}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel contains details text. Place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Text="{Binding LineThree}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="{Binding SelectedItem.LineThree}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
@@ -40,7 +40,9 @@
             if the System Tray is hidden.
 
             Before shipping remove this XAML and the image itself.-->
-        <PolarisPhoneLibToolkitControls:CountDownButton HorizontalAlignment="Center" VerticalAlignment="Center" Background="Blue"  Content="CountDownButton" >
+        <PolarisPhoneLibToolkitControls:CountDownButton HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                        Content="CountDownButton" 
+                                                        CountDownCommand="{Binding CountDownCommand}" >
             <!--<Ellipse Width="50" Height="50" Fill="Green" />-->
         </PolarisPhoneLibToolkitControls:CountDownButton>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->

@@ -20,6 +20,7 @@ namespace Polaris.Quickstart.CalPhoneApp
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+            DataContext = new Polaris.Quickstart.CalPhoneApp.ViewModels.DetailsViewModel();
         }
 
         // When page is navigated to set data context to selected item in list
@@ -31,7 +32,7 @@ namespace Polaris.Quickstart.CalPhoneApp
                 if (NavigationContext.QueryString.TryGetValue("selectedItem", out selectedIndex))
                 {
                     int index = int.Parse(selectedIndex);
-                    DataContext = App.ViewModel.Items[index];
+                    (DataContext as Polaris.Quickstart.CalPhoneApp.ViewModels.DetailsViewModel).SelectedItem = App.ViewModel.Items[index];
                 }
             }
         }
