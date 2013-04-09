@@ -70,8 +70,8 @@
                                         <DoubleAnimation Duration="0:0:0.1" To="100" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="progressBar" d:IsOptimized="True"/>
                                         <DoubleAnimation Duration="0:0:0.1" To="-10" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="progressBar" d:IsOptimized="True"/>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(RangeBase.Value)" Storyboard.TargetName="progressBar">
-											<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
-											<EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="100"/>
+											<EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+											<EasingDoubleKeyFrame KeyTime="0:0:2.0" Value="100"/>
 										</DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -88,6 +88,7 @@
                                         <CompositeTransform/>
                                     </ProgressBar.RenderTransform>
                                 </ProgressBar>
+                                <ContentControl IsHitTestVisible="False"  Content="{TemplateBinding Counter}" />
                                 <ContentControl Grid.Row="1" x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
                                 
                             </Grid>

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using Polaris.PhoneLib.Toolkit.Extensions;
 using System.Windows.Input;
 using Polaris.PhoneLib.SystemEx;
+using Polaris.PhoneLib.Toolkit.Events;
 
 namespace Polaris.PhoneLib.Toolkit.Controls
 {
@@ -105,11 +106,77 @@ namespace Polaris.PhoneLib.Toolkit.Controls
 
         private Dictionary<string, VisualState> _countDownVisualStates;
 
+       
+        #region Counter
+
+        /// <summary>
+        /// Counter Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CounterProperty =
+            DependencyProperty.Register("Counter", typeof(int), typeof(CountDownButton),
+                new PropertyMetadata(0));
+
+        /// <summary>
+        /// Gets or sets the Counter property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public int Counter
+        {
+            get { return (int)GetValue(CounterProperty); }
+            set { SetValue(CounterProperty, value); }
+        }
+
+        #endregion
+
+        public int InitialCounter
+        {
+            get { return _initialCounter; }
+            set { _initialCounter = value; }
+        }
+        private int _initialCounter = 0;
+
+        public int Step
+        {
+            get { return _step; }
+            set { _step = value; }
+        }
+        private int _step = 1;
+
+        public TimeSpan CounterInterval
+        {
+            get { return _counterInterval; }
+            set { _counterInterval = value; }
+        }
+        private TimeSpan _counterInterval = TimeSpan.FromSeconds(1);
+
+        private DateTime _previousRead = DateTime.UtcNow;
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+        private TimeSpan _totalElapsedTime = TimeSpan.Zero;
+        private bool _isPressed = false;
+
         public CountDownButton()
         {
             DefaultStyleKey = typeof(CountDownButton);
-            //Unloaded += OnCountDownButtonUnloaded;
-            //Loaded += OnCountDownButtonLoaded;
+            //<CountDownButton, object, EventArgs>.SubscribeToWeakEvent(this,null, "System.Windows.Media.CompositionTarget.Rendering ", OnCompositionTargetRendering);
+            Unloaded += OnCountDownButtonUnloaded;
+            Loaded += OnCountDownButtonLoaded;
+        }
+
+        protected virtual void OnCompositionTargetRendering(object sender, EventArgs e)
+        {
+            if (!_isPressed)
+            {
+                return;
+            }
+            _elapsedTime = DateTime.UtcNow - _previousRead;
+            _totalElapsedTime += _elapsedTime;
+            _previousRead = DateTime.UtcNow;
+            if (_totalElapsedTime > CounterInterval)
+            {
+                Counter += Step;
+                _totalElapsedTime = TimeSpan.Zero;
+            }
+            
         }
 
         public override void OnApplyTemplate()
@@ -123,19 +190,21 @@ namespace Polaris.PhoneLib.Toolkit.Controls
             VisualStateManager.GoToState(this, CurrentCountDownState.ToString(), false);
         }
 
-        //protected virtual void OnCountDownButtonLoaded(object sender, RoutedEventArgs e)
-        //{
-        //    var countDownButton = sender as CountDownButton;
-        //    countDownButton.Loaded -= OnCountDownButtonLoaded;
-        //    ResetVisualStateEventHandlers();
-        //}
+        protected virtual void OnCountDownButtonLoaded(object sender, RoutedEventArgs e)
+        {
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
+            //var countDownButton = sender as CountDownButton;
+            //countDownButton.Loaded -= OnCountDownButtonLoaded;
+            //ResetVisualStateEventHandlers();
+        }
 
-        //protected virtual void OnCountDownButtonUnloaded(object sender, RoutedEventArgs e)
-        //{
-        //    var countDownButton = sender as CountDownButton;
-        //    countDownButton.Unloaded -= OnCountDownButtonUnloaded;
-        //    RemoveVisualStateEventHandlers();
-        //}
+        protected virtual void OnCountDownButtonUnloaded(object sender, RoutedEventArgs e)
+        {
+            CompositionTarget.Rendering -= OnCompositionTargetRendering;
+            //var countDownButton = sender as CountDownButton;
+            //countDownButton.Unloaded -= OnCountDownButtonUnloaded;
+            //RemoveVisualStateEventHandlers();
+        }
 
         private void ResetVisualStateEventHandlers()
         {
@@ -210,6 +279,9 @@ namespace Polaris.PhoneLib.Toolkit.Controls
 
         protected virtual void OnStartCountingDownStoryboardCompleted(object sender, EventArgs e)
         {
+            _totalElapsedTime = TimeSpan.Zero;
+            Counter = InitialCounter;
+            _isPressed = false;
             CurrentCountDownState = CountDownState.ResetCountDownState;
             CountDownCommand.TryExecute(CommandParameter);
         }
@@ -229,17 +301,22 @@ namespace Polaris.PhoneLib.Toolkit.Controls
 
         protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
         {
+            _totalElapsedTime = TimeSpan.Zero;
+            Counter = InitialCounter;
+            _isPressed = true;
             base.OnMouseLeftButtonDown(e);
             CurrentCountDownState = CountDownState.StartCountDownState;
         }
 
         protected override void OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs e)
         {
+            _isPressed = false;
+            Counter = InitialCounter;
             base.OnMouseLeftButtonUp(e);
             if (CurrentCountDownState == CountDownState.StartCountDownState)
             {
                 CurrentCountDownState = CountDownState.InterruptCountDownState;
-            }            
+            }
         }
 
         //protected override void OnIsPressedChanged(System.Windows.DependencyPropertyChangedEventArgs e)
