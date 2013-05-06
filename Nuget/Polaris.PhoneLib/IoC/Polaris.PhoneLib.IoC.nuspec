@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.16647.46924</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+	  <dependency id="MvvmLight" version="4.1.26.1"  />
+	  <dependency id="MvvmLightLibs" version="4.1.27.0"  />
+    </dependencies>
+    <id>Polaris.PhoneLib.IoC</id>
+    <title>Polaris - Inversion Of Control </title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An extended Dependency Injection container which deals with instantiation and life time of objects. It extends SimpleIoC from MvvmLight.</description>
+    <summary></summary>
+    <releaseNotes>Alpha release</releaseNotes>
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>wp8 toolkit framework polaris ioc</tags>
+  </metadata>
+  <files>
+    <file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.IoC.dll" target="lib\wp8" />
+	<file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.IoC.pdb" target="lib\wp8" />
+  </files>
+</package>
