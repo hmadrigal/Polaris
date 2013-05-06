@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.16647.46924</version>
+    <version>1.0.22594.55013</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -10,8 +10,8 @@
     <title>Polaris - PhoneLib - Diagnostics</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Classes for debugging and diagnostics your phone application</description>
-    <summary></summary>
-    <releaseNotes></releaseNotes>
+    <summary />
+    <releaseNotes />
     <copyright>MS-PL</copyright>
     <language>en-US</language>
     <tags>toolkit framework polaris interface debug diagnostics</tags>
