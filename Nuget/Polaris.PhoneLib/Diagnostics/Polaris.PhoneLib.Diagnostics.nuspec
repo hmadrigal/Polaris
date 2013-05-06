@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.22594.55013</version>
+    <version>1.0.22597.56143</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -14,7 +14,7 @@
     <releaseNotes />
     <copyright>MS-PL</copyright>
     <language>en-US</language>
-    <tags>toolkit framework polaris interface debug diagnostics</tags>
+    <tags>toolkit framework polaris interface debug diagnostics PhoneLib</tags>
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\Diagnostics\Polaris.PhoneLib.Diagnostics.dll" target="lib\wp8" />

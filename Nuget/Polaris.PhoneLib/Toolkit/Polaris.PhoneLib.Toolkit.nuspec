@@ -1,23 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.22594.55013</version>
+    <version>1.0.22597.56143</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-      <dependency id="Polaris.Common" version="1.0.22594.55013" />
+	  <dependency id="MvvmLight" version="4.1.26.1" />
+	  <dependency id="MvvmLightLibs" version="4.1.27.0" />
+      <dependency id="Polaris.PhoneLib.SystemEx" version="1.0.22597.56143" />
     </dependencies>
     <id>Polaris.PhoneLib.Toolkit</id>
-    <title>Polaris - Toolkit</title>
+    <title>Polaris - PhoneLib - Toolkit</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A set of custom controls, behaviors and visual elements for your phone apps.</description>
     <summary />
     <releaseNotes>Alpha release</releaseNotes>
     <copyright>MS-PL</copyright>
     <language>en-US</language>
-    <tags>wp8 toolkit framework polaris</tags>
+    <tags>wp8 toolkit framework polaris PhoneLib</tags>
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\Toolkit\Polaris.PhoneLib.Toolkit.dll" target="lib\wp8" />

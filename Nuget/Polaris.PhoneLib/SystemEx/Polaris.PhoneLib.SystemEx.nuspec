@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.22594.55013</version>
+    <version>1.0.22597.56143</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <id>Polaris.PhoneLib.SystemEx</id>
-    <title>Polaris - System Extensions</title>
+    <title>Polaris - PhoneLib - System Extensions</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A set of extesions for Visual tree, collections, lambdas in order to speed up your development in your phone.</description>
     <summary />
     <releaseNotes>Alpha release</releaseNotes>
     <copyright>MS-PL</copyright>
     <language>en-US</language>
-    <tags>wp8 extensions framework polaris</tags>
+    <tags>wp8 extensions framework polaris PhoneLib</tags>
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\SystemEx\Polaris.PhoneLib.SystemEx.dll" target="lib\wp8" />

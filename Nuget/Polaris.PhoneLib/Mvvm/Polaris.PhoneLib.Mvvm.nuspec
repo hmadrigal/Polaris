@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.22594.55013</version>
+    <version>1.0.22597.56143</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -11,14 +11,14 @@
 	  <dependency id="MvvmLightLibs" version="4.1.27.0" />
     </dependencies>
     <id>Polaris.PhoneLib.Mvvm</id>
-    <title>Polaris - Mvvm </title>
+    <title>Polaris - PhoneLib - Mvvm </title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A set of classes for implementing Model View View Model Pattern (aka Mvvm)</description>
     <summary />
     <releaseNotes>Alpha release</releaseNotes>
     <copyright>MS-PL</copyright>
     <language>en-US</language>
-    <tags>wp8 toolkit framework polaris mvvm</tags>
+    <tags>wp8 toolkit framework polaris mvvm PhoneLib</tags>
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.dll" target="lib\wp8" />
