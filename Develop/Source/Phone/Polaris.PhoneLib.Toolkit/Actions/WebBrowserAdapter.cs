@@ -155,7 +155,7 @@ namespace Polaris.PhoneLib.Toolkit.Actions
             var associatedObject = sender as WebBrowser;
             AssociatedObject.Loaded -= OnLoaded;
 
-            WebBrowserViewModel = new ActionableWebBrowser(_webNavigationStack, GoBack);
+            WebBrowserViewModel = new ActionableWebBrowser(_webNavigationStack, GoBack, GetRenderedContent);
         }
 
         public virtual void OnNavigating(object sender, NavigatingEventArgs e)
@@ -261,6 +261,11 @@ namespace Polaris.PhoneLib.Toolkit.Actions
             return false;
         }
 
+        private string GetRenderedContent()
+        {
+            return AssociatedObject.SaveToString();
+        }
+
         public class ActionableWebBrowser : IActionableWebBrowser
         {
             public Stack<Uri> WebNavigationStack
@@ -275,10 +280,17 @@ namespace Polaris.PhoneLib.Toolkit.Actions
             }
             private readonly Func<bool> _goBack;
 
-            public ActionableWebBrowser(Stack<Uri> webNavigationStack, Func<bool> goBack)
+            public string GetRenderedContent()
+            {
+                return _getRenderedContent();
+            }
+            private readonly Func<string> _getRenderedContent;
+
+            public ActionableWebBrowser(Stack<Uri> webNavigationStack, Func<bool> goBack, Func<string> getRenderedContent)
             {
                 _webNavigationStack = webNavigationStack;
                 _goBack = goBack;
+                _getRenderedContent = getRenderedContent;
             }
 
         }

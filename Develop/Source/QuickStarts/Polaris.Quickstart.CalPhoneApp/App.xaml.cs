@@ -161,6 +161,8 @@ namespace Polaris.Quickstart.CalPhoneApp
             if (RootVisual != RootFrame)
                 RootVisual = RootFrame;
 
+            Polaris.PhoneLib.Diagnostics.UnhandledExceptionDiagnosticsHelper.Instance.CheckForUnhandledExceptions(RootFrame);
+
             // Remove this handler since it is no longer needed
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
         }

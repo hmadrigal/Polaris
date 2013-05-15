@@ -166,6 +166,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Phone\Polaris.PhoneLib.Diagnostics\Polaris.PhoneLib.Diagnostics.csproj">
+      <Project>{A1007F54-1AFB-439E-AA26-EFD61CF7B43B}</Project>
+      <Name>Polaris.PhoneLib.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Phone\Polaris.PhoneLib.Mvvm\Polaris.PhoneLib.Mvvm.csproj">
       <Project>{4AB17A89-E720-46EB-92BB-720F6711EAFF}</Project>
       <Name>Polaris.PhoneLib.Mvvm</Name>

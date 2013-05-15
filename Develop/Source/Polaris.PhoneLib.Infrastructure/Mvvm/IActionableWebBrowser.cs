@@ -10,5 +10,6 @@ namespace Polaris.PhoneLib.Mvvm
     {
         Stack<Uri> WebNavigationStack { get; }
         bool GoBack();
+        string GetRenderedContent();
     }
 }
