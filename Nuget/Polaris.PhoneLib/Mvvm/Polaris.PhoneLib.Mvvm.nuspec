@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.22597.56143</version>
+    <version>1.0.24207.53854</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -22,6 +22,8 @@
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.dll" target="lib\wp8" />
-	<file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.pdb" target="lib\wp8" />
+	  <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.pdb" target="lib\wp8" />
+    <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Infrastructure.dll" target="lib\wp8" />
+    <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Infrastructure.pdb" target="lib\wp8" />
   </files>
 </package>
