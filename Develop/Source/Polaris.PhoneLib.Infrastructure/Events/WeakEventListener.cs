@@ -8,7 +8,7 @@
 // Uncomment if used in Catel
 //#define CATEL
 
-namespace Polaris.PhoneLib.Toolkit.Events
+namespace Polaris.PhoneLib.Events
 {
     using System;
     using System.Reflection;

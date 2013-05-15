@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Polaris.PhoneLib.Toolkit
 {
-    public class PageViewModelBase<TResource> : ViewModelModelBase<TResource>, INavigatableViewModel where TResource : class
+    public class PageViewModelBase<TResource> : ViewModelBase<TResource>, INavigatableViewModel where TResource : class
     {
         public IDictionary<string, object> State { get; set; }
 
@@ -22,6 +22,7 @@ namespace Polaris.PhoneLib.Toolkit
 
         }
 
+#if WINDOWS_PHONE
         public virtual void OnFragmentNavigation(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.Windows.Navigation.FragmentNavigationEventArgs e)
         {
         }
@@ -40,7 +41,8 @@ namespace Polaris.PhoneLib.Toolkit
 
         public virtual void OnBackKeyPress(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.ComponentModel.CancelEventArgs e)
         {
-        }
+        } 
+#endif
 
 
     }

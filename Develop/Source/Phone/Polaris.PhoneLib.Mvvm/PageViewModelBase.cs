@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Ink;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Collections.Generic;
 
-#if NETFX_CORE
-using Windows.UI.Xaml.Navigation;
-#endif
-
-#if WINDOWS_PHONE
-using System.Windows.Navigation;
-#endif
 namespace Polaris.PhoneLib.Mvvm
 {
     public class PageViewModelBase<TResource> : ViewModelBase<TResource>, INavigatableViewModel where TResource : class
@@ -15,31 +17,33 @@ namespace Polaris.PhoneLib.Mvvm
         public IDictionary<string, object> State { get; set; }
 
         public PageViewModelBase(TResource localizedResources = default(TResource), bool addLoadCommandHandler = false)
-            : base(localizedResources)
+            : base(localizedResources, addLoadCommandHandler)
         {
 
         }
 
 #if WINDOWS_PHONE
-        public virtual void OnFragmentNavigation(NavigationCacheMode navigationCacheMode, NavigationContext navigationContext, NavigationService navigationService, FragmentNavigationEventArgs e)
+        public virtual void OnFragmentNavigation(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.Windows.Navigation.FragmentNavigationEventArgs e)
         {
         }
 
-        public virtual void OnNavigatedFrom(NavigationCacheMode navigationCacheMode, NavigationContext navigationContext, NavigationService navigationService, NavigationEventArgs e)
+        public virtual void OnNavigatedFrom(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.Windows.Navigation.NavigationEventArgs e)
         {
         }
 
-        public virtual void OnNavigatedTo(NavigationCacheMode navigationCacheMode, NavigationContext navigationContext, NavigationService navigationService, NavigationEventArgs e)
+        public virtual void OnNavigatedTo(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.Windows.Navigation.NavigationEventArgs e)
         {
         }
 
-        public virtual void OnNavigatingFrom(NavigationCacheMode navigationCacheMode, NavigationContext navigationContext, NavigationService navigationService, NavigatingCancelEventArgs e)
+        public virtual void OnNavigatingFrom(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
         }
 
-        public virtual void OnBackKeyPress(NavigationCacheMode navigationCacheMode, NavigationContext navigationContext, NavigationService navigationService, System.ComponentModel.CancelEventArgs e)
+        public virtual void OnBackKeyPress(System.Windows.Navigation.NavigationCacheMode navigationCacheMode, System.Windows.Navigation.NavigationContext navigationContext, System.Windows.Navigation.NavigationService navigationService, System.ComponentModel.CancelEventArgs e)
         {
         } 
 #endif
+
+
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Polaris.PhoneLib.Mvvm
 {
-    public class ResourceWrapperViewModel : ViewModelBase
+    public class ResourceViewModel : ViewModelBase
     {
         public System.Resources.ResourceManager ResourceManager
         {
@@ -13,7 +13,7 @@ namespace Polaris.PhoneLib.Mvvm
         }
         private System.Resources.ResourceManager _resourceManager;
         
-        public ResourceWrapperViewModel(System.Resources.ResourceManager resourceManager)
+        public ResourceViewModel(System.Resources.ResourceManager resourceManager)
         {
             _resourceManager = resourceManager;
         }

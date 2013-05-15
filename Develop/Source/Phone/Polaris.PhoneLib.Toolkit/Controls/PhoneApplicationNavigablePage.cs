@@ -3,6 +3,7 @@ using Microsoft.Phone.Controls;
 using System.Xaml.Linq;
 using System.Linq;
 using Microsoft.Phone.Shell;
+using Polaris.PhoneLib.Mvvm;
 
 namespace Polaris.PhoneLib.Toolkit.Controls
 {

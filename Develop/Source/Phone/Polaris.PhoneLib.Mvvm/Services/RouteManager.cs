@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Polaris.PhoneLib.Toolkit.Services
+namespace Polaris.PhoneLib.Services
 {
     public class RouteManager : IRouteManager
     {

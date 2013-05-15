@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace Polaris.PhoneLib.Toolkit.Data
+namespace Polaris.PhoneLib.Data
 {
     public class AlphaKeyGroup<T> : List<T>
     {

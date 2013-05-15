@@ -4,20 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polaris.PhoneLib.Toolkit.Actions
+namespace Polaris.PhoneLib.Mvvm
 {
     public interface IActionableWebBrowser
     {
         Stack<Uri> WebNavigationStack { get; }
         bool GoBack();
-    }
-
-    public enum WebBrowserNavigationStatus
-    {
-        Default,
-        Started,
-        Navigating,
-        Completed,
-        Failed
     }
 }

@@ -9,8 +9,6 @@ using System.Xaml.Linq;
 using System.Windows.Media;
 using Polaris.PhoneLib.Toolkit.Extensions;
 using System.Windows.Input;
-using Polaris.PhoneLib.SystemEx;
-using Polaris.PhoneLib.Toolkit.Events;
 
 namespace Polaris.PhoneLib.Toolkit.Controls
 {

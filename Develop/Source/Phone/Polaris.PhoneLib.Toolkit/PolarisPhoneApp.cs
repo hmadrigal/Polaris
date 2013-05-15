@@ -1,5 +1,5 @@
 ﻿using Microsoft.Phone.Shell;
-using Polaris.PhoneLib.Toolkit.Messages;
+using Polaris.PhoneLib.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;

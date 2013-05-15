@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Polaris.PhoneLib.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

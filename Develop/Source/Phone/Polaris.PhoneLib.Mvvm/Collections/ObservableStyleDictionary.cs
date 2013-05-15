@@ -8,7 +8,7 @@ using System.Collections;
 using Windows.UI.Xaml;
 #endif
 
-namespace Polaris.PhoneLib.Mvvm
+namespace Polaris.PhoneLib.Mvvm.Collections
 {
     public class ObservableStyleDictionary : ObservableSortedDictionary<string, Style>
     {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Polaris.PhoneLib.Mvvm;
 
 namespace Polaris.PhoneLib.Toolkit.Actions
 {

@@ -1,16 +1,18 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace Polaris.PhoneLib.Mvvm
+namespace Polaris.PhoneLib.Toolkit
 {
-    public abstract class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase
+    public abstract class ViewModelBase<TResource> : ViewModelBase
 #if WINDOWS_PHONE
 , INavigate
 #endif
+ where TResource : class
     {
 
 #if WINDOWS_PHONE
@@ -18,8 +20,8 @@ namespace Polaris.PhoneLib.Mvvm
         public Boolean IsInDesignTool { get { return System.ComponentModel.DesignerProperties.IsInDesignTool; } }
         public bool IsDarkThemeSet { get { return Visibility.Visible == (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"]; } }
 
-        protected static Frame _mainFrame;
-        protected static Frame MainFrame
+        private static Frame _mainFrame;
+        private static Frame MainFrame
         {
             get
             {
@@ -48,13 +50,32 @@ namespace Polaris.PhoneLib.Mvvm
         }
         #endregion
 
+        #region LocalizedResources (INotifyPropertyChanged Property)
+        private TResource _localizedResources;
+
+        public TResource LocalizedResources
+        {
+            get { return _localizedResources; }
+            set
+            {
+                if (_localizedResources != value)
+                {
+                    _localizedResources = value;
+                    RaisePropertyChanged(() => LocalizedResources);
+                }
+            }
+        }
+        #endregion
+
+
         public bool Navigate(Uri source)
         {
             return MainFrame.Navigate(source);
         }
 
-        public ViewModelBase(bool addLoadCommandHandler = false)
+        public ViewModelBase(TResource localizedResources = default(TResource), bool addLoadCommandHandler = false)
         {
+            _localizedResources = localizedResources;
             if (addLoadCommandHandler)
             {
                 LoadCommand = new RelayCommand(OnLoadCommandInvoked);
@@ -91,37 +112,5 @@ namespace Polaris.PhoneLib.Mvvm
             System.Diagnostics.Debug.WriteLine("[{0}] Finalizing {1} #{2}", DateTime.Now.ToString("o"), GetType().FullName, GetHashCode());
         }
 #endif
-    }
-
-    public abstract class ViewModelBase<TResource> : ViewModelBase where TResource : class
-    {
-        #region LocalizedResources (INotifyPropertyChanged Property)
-        private TResource _localizedResources;
-
-        public TResource LocalizedResources
-        {
-            get { return _localizedResources; }
-            set
-            {
-                if (_localizedResources != value)
-                {
-                    _localizedResources = value;
-                    RaisePropertyChanged(() => LocalizedResources);
-                }
-            }
-        }
-        #endregion
-
-
-        public bool Navigate(Uri source)
-        {
-            return MainFrame.Navigate(source);
-        }
-
-        public ViewModelBase(TResource localizedResources = default(TResource), bool addLoadCommandHandler = false)
-            : base(addLoadCommandHandler)
-        {
-            _localizedResources = localizedResources;
-        }
     }
 }

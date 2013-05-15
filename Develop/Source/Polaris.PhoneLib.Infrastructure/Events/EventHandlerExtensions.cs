@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Polaris.PhoneLib.Toolkit.Events
+namespace Polaris.PhoneLib.Events
 {
     using System;
     using System.Collections.Specialized;

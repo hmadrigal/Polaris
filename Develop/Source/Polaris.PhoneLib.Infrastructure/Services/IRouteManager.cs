@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Polaris.PhoneLib.Toolkit.Services
+namespace Polaris.PhoneLib.Services
 {
     public interface IRouteManager
     {

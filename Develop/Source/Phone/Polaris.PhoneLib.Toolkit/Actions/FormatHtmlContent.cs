@@ -5,6 +5,7 @@ using System.Windows.Navigation;
 using System.Windows;
 using System.Windows.Media;
 using System.ComponentModel;
+using Polaris.PhoneLib.Mvvm;
 
 namespace Polaris.PhoneLib.Toolkit.Actions
 {
