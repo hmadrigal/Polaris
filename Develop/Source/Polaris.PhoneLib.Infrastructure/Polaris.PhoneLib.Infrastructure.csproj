@@ -97,6 +97,7 @@
     <Compile Include="Mvvm\INavigatableViewModel.cs" />
     <Compile Include="Mvvm\WebBrowserNavigationStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IPhoneServiceLocator.cs" />
     <Compile Include="Services\IRouteManager.cs" />
   </ItemGroup>
   <ItemGroup />
