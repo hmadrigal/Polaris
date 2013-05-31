@@ -6,6 +6,7 @@ namespace Polaris.PhoneLib.Services
 {
     public interface IRouteManager
     {
+        void Register(string name, string path, params string[] parameters);
         void Register(string name, string assembly, string path, params string[] parameters);
         void Register<TViewModel>(string assembly, string path, params string[] parameters);
         Uri Resolve(string name, params object[] args);

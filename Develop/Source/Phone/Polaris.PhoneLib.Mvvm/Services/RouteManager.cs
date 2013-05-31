@@ -7,16 +7,14 @@ namespace Polaris.PhoneLib.Services
 {
     public class RouteManager : IRouteManager
     {
-        private readonly IDictionary<Type, string> _typedRoutes;
         private readonly IDictionary<string, string> _labeledRoutes;
 
         public RouteManager()
         {
             _labeledRoutes = new Dictionary<string, string>();
-            _typedRoutes = new Dictionary<Type, string>();
         }
 
-        private static string GetUrl(string assembly, string path, string[] parameters)
+        private static string GetUrl(string basePath, string path, bool isAssembly, string[] parameters)
         {
             string concatedParameters = string.Empty;
             if (parameters != null)
@@ -28,8 +26,13 @@ namespace Polaris.PhoneLib.Services
                     sb.Remove(sb.Length - 1, 1);
                 concatedParameters = sb.ToString();
             }
-
-            var uri = string.Format("/{0};component/{1}{2}", assembly, path, concatedParameters);
+            var uri = string.Concat(
+                isAssembly ? @"/" : string.Empty,
+                basePath,
+                isAssembly ? @";component/" : string.Empty,
+                path,
+                concatedParameters
+            );
             return uri;
         }
 
@@ -48,35 +51,41 @@ namespace Polaris.PhoneLib.Services
             return formattedUrl;
         }
 
+        public void Register(string name, string path, params string[] parameters)
+        {
+            var url = GetUrl(string.Empty, path, false, parameters);
+            _labeledRoutes.Add(name, url);
+        }
+
         public void Register(string name, string assembly, string path, params string[] parameters)
         {
-            var url = GetUrl(assembly, path, parameters);
+            var url = GetUrl(assembly, path, true, parameters);
             _labeledRoutes.Add(name, url);
         }
 
         public void Register<TViewModel>(string assembly, string path, params string[] parameters)
         {
-            var url = GetUrl(assembly, path, parameters);
-            _typedRoutes[typeof(TViewModel)] = url;
+            var url = GetUrl(assembly, path, true, parameters);
+            _labeledRoutes[typeof(TViewModel).AssemblyQualifiedName] = url;
         }
 
         public Uri Resolve<TViewModel>(params object[] args)
         {
-            return new Uri(string.Format(_typedRoutes[typeof(TViewModel)], args), UriKind.Relative);
+            return new Uri(string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], args), UriKind.Relative);
         }
 
-        public Uri Resolve<TViewModel>(KeyValuePair<string, object>[] optionalParameters, params object[] requiredParameters )
+        public Uri Resolve<TViewModel>(KeyValuePair<string, object>[] optionalParameters, params object[] requiredParameters)
         {
-            var formattedUrl = string.Format(_typedRoutes[typeof(TViewModel)], requiredParameters);
+            var formattedUrl = string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], requiredParameters);
             formattedUrl = AppendParameters(formattedUrl, optionalParameters);
             return new Uri(formattedUrl, UriKind.Relative);
         }
-        
+
         public Uri Resolve(string name, params object[] args)
         {
             return new Uri(string.Format(_labeledRoutes[name], args), UriKind.Relative);
         }
-        
+
         public Uri Resolve(string name, KeyValuePair<string, object>[] optionalParameters, params object[] args)
         {
             var formattedUrl = string.Format(_labeledRoutes[name], args);
