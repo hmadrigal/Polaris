@@ -36,13 +36,14 @@ namespace Polaris.PhoneLib.Services
             return uri;
         }
 
-        private static string AppendParameters(string formattedUrl, params KeyValuePair<string, object>[] optionalParameters)
+        private static string AppendParameters(string formattedUrl, IEnumerable<KeyValuePair<string, object>> optionalParameters)
         {
             if (optionalParameters != null)
             {
                 var sb = formattedUrl.Contains("?") ? new StringBuilder("&") : new StringBuilder("?");
-                for (int index = 0; index < optionalParameters.Length; index++)
-                    sb.AppendFormat("{0}={1}&", optionalParameters[index].Key, optionalParameters[index].Value);
+                foreach (var optionalParameter in optionalParameters)
+                    sb.AppendFormat("{0}={1}&", optionalParameter.Key, optionalParameter.Value);
+
                 if (sb.Length > 1)
                     sb.Remove(sb.Length - 1, 1);
                 sb.Insert(0, formattedUrl);
@@ -74,7 +75,7 @@ namespace Polaris.PhoneLib.Services
             return new Uri(string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], args), UriKind.Relative);
         }
 
-        public Uri Resolve<TViewModel>(KeyValuePair<string, object>[] optionalParameters, params object[] requiredParameters)
+        public Uri Resolve<TViewModel>(IEnumerable<KeyValuePair<string, object>> optionalParameters, params object[] requiredParameters)
         {
             var formattedUrl = string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], requiredParameters);
             formattedUrl = AppendParameters(formattedUrl, optionalParameters);
@@ -86,7 +87,7 @@ namespace Polaris.PhoneLib.Services
             return new Uri(string.Format(_labeledRoutes[name], args), UriKind.Relative);
         }
 
-        public Uri Resolve(string name, KeyValuePair<string, object>[] optionalParameters, params object[] args)
+        public Uri Resolve(string name, IEnumerable<KeyValuePair<string, object>> optionalParameters, params object[] args)
         {
             var formattedUrl = string.Format(_labeledRoutes[name], args);
             formattedUrl = AppendParameters(formattedUrl, optionalParameters);
