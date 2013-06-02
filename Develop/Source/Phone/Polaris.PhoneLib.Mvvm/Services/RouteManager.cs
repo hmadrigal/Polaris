@@ -72,26 +72,26 @@ namespace Polaris.PhoneLib.Services
 
         public Uri Resolve<TViewModel>(params object[] args)
         {
-            return new Uri(string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], args), UriKind.Relative);
+            return new Uri(string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], args), UriKind.RelativeOrAbsolute);
         }
 
         public Uri Resolve<TViewModel>(IEnumerable<KeyValuePair<string, object>> optionalParameters, params object[] requiredParameters)
         {
             var formattedUrl = string.Format(_labeledRoutes[typeof(TViewModel).AssemblyQualifiedName], requiredParameters);
             formattedUrl = AppendParameters(formattedUrl, optionalParameters);
-            return new Uri(formattedUrl, UriKind.Relative);
+            return new Uri(formattedUrl, UriKind.RelativeOrAbsolute);
         }
 
         public Uri Resolve(string name, params object[] args)
         {
-            return new Uri(string.Format(_labeledRoutes[name], args), UriKind.Relative);
+            return new Uri(string.Format(_labeledRoutes[name], args), UriKind.RelativeOrAbsolute);
         }
 
         public Uri Resolve(string name, IEnumerable<KeyValuePair<string, object>> optionalParameters, params object[] args)
         {
             var formattedUrl = string.Format(_labeledRoutes[name], args);
             formattedUrl = AppendParameters(formattedUrl, optionalParameters);
-            return new Uri(formattedUrl, UriKind.Relative);
+            return new Uri(formattedUrl, UriKind.RelativeOrAbsolute);
         }
     }
 }
