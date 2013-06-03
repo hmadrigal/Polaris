@@ -88,19 +88,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\AlphaKeyGroup.cs" />
-    <Compile Include="Events\Argument.cs" />
-    <Compile Include="Events\EventHandlerExtensions.cs" />
     <Compile Include="Events\WeakEventListener.cs" />
-    <Compile Include="Mvvm\IActionableWebBrowser.cs" />
-    <Compile Include="Messages\AppLifeCycleMessage.cs" />
-    <Compile Include="Messages\LifeCycleState.cs" />
-    <Compile Include="Mvvm\INavigatableViewModel.cs" />
-    <Compile Include="Mvvm\WebBrowserNavigationStatus.cs" />
+    <Compile Include="Mvvm\INavigatableViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IPhoneServiceLocator.cs" />
-    <Compile Include="Services\IRouteManager.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Polaris.PhoneLib.Common.Infrastructure\Polaris.PhoneLib.Common.Infrastructure.csproj">
+      <Project>{283392A5-0E19-4290-B8F5-E30B2854428B}</Project>
+      <Name>Polaris.PhoneLib.Common.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />

@@ -10,13 +10,14 @@
     <RootNamespace>Polaris</RootNamespace>
     <AssemblyName>Polaris.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile2</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile104</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -145,9 +146,15 @@
     <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Extensions\CommandExtensions.cs" />
+    <Compile Include="Collections\ObservableDictionary.cs" />
+    <Compile Include="Collections\ObservableSortedDictionary.cs" />
+    <Compile Include="Extensions\EnumerationExtensions.cs" />
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="IViewModelLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IRouteManager.cs" />
+    <Compile Include="Services\RouteManager.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -220,37 +227,31 @@
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.UnityExtensions\Polaris.UnityExtensions.nuspec" />
-
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Diagnostics\Polaris.PhoneLib.Diagnostics.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Diagnostics\Polaris.PhoneLib.Diagnostics.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Diagnostics\Polaris.PhoneLib.Diagnostics.nuspec" />
-    
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\IoC\Polaris.PhoneLib.IoC.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\IoC\Polaris.PhoneLib.IoC.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\IoC\Polaris.PhoneLib.IoC.nuspec" />
-    
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Mvvm\Polaris.PhoneLib.Mvvm.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Mvvm\Polaris.PhoneLib.Mvvm.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Mvvm\Polaris.PhoneLib.Mvvm.nuspec" />
-    
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\SystemEx\Polaris.PhoneLib.SystemEx.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\SystemEx\Polaris.PhoneLib.SystemEx.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\SystemEx\Polaris.PhoneLib.SystemEx.nuspec" />
-    
     <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Toolkit\Polaris.PhoneLib.Toolkit.nuspec">
       <Output PropertyName="NugetPolarisUnityExtensionsFileContent" TaskParameter="FileContent" />
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Toolkit\Polaris.PhoneLib.Toolkit.nuspec" />
     <XslTransformation XmlContent="$(NugetPolarisUnityExtensionsFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Toolkit\Polaris.PhoneLib.Toolkit.nuspec" />
-    
   </Target>
   <Target Name="BeforeBuild">
     <CallTarget Condition="'$(Configuration)' == 'NugetDeploy'" Targets="NugetUpdateTask">

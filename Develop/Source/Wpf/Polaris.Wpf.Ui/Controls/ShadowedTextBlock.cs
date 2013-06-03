@@ -470,22 +470,22 @@ namespace Polaris.Windows.Controls
             #endregion
 
             var shadowRenderedSize = new Size(0, 0);
-            if (!string.IsNullOrWhiteSpace(Text))
-            {
-                DrawText(
-                    renderSize,
-                    drawingContext,
-                    FontSize,
-                    ShadowColor,
-                    unavailableGlyphs,
-                    ref shadowRenderedSize,
-                    Text,
-                    ShadowGlyphTypeface,
-                    ShadowLineHeight,
-                    ShadowLeftOffset,
-                    ShadowTopOffset);
+            //if (!string.IsNullOrWhiteSpace(Text))
+            //{
+            //    DrawText(
+            //        renderSize,
+            //        drawingContext,
+            //        FontSize,
+            //        ShadowColor,
+            //        unavailableGlyphs,
+            //        ref shadowRenderedSize,
+            //        Text,
+            //        ShadowGlyphTypeface,
+            //        ShadowLineHeight,
+            //        ShadowLeftOffset,
+            //        ShadowTopOffset);
 
-            }
+            //}
             var renderedSize = new Size(0, 0);
             if (!string.IsNullOrWhiteSpace(Text))
             {
@@ -512,9 +512,12 @@ namespace Polaris.Windows.Controls
             var currentLineHeight = 0d;
             const char periodChar = '.';
             var lineCount = 0d;
-            while (remainingWordCharacters.Length > 0 && ((renderingYPosition + (lineHeight ?? 0d) + FontSize) <= (renderSize.Height + Math.Abs(topOffset))))
+            while (remainingWordCharacters.Length > 0)
             {
-
+                if (!((renderingYPosition + (lineHeight ?? 0d) + FontSize) <= (renderSize.Height + Math.Abs(topOffset))))
+                {
+                    break;
+                }
                 double wordWidth = 0;
                 var glyphIndexes = new List<ushort>();
                 var advanceWidths = new List<double>();
