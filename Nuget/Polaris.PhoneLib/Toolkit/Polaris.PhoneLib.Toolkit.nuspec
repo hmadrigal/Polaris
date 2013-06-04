@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27149.13520</version>
+    <version>1.0.27671.7490</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -9,7 +9,7 @@
     <dependencies>
 	  <dependency id="MvvmLight" version="4.1.26.1" />
 	  <dependency id="MvvmLightLibs" version="4.1.27.0" />
-      <dependency id="Polaris.PhoneLib.SystemEx" version="1.0.27149.13520" />
+      <dependency id="Polaris.PhoneLib.SystemEx" version="1.0.27671.7490" />
     </dependencies>
     <id>Polaris.PhoneLib.Toolkit</id>
     <title>Polaris - PhoneLib - Toolkit</title>

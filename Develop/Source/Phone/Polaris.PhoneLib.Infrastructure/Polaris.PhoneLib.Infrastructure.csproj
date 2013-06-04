@@ -89,13 +89,11 @@
   <ItemGroup>
     <Compile Include="Data\AlphaKeyGroup.cs" />
     <Compile Include="Events\WeakEventListener.cs" />
-    <Compile Include="Mvvm\INavigatableViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Mvvm\INavigatableViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Polaris.PhoneLib.Common.Infrastructure\Polaris.PhoneLib.Common.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Common\Polaris.PhoneLib.Common.Infrastructure\Polaris.PhoneLib.Common.Infrastructure.csproj">
       <Project>{283392A5-0E19-4290-B8F5-E30B2854428B}</Project>
       <Name>Polaris.PhoneLib.Common.Infrastructure</Name>
     </ProjectReference>

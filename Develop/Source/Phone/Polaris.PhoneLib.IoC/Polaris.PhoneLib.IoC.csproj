@@ -131,10 +131,6 @@
       <Project>{283392A5-0E19-4290-B8F5-E30B2854428B}</Project>
       <Name>Polaris.PhoneLib.Common.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Polaris.PhoneLib.Infrastructure\Polaris.PhoneLib.Infrastructure.csproj">
-      <Project>{487A4553-BF32-4DA8-BDA3-B6CECAE4050B}</Project>
-      <Name>Polaris.PhoneLib.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP8, Version=4.1.27.22645, Culture=neutral, processorArchitecture=MSIL">
