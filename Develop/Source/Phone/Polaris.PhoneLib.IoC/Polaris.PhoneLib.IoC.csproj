@@ -95,6 +95,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\..\..\Bin\Phone\IoC\Polaris.PhoneLib.IoC.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|x86'">
     <OutputPath>bin\x86\NugetDeploy\</OutputPath>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27671.7490</version>
+    <version>1.0.27676.9283</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -10,8 +10,8 @@
       
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0-Client" />
-      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0-Client" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5-Client" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5-Client" />
     </frameworkAssemblies>
     <id>Polaris.Common</id>
     <title>Polaris - Common Infrastructure</title>
@@ -25,7 +25,16 @@
     <tags>wpf silverlight toolkit framework polaris interface ui prism</tags>
   </metadata>
   <files>
-    <file src="..\..\Develop\Bin\Common\Polaris.Common.dll" target="lib\net40-client" />
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.pdb" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.xml" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.pdb" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.xml" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\System.Runtime.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\System.Runtime.xml" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\System.Threading.Tasks.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\System.Threading.Tasks.xml" target="lib\portable-net45+sl4+wp71+win8" />
     <file src="..\..\Develop\Bin\Wpf\Polaris.dll" target="lib\net40-client" />
   </files>
 </package>
