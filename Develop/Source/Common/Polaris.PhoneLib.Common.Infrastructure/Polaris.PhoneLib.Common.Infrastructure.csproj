@@ -50,6 +50,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Events\Argument.cs" />
     <Compile Include="Events\EventHandlerExtensions.cs" />
     <Compile Include="Messages\AppLifeCycleMessage.cs" />
