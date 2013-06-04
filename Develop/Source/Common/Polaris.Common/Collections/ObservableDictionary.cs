@@ -35,7 +35,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
 
-namespace Polaris.PhoneLib.Mvvm.Collections
+namespace Polaris.Collections
 {
     public class ObservableDictionary<TKey, TValue> :
         IDictionary<TKey, TValue>,

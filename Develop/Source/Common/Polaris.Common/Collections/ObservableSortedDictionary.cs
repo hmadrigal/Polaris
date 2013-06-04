@@ -34,7 +34,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace Polaris.PhoneLib.Mvvm.Collections
+namespace Polaris.Collections
 {
     public class ObservableSortedDictionary<TKey, TValue> : ObservableDictionary<TKey, TValue>
     {

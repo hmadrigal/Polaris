@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace Polaris.PhoneLib.SystemEx
+namespace Polaris.Extensions
 {
     public static class CommandExtensions
     {

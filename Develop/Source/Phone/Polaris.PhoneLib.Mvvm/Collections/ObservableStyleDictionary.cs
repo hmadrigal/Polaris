@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Collections;
+using Polaris.Collections;
 
 #if NETFX_CORE
 using Windows.UI.Xaml;

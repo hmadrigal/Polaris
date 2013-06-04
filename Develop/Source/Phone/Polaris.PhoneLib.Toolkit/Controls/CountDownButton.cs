@@ -1,5 +1,5 @@
 ﻿using System;
-using Polaris.PhoneLib.SystemEx;
+using Polaris.Extensions;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Linq;
