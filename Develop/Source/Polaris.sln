@@ -62,9 +62,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Common.Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Infrastructure", "Phone\Polaris.PhoneLib.Infrastructure\Polaris.PhoneLib.Infrastructure.csproj", "{487A4553-BF32-4DA8-BDA3-B6CECAE4050B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common.IoC", "Polaris.Common.IoC\Polaris.Common.IoC.csproj", "{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
+		SccNumberOfProjects = 17
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -128,6 +130,10 @@ Global
 		SccProjectTopLevelParentUniqueName15 = Polaris.sln
 		SccProjectName15 = Phone/Polaris.PhoneLib.Infrastructure
 		SccLocalPath15 = Phone\\Polaris.PhoneLib.Infrastructure
+		SccProjectUniqueName16 = Polaris.Common.IoC\\Polaris.Common.IoC.csproj
+		SccProjectTopLevelParentUniqueName16 = Polaris.sln
+		SccProjectName16 = Polaris.Common.IoC
+		SccLocalPath16 = Polaris.Common.IoC
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -462,6 +468,21 @@ Global
 		{487A4553-BF32-4DA8-BDA3-B6CECAE4050B}.Release|x64.ActiveCfg = Release|Any CPU
 		{487A4553-BF32-4DA8-BDA3-B6CECAE4050B}.Release|x86.ActiveCfg = Release|x86
 		{487A4553-BF32-4DA8-BDA3-B6CECAE4050B}.Release|x86.Build.0 = Release|x86
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.NugetDeploy|Any CPU.ActiveCfg = NugetDeploy|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.NugetDeploy|Any CPU.Build.0 = NugetDeploy|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.NugetDeploy|ARM.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.NugetDeploy|x64.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.NugetDeploy|x86.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Release|x64.ActiveCfg = Release|Any CPU
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -469,6 +490,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262} = {26CBCF2F-5E68-4012-8085-4BFC001B4126}
 		{283392A5-0E19-4290-B8F5-E30B2854428B} = {26CBCF2F-5E68-4012-8085-4BFC001B4126}
+		{4E1F02D0-B4F1-4C36-9C76-5CCADC517D0A} = {26CBCF2F-5E68-4012-8085-4BFC001B4126}
 		{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
 		{969C8E8C-441B-40F3-8730-4BFA31E56DAE} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
 		{097603E9-D1FD-4A14-9F60-480C109D0263} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Polaris.PhoneLib.Services
+namespace Polaris.Common.IoC
 {
     public interface IPhoneServiceLocator
     {

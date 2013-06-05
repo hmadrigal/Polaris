@@ -6,9 +6,9 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Polaris.PhoneLib.IoC
+namespace Polaris.Common.IoC
 {
-    public sealed class PhoneServiceLocator : SimpleIoc, Microsoft.Practices.ServiceLocation.IServiceLocator, System.IServiceProvider, Polaris.PhoneLib.Services.IPhoneServiceLocator
+    public sealed class PhoneServiceLocator : SimpleIoc, Microsoft.Practices.ServiceLocation.IServiceLocator, System.IServiceProvider, IPhoneServiceLocator
     {
         private readonly Dictionary<Type, object> _singletons = new Dictionary<Type, object>();
         private readonly Dictionary<Type, Delegate> _instanceFactories = new Dictionary<Type, Delegate>();
