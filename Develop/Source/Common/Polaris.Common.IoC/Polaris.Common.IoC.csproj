@@ -38,9 +38,9 @@
     <DocumentationFile>..\..\..\Bin\Common\Polaris.Common.IoC.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|AnyCPU'">
-    <OutputPath>bin\NugetDeploy\</OutputPath>
+    <OutputPath>..\..\..\Bin\Common.IoC\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>..\..\..\Bin\Common\Polaris.Common.IoC.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\Bin\Common.IoC\Polaris.Common.IoC.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>

@@ -1,30 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27881.18654</version>
+    <version>1.0.27948.43146</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-	  <dependency id="MvvmLight" version="4.1.26.1" />
-	  <dependency id="MvvmLightLibs" version="4.1.27.0" />
-      <dependency id="Polaris.Common" version="1.0.27881.18654" />
+      <dependency id="Portable.MvvmLightLibs" version="4.1.27.5" />
     </dependencies>
     <id>Polaris.PhoneLib.IoC</id>
-    <title>Polaris - PhoneLib - Inversion Of Control </title>
+    <title>Polaris - Common - Inversion Of Control </title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>An extended Dependency Injection container which deals with instantiation and life time of objects. It extends SimpleIoC from MvvmLight.</description>
     <summary />
     <releaseNotes>Alpha release</releaseNotes>
     <copyright>MS-PL</copyright>
     <language>en-US</language>
-    <tags>wp8 toolkit framework polaris ioc dependency injection PhoneLib</tags>
+    <tags>wp8 toolkit framework polaris ioc dependency injection </tags>
   </metadata>
   <files>
-    <file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.IoC.dll" target="lib\wp8" />
-	  <file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.IoC.pdb" target="lib\wp8" />
-    <file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.Infrastructure.dll" target="lib\wp8" />
-    <file src="..\..\..\Develop\Bin\Phone\IoC\Polaris.PhoneLib.Infrastructure.pdb" target="lib\wp8" />
+    <file src="..\..\Develop\Bin\Common.IoC\Polaris.Common.IoC.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common.IoC\Polaris.Common.IoC.pdb" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common.IoC\Polaris.Common.IoC.xml" target="lib\portable-net45+sl4+wp71+win8" />
   </files>
 </package>
