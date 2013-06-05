@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27698.17299</version>
+    <version>1.0.27881.18654</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
+      <dependency id="Portable.MvvmLightLibs" version="4.1.27.5" />
       <!--<dependency id="Microsoft.Bcl" version="1.0.19" />
       <dependency id="Microsoft.Bcl.Build" version="1.0.6" />-->
     </dependencies>
@@ -29,6 +30,11 @@
     <file src="..\..\Develop\Bin\Common\Polaris.Common.dll" target="lib\portable-net45+sl4+wp71+win8" />
     <file src="..\..\Develop\Bin\Common\Polaris.Common.pdb" target="lib\portable-net45+sl4+wp71+win8" />
     <file src="..\..\Develop\Bin\Common\Polaris.Common.xml" target="lib\portable-net45+sl4+wp71+win8" />
+
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.IoC.dll" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.IoC.pdb" target="lib\portable-net45+sl4+wp71+win8" />
+    <file src="..\..\Develop\Bin\Common\Polaris.Common.IoC.xml" target="lib\portable-net45+sl4+wp71+win8" />
+    
     <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.dll" target="lib\portable-net45+sl4+wp71+win8" />
     <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.pdb" target="lib\portable-net45+sl4+wp71+win8" />
     <file src="..\..\Develop\Bin\Common\Polaris.PhoneLib.Common.Infrastructure.xml" target="lib\portable-net45+sl4+wp71+win8" />
