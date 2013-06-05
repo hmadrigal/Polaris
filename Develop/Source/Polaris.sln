@@ -50,8 +50,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSimulator", "Wpf\packa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Toolkit", "Phone\Polaris.PhoneLib.Toolkit\Polaris.PhoneLib.Toolkit.csproj", "{768CF62E-7F94-4702-B192-231E860ACD42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.IoC", "Phone\Polaris.PhoneLib.IoC\Polaris.PhoneLib.IoC.csproj", "{1901D1CC-109E-4CE1-8321-52C495637D5F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Mvvm", "Phone\Polaris.PhoneLib.Mvvm\Polaris.PhoneLib.Mvvm.csproj", "{4AB17A89-E720-46EB-92BB-720F6711EAFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.SystemEx", "Phone\Polaris.PhoneLib.SystemEx\Polaris.PhoneLib.SystemEx.csproj", "{C77A37AE-6202-4FBF-AAEE-791E13064F82}"
@@ -66,7 +64,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Infrastruc
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
+		SccNumberOfProjects = 16
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
 		SccLocalPath0 = .
@@ -106,34 +104,30 @@ Global
 		SccProjectTopLevelParentUniqueName9 = Polaris.sln
 		SccProjectName9 = Phone/Polaris.PhoneLib.Toolkit
 		SccLocalPath9 = Phone\\Polaris.PhoneLib.Toolkit
-		SccProjectUniqueName10 = Phone\\Polaris.PhoneLib.IoC\\Polaris.PhoneLib.IoC.csproj
+		SccProjectUniqueName10 = Phone\\Polaris.PhoneLib.Mvvm\\Polaris.PhoneLib.Mvvm.csproj
 		SccProjectTopLevelParentUniqueName10 = Polaris.sln
-		SccProjectName10 = Phone/Polaris.PhoneLib.IoC
-		SccLocalPath10 = Phone\\Polaris.PhoneLib.IoC
-		SccProjectUniqueName11 = Phone\\Polaris.PhoneLib.Mvvm\\Polaris.PhoneLib.Mvvm.csproj
+		SccProjectName10 = Phone/Polaris.PhoneLib.Mvvm
+		SccLocalPath10 = Phone\\Polaris.PhoneLib.Mvvm
+		SccProjectUniqueName11 = Phone\\Polaris.PhoneLib.SystemEx\\Polaris.PhoneLib.SystemEx.csproj
 		SccProjectTopLevelParentUniqueName11 = Polaris.sln
-		SccProjectName11 = Phone/Polaris.PhoneLib.Mvvm
-		SccLocalPath11 = Phone\\Polaris.PhoneLib.Mvvm
-		SccProjectUniqueName12 = Phone\\Polaris.PhoneLib.SystemEx\\Polaris.PhoneLib.SystemEx.csproj
+		SccProjectName11 = Phone/Polaris.PhoneLib.SystemEx
+		SccLocalPath11 = Phone\\Polaris.PhoneLib.SystemEx
+		SccProjectUniqueName12 = QuickStarts\\Polaris.Quickstart.CalPhoneApp\\Polaris.Quickstart.CalPhoneApp.csproj
 		SccProjectTopLevelParentUniqueName12 = Polaris.sln
-		SccProjectName12 = Phone/Polaris.PhoneLib.SystemEx
-		SccLocalPath12 = Phone\\Polaris.PhoneLib.SystemEx
-		SccProjectUniqueName13 = QuickStarts\\Polaris.Quickstart.CalPhoneApp\\Polaris.Quickstart.CalPhoneApp.csproj
+		SccProjectName12 = QuickStarts/Polaris.Quickstart.CalPhoneApp
+		SccLocalPath12 = QuickStarts\\Polaris.Quickstart.CalPhoneApp
+		SccProjectUniqueName13 = Phone\\Polaris.PhoneLib.Diagnostics\\Polaris.PhoneLib.Diagnostics.csproj
 		SccProjectTopLevelParentUniqueName13 = Polaris.sln
-		SccProjectName13 = QuickStarts/Polaris.Quickstart.CalPhoneApp
-		SccLocalPath13 = QuickStarts\\Polaris.Quickstart.CalPhoneApp
-		SccProjectUniqueName14 = Phone\\Polaris.PhoneLib.Diagnostics\\Polaris.PhoneLib.Diagnostics.csproj
+		SccProjectName13 = Phone/Polaris.PhoneLib.Diagnostics
+		SccLocalPath13 = Phone\\Polaris.PhoneLib.Diagnostics
+		SccProjectUniqueName14 = Common\\Polaris.PhoneLib.Common.Infrastructure\\Polaris.PhoneLib.Common.Infrastructure.csproj
 		SccProjectTopLevelParentUniqueName14 = Polaris.sln
-		SccProjectName14 = Phone/Polaris.PhoneLib.Diagnostics
-		SccLocalPath14 = Phone\\Polaris.PhoneLib.Diagnostics
-		SccProjectUniqueName15 = Common\\Polaris.PhoneLib.Common.Infrastructure\\Polaris.PhoneLib.Common.Infrastructure.csproj
+		SccProjectName14 = Common/Polaris.PhoneLib.Common.Infrastructure
+		SccLocalPath14 = Common\\Polaris.PhoneLib.Common.Infrastructure
+		SccProjectUniqueName15 = Phone\\Polaris.PhoneLib.Infrastructure\\Polaris.PhoneLib.Infrastructure.csproj
 		SccProjectTopLevelParentUniqueName15 = Polaris.sln
-		SccProjectName15 = Common/Polaris.PhoneLib.Common.Infrastructure
-		SccLocalPath15 = Common\\Polaris.PhoneLib.Common.Infrastructure
-		SccProjectUniqueName16 = Phone\\Polaris.PhoneLib.Infrastructure\\Polaris.PhoneLib.Infrastructure.csproj
-		SccProjectTopLevelParentUniqueName16 = Polaris.sln
-		SccProjectName16 = Phone/Polaris.PhoneLib.Infrastructure
-		SccLocalPath16 = Phone\\Polaris.PhoneLib.Infrastructure
+		SccProjectName15 = Phone/Polaris.PhoneLib.Infrastructure
+		SccLocalPath15 = Phone\\Polaris.PhoneLib.Infrastructure
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -339,27 +333,6 @@ Global
 		{768CF62E-7F94-4702-B192-231E860ACD42}.Release|x64.ActiveCfg = Release|Any CPU
 		{768CF62E-7F94-4702-B192-231E860ACD42}.Release|x86.ActiveCfg = Release|x86
 		{768CF62E-7F94-4702-B192-231E860ACD42}.Release|x86.Build.0 = Release|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|ARM.ActiveCfg = Debug|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|ARM.Build.0 = Debug|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|x86.ActiveCfg = Debug|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Debug|x86.Build.0 = Debug|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|Any CPU.ActiveCfg = NugetDeploy|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|Any CPU.Build.0 = NugetDeploy|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|ARM.ActiveCfg = Release|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|ARM.Build.0 = Release|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|x64.ActiveCfg = Release|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|x86.ActiveCfg = Release|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.NugetDeploy|x86.Build.0 = Release|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|ARM.ActiveCfg = Release|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|ARM.Build.0 = Release|ARM
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|x64.ActiveCfg = Release|Any CPU
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|x86.ActiveCfg = Release|x86
-		{1901D1CC-109E-4CE1-8321-52C495637D5F}.Release|x86.Build.0 = Release|x86
 		{4AB17A89-E720-46EB-92BB-720F6711EAFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AB17A89-E720-46EB-92BB-720F6711EAFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB17A89-E720-46EB-92BB-720F6711EAFF}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -501,7 +474,6 @@ Global
 		{097603E9-D1FD-4A14-9F60-480C109D0263} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
 		{6A0385F1-B440-4DF2-AC9D-011666E0759E} = {2B6D8B8D-AC03-4AAE-A33F-5E4D4EB02BDE}
 		{768CF62E-7F94-4702-B192-231E860ACD42} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
-		{1901D1CC-109E-4CE1-8321-52C495637D5F} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
 		{4AB17A89-E720-46EB-92BB-720F6711EAFF} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
 		{C77A37AE-6202-4FBF-AAEE-791E13064F82} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
 		{A1007F54-1AFB-439E-AA26-EFD61CF7B43B} = {C9AF3596-400C-46D0-BD54-37AEB0C6C0C2}
