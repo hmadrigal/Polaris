@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Polaris.Common.IoC
 {
-    public interface IPhoneServiceLocator
+    public interface IPolarisServiceLocator
     {
         object GetInstance(Type serviceType);
         TService GetInstance<TService>();

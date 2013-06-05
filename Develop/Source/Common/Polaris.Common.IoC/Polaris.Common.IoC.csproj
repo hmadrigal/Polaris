@@ -51,8 +51,8 @@
     <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="IPhoneServiceLocator.cs" />
-    <Compile Include="PhoneServiceLocator.cs" />
+    <Compile Include="IPolarisServiceLocator.cs" />
+    <Compile Include="PolarisServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

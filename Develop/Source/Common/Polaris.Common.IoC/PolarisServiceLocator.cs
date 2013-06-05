@@ -8,7 +8,10 @@ using System.Reflection;
 
 namespace Polaris.Common.IoC
 {
-    public sealed class PhoneServiceLocator : SimpleIoc, Microsoft.Practices.ServiceLocation.IServiceLocator, System.IServiceProvider, IPhoneServiceLocator
+    /// <summary>
+    /// Dependency injection container for object composition
+    /// </summary>
+    public sealed class PolarisServiceLocator : SimpleIoc, Microsoft.Practices.ServiceLocation.IServiceLocator, System.IServiceProvider, IPolarisServiceLocator
     {
         private readonly Dictionary<Type, object> _singletons = new Dictionary<Type, object>();
         private readonly Dictionary<Type, Delegate> _instanceFactories = new Dictionary<Type, Delegate>();
@@ -119,12 +122,12 @@ namespace Polaris.Common.IoC
         { }
 
         #region Singleton Pattern w/ Constructor
-        private PhoneServiceLocator()
+        private PolarisServiceLocator()
             : base()
         {
             InitializePhoneServiceLocatorServiceLocator();
         }
-        public static PhoneServiceLocator Instance
+        public static PolarisServiceLocator Instance
         {
             get
             {
@@ -134,7 +137,7 @@ namespace Polaris.Common.IoC
         private class SingletonPhoneServiceLocatorServiceLocatorCreator
         {
             private SingletonPhoneServiceLocatorServiceLocatorCreator() { }
-            public static PhoneServiceLocator _Instance = new PhoneServiceLocator();
+            public static PolarisServiceLocator _Instance = new PolarisServiceLocator();
         }
         #endregion
 
