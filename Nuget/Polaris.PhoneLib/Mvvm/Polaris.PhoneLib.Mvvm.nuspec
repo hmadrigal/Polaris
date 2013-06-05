@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27881.18654</version>
+    <version>1.0.27959.47180</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-	  <dependency id="MvvmLight" version="4.1.26.1" />
-	  <dependency id="MvvmLightLibs" version="4.1.27.0" />
-      <dependency id="Polaris.Common" version="1.0.27881.18654" />
+      <dependency id="Portable.MvvmLightLibs" version="4.1.27.5" />
+      <dependency id="Polaris.Common" version="1.0.27959.47180" />
     </dependencies>
     <id>Polaris.PhoneLib.Mvvm</id>
     <title>Polaris - PhoneLib - Mvvm </title>
@@ -23,7 +22,7 @@
   </metadata>
   <files>
     <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.dll" target="lib\wp8" />
-	  <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.pdb" target="lib\wp8" />
+    <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Mvvm.pdb" target="lib\wp8" />
     <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Infrastructure.dll" target="lib\wp8" />
     <file src="..\..\..\Develop\Bin\Phone\Mvvm\Polaris.PhoneLib.Infrastructure.pdb" target="lib\wp8" />
   </files>

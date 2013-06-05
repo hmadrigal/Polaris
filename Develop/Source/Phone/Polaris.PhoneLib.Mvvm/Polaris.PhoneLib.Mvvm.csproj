@@ -145,21 +145,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight">
+    <Reference Include="GalaSoft.MvvmLight, Version=4.1.27.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras">
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=4.1.27.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform.WP8">
+      <HintPath>..\..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.Platform.WP8.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\wp8\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Portable.CommonServiceLocator.1.2.2\lib\portable-net4+sl4+wp7+win8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
