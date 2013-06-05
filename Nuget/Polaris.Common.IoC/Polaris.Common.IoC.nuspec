@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.27948.43146</version>
+    <version>1.0.27949.43570</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
@@ -10,7 +10,7 @@
       <dependency id="Portable.MvvmLightLibs" version="4.1.27.5" />
     </dependencies>
     <id>Polaris.PhoneLib.IoC</id>
-    <title>Polaris - Common - Inversion Of Control </title>
+    <title>Polaris - Common - Inversion Of Control</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>An extended Dependency Injection container which deals with instantiation and life time of objects. It extends SimpleIoC from MvvmLight.</description>
     <summary />
