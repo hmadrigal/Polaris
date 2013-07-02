@@ -202,6 +202,29 @@
 
         #endregion
 
+        #region VisualStateChangedCommandParameter
+
+        /// <summary>
+        /// VisualStateChangedCommandParameter Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty VisualStateChangedCommandParameterProperty =
+            DependencyProperty.Register("VisualStateChangedCommandParameter", typeof(object), typeof(GoToEnumStateAction),
+                new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets or sets the VisualStateChangedCommandParameter property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public object VisualStateChangedCommandParameter
+        {
+            get { return (object)GetValue(VisualStateChangedCommandParameterProperty); }
+            set { SetValue(VisualStateChangedCommandParameterProperty, value); }
+        }
+
+        #endregion
+
+
+
         /// <summary>
         /// Gets a value indicating whether the control is in design mode (running in Blend
         /// or Visual Studio).
@@ -274,7 +297,7 @@
         {
             _visualStateGroupOfTheStateName.CurrentStateChanged -= OnVisualStateGroupCurrentStateChanged;
             _visualStateGroupOfTheStateName = null;
-            var parameter = new Tuple<string, string>(e.OldState.Name, e.NewState.Name);
+            var parameter = new Tuple<string, string, object>(e.OldState == null ? string.Empty : e.OldState.Name, e.NewState == null ? string.Empty : e.NewState.Name, VisualStateChangedCommandParameter);
             if (VisualStateChangedCommand == null || !VisualStateChangedCommand.CanExecute(parameter))
             {
                 return;
