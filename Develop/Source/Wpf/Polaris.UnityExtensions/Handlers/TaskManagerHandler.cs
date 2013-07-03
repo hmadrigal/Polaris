@@ -1,6 +1,6 @@
-﻿using Polaris.UnityExtensions;
+﻿using Polaris.EnterpriseEx;
 
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     using System;
     using System.Linq;

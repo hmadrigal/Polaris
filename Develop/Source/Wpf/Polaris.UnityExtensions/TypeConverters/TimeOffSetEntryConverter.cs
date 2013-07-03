@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using TimeOffSetEntry = System.Collections.Generic.KeyValuePair<int, System.TimeSpan>;
 
-namespace Polaris.UnityExtensions.TypeConverters
+namespace Polaris.EnterpriseEx.TypeConverters
 {
     /// <summary>
     /// 

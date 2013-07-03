@@ -3,7 +3,7 @@
 //     This code is distributed under the Microsoft Public License (MS-PL).
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     using System;
     using System.Configuration;

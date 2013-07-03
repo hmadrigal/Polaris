@@ -8,8 +8,8 @@
     <ProjectGuid>{9AF9A1DC-2FC8-4950-B1E5-BB17C5C32024}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Polaris.UnityExtensions</RootNamespace>
-    <AssemblyName>Polaris.UnityExtensions</AssemblyName>
+    <RootNamespace>Polaris.EnterpriseEx</RootNamespace>
+    <AssemblyName>Polaris.EnterpriseEx</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

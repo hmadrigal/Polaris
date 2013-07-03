@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Polaris.UnityExtensions.TypeConverters
+namespace Polaris.EnterpriseEx.TypeConverters
 {
     [TypeConverter(typeof(TimeSpanConverter))]
     public class TimeSpanConverter : TypeConverter

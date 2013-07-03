@@ -7,7 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     /// <summary>
     /// An <see cref="ICallHandler"/> that implements caching of the return values of

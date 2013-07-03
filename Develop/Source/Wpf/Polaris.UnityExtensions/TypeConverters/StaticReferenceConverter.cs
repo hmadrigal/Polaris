@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Polaris.UnityExtensions.TypeConverters
+namespace Polaris.EnterpriseEx.TypeConverters
 {
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Polaris.UnityExtensions
+﻿namespace Polaris.EnterpriseEx
 {
     using System;
     using System.Reflection;

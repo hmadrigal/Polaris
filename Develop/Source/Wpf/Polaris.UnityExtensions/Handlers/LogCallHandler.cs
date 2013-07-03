@@ -6,7 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using Polaris.Extensions;
 
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     public class LogCallHandler : ICallHandler
     {

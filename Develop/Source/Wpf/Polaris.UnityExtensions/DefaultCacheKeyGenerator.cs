@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Web.UI;
 
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     /// <summary>
     /// The default <see cref="ICacheKeyGenerator"/> used by the <see cref="PessimisticCacheHandler"/>.

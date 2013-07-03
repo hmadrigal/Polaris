@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Polaris.UnityExtensions
+namespace Polaris.EnterpriseEx
 {
     /// <summary>
     /// This interface describes classes that can be used to generate cache key strings

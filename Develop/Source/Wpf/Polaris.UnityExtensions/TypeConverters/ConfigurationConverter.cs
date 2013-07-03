@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 
-namespace Polaris.UnityExtensions.TypeConverters
+namespace Polaris.EnterpriseEx.TypeConverters
 {
     /// <summary>
     /// <para>
