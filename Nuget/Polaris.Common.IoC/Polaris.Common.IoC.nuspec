@@ -9,7 +9,7 @@
     <dependencies>
       <dependency id="Portable.MvvmLightLibs" version="4.1.27.5" />
     </dependencies>
-    <id>Polaris.PhoneLib.IoC</id>
+    <id>Polaris.Common.IoC</id>
     <title>Polaris - Common - Inversion Of Control</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>An extended Dependency Injection container which deals with instantiation and life time of objects. It extends SimpleIoC from MvvmLight.</description>
