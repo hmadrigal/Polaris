@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.0.32872.5230</version>
+    <version>1.0.32872.5337</version>
     <authors>Polaris Community</authors>
     <owners>Polaris Community</owners>
     <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
     <projectUrl>http://polaris.codeplex.com/</projectUrl>
     <dependencies>
-      <dependency id="Polaris.Common" version="1.0.32872.5230" />
+      <dependency id="Polaris.Common" version="1.0.32872.5337" />
       <dependency id="CommonServiceLocator" version="1.0" />
       <dependency id="Prism" version="4.1.0.0" />
       <dependency id="Prism.UnityExtensions" version="4.1.0.0" />
