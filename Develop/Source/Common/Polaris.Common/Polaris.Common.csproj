@@ -244,6 +244,12 @@
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Toolkit\Polaris.PhoneLib.Toolkit.nuspec" />
     <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.PhoneLib\Toolkit\Polaris.PhoneLib.Toolkit.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Build\Polaris.Build.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Build\Polaris.Build.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Build\Polaris.Build.nuspec" />
   </Target>
   <Target Name="BeforeBuild">
     <CallTarget Condition="'$(Configuration)' == 'NugetDeploy'" Targets="NugetUpdateTask">
