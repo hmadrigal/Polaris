@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="Polaris.CSharp.Tasks.ReadAllText.target" />
-  <Import Project="Polaris.CSharp.Tasks.ReadAssemblyInfo.target" />
-  <Import Project="Polaris.CSharp.Tasks.SetTimeBaseAssemblyVersion.target" />
-  <Import Project="Polaris.CSharp.Tasks.TransformWMAppManifest.target" />
-  <Import Project="Polaris.CSharp.Tasks.WriteAssemblyInfo.target" />
-</Project>

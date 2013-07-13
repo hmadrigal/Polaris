@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.34670.6254</version>
+    <authors>Polaris Community</authors>
+    <owners>Polaris Community</owners>
+    <licenseUrl>http://polaris.codeplex.com/license</licenseUrl>
+    <projectUrl>http://polaris.codeplex.com/</projectUrl>
+    <dependencies>
+
+    </dependencies>
+    
+    <id>Polaris.Build</id>
+    <title>Polaris - MsBuild Tasks</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>MS Build tasks for not so common needs. </description>
+    <summary>The Polaris Build holds files for inline csharp-based tasks for MSbuild process.</summary>
+    <releaseNotes>Alpha release</releaseNotes>
+    <!--<releaseNotes>Initial release</releaseNotes>-->
+    <copyright>MS-PL</copyright>
+    <language>en-US</language>
+    <tags>polaris csharp msbuild build</tags>
+  </metadata>
+  <files>
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.targets" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.ReadAllText.target" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.ReadAssemblyInfo.target" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.SetTimeBaseAssemblyVersion.target" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.TransformWMAppManifest.target" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.WriteAssemblyInfo.target" target="tools" />
+    <file src="..\..\Develop\Source\MSBuild\WMAppManifest.xslt" target="tools" />
+  </files>
+</package>
