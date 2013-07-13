@@ -29,5 +29,7 @@
     <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.TransformWMAppManifest.target" target="tools" />
     <file src="..\..\Develop\Source\MSBuild\Polaris.Build.CSharp.Tasks.WriteAssemblyInfo.target" target="tools" />
     <file src="..\..\Develop\Source\MSBuild\WMAppManifest.xslt" target="tools" />
+    <file src="tools\Install.ps1" target="tools" />
+    <file src="tools\Uninstall.ps1" target="tools" />
   </files>
 </package>
