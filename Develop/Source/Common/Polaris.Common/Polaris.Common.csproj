@@ -250,6 +250,43 @@
     </ReadAllTextTask>
     <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Build\Polaris.Build.nuspec" />
     <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Build\Polaris.Build.nuspec" />
+    <!--
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+
+    <ReadAllTextTask Path="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec">
+      <Output PropertyName="PolarisEnterpriseExFileContent" TaskParameter="FileContent" />
+    </ReadAllTextTask>
+    <Exec Command="attrib -r $(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    <XslTransformation XmlContent="$(PolarisEnterpriseExFileContent)" XslContent="$(NugetXslt)" OutputPaths="$(SolutionDir)\..\..\..\Polaris\Nuget\Polaris.Common.IoC\Polaris.Common.IoC.nuspec" />
+    -->
   </Target>
   <Target Name="BeforeBuild">
     <CallTarget Condition="'$(Configuration)' == 'NugetDeploy'" Targets="NugetUpdateTask">

@@ -64,15 +64,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.PhoneLib.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Common.IoC", "Common\Polaris.Common.IoC\Polaris.Common.IoC.csproj", "{4D1C1F7F-A896-4780-991C-F69ED1924A8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Infrastructure", "Polaris.Phone7Lib.Infrastructure\Polaris.Phone7Lib.Infrastructure.csproj", "{15FF93A9-146B-4A05-AF96-76E7D21B8527}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Infrastructure", "Phone\Polaris.Phone7Lib.Infrastructure\Polaris.Phone7Lib.Infrastructure.csproj", "{15FF93A9-146B-4A05-AF96-76E7D21B8527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Mvvm", "Polaris.Phone7Lib.Mvvm\Polaris.Phone7Lib.Mvvm.csproj", "{D811AA63-CDC3-4D10-A9CB-EB9013D7E94F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Mvvm", "Phone\Polaris.Phone7Lib.Mvvm\Polaris.Phone7Lib.Mvvm.csproj", "{D811AA63-CDC3-4D10-A9CB-EB9013D7E94F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Diagnostics", "Polaris.Phone7Lib.Diagnostics\Polaris.Phone7Lib.Diagnostics.csproj", "{6EE854EF-D01B-4F20-8D94-328F9C348BE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Diagnostics", "Phone\Polaris.Phone7Lib.Diagnostics\Polaris.Phone7Lib.Diagnostics.csproj", "{6EE854EF-D01B-4F20-8D94-328F9C348BE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.SystemEx", "Polaris.Phone7Lib.SystemEx\Polaris.Phone7Lib.SystemEx.csproj", "{683C4C74-31D3-41D8-A9C8-69F03748BB66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.SystemEx", "Phone\Polaris.Phone7Lib.SystemEx\Polaris.Phone7Lib.SystemEx.csproj", "{683C4C74-31D3-41D8-A9C8-69F03748BB66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Toolkit", "Polaris.Phone7Lib.Toolkit\Polaris.Phone7Lib.Toolkit.csproj", "{833DE3E5-E18A-444E-B789-BC0206D627E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Phone7Lib.Toolkit", "Phone\Polaris.Phone7Lib.Toolkit\Polaris.Phone7Lib.Toolkit.csproj", "{833DE3E5-E18A-444E-B789-BC0206D627E6}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -144,26 +144,26 @@ Global
 		SccProjectTopLevelParentUniqueName16 = Polaris.sln
 		SccProjectName16 = Common/Polaris.Common.IoC
 		SccLocalPath16 = Common\\Polaris.Common.IoC
-		SccProjectUniqueName17 = Polaris.Phone7Lib.Infrastructure\\Polaris.Phone7Lib.Infrastructure.csproj
+		SccProjectUniqueName17 = Phone\\Polaris.Phone7Lib.Infrastructure\\Polaris.Phone7Lib.Infrastructure.csproj
 		SccProjectTopLevelParentUniqueName17 = Polaris.sln
-		SccProjectName17 = Polaris.Phone7Lib.Infrastructure
-		SccLocalPath17 = Polaris.Phone7Lib.Infrastructure
-		SccProjectUniqueName18 = Polaris.Phone7Lib.Mvvm\\Polaris.Phone7Lib.Mvvm.csproj
+		SccProjectName17 = Phone/Polaris.Phone7Lib.Infrastructure
+		SccLocalPath17 = Phone\\Polaris.Phone7Lib.Infrastructure
+		SccProjectUniqueName18 = Phone\\Polaris.Phone7Lib.SystemEx\\Polaris.Phone7Lib.SystemEx.csproj
 		SccProjectTopLevelParentUniqueName18 = Polaris.sln
-		SccProjectName18 = Polaris.Phone7Lib.Mvvm
-		SccLocalPath18 = Polaris.Phone7Lib.Mvvm
-		SccProjectUniqueName19 = Polaris.Phone7Lib.Diagnostics\\Polaris.Phone7Lib.Diagnostics.csproj
+		SccProjectName18 = Phone/Polaris.Phone7Lib.SystemEx
+		SccLocalPath18 = Phone\\Polaris.Phone7Lib.SystemEx
+		SccProjectUniqueName19 = Phone\\Polaris.Phone7Lib.Diagnostics\\Polaris.Phone7Lib.Diagnostics.csproj
 		SccProjectTopLevelParentUniqueName19 = Polaris.sln
-		SccProjectName19 = Polaris.Phone7Lib.Diagnostics
-		SccLocalPath19 = Polaris.Phone7Lib.Diagnostics
-		SccProjectUniqueName20 = Polaris.Phone7Lib.SystemEx\\Polaris.Phone7Lib.SystemEx.csproj
+		SccProjectName19 = Phone/Polaris.Phone7Lib.Diagnostics
+		SccLocalPath19 = Phone\\Polaris.Phone7Lib.Diagnostics
+		SccProjectUniqueName20 = Phone\\Polaris.Phone7Lib.Mvvm\\Polaris.Phone7Lib.Mvvm.csproj
 		SccProjectTopLevelParentUniqueName20 = Polaris.sln
-		SccProjectName20 = Polaris.Phone7Lib.SystemEx
-		SccLocalPath20 = Polaris.Phone7Lib.SystemEx
-		SccProjectUniqueName21 = Polaris.Phone7Lib.Toolkit\\Polaris.Phone7Lib.Toolkit.csproj
+		SccProjectName20 = Phone/Polaris.Phone7Lib.Mvvm
+		SccLocalPath20 = Phone\\Polaris.Phone7Lib.Mvvm
+		SccProjectUniqueName21 = Phone\\Polaris.Phone7Lib.Toolkit\\Polaris.Phone7Lib.Toolkit.csproj
 		SccProjectTopLevelParentUniqueName21 = Polaris.sln
-		SccProjectName21 = Polaris.Phone7Lib.Toolkit
-		SccLocalPath21 = Polaris.Phone7Lib.Toolkit
+		SccProjectName21 = Phone/Polaris.Phone7Lib.Toolkit
+		SccLocalPath21 = Phone\\Polaris.Phone7Lib.Toolkit
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D811AA63-CDC3-4D10-A9CB-EB9013D7E94F}</ProjectGuid>
+    <ProjectGuid>{15FF93A9-146B-4A05-AF96-76E7D21B8527}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Polaris.Phone7Lib.Mvvm</RootNamespace>
-    <AssemblyName>Polaris.Phone7Lib.Mvvm</AssemblyName>
+    <RootNamespace>Polaris.Phone7Lib.Infrastructure</RootNamespace>
+    <AssemblyName>Polaris.Phone7Lib.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -44,73 +44,46 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NugetDeploy|AnyCPU'">
+    <OutputPath>bin\NugetDeploy\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight">
-      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\sl4-wp71\GalaSoft.MvvmLight.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras">
-      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform.WP75">
-      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\sl4-wp71\GalaSoft.MvvmLight.Platform.WP75.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\sl4-wp71\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\portable-net4+sl4+wp7+win8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\sl4-wp71\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Phone\Polaris.PhoneLib.Mvvm\Collections\ObservableStyleDictionary.cs">
-      <Link>Collections\ObservableStyleDictionary.cs</Link>
+    <Compile Include="..\..\SolutionItems\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="..\Phone\Polaris.PhoneLib.Mvvm\PageViewModelBase.cs">
-      <Link>PageViewModelBase.cs</Link>
+    <Compile Include="..\Polaris.PhoneLib.Infrastructure\Events\WeakEventListener.cs">
+      <Link>Events\WeakEventListener.cs</Link>
     </Compile>
-    <Compile Include="..\Phone\Polaris.PhoneLib.Mvvm\ResourceViewModel.cs">
-      <Link>ResourceViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Phone\Polaris.PhoneLib.Mvvm\ViewModelBase.cs">
-      <Link>ViewModelBase.cs</Link>
+    <Compile Include="..\Polaris.PhoneLib.Infrastructure\Mvvm\INavigatableViewModel.cs">
+      <Link>Mvvm\INavigatableViewModel.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Polaris.Common\Polaris.Common.csproj">
-      <Project>{32FB0AA6-8ACC-4ABB-9570-4D3FCA9C1262}</Project>
-      <Name>Polaris.Common</Name>
+    <ProjectReference Include="..\..\Common\Polaris.PhoneLib.Common.Infrastructure\Polaris.PhoneLib.Common.Infrastructure.csproj">
+      <Project>{283392A5-0E19-4290-B8F5-E30B2854428B}</Project>
+      <Name>Polaris.PhoneLib.Common.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Polaris.Phone7Lib.Infrastructure\Polaris.Phone7Lib.Infrastructure.csproj">
-      <Project>{15FF93A9-146B-4A05-AF96-76E7D21B8527}</Project>
-      <Name>Polaris.Phone7Lib.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
