@@ -1,3 +1,0 @@
-﻿ALTER TABLE [Polaris].[Game] ADD CONSTRAINT [PK_Game_1] PRIMARY KEY CLUSTERED  ([GameId]) ON [PRIMARY]
-
-

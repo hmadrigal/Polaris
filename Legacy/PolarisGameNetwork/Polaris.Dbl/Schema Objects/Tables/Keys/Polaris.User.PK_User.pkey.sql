@@ -1,3 +1,0 @@
-﻿ALTER TABLE [Polaris].[User] ADD CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED  ([UserId]) ON [PRIMARY]
-
-

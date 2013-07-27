@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<PlugIn xmlns="http://schemas.postsharp.org/1.0/configuration">
-	<TaskType Name="Polaris.Design.AddPagination"	
-			  Implementation="Polaris.Design.AddPaginationTask, Polaris.Design.Weaver">
-		<Dependency TaskType="CodeWeaver"/>
-	</TaskType>
-</PlugIn>
